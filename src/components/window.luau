@@ -74,7 +74,7 @@ local keepInView = 80
 -- window's scale took them well under a comfortable tap, so there they are sized to come out at
 -- the compact values on screen instead.
 local actionIcon, actionCell, actionGap = 20, 24, 5
-local compactActionIcon, compactActionCell, compactActionGap = 22, 32, 6
+local compactActionIcon, compactActionCell, compactActionGap = 16, 28, 5
 
 -- The size the current screen calls for, for this window's layout. Everything downstream (the
 -- reveal target, drag clamp, collapse) reads self.size, so it all inherits whatever this returns.
