@@ -80,6 +80,10 @@ local actionIcon, actionCell, actionGap = 20, 24, 5
 -- sit over the game rather than inside the window, so at the window's own scale they cover too
 -- much of a small screen.
 local compactOverlayShare = 0.8
+
+-- The hide pill's scale on a phone. The window's own scale made it too small to tap, and full
+-- size read too big on a small screen.
+local compactPillScale = 0.88
 local compactActionIcon, compactActionCell, compactActionGap = 16, 28, 5
 
 -- The Home tab and the Discord reminder every window gets. homeTab = false and
@@ -1349,9 +1353,9 @@ function Window:Hide()
     -- collapse into the pill in one continuous move - size and position tweened together
     -- so they stay perfectly in sync throughout
     local collapse = variables.tweenService:Create(self.main, moveInfo, { Size = size, Position = home })
-    -- the pill is drawn full size even on a phone, where the window's scale made it too small to
-    -- tap comfortably; it grows back into the scaled window on Show
-    variables.tweenService:Create(self.uiScale, moveInfo, { Scale = 1 }):Play()
+    -- the pill has its own scale on a phone, where the window's made it too small to tap
+    -- comfortably; it grows back into the scaled window on Show
+    variables.tweenService:Create(self.uiScale, moveInfo, { Scale = self:_pillScale() }):Play()
     collapse.Completed:Connect(function()
         -- any end to the collapse settles it, cancelled included. a tween that stops early
         -- still has to hand input back, or the pill sits dead and Show can never run again
@@ -1630,6 +1634,10 @@ end
 
 -- Notifications, toasts and popups live outside the window frame, so its UIScale never reaches
 -- them. Each one gets its own, kept in step with the window's on every re-fit.
+function Window:_pillScale(): number
+    return if self.scale < 1 then compactPillScale else 1
+end
+
 function Window:_overlayScale(): number
     return if self.scale < 1 then self.scale * compactOverlayShare else 1
 end
