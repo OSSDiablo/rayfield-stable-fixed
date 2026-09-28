@@ -273,8 +273,9 @@ function Window.new(properties)
         connections = {},
 
         icon = icon,
-        showName = properties.showName or properties.ShowName or "Rayfield",
-        showIcon = properties.showIcon or properties.ShowIcon or constants.icons.rayfield,
+        showName = properties.showName or properties.ShowName or "Astris Hub",
+        -- the pill shows the header logo unless the script names its own
+        showIcon = properties.showIcon or properties.ShowIcon or icon or constants.icons.rayfield,
         -- collapse to a round badge rather than an icon-and-label pill
         showIconOnly = properties.showIconOnly or properties.ShowIconOnly or false,
         -- the line under the player's name in the sidebar's profile block
@@ -1343,6 +1344,9 @@ function Window:Hide()
     -- collapse into the pill in one continuous move - size and position tweened together
     -- so they stay perfectly in sync throughout
     local collapse = variables.tweenService:Create(self.main, moveInfo, { Size = size, Position = home })
+    -- the pill is drawn full size even on a phone, where the window's scale made it too small to
+    -- tap comfortably; it grows back into the scaled window on Show
+    variables.tweenService:Create(self.uiScale, moveInfo, { Scale = 1 }):Play()
     collapse.Completed:Connect(function()
         -- any end to the collapse settles it, cancelled included. a tween that stops early
         -- still has to hand input back, or the pill sits dead and Show can never run again
@@ -1563,7 +1567,10 @@ function Window:_applyWindowSize()
     local changed = size ~= self.size or scale ~= self.scale
     self.size = size
     self.scale = scale
-    self.uiScale.Scale = scale
+    -- a hidden window is the pill, which stays at full size; Show brings the scale back
+    if not self.hidden then
+        self.uiScale.Scale = scale
+    end
     self:_applyActionSize()
     -- closed popups leave their scale behind unparented; drop those as we go
     for index = #self._overlayScales, 1, -1 do
@@ -2304,6 +2311,7 @@ function Window:_quickRestore()
     -- tabs or bottom fade floating over a frame that isn't a window yet.
     chrome.setCollapsedShown(self, false, TweenInfo.new(0.15, Enum.EasingStyle.Quint, Enum.EasingDirection.Out))
     local restore = variables.tweenService:Create(self.main, growInfo, { Size = self.size, Position = target })
+    variables.tweenService:Create(self.uiScale, growInfo, { Scale = self.scale }):Play()
     restore.Completed:Connect(function()
         if self.hidden or self.unloaded then
             return
@@ -2390,6 +2398,7 @@ end
 function Window:_firstShow()
     -- Intro animation
     self:_setContentVisible(true)
+    self.uiScale.Scale = self.scale
 
     self.drag.drag.Visible = false
     self.main.Visible = true

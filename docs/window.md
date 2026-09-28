@@ -28,8 +28,8 @@ local Window = Rayfield:CreateWindow({
 | `discordInvite` | string | The invite the Home tab and the reminder show. Defaults to the Astris Hub server |
 | `theme` | string or table | Starting theme. See [Themes and mobile](themes-and-mobile.md) |
 | `configuration` | table | Saving. See [Getting started](getting-started.md#saving-settings) |
-| `showName` | string | Text on the small pill shown when the window is hidden |
-| `showIcon` | number or string | Icon on that pill |
+| `showName` | string | Text on the small pill shown when the window is hidden. Default "Astris Hub" |
+| `showIcon` | number or string | Icon on that pill. Defaults to the header logo |
 | `showIconOnly` | boolean | Show the pill as a round icon only, with no text |
 | `profile` | string | Line under the player's name at the bottom of the sidebar |
 | `locale` | string | Force a UI language. Defaults to the player's Roblox language |
