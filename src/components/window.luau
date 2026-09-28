@@ -15,6 +15,7 @@ local locale = require(utility.locale)
 local log = require(utility.log)
 local hapticEngine = require(utility.HapticEngine)
 local windowSizing = require(utility.windowSizing)
+local imageCache = require(utility.imageCache)
 local layouts = require(utility.layouts)
 local chrome = require(script.Parent.chrome)
 local search = require(script.Parent.search)
@@ -241,6 +242,17 @@ function Window.new(properties)
 
     local size, scale = fitWindowSize(layout.mode)
 
+    -- the header logo: the script's own icon, none when it passes false, and ours otherwise
+    local icon = properties.icon
+    if icon == nil then
+        icon = properties.Icon
+    end
+    if icon == nil then
+        icon = imageCache.logo()
+    elseif icon == false then
+        icon = nil
+    end
+
     local self = setmetatable({
         name = properties.name or properties.Name or "Rayfield Window",
         subheading = properties.subtitle or properties.Subtitle,
@@ -251,7 +263,7 @@ function Window.new(properties)
         instances = {},
         connections = {},
 
-        icon = properties.icon or properties.Icon,
+        icon = icon,
         showName = properties.showName or properties.ShowName or "Rayfield",
         showIcon = properties.showIcon or properties.ShowIcon or constants.icons.rayfield,
         -- collapse to a round badge rather than an icon-and-label pill
@@ -730,10 +742,62 @@ function Window.new(properties)
     self:_bindTopbarDrag()
     self:_watchViewport()
     self:_buildSettingsUI()
+    if properties.themeTab ~= false and properties.ThemeTab ~= false then
+        self:_buildThemeTab()
+    end
+
+    -- a theme the player picked in the Theme tab wins over the one the script asked for
+    if self.settings.theme then
+        self:ChangeTheme(self.settings.theme)
+    end
 
     self:_syncLiveAnimation()
 
     return self
+end
+
+-- The Theme tab every window gets unless the script passes themeTab = false. Pinned last in the
+-- tab list, and the pick is saved with the rest of the settings so it survives a rejoin.
+local themeTabOrder = 100000
+local themeNames = { "Default", "Amethyst", "Cobalt", "Ember", "Frost", "Rose" }
+
+function Window:_buildThemeTab()
+    self.themeTab = self:CreateTab({
+        name = "Theme",
+        icon = constants.icons.palette,
+        customOrder = themeTabOrder,
+        builtIn = true,
+        forgetState = true,
+    })
+
+    local current = "Default"
+    for _, name in themeNames do
+        if string.lower(name) == self.settings.theme then
+            current = name
+        end
+    end
+
+    self.themeTab:CreateDropdown({
+        name = "Theme",
+        description = "Changes the look of this menu. Saved for next time.",
+        options = themeNames,
+        currentOption = current,
+        callback = function(option)
+            if typeof(option) ~= "string" then
+                return
+            end
+            self.settings.theme = string.lower(option)
+            self:ChangeTheme(self.settings.theme)
+            self:SaveSettings()
+        end,
+    })
+
+    -- a script with no tabs of its own would open onto nothing, so fall back to this one
+    task.defer(function()
+        if not self.unloaded and not self.selectedTab and self.themeTab then
+            self.themeTab:Select(true)
+        end
+    end)
 end
 
 -- start or stop the gradient drift to match the current theme. called on build and on every
@@ -836,9 +900,11 @@ function Window:CreateTab(properties)
     table.insert(self.tabs, newTab)
 
     if not newTab.neglectSelector then
-        local isFirstVisible = true
+        -- built-in tabs sit out the first-tab pick both ways: they never take it, and they
+        -- never stop the script's first tab taking it from them
+        local isFirstVisible = not newTab.builtIn
         for _, tab in self.tabs do
-            if tab ~= newTab and not tab.neglectSelector then
+            if tab ~= newTab and not tab.neglectSelector and not tab.builtIn then
                 isFirstVisible = false
                 break
             end

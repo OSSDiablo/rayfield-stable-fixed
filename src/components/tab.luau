@@ -67,6 +67,9 @@ function Tab.new(window, properties)
         icon = properties.icon or properties.Icon,
         neglectSelector = properties.neglectSelector or properties.NeglectSelector or false,
         customOrder = properties.customOrder or properties.CustomOrder or 0,
+        -- a tab the library adds itself (Theme): it never takes the first-tab selection from
+        -- the script's own tabs
+        builtIn = properties.builtIn or false,
         -- when true, controls on this tab default to not persisting to config (the settings tab)
         forgetState = properties.forgetState or properties.ForgetState or false,
 

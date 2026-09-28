@@ -72,6 +72,34 @@ local function cacheFile(filePath: string, url: string): string?
     return if ok and type(uri) == "string" then uri else nil
 end
 
+-- The default header logo, written out from the bytes the library carries. Rewritten whenever
+-- the file on disk is not those exact bytes, so a new logo in an update replaces the old one.
+-- Nil where custom assets or files are unavailable (Studio), and the header goes without.
+function imageCache.logo(): string?
+    local env = getfenv()
+    if type(env.getcustomasset) ~= "function" or typeof(filesystem.isfile) ~= "function" then
+        return nil
+    end
+
+    local bytes = require(script.Parent.logoImage)
+    local filePath = path.join(cacheFolder, "logo.png")
+    local current = nil
+    if filesystem.isfile(filePath) then
+        local ok, contents = pcall(filesystem.readfile, filePath)
+        current = if ok then contents else nil
+    end
+    if current ~= bytes then
+        pcall(filesystem.ensureFolder, cacheRoot)
+        pcall(filesystem.ensureFolder, cacheFolder)
+        if not pcall(filesystem.writefile, filePath, bytes) then
+            return nil
+        end
+    end
+
+    local ok, uri = pcall(env.getcustomasset, filePath)
+    return if ok and type(uri) == "string" then uri else nil
+end
+
 local function avatarPath(userId: number): string
     return path.join(cacheFolder, "avatar_" .. tostring(userId) .. ".png")
 end

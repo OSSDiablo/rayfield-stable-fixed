@@ -29,10 +29,11 @@ local spacingAbove = 6
 local spacingBelow = 3
 
 -- Whether anything is already sitting above this one in the rail. The settings tab never gets
--- a row, so it doesn't count, and a section that follows only another section still does.
+-- a row, and the built-in Theme row is pinned to the bottom, so neither counts; a section that
+-- follows only another section still does.
 local function anythingAbove(window)
     for _, tab in window.tabs do
-        if not tab.neglectSelector then
+        if not tab.neglectSelector and not tab.builtIn then
             return true
         end
     end

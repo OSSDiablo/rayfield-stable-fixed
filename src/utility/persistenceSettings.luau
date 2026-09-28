@@ -21,6 +21,7 @@ type SettingsWindow = {
         welcomeToast: boolean,
         haptics: boolean,
         showProfile: boolean,
+        theme: string?,
     },
 }
 
@@ -31,6 +32,7 @@ type DecodedSettings = {
     welcomeToast: unknown?,
     haptics: unknown?,
     showProfile: unknown?,
+    theme: unknown?,
 }
 
 function persistenceSettings.getSettingsPath(): (string, string)
@@ -50,6 +52,7 @@ function persistenceSettings.saveSettings(window: SettingsWindow): boolean
         welcomeToast = window.settings.welcomeToast,
         haptics = window.settings.haptics,
         showProfile = window.settings.showProfile,
+        theme = window.settings.theme,
     }
 
     local ok, encoded = pcall(variables.httpService.JSONEncode, variables.httpService, data)
@@ -136,6 +139,11 @@ function persistenceSettings.loadSettings(window: SettingsWindow): boolean
 
     if type(settings.haptics) == "boolean" then
         window.settings.haptics = settings.haptics
+    end
+
+    -- only a bare name is kept; the Theme tab only ever saves one of the built-ins
+    if type(settings.theme) == "string" and string.match(settings.theme, "^%a+$") then
+        window.settings.theme = string.lower(settings.theme)
     end
 
     if type(settings.showProfile) == "boolean" then

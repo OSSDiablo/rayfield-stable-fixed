@@ -32,6 +32,29 @@ return function()
             locale.setActive("en")
         end)
 
+        it("adds a Theme tab that stays last and never takes the first selection", function()
+            local w = makeWindow()
+            expect(w.themeTab).to.be.ok()
+            expect(w.themeTab.builtIn).to.equal(true)
+
+            local home = w:CreateTab({ name = "Home" })
+            expect(w.selectedTab).to.equal(home)
+            expect(w.themeTab.topbarItem.LayoutOrder > home.topbarItem.LayoutOrder).to.equal(true)
+        end)
+
+        it("leaves the Theme tab out when the script asks", function()
+            local w = makeWindow({ name = "No Theme", themeTab = false })
+            expect(w.themeTab).to.equal(nil)
+            expect(#w.tabs).to.equal(1)
+        end)
+
+        it("saves and applies the theme picked in the Theme tab", function()
+            local w = makeWindow()
+            local dropdown = w.themeTab.elements[1]
+            dropdown:Set("Ember")
+            expect(w.settings.theme).to.equal("ember")
+        end)
+
         it("constructs tabs, tags, flags, and common controls", function()
             local clicked = 0
             local toggleValue = nil
@@ -46,7 +69,8 @@ return function()
             local w = makeWindow()
             expect(w.name).to.equal("Spec Window")
             expect(w.hidden).to.equal(true)
-            expect(#w.tabs).to.equal(1)
+            -- the settings tab and the built-in Theme tab
+            expect(#w.tabs).to.equal(2)
 
             local tag = w:CreateTag({
                 text = "Beta",

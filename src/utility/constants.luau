@@ -31,6 +31,7 @@ constants.icons = {
     banner = 111263549366178,
     config = 125823673784681, -- saved-configurations picker
     rayfield = 80387863064905, -- default show icon on the sign-in toast
+    palette = 10734910430, -- the built-in Theme tab
 }
 
 -- Accent used by the toggle switch + slider glow when active.
