@@ -127,6 +127,13 @@ Tag:SetText("Stable")
 Tag:Remove()
 ```
 
+## Changing the title later
+
+```lua
+Window:SetName("My Hub")        -- the title, and the hide pill unless you gave it its own showName
+Window:SetSubtitle("Level 40")  -- the line under the title; nil hides it
+```
+
 ## Showing and hiding
 
 | Method | What it does |

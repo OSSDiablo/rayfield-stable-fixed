@@ -409,6 +409,8 @@ export type Window = {
     ToggleMinimise: (self: Window) -> (),
     Navigate: (self: Window, tab: string | Tab) -> (),
     ChangeTheme: (self: Window, theme: Theme) -> (),
+    SetName: (self: Window, name: string) -> (), -- the title, and the hide pill unless it has its own showName
+    SetSubtitle: (self: Window, text: string?) -> (), -- nil or "" hides the line
     SetLocale: (self: Window, localeId: string) -> (),
     SetTranslator: (self: Window, translator: Translator?) -> (),
     RegisterTranslations: (self: Window, translations: Translations) -> (),

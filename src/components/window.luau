@@ -98,7 +98,8 @@ function Window:_fillGameSubtitle()
             return services.getService("MarketplaceService"):GetProductInfo(game.PlaceId)
         end)
         local name = if ok and type(info) == "table" and type(info.Name) == "string" then info.Name else nil
-        if not name or name == "" or self.unloaded or not self.subtitle then
+        -- SetSubtitle may have run while the name was on its way; that choice wins
+        if not name or name == "" or self.unloaded or not self.subtitle or not self._subtitleIsGame then
             return
         end
         if utf8.len(name) and (utf8.len(name) :: number) > maxGameNameLength then
@@ -106,6 +107,31 @@ function Window:_fillGameSubtitle()
         end
         self.subtitle.Text = name
     end)
+end
+
+-- Change the title at any point after the window is built. The hide pill follows it, unless the
+-- script gave the pill a name of its own.
+function Window:SetName(name: string)
+    self.name = name
+    if self.title then
+        self.title.Text = locale.resolve(name)
+    end
+    if self._pillFollowsName then
+        self.showName = name
+        if self.collapsedTitle then
+            self.collapsedTitle.Text = name
+        end
+    end
+end
+
+-- Change the line under the title. Nil or "" hides it. Only a window built with a subtitle line
+-- has one to change, so a window made with subtitle = false stays without.
+function Window:SetSubtitle(text: string?)
+    self._subtitleIsGame = false
+    if self.subtitle then
+        self.subtitle.Text = if text then locale.resolve(text) else ""
+        self.subtitle.Visible = text ~= nil and text ~= ""
+    end
 end
 
 -- The Home tab and the Discord reminder every window gets. homeTab = false and
@@ -311,6 +337,7 @@ function Window.new(properties)
         icon = icon,
         -- the pill carries the window's own name unless the script gives it another
         showName = properties.showName or properties.ShowName or properties.name or properties.Name or "Example",
+        _pillFollowsName = (properties.showName or properties.ShowName) == nil,
         -- the pill shows the header logo unless the script names its own
         showIcon = properties.showIcon or properties.ShowIcon or icon or constants.icons.rayfield,
         -- collapse to a round badge rather than an icon-and-label pill
