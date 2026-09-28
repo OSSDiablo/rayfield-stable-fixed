@@ -48,7 +48,8 @@ Rayfield:CreateWindow({
 })
 ```
 
-`discordInvite = "https://discord.gg/..."` keeps them but points them at your own server.
+`discordInvite = "https://discord.gg/..."` and `discordName = "My Server"` keep them but point them at
+your own server.
 
 ## Where are settings saved?
 

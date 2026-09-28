@@ -24,7 +24,7 @@ local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSD
   pick is saved.
 - **Header logo by default.** Shown next to the title unless you set your own.
 - **Home tab built in.** Opens first, with live FPS, ping and player count and a Discord invite card.
-- **Discord reminder.** A notification every 3 minutes inviting players to the Astris Hub Discord.
+- **Discord reminder.** A notification every 3 minutes inviting players to the Oblivion Universal Discord.
 
 ## Quick start
 

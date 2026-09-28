@@ -136,7 +136,8 @@ end
 
 -- The Home tab and the Discord reminder every window gets. homeTab = false and
 -- discordReminder = false leave them out; discordInvite points both at another server.
-local defaultDiscordInvite = "https://discord.gg/Bukn7UyvKx"
+local defaultDiscordInvite = "https://discord.gg/MHDT3vrXQ9"
+local defaultDiscordName = "Oblivion Universal"
 local homeTabOrder = -100000
 local discordReminderInterval = 180
 local homeRefreshInterval = 1
@@ -821,6 +822,7 @@ function Window.new(properties)
     self:_watchViewport()
     self:_buildSettingsUI()
     self.discordInvite = properties.discordInvite or properties.DiscordInvite or defaultDiscordInvite
+    self.discordName = properties.discordName or properties.DiscordName or defaultDiscordName
     if properties.homeTab ~= false and properties.HomeTab ~= false then
         self:_buildHomeTab()
     end
@@ -890,7 +892,7 @@ function Window:_buildHomeTab()
 
     local invite = self.discordInvite
     self.homeTab:CreateText({
-        name = "Astris Hub Discord",
+        name = self.discordName .. " Discord",
         text = "Updates, new scripts and help. " .. string.gsub(invite, "^https?://", ""),
     })
     self.homeTab:CreateButton({
@@ -929,7 +931,7 @@ function Window:_startDiscordReminder()
         end
         elapsed = 0
         self:Notify({
-            title = "Join the Astris Hub Discord",
+            title = "Join the " .. self.discordName .. " Discord",
             content = invite,
             icon = constants.icons.discord,
         })

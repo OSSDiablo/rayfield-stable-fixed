@@ -33,6 +33,7 @@ export type WindowProps = {
     homeTab: boolean?, -- false leaves out the built-in Home tab
     discordReminder: boolean?, -- false stops the Discord notification every 3 minutes
     discordInvite: string?, -- the invite the Home tab and the reminder show
+    discordName: string?, -- the server name they show with it
     showName: string?,
     showIcon: (string | number)?,
     showIconOnly: boolean?, -- collapse to a round icon badge instead of an icon-and-label pill

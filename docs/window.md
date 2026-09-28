@@ -24,7 +24,8 @@ local Window = Rayfield:CreateWindow({
 | `themeTab` | boolean | `false` leaves out the built-in Theme tab |
 | `homeTab` | boolean | `false` leaves out the built-in Home tab |
 | `discordReminder` | boolean | `false` stops the Discord notification every 3 minutes |
-| `discordInvite` | string | The invite the Home tab and the reminder show. Defaults to the Astris Hub server |
+| `discordInvite` | string | The invite the Home tab and the reminder show. Defaults to the Oblivion Universal server |
+| `discordName` | string | The server name shown with it. Default "Oblivion Universal" |
 | `theme` | string or table | Starting theme. See [Themes and mobile](themes-and-mobile.md) |
 | `configuration` | table | Saving. See [Getting started](getting-started.md#saving-settings) |
 | `showName` | string | Text on the small pill shown when the window is hidden. Defaults to `name` |
@@ -41,7 +42,7 @@ local Main = Window:CreateTab({ name = "Main", icon = 10723424646 })
 ```
 
 Every window has two built-in tabs. **Home** is always first and is the tab the menu opens on. It
-shows live FPS, ping and player count, and a card for the Astris Hub Discord with a button that
+shows live FPS, ping and player count, and a card for the Oblivion Universal Discord with a button that
 copies the invite. **Theme** is always last. Your own tabs sit between them.
 
 Tab methods:
@@ -70,7 +71,8 @@ local Misc = Window:CreateTab({ name = "Misc" })
 
 Notifications stack in the top right corner, newest first, just under the Roblox top bar.
 
-Every 3 minutes the window posts a notification asking players to join the Astris Hub Discord.
+Every 3 minutes the window posts a notification asking players to join the Oblivion Universal
+Discord.
 Turn it off with `discordReminder = false`.
 
 ```lua
