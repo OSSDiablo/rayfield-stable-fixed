@@ -8,7 +8,7 @@
 <div class="feature"><h3>Home tab built in</h3><p>Opens first, with live FPS, ping and player count, and a card to join the Astris Hub Discord.</p></div>
 <div class="feature"><h3>Theme tab built in</h3><p>Players pick from six themes. Their pick is saved and wins over the script's own.</p></div>
 <div class="feature"><h3>Same API as Gen2</h3><p>Any Gen2 script runs unchanged, and the original Rayfield option names still work.</p></div>
-<div class="feature"><h3>Your logo by default</h3><p>The Astris logo sits in the header and on the hide pill until you set your own.</p></div>
+<div class="feature"><h3>A logo by default</h3><p>A moon and star mark sits in the header and on the hide pill until you set your own.</p></div>
 </div>
 
 ## Quick start

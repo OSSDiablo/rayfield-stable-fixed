@@ -1,4 +1,4 @@
--- Rayfield Stable Fixed v1.2.0 by Astris Hub (1b76bc9, 2026-09-28)
+-- Rayfield Stable Fixed v1.2.0 by Astris Hub (79f59ec, 2026-09-28)
 local a local aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au={function()local b,c,d=a(1)local e return(
 function(...)local f,g,h,i,j=d(c.utility.variables),d(c.utility.image),d(c.utility.locale),d(c.utility.constants),d(c.
 types)export type Theme=j.Theme export type Translator=j.Translator export type Translations=j.Translations export type
@@ -1732,123 +1732,123 @@ translations or ao.Translations then aj.register(ao.translations or ao.Translati
 Translator then aj.translator=ao.translator or ao.Translator end aj.setActive(ao.locale or ao.Locale or aj.detect())
 local ap=ao.fallbackFont or ao.FallbackFont if ap then g.setFallbackFont(ap)end local aq=Q(ao.sidebarLayout or ao.
 SidebarLayout)local Z,_=N(aq.mode)local ar=ao.icon if ar==nil then ar=ao.Icon end if ar==nil then ar=an.logo()elseif ar
-==false then ar=nil end local as=setmetatable({name=ao.name or ao.Name or'Astris Hub',subheading=if(ao.subtitle or ao.
+==false then ar=nil end local as=setmetatable({name=ao.name or ao.Name or'Example',subheading=if(ao.subtitle or ao.
 Subtitle)~=nil then(ao.subtitle or ao.Subtitle)or nil else'',_subtitleIsGame=(ao.subtitle or ao.Subtitle)==nil,layout=aq
-,size=Z,scale=_,_overlayScales={},instances={},connections={},icon=ar,showName=ao.showName or ao.ShowName or'Astris Hub'
-,showIcon=ao.showIcon or ao.ShowIcon or ar or ai.icons.rayfield,showIconOnly=ao.showIconOnly or ao.ShowIconOnly or false
-,profileText=ao.profile or ao.Profile,themeProperties={},localeProperties={},tabs={},tabSections={},tags={},selectedTab=
-nil,theme=Y(ao.theme or ao.Theme),controls={},configuration=(function()local as=ao.configuration or ao.Configuration if
-not as then return{}end return{autoSave=as.autoSave or as.AutoSave,autoLoad=as.autoLoad or as.AutoLoad,fileName=as.
-fileName or as.FileName,customFolder=as.customFolder or as.CustomFolder}end)()},j)as.Flags=setmetatable({},{__index=
-function(at,au)local av=as.controls[au]return av and av.value end,__newindex=function(at,au,av)local aw=as.controls[au]
-if not aw then ak.warn("Rayfield: no flag '"..tostring(au).."' to set")return end aw:Set(av)end,__iter=function()local
-at return function()local au at,au=next(as.controls,at)if at then return at,au.value end return nil end end})as.settings
-={toggleKeybind=Enum.KeyCode.K,mouseOverride=true,keepOnScreen=false,welcomeToast=true,haptics=true,showProfile=true}as.
-screenGui=as:Create('ScreenGui',{Name=g.httpService:GenerateGUID(false),IgnoreGuiInset=true,ResetOnSpawn=false,Enabled=
-true,DisplayOrder=ai.displayOrder.window,ZIndexBehavior=Enum.ZIndexBehavior.Global,Parent=g.guiContainer})as.main=as:
-Create('Frame',{BackgroundColor3=Color3.fromRGB(255,255,255),Name=as.name,ZIndex=1,AnchorPoint=Vector2.new(0.5,0.5),
-Position=UDim2.new(0.5,0,0.5,0),Size=UDim2.fromOffset((as.size.X.Offset-50),0),BackgroundTransparency=1,Visible=false,
-Parent=as.screenGui})as.uiScale=as:Create('UIScale',{Scale=as.scale,Parent=as.main})as.drag=ac(ab.Parent.drag).new(as)as
-.windowCorner=as:Create('UICorner',{Parent=as.main},{CornerRadius='CornerRoundness'})as.windowStroke=as:Create(
-'UIStroke',{Transparency=1,Parent=as.main},{Color='SurfaceStroke'})as.windowGradient=as:Create('UIGradient',{Rotation=
-270,Offset=Vector2.new(0,-0.1),Parent=as.main},{Color={'WindowColor',ag.toColorSequence}})as.bottomFade=as:Create(
-'Frame',{BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,AnchorPoint=Vector2.new(1,1),Position=UDim2.
-fromScale(1,1),Size=as.layout.fadeSize,ZIndex=ai.zIndex.bottomFade,BackgroundTransparency=1,Parent=as.main})as.
-bottomFadeCorner=as:_roundCorners(as.bottomFade,as.layout.fadeCorners)as.bottomFadeGradient=as:Create('UIGradient',{
-Rotation=270,Offset=Vector2.new(0,0.2),Transparency=as.layout.fadeTransparency,Parent=as.bottomFade},{Color={
-'WindowColor',function(at)return ColorSequence.new(ag.toColorSequence(at).Keypoints[1].Value)end}})as.topbar=as:Create(
-'Frame',{BackgroundTransparency=1,Size=UDim2.new(1,0,0,as.layout.topbarHeight),Active=true,Parent=as.main})as.
-topContainer=as:Create('Frame',{Size=UDim2.new(0,300,0,24),Position=UDim2.new(0,25,0.5,0),AutomaticSize=Enum.
-AutomaticSize.Y,AnchorPoint=Vector2.new(0,0.5),BackgroundTransparency=1,Parent=as.topbar})as.topContainerLayout=as:
-Create('UIListLayout',{Padding=UDim.new(0,8),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
+,size=Z,scale=_,_overlayScales={},instances={},connections={},icon=ar,showName=ao.showName or ao.ShowName or ao.name or
+ao.Name or'Example',showIcon=ao.showIcon or ao.ShowIcon or ar or ai.icons.rayfield,showIconOnly=ao.showIconOnly or ao.
+ShowIconOnly or false,profileText=ao.profile or ao.Profile,themeProperties={},localeProperties={},tabs={},tabSections={}
+,tags={},selectedTab=nil,theme=Y(ao.theme or ao.Theme),controls={},configuration=(function()local as=ao.configuration or
+ao.Configuration if not as then return{}end return{autoSave=as.autoSave or as.AutoSave,autoLoad=as.autoLoad or as.
+AutoLoad,fileName=as.fileName or as.FileName,customFolder=as.customFolder or as.CustomFolder}end)()},j)as.Flags=
+setmetatable({},{__index=function(at,au)local av=as.controls[au]return av and av.value end,__newindex=function(at,au,av)
+local aw=as.controls[au]if not aw then ak.warn("Rayfield: no flag '"..tostring(au).."' to set")return end aw:Set(av)end,
+__iter=function()local at return function()local au at,au=next(as.controls,at)if at then return at,au.value end return
+nil end end})as.settings={toggleKeybind=Enum.KeyCode.K,mouseOverride=true,keepOnScreen=false,welcomeToast=true,haptics=
+true,showProfile=true}as.screenGui=as:Create('ScreenGui',{Name=g.httpService:GenerateGUID(false),IgnoreGuiInset=true,
+ResetOnSpawn=false,Enabled=true,DisplayOrder=ai.displayOrder.window,ZIndexBehavior=Enum.ZIndexBehavior.Global,Parent=g.
+guiContainer})as.main=as:Create('Frame',{BackgroundColor3=Color3.fromRGB(255,255,255),Name=as.name,ZIndex=1,AnchorPoint=
+Vector2.new(0.5,0.5),Position=UDim2.new(0.5,0,0.5,0),Size=UDim2.fromOffset((as.size.X.Offset-50),0),
+BackgroundTransparency=1,Visible=false,Parent=as.screenGui})as.uiScale=as:Create('UIScale',{Scale=as.scale,Parent=as.
+main})as.drag=ac(ab.Parent.drag).new(as)as.windowCorner=as:Create('UICorner',{Parent=as.main},{CornerRadius=
+'CornerRoundness'})as.windowStroke=as:Create('UIStroke',{Transparency=1,Parent=as.main},{Color='SurfaceStroke'})as.
+windowGradient=as:Create('UIGradient',{Rotation=270,Offset=Vector2.new(0,-0.1),Parent=as.main},{Color={'WindowColor',ag.
+toColorSequence}})as.bottomFade=as:Create('Frame',{BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,
+AnchorPoint=Vector2.new(1,1),Position=UDim2.fromScale(1,1),Size=as.layout.fadeSize,ZIndex=ai.zIndex.bottomFade,
+BackgroundTransparency=1,Parent=as.main})as.bottomFadeCorner=as:_roundCorners(as.bottomFade,as.layout.fadeCorners)as.
+bottomFadeGradient=as:Create('UIGradient',{Rotation=270,Offset=Vector2.new(0,0.2),Transparency=as.layout.
+fadeTransparency,Parent=as.bottomFade},{Color={'WindowColor',function(at)return ColorSequence.new(ag.toColorSequence(at)
+.Keypoints[1].Value)end}})as.topbar=as:Create('Frame',{BackgroundTransparency=1,Size=UDim2.new(1,0,0,as.layout.
+topbarHeight),Active=true,Parent=as.main})as.topContainer=as:Create('Frame',{Size=UDim2.new(0,300,0,24),Position=UDim2.
+new(0,25,0.5,0),AutomaticSize=Enum.AutomaticSize.Y,AnchorPoint=Vector2.new(0,0.5),BackgroundTransparency=1,Parent=as.
+topbar})as.topContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,8),FillDirection=Enum.FillDirection.
+Horizontal,VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Left,SortOrder=
+Enum.SortOrder.LayoutOrder,Parent=as.topContainer})as.titleContainer=as:Create('Frame',{Size=UDim2.fromOffset(50,24),
+Position=UDim2.new(0,25,0.5,0),AutomaticSize=Enum.AutomaticSize.XY,AnchorPoint=Vector2.new(0,0.5),BackgroundTransparency
+=1,LayoutOrder=1,Parent=as.topContainer})as.titleContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,3),
+FillDirection=Enum.FillDirection.Vertical,VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.SortOrder.
+LayoutOrder,Parent=as.titleContainer})if as.name then as.title=as:Create('TextLabel',{Text=aj.t(as.name),FontFace=g.
+brandFont(Enum.FontWeight.Medium),Size=UDim2.fromOffset(50,20),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency
+=1,TextSize=20,TextXAlignment=Enum.TextXAlignment.Left,TextWrapped=true,TextTransparency=1,Parent=as.titleContainer},{
+FontFace='Font',TextColor3='TitlingColor'})end if as.icon then as.topbarIcon=as:Create('ImageLabel',{Image=as.icon,
+BackgroundTransparency=1,Size=UDim2.fromOffset(42,42),ImageTransparency=1,Parent=as.topContainer},{ImageColor3=
+'TitlingColor'})end if as.subheading then as.subtitle=as:Create('TextLabel',{Text=aj.t(as.subheading),Size=UDim2.
+fromOffset(50,12),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency=1,TextSize=12,TextXAlignment=Enum.
+TextXAlignment.Left,TextWrapped=true,TextTransparency=1,Parent=as.titleContainer},{TextColor3='TitlingColor',FontFace=
+'Font'})if as._subtitleIsGame then as:_fillGameSubtitle()end end as.tagContainer=as:Create('Frame',{AnchorPoint=Vector2.
+new(0,0.5),Position=UDim2.new(0,25,0.5,0),Size=UDim2.fromOffset(50,24),AutomaticSize=Enum.AutomaticSize.XY,
+BackgroundTransparency=1,LayoutOrder=2,Visible=false,Parent=as.topContainer})as.tagContainerLayout=as:Create(
+'UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
+VerticalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=as.tagContainer})as.windowShadow=as:CreateGlow(as.
+main,'ShadowColor',20,1)as.elements=as:Create('Frame',{Size=UDim2.new(1,0,1,-as.layout.chromeHeight),Position=UDim2.
+fromScale(1,1),AnchorPoint=Vector2.new(1,1),BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,
+BackgroundTransparency=1,ClipsDescendants=true,Parent=as.main})if as.layout.mode=='sidebar'then as.elementsCorner=as:
+_roundCorners(as.elements,as.layout.cardCorners)as.elementsStroke=as:Create('UIStroke',{ApplyStrokeMode=Enum.
+ApplyStrokeMode.Border,Transparency=1,Parent=as.elements},{Color='SurfaceStroke'})as:Create('UIGradient',{Rotation=as.
+layout.cardStrokeRotation,Transparency=as.layout.cardStrokeTransparency,Parent=as.elementsStroke})end as.elementsLayout=
+as:Create('UIPageLayout',{Padding=UDim.new(0,0),FillDirection=as.layout.pageDirection,VerticalAlignment=Enum.
+VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,
+ScrollWheelInputEnabled=false,GamepadInputEnabled=false,TouchInputEnabled=false,EasingStyle=Enum.EasingStyle.Exponential
+,TweenTime=0.4,Parent=as.elements})if as.layout.mode=='sidebar'then f.build(as,as.layout)f.applyWidth(as,c.railWidthFor(
+as.layout,as.size.X.Offset))else as.tabList=as:Create('ScrollingFrame',{Name='Tabs',Active=true,Size=UDim2.new(1,0,0,as.
+layout.tabStripHeight),Position=UDim2.new(0.5,0,0,as.layout.tabStripTop),AnchorPoint=Vector2.new(0.5,0),
+BackgroundTransparency=1,AutomaticCanvasSize=Enum.AutomaticSize.X,CanvasSize=UDim2.new(0,0,0,0),ScrollBarThickness=0,
+ScrollBarImageTransparency=1,ScrollingDirection=Enum.ScrollingDirection.X,Parent=as.main})as.tabListLayout=as:Create(
+'UIListLayout',{Padding=UDim.new(0,7),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
 VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Left,SortOrder=Enum.SortOrder.LayoutOrder,Parent=
-as.topContainer})as.titleContainer=as:Create('Frame',{Size=UDim2.fromOffset(50,24),Position=UDim2.new(0,25,0.5,0),
-AutomaticSize=Enum.AutomaticSize.XY,AnchorPoint=Vector2.new(0,0.5),BackgroundTransparency=1,LayoutOrder=1,Parent=as.
-topContainer})as.titleContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,3),FillDirection=Enum.FillDirection.
-Vertical,VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=as.titleContainer})
-if as.name then as.title=as:Create('TextLabel',{Text=aj.t(as.name),FontFace=g.brandFont(Enum.FontWeight.Medium),Size=
-UDim2.fromOffset(50,20),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency=1,TextSize=20,TextXAlignment=Enum.
-TextXAlignment.Left,TextWrapped=true,TextTransparency=1,Parent=as.titleContainer},{FontFace='Font',TextColor3=
-'TitlingColor'})end if as.icon then as.topbarIcon=as:Create('ImageLabel',{Image=as.icon,BackgroundTransparency=1,Size=
-UDim2.fromOffset(42,42),ImageTransparency=1,Parent=as.topContainer},{ImageColor3='TitlingColor'})end if as.subheading
-then as.subtitle=as:Create('TextLabel',{Text=aj.t(as.subheading),Size=UDim2.fromOffset(50,12),AutomaticSize=Enum.
-AutomaticSize.X,BackgroundTransparency=1,TextSize=12,TextXAlignment=Enum.TextXAlignment.Left,TextWrapped=true,
-TextTransparency=1,Parent=as.titleContainer},{TextColor3='TitlingColor',FontFace='Font'})if as._subtitleIsGame then as:
-_fillGameSubtitle()end end as.tagContainer=as:Create('Frame',{AnchorPoint=Vector2.new(0,0.5),Position=UDim2.new(0,25,0.5
-,0),Size=UDim2.fromOffset(50,24),AutomaticSize=Enum.AutomaticSize.XY,BackgroundTransparency=1,LayoutOrder=2,Visible=
-false,Parent=as.topContainer})as.tagContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.
-FillDirection.Horizontal,VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=as.
-tagContainer})as.windowShadow=as:CreateGlow(as.main,'ShadowColor',20,1)as.elements=as:Create('Frame',{Size=UDim2.new(1,0
-,1,-as.layout.chromeHeight),Position=UDim2.fromScale(1,1),AnchorPoint=Vector2.new(1,1),BackgroundColor3=Color3.fromRGB(
-255,255,255),BorderSizePixel=0,BackgroundTransparency=1,ClipsDescendants=true,Parent=as.main})if as.layout.mode==
-'sidebar'then as.elementsCorner=as:_roundCorners(as.elements,as.layout.cardCorners)as.elementsStroke=as:Create(
-'UIStroke',{ApplyStrokeMode=Enum.ApplyStrokeMode.Border,Transparency=1,Parent=as.elements},{Color='SurfaceStroke'})as:
-Create('UIGradient',{Rotation=as.layout.cardStrokeRotation,Transparency=as.layout.cardStrokeTransparency,Parent=as.
-elementsStroke})end as.elementsLayout=as:Create('UIPageLayout',{Padding=UDim.new(0,0),FillDirection=as.layout.
-pageDirection,VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Center,
-SortOrder=Enum.SortOrder.LayoutOrder,ScrollWheelInputEnabled=false,GamepadInputEnabled=false,TouchInputEnabled=false,
-EasingStyle=Enum.EasingStyle.Exponential,TweenTime=0.4,Parent=as.elements})if as.layout.mode=='sidebar'then f.build(as,
-as.layout)f.applyWidth(as,c.railWidthFor(as.layout,as.size.X.Offset))else as.tabList=as:Create('ScrollingFrame',{Name=
-'Tabs',Active=true,Size=UDim2.new(1,0,0,as.layout.tabStripHeight),Position=UDim2.new(0.5,0,0,as.layout.tabStripTop),
-AnchorPoint=Vector2.new(0.5,0),BackgroundTransparency=1,AutomaticCanvasSize=Enum.AutomaticSize.X,CanvasSize=UDim2.new(0,
-0,0,0),ScrollBarThickness=0,ScrollBarImageTransparency=1,ScrollingDirection=Enum.ScrollingDirection.X,Parent=as.main})as
-.tabListLayout=as:Create('UIListLayout',{Padding=UDim.new(0,7),FillDirection=Enum.FillDirection.Horizontal,
-VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Left,SortOrder=Enum.
-SortOrder.LayoutOrder,Parent=as.tabList})as:Create('UIPadding',{PaddingLeft=UDim.new(0,22),PaddingRight=UDim.new(0,10),
-Parent=as.tabList})end as.actionContainer=as:Create('Frame',{AnchorPoint=Vector2.new(1,0.5),AutomaticSize=Enum.
-AutomaticSize.X,Size=UDim2.fromOffset(0,24),Position=UDim2.new(1,-20,0.5,0),BackgroundTransparency=1,Parent=as.topbar})
-as.actionsListLayout=as:Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,
-VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Right,SortOrder=Enum.
-SortOrder.LayoutOrder,Parent=as.actionContainer})as.rfSettings=as:CreateTab{name='Rayfield Settings',customOrder=1000,
-neglectSelector=true,forgetState=true}ac(ab.Parent.action).new(as,{name='Close',icon=ai.icons.close,order=1,callback=
-function()as:ToggleHide()end})as.minimiseAction=ac(ab.Parent.action).new(as,{name='Minimise',icon=ai.icons.minimise,
-order=2,callback=function()as:ToggleMinimise()end})as.settingsAction=ac(ab.Parent.action).new(as,{name='Settings',icon=
-ai.icons.settings,order=3,linkedTab=as.rfSettings,callback=function()as.rfSettings:Select()end})e.build(as)as:
-_applyRailWidth()as.unloaded=false as.minimised=false as.hidden=true as.animating=false as._revealing=false as.
-hasShownOnce=false as._collapsedShown=false as:LoadSettings()if as.layout.mode=='sidebar'then f.reflowProfile(as)f.
-setSubtitle(as,as.profileText)end al.setContainer(as.screenGui)al.setEnabled(as.settings.haptics)d.buildCollapsedFace(as
-)as:_bindKeybind()as:_bindMouseOverride()as:_bindTopbarDrag()as:_watchViewport()as:_buildSettingsUI()as.discordInvite=ao
-.discordInvite or ao.DiscordInvite or J if ao.homeTab~=false and ao.HomeTab~=false then as:_buildHomeTab()end if ao.
-discordReminder~=false and ao.DiscordReminder~=false then as:_startDiscordReminder()end if ao.themeTab~=false and ao.
-ThemeTab~=false then as:_buildThemeTab()end if as.settings.theme then as:ChangeTheme(as.settings.theme)end as:
-_syncLiveAnimation()return as end local function ao(ap:string):boolean local aq=getfenv()local ar=(aq.getgenv and aq.
-getgenv().setclipboard)or aq.setclipboard or aq.toclipboard if type(ar)~='function'then return false end return(pcall(ar
-,ap))end local function ap():number local aq,ar=pcall(function()return b.getService'Stats'.Network.ServerStatsItem[
-'Data Ping']:GetValue()end)if aq and type(ar)=='number'then return ar end local as=g.localPlayer local at,au=pcall(
-function()return as:GetNetworkPing()end)return if at and type(au)=='number'then au*2000 else 0 end local function aq():
-number local ar,as=pcall(function()return#b.getService'Players':GetPlayers()end)return if ar then as else 0 end function
-j._buildHomeTab(ar)ar.homeTab=ar:CreateTab{name='Home',icon=ai.icons.home,customOrder=K,builtIn=true,keepSelection=true,
-forgetState=true}local as=ar.homeTab:CreateGroup{direction='row'}local at,au,av,aw=as:CreateStat{name='FPS',value=60,
-numberEasing=false},as:CreateStat{name='Ping',value=0,suffix=' ms',numberEasing=false},as:CreateStat{name='Players',
-value=aq(),numberEasing=false},ar.discordInvite ar.homeTab:CreateText{name='Astris Hub Discord',text=
-'Updates, new scripts and help. '..string.gsub(aw,'^https?://','')}ar.homeTab:CreateButton{name='Copy Discord invite',
-callback=function()if ao(aw)then ar:Toast{title='Invite copied',subtitle='Paste it in your browser or Discord'}else ar:
-Toast{title=aw,subtitle="Your executor can't copy, type it in instead"}end end}local Z,_=0,0 ar:Connect(g.runService.
-Heartbeat,function(ax:number)Z+=1 _+=ax if _<M then return end at:Set(math.round(Z/_))au:Set(math.round(ap()))av:Set(aq(
-))Z,_=0,0 end)end function j._startDiscordReminder(ar)local as,at=string.gsub(ar.discordInvite,'^https?://',''),0 ar:
-Connect(g.runService.Heartbeat,function(au:number)at+=au if at<L then return end at=0 ar:Notify{title=
-'Join the Astris Hub Discord',content=as,icon=ai.icons.discord}end)end local ar,as=100000,{'Default','Amethyst','Cobalt'
-,'Ember','Frost','Rose'}function j._buildThemeTab(at)at.themeTab=at:CreateTab{name='Theme',icon=ai.icons.palette,
-customOrder=ar,builtIn=true,forgetState=true}local au='Default'for av,aw in as do if string.lower(aw)==at.settings.theme
-then au=aw end end at.themeTab:CreateDropdown{name='Theme',description=
-'Changes the look of this menu. Saved for next time.',options=as,currentOption=au,callback=function(av)if typeof(av)~=
-'string'then return end at.settings.theme=string.lower(av)at:ChangeTheme(at.settings.theme)at:SaveSettings()end}task.
-defer(function()if not at.unloaded and not at.selectedTab and at.themeTab then at.themeTab:Select(true)end end)end
-function j._syncLiveAnimation(at)if not at.theme.LiveAnimation then at._liveAnimating=false return end if at.
-_liveAnimating then return end at._liveAnimating=true at._liveGeneration=(at._liveGeneration or 0)+1 local au=at.
-_liveGeneration task.spawn(function()local av,aw=true,TweenInfo.new(10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out)
-while at._liveGeneration==au and at._liveAnimating and not at.unloaded do local ax=g.tweenService:Create(at.
-windowGradient,aw,{Offset=Vector2.new(if av then 0.4 else-0.2,0),Rotation=(if av then 220 else 280)})at._liveTween=ax ax
-:Play()ax.Completed:Wait()av=not av end if at._liveGeneration==au then at._liveAnimating=false at._liveTween=nil end end
-)end function j.ChangeTheme(at,au)local av=if typeof(au)=='table'then au else Y(au)for aw,ax in av do at.theme[aw]=S(aw,
-ax)end if typeof(au)=='table'then W(at.theme,av)end for aw,ax in at.themeProperties do for Z,_ in ax do local ay=if
-typeof(_)=='table'then _[2](at.theme[_[1] ])else at.theme[_]if typeof(ay)=='Color3'or typeof(ay)=='number'then g.
-tweenService:Create(aw,TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{[Z]=ay}):Play()else aw[Z]=ay
-end end end if at.hidden then at._themeRefreshPending=true else at:_refreshElementThemes()end at:_syncLiveAnimation()end
-function j._refreshElementThemes(at)for au,av in at.tabs do for aw,ax in av.elements do if ax._refreshTheme then ax:
-_refreshTheme()end end end end function j.CreateTab(at,au)assert(not at.unloaded,
-'Cannot create a tab on an unloaded window.')local av=ac(ab.Parent.tab).new(at,au)table.insert(at.tabs,av)if not av.
-neglectSelector then local aw=not av.builtIn or av.keepSelection for ax,ay in at.tabs do if ay~=av and not ay.
+as.tabList})as:Create('UIPadding',{PaddingLeft=UDim.new(0,22),PaddingRight=UDim.new(0,10),Parent=as.tabList})end as.
+actionContainer=as:Create('Frame',{AnchorPoint=Vector2.new(1,0.5),AutomaticSize=Enum.AutomaticSize.X,Size=UDim2.
+fromOffset(0,24),Position=UDim2.new(1,-20,0.5,0),BackgroundTransparency=1,Parent=as.topbar})as.actionsListLayout=as:
+Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
+VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Right,SortOrder=Enum.SortOrder.LayoutOrder,Parent=
+as.actionContainer})as.rfSettings=as:CreateTab{name='Rayfield Settings',customOrder=1000,neglectSelector=true,
+forgetState=true}ac(ab.Parent.action).new(as,{name='Close',icon=ai.icons.close,order=1,callback=function()as:ToggleHide(
+)end})as.minimiseAction=ac(ab.Parent.action).new(as,{name='Minimise',icon=ai.icons.minimise,order=2,callback=function()
+as:ToggleMinimise()end})as.settingsAction=ac(ab.Parent.action).new(as,{name='Settings',icon=ai.icons.settings,order=3,
+linkedTab=as.rfSettings,callback=function()as.rfSettings:Select()end})e.build(as)as:_applyRailWidth()as.unloaded=false
+as.minimised=false as.hidden=true as.animating=false as._revealing=false as.hasShownOnce=false as._collapsedShown=false
+as:LoadSettings()if as.layout.mode=='sidebar'then f.reflowProfile(as)f.setSubtitle(as,as.profileText)end al.
+setContainer(as.screenGui)al.setEnabled(as.settings.haptics)d.buildCollapsedFace(as)as:_bindKeybind()as:
+_bindMouseOverride()as:_bindTopbarDrag()as:_watchViewport()as:_buildSettingsUI()as.discordInvite=ao.discordInvite or ao.
+DiscordInvite or J if ao.homeTab~=false and ao.HomeTab~=false then as:_buildHomeTab()end if ao.discordReminder~=false
+and ao.DiscordReminder~=false then as:_startDiscordReminder()end if ao.themeTab~=false and ao.ThemeTab~=false then as:
+_buildThemeTab()end if as.settings.theme then as:ChangeTheme(as.settings.theme)end as:_syncLiveAnimation()return as end
+local function ao(ap:string):boolean local aq=getfenv()local ar=(aq.getgenv and aq.getgenv().setclipboard)or aq.
+setclipboard or aq.toclipboard if type(ar)~='function'then return false end return(pcall(ar,ap))end local function ap():
+number local aq,ar=pcall(function()return b.getService'Stats'.Network.ServerStatsItem['Data Ping']:GetValue()end)if aq
+and type(ar)=='number'then return ar end local as=g.localPlayer local at,au=pcall(function()return as:GetNetworkPing()
+end)return if at and type(au)=='number'then au*2000 else 0 end local function aq():number local ar,as=pcall(function()
+return#b.getService'Players':GetPlayers()end)return if ar then as else 0 end function j._buildHomeTab(ar)ar.homeTab=ar:
+CreateTab{name='Home',icon=ai.icons.home,customOrder=K,builtIn=true,keepSelection=true,forgetState=true}local as=ar.
+homeTab:CreateGroup{direction='row'}local at,au,av,aw=as:CreateStat{name='FPS',value=60,numberEasing=false},as:
+CreateStat{name='Ping',value=0,suffix=' ms',numberEasing=false},as:CreateStat{name='Players',value=aq(),numberEasing=
+false},ar.discordInvite ar.homeTab:CreateText{name='Astris Hub Discord',text='Updates, new scripts and help. '..string.
+gsub(aw,'^https?://','')}ar.homeTab:CreateButton{name='Copy Discord invite',callback=function()if ao(aw)then ar:Toast{
+title='Invite copied',subtitle='Paste it in your browser or Discord'}else ar:Toast{title=aw,subtitle=
+"Your executor can't copy, type it in instead"}end end}local Z,_=0,0 ar:Connect(g.runService.Heartbeat,function(ax:
+number)Z+=1 _+=ax if _<M then return end at:Set(math.round(Z/_))au:Set(math.round(ap()))av:Set(aq())Z,_=0,0 end)end
+function j._startDiscordReminder(ar)local as,at=string.gsub(ar.discordInvite,'^https?://',''),0 ar:Connect(g.runService.
+Heartbeat,function(au:number)at+=au if at<L then return end at=0 ar:Notify{title='Join the Astris Hub Discord',content=
+as,icon=ai.icons.discord}end)end local ar,as=100000,{'Default','Amethyst','Cobalt','Ember','Frost','Rose'}function j.
+_buildThemeTab(at)at.themeTab=at:CreateTab{name='Theme',icon=ai.icons.palette,customOrder=ar,builtIn=true,forgetState=
+true}local au='Default'for av,aw in as do if string.lower(aw)==at.settings.theme then au=aw end end at.themeTab:
+CreateDropdown{name='Theme',description='Changes the look of this menu. Saved for next time.',options=as,currentOption=
+au,callback=function(av)if typeof(av)~='string'then return end at.settings.theme=string.lower(av)at:ChangeTheme(at.
+settings.theme)at:SaveSettings()end}task.defer(function()if not at.unloaded and not at.selectedTab and at.themeTab then
+at.themeTab:Select(true)end end)end function j._syncLiveAnimation(at)if not at.theme.LiveAnimation then at.
+_liveAnimating=false return end if at._liveAnimating then return end at._liveAnimating=true at._liveGeneration=(at.
+_liveGeneration or 0)+1 local au=at._liveGeneration task.spawn(function()local av,aw=true,TweenInfo.new(10,Enum.
+EasingStyle.Quint,Enum.EasingDirection.Out)while at._liveGeneration==au and at._liveAnimating and not at.unloaded do
+local ax=g.tweenService:Create(at.windowGradient,aw,{Offset=Vector2.new(if av then 0.4 else-0.2,0),Rotation=(if av then
+220 else 280)})at._liveTween=ax ax:Play()ax.Completed:Wait()av=not av end if at._liveGeneration==au then at.
+_liveAnimating=false at._liveTween=nil end end)end function j.ChangeTheme(at,au)local av=if typeof(au)=='table'then au
+else Y(au)for aw,ax in av do at.theme[aw]=S(aw,ax)end if typeof(au)=='table'then W(at.theme,av)end for aw,ax in at.
+themeProperties do for Z,_ in ax do local ay=if typeof(_)=='table'then _[2](at.theme[_[1] ])else at.theme[_]if typeof(ay
+)=='Color3'or typeof(ay)=='number'then g.tweenService:Create(aw,TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.
+EasingDirection.Out),{[Z]=ay}):Play()else aw[Z]=ay end end end if at.hidden then at._themeRefreshPending=true else at:
+_refreshElementThemes()end at:_syncLiveAnimation()end function j._refreshElementThemes(at)for au,av in at.tabs do for aw
+,ax in av.elements do if ax._refreshTheme then ax:_refreshTheme()end end end end function j.CreateTab(at,au)assert(not
+at.unloaded,'Cannot create a tab on an unloaded window.')local av=ac(ab.Parent.tab).new(at,au)table.insert(at.tabs,av)if
+not av.neglectSelector then local aw=not av.builtIn or av.keepSelection for ax,ay in at.tabs do if ay~=av and not ay.
 neglectSelector and(not ay.builtIn or ay.keepSelection)then aw=false break end end if aw then av:Select(true)end if not
 at.hidden and not at.minimised then av.topbarItem.Visible=true av:_applyVisual(if at.selectedTab==av then'selected'else
 'unselected',TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out))end end return av end function j.
@@ -2543,13 +2543,14 @@ in ah.icons do local as=ar::number ap[as]=am..tostring(as)..'.png'end local aq=0
 then pcall(ae.ensureFolder,aj)pcall(ae.ensureFolder,ak)local av=al:getAssetContentFromUrl(au,at,false)if not av or
 string.sub(av,1,8)~=ar then return nil end if not pcall(ae.writefile,at,av)then return nil end end local av,aw=pcall(
 getfenv().getcustomasset,at)return if av and type(aw)=='string'then aw else nil end function ai.logo():string?local at=
-getfenv()if type(at.getcustomasset)~='function'or typeof(ae.isfile)~='function'then return nil end local au,av,aw=ac(ab.
-Parent.logoImage),(af.join(ak,'logo.png'))if ae.isfile(av)then local ax,ay=pcall(ae.readfile,av)aw=if ax then ay else
-nil end if aw~=au then pcall(ae.ensureFolder,aj)pcall(ae.ensureFolder,ak)if not pcall(ae.writefile,av,au)then return nil
-end end local ax,ay=pcall(at.getcustomasset,av)return if ax and type(ay)=='string'then ay else nil end local function at
-(au:number):string return af.join(ak,'avatar_'..tostring(au)..'.png')end local function au(av:string):string?local aw,ax
-=pcall(function()return ag.httpService:JSONDecode(av)end)if not aw or type(ax)~='table'then return nil end local ay=(ax
-::ThumbnailResponse).data if type(ay)~='table'then return nil end local az=ay[1]if type(az)~='table'then return nil end
+getfenv()if type(at.getcustomasset)~='function'or typeof(ae.isfile)~='function'then return nil end local au,av=ac(ab.
+Parent.logoImage),0 for aw=1,#au,7 do av=(av*31+string.byte(au,aw))%2147483647 end local aw,ax=(af.join(ak,string.
+format('logo_%d_%d.png',#au,av)))if ae.isfile(aw)then local ay,az=pcall(ae.readfile,aw)ax=if ay then az else nil end if
+ax~=au then pcall(ae.ensureFolder,aj)pcall(ae.ensureFolder,ak)if not pcall(ae.writefile,aw,au)then return nil end end
+local ay,az=pcall(at.getcustomasset,aw)return if ay and type(az)=='string'then az else nil end local function at(au:
+number):string return af.join(ak,'avatar_'..tostring(au)..'.png')end local function au(av:string):string?local aw,ax=
+pcall(function()return ag.httpService:JSONDecode(av)end)if not aw or type(ax)~='table'then return nil end local ay=(ax::
+ThumbnailResponse).data if type(ay)~='table'then return nil end local az=ay[1]if type(az)~='table'then return nil end
 local aA=az::ThumbnailEntry if aA.state=='Completed'and type(aA.imageUrl)=='string'then return aA.imageUrl end return
 nil end local function av(aw:number):string?local ax:string?for ay=1,4 do local az=al:getAssetContentFromUrl(string.
 format(ao,aw,an,an),'avatar:'..tostring(aw),ay>1)if az then local aA=au(az)if aA then ax=aA break end end if ay<4 then
@@ -2613,305 +2614,392 @@ return af end)()end,[56]=function()local aa,ab,ac=a(56)local ad return(function(
 '\137PNG\r\n\26\n\0\0\0\rIHDR\0\0\0`\0\0\0`\b\6\0\0\0\226\152w8',
 '\0\0\0\1sRGB\0\174\206\28\233\0\0\0DeXIfMM\0*\0\0\0\b\0\1\135i\0',
 '\4\0\0\0\1\0\0\0\26\0\0\0\0\0\3\160\1\0\3\0\0\0\1\0\1','\0\0\160\2\0\4\0\0\0\1\0\0\0`\160\3\0\4\0\0\0\1\0\0\0`',
-'\0\0\0\0\1693_N\0\0\27wIDATx\1\237]\t\144U\213\153~\239\245\246z\167\27h\232\133',
-'\134f\213\6%\160h\212\17\200H\200\160\227\164fp\25\163NJc\20Ep\153\24\181JF\167*\227dL\212\148',
-'\209T9\1623\168D\v\212\184o\133\27#:$\0255\130\148\18A\1\217\148\197\166\247\229\1897\223\247',
-'\253\231\220\247 N\167\155^\30S\190\219\220w\207=\231?\219\247/\231?\231\158{\t\1332G\6\129\f',
-'\2\25\0042\bd\16\200 \144A \131@\6\129\f\2\25\0042\bd\16\200 \144A \131@\6\129\f',
-'\2\131\130@xPj\233\199JN\1709)\255\230\1657\31?z\244\232\19\179\179\179\235s\178sFdegE:;;\27;::',
-'\182454\188\251\254\a\31\252\247\197\23_\188\185\31\171\205\20\181h\209\162\146\223\255\246',
-'\247W\237\222\185\251\157\230\230\230\206\196\255q\196\186b\137\253\251\247\239\219\180i\211\242\167',
-'\159~\250\155\25\228\250\1\129\167\158z\234\219\187v\237z\215c\14I\143\227\140uvt\198 \249:y\223',
-'\222\222\174\179\171\179K\164\141\141\141-\235\215\175\191\253\252\243\207/\233\135f|=\139x\251\205',
-'\183\0234565\19\209\142v\128n\128\199\1r\188\171\235\144\19qdJ{[\155\206.h\3\143O>\249\228\149',
-'{\238\185g\228\215\19\193>\244\250\1737\223\186\172\165\165%\6\160\5~Wg\231\159\130\14&\128 ',
-'\229\140\233\232\1286\180"/\25F&l\222\188\249\181\27.\191\161\172\15\205\249ze}\234\169\231f',
-'\30h8\208H\240iZ\14\149v\216z\198\197\192\20\153\162\14H\190\204\18\238\161\29:[ZZ\141\tH#',
-'\19`\142\238\5\138\255\239\28\143A\231<<\152\226m\219\182\255\142\160\t|gn\0:4 \22\167T3',
-'\190\181\1815\214\210\220\18\195\160\156r6\5\225\166&\132\155\154E\199\188\208\166\174\151_~\249',
-'\244A\239P7\21fu\147\150\182\164_\254\242\158\171\234\235\143\250>\128\142G"\145p8\28\241mI\0',
-'\200\16\228;\20\143\199u&\18\241\16\248\164SD.\156@:"\249/\132_%E\163\209,\184\174\227\182o',
-'\223\254\235\r\0276t\249B\211y\rz\150\206F\164\214}\219m\183\141\1560a\220b\130\202\3\232\195f',
-'\24\192`\136\3\223\1.pADR\208\139)\4=\1420\239u\26\16300\132::;\19U\149\149\223\188\250\234',
-'\171\231\179\236#\2258\226\0240w\238\220\171***jh\243\179\178\178d\176\137/\238\19q\128(\145&\226',
-'\4\218_\161\5\4[\154 \240\161\21\184\250S\140A^\f\26\137\156\220\220\16&q\215\209\204e',
-'\24p\b\2\247\223\127\255\164\218Q\163.\131\153I\192\244P\178\195\30|J006\144\r\255\228=\217',
-'\20\164Y"\153\0190\5\25c\1778\24\0-\232\232HTVV\30{\201%\151|\255\144\234\211r{Di\192\140',
-'\0253\174/+//\131\141O\192\244\208\246\132\226\177x\2^\141\129\rP\1\175\164\223\208r\247>\30',
-'\145\222\244P\250\201\21?>0\158L\228$\141E\143\0277n\241-\183\220Rn\229\164\239\247\136a\192\138',
-'\21+N\24S[\251\247\152HI\250#\225\136\16\236\236\234\20\144\18q\134\16K\216\5\189\184\1938F&',
-'\193F\162Q0\142\127J\131\6\196m\0\239\196Lz\248\240\225\19\230\205\155\247\195\244Ao5\31)\f',
-'\136L\1596\253\198\226\210\210|\216k2@\190:\236>\2368\2369\219*\16\147p\17\212x\138\a\228\195',
-"\164H\154\30\230\1793\208\4hA'\203E\254\177c\199^y\199\29wT3O\186\142#\130\1/\188\240\194_UUW",
-"\2535\2373V6\133\5\1\21\3x'\137v\1'\209\198\21\241E`\26\131L\218\ru\166y\233g\1b\163<",
-'%\154"\186\184\195\134\r\1719\237[\167-T\133i\250I;\3\206>\251\236\252\163\143:\250\159\242',
-'\243\243\179\1\152\217~\128A\151S^\140\1763\14\16C\139\147aq\0\211\2237|\t\1841\194\232@\156',
-'\194\4&QkB\26\v8 \147\0175\181\163.\189\247\222{\199\165\t\255P\218\25p\249\229\151\159\a',
-'\233?\0173[\185\157\4\130\192\240$\204\128-\249\a\0\t\162p\166\155i\201\22GZ\254S"\19',
-'\220\128\204\t\155\220T\239\154b,@\217\212.\156q\140\249CO=\245\212\127T\1344\252\164\149\0017\222',
-"x\227\208I\19']/\127\31\158\t\6^8>\225\4\128q\232\26\160\2Z\224 \218]\147v\222\226\132;Y",
-'\133\0\255\130t\222\1859A*#8\155&\19\192\140DUU\213?<\250\232\163S\211\128\127z5`\254\252\249\v',
-'!\253\19\253\146\3\0\b\211\235\161y\16\208\134\182A\206\176\147ns1\25m`\a\241\2\223\200',
-"\24'r\130\239\255\\y\188\247Z\128\186\19\165\165\165\133\211\166MK\139\22\164M\3hw\199\142",
-'\25{%\165\144N\15}sHhB\182\159\128\1\172\192\220\208\150\203\1488\200-1H\151\180#\15\2551\163',
-'\215\2\133\21\229\226\148\6\18\167\17N\3\164\5\213\213\213g?\254\248\227\167\144\173\131y',
-'\164\141\1\167\156r\202MeC\203\134C\18\227Xl\227\172K\224s\217\128\a\165\212\254\220 \203\187',
-'\0\220TW\147\3m\n\141\232\184\254c\244b\130\a>`\164[\31\130\166\145\225\212\130\194\194\194',
-"\232\177\199\30{\29\170\30TL\6\1812!\139\159'W\174<y\204\232\209\231rq,+\130\245\30\192\239M",
-'\2i\b\180\a\14x\26#R\165[\128\186AU\180\142!\14tF)\151\232T\1284\136\229r\28\144\0060\ff',
-'{-\1925\1-8\227\165\151^:\141\185\a\235H\a\3\178\166L\155\182\164\176\168(\31f\5\147.\205',
-'\185\18\29\157\29\0010\30|\2\233%9\144~\129L\169\167~\136O\2\146Z@@=\184\201t\3Z\224{\6!',
-"'i\201\f\1427\152}\147\17\t\186\194\147&M\186~\246\236\217\217\131\197\128A\127\30\128I\215Y",
-'\223\152\250\141\31\195\v\t\211\251\t\193\252\224!\v\204\0\24 @Mb\189\0043R\166\136Wr',
-"\196\3OZ\0\202\131\191L\19+I-:\198;z^D\201\31,n'oDC:[y\r\135\n\139\n\235\234j\235\214?",
-'\248\208\131\27\130,\3\24\24T\6\\q\197\21E\240|\254sH\217\144JH\160\204\15\209hko#\130',
-'\0010\30\31\3\202\226A\15Ce@\18`{\16c\200\28\204\24\1637\26\132IBz#U\248\208{\166\209\5',
-'\142@ \240\208&\146\27\205\29\179m\219\182\135\a\227\161\205\160\154\160\v.\184\224\146\202',
-'\202\170\169Xr\b&]4=2\29\2\200\192#\204\2_@3l0\194\219\t{`\137\168\133\1579\18\173\153 ',
-'\217y\159\215\153\0261\140awj\141\t\225\152\238\245\176\134\207\v8 \199+*F\204X\188x\241\133\158',
-'g\3y\0294\r\184\243\206\127\0293{\214\156\255\200\207\143\22a\212MP\226\216\249\182\182\182$',
-'\216BU\240+N\0\163\247I\208)\201\198\28\31\199\235\1592L\153\172\f\150\201\195\152\168;\198',
-'\1526\153\217\226\1867\203e\155h\138\242\242\242\194999\19\139\139\139\31~\253\245\215\161\158\3',
-'w\f\154\6|k\246\188\31\r\175\24>\18\155\25\248\156W\29n\239h\23\184\4\135\127\246\143',
-'\0\2434\201\150v\16<\253\227\224i\233\202#\186$\189\164\219\197\217L\216i\a\24\157d\152+W\1316',
-"\202s\1317\1890,\135@\3\186\248\208&>r\228\200IX\174\190h\224\160\183\146\aE\3\150/_~\194\137'",
-'\156x\'\128\207!\248\1484\r\188\29\29j\5A\208A\144=\168b\t"pH\202}<\174>.\160uq\4\157',
-'\140\225)*^uK\208}9\202\1572\128\147V\212*\151^\25\158\220\135r\178\178\169\5G\215\212\212<\242',
-'\226\139/6+q\0~\6C\3\178\240\164kIIiI!\128N\192\233\145\212uH\250\r/AB\128\240G\16uJ\210',
-'\r4\2\237\227SA\15\194\180\229\\\188#\29\n\147\2140N\249\28sY:\239E\235\235\0cP\15\181',
-'J\218\131\199\150\237\237\29rK9\22\140\0241\162\22.\233\21\3\128{P\228\128k\0\220\2063\1439',
-'\230\152%\28\244h_)\253\152\128q\176S#\188\169\00168$\166\2J\236H\208e4\224te:\169H|P\188\162]>',
-'\149\226hT\nIu\175|F*"\147|\239[\185\4\18\195\223\202\198s\tla\225xP_WW\247\216s\207=\247',
-'\165\207\218\159\215\1\213\0\238<\152<y\242\205\152\224`\1533\172\181~\14\188\176\177\2\197',
-'\219s\15\178$1\21X7\14x\143\197\164\213y2\162\243\147/o\227\221=\210l<`<\227\176\188\205\171N2',
-'\212\133)\249\208\28\209\162]\172\223\218\215\14!\233\208\3\252\242\242\242\138\1533g^\219\159',
-'\160\167\1505\160\f\248\193E?\184\20\211\251\233\2166\232\182\152\132\185\211M\29\22\232\2320',
-"\5\206\194\30D\147xc\142\129\226M\18\129J2\203\210xo\233L\179\178H\199\195\202\229\21'\235J\1",
-'\156i\158\198\234\130\233"3pR;\219\219\218e\214\184)\160\186\170\250"<\179>F\25\250\249g\192',
-'\24p\251O~2j\252\196\241\215\176\211\182\193!\172MU\216\209i]\0\0\250\227U\1929\192p\227\129Ne',
-'\2R\149\2073@\128*\31\243\219\233\243\153%K\198yO\135\140b)V\159\215\18\151\159\204\197\159\205',
-'\v\18!\236\196\22#\160\t\137\210!\165ES\167N\29\144\229\234\1c\192_\158~\250\141\216`U\1415',
-"\22H\191s;S\164_\221u\192\t@v\31\247\aI\175K'\248\162\161\4{-P\28J\161d\167\148\195\157\15",
-'27\160\243\3w\144\199\211\165\212\229\235\20sP\22\185Cz>\176\225\28\133\139u\182PWu\238\147O>yr',
-'?+\192\192,\189\210\237\172\171\27\203\189\157z\200\206\137\14\213\154\157\t\192J\1\142\157',
-'\246\241\236\160\15\219\213\238=\152\192N\233\4I\167l\188\v\v@\164\1874\16\1764\22\207\139',
-'\187\2`gj\24\225\203\161\23E\233\183:\205\188\209\\\194|\162\237]X\174.\138b<\187\1%\245\171',
-'\208\246kah\28\143\172\25\199\207\184\25j[\128\206h\198K\19\192\206\168s\0\201\128K\130.\233#',
-'\24\160\19x)\f\209\0,\160@/\128\146`S\250\rU^X\158\3\16\141\224\189\151j."!%\136\243',
-'\204\132yO\209 +\151\26\4\187\31,\143S\vh6\177\r\30\203\2135\243\176\\\253\29\245\178',
-"\159~\250\221\r\229j'\236\229\r\0\25\139mt~\194Zl\227\146\175\t\162\1\0014\4\136L\136RR",
-'@#\128N\26\153$\198\128\158y4\188\250\188\4\220\1\225\146AB&\186\154<\29\168\152\142\2T\167',
-"\203\162{\31\182t\222\209-\165'jWV\192\1732t\161\225\205\161K\145\2347\223|\243\215;w\238\244\19",
-'\f\209\31\238O\1912\224\210K/-=k\254\252ep\221F\0\4L\186\176\222\3\213\214z\15\165\r\127',
-'~`5\192\156\148\226\134RI\148\236b\146\2365E\157s4&\233\6\228W\133Y>\129\230\193t\6u\213}\170w',
-'\132\4`\20469r\229\17\236\14|\134\149\23\247\185\1859!<<J\20\21\21\141\1538q\226\a\15=',
-"\244\208\a\202\208\199\159~e\192]w\221uu}}\253\247`3\227\218`\133\190\181\193\157\227\178\3;*i'",
-'\200\0I\2149\176\185\136c\188\1922\t6\243a\128\201d\16%\230\19\157I\190\149g\204J\205o\152\176',
-"<N\228|:c}=(\203\238T\1678\192('\244\188\b|\18)\206&f\0178\19\156\211\228\230\230\142\223\179g",
-'\207\195\239\191\255\190\205&Iw\152G\1911\224\238\187\239\30=s\230\172\165\209h^\17\4F\182\159;',
-'\28\240\174\150\3\205w\30\182\22\141\245&\1984\130\189\a\184\1352\132\177H\n@tZD\176\141A',
-'\150\207\211\176\f\31FQ*SL"\243\28\248\140=\248`\154R\129\181\173\138&\211\185Z\n\14\136',
-'\t\161\16\214\134h\154\18%%%UX\172\219\250\192\3\15\252O\146\246\240B\253\198\128\159\222\250',
-'\211\127\171\27[7\27\222N\28\170\138m\229\137\16^!\130g\1935\26\243*\4\156\151\226C\193>\4T',
-'\0\28&x\0308\3\157\210\140\24\252\136\129LE9\1\227\200 I<\193p\f%\248\134\1774\143)\186gA',
-'\238`y\138s@\251x"\1759\fM\18H\168\213Z\158\136\218r5\24\178\28\227A\159\150\171\251\133\1',
-'+W\174<\245\248\25\199\223\142\198b\172\194z\15l\191-\237b\224E\231\188\148{p\4 :\228\2375\251o',
-'\18m`*\2223\n\137\194\135LdX\1403F\16\21\1979\208m\176\246\240\25\168JG\148\a\25W\189s\128',
-'\146\\\185L\180\250\21\193\236\150Uy\200\19? S\27rrr\177\158%-\24\134\253D{\151.]\250\22\179',
-"\28\238\209\31nh\206\244\233\199-\193\195\139(:'\211C\127\159\235=\0042\t\190\2390\192\243 \18@",
-'\132\225\230I\218\233\254\25=\226$\217\a\175\211H\218\193\4\r\206\156p\137\254`\26\174\251',
-'\216\250\142\209\17x\163\199U\f\244Ld{l|\240L\228Um&\179]\219\217\14\185\166\184r}\136\14\5',
-'\2314<\176\187zQ_\223?\238\243\211\255U\171V\157[]]5\a\rK\224\187\r\148+I\191_\30&\0\2',
-'\129\157\138\17\4\207\0\198S\vpO\1\141\199h\182p\24(\202C\147b\169\4Dv@\24\186\248\228 ',
-'L\161\197\31\226\253aL\246\247\188\210\156\176"U\130{\197A\184U\173\178q\169\1564\254\228\179',
-'\0014\15\237\1985\194\246c>\3\6`\133\148\2\198\221\213\163\176\191\137\187\171\151\168\128',
-'\195\248\233\147\t\186\230\154[\202\255\230\204\185\2030\233\26F\232h~(\29\148\18\147 JR\242$',
-'\168\30\24\133\133\143I(\145a\30\198\155\164"\31\194\134\152\24\21\166\1963]p\at\150\a',
-'\196\198\4\198\147\169t\129p\184\176\160\177:\229\2\b\127\171\222\2293\134h\188e\f\t\188',
-"\233!G\20\214\21c\1LlvN\182\198\3<\196\1592a\194\132'\240]\138}\170\164\151?}\210\128s\206\249",
-'\206b\236\237\156Di\224\224\196\206\26\248\4\221\128\240\f\16\176\135\0L,\r \1637\128\b',
-'\1681\141\233)q\bz\237`/I\199t\203\203\27\193\198+\19tg\207\19D\29\196I\23\148\170\2(\238<x',
-'aY\224\155\192\134q&\195\253\182Ij4\227c\177\136&\150\212\130\246\236\142DYY\217\208\147N:\233G\200',
-"\189\128\197\244\2468\2361\0n\231Dp\254J4L\239\\\177q\180\251\242\249\29p\2\31\29'3\204\142",
-'\154\189\150-w\f\242`\203v\203\174\199 \233\177\240\193\f\228\171E\6\180\197s{\185\237j\1953f',
-'\128F\224\146\f7F!\6\241\198\b\207\16\194CF1\222\210\2\6\a\194\225\203\242\229Y\251\189',
-" \145)\172\179\r\2385\150'\184\177+1j\212\168\243\31{\236\177i,\189\183\199ak\192\172Y\179\150",
-'\f\197\1\137\143\2113\224\0143N\186|CM\178\209Y\153 \a<@\162 \18\130$\240\f\219\169\1970',
-'\217\29\211\f0%L\24\15\178\245N\226-O\156\150\29\165\2410\144Q\157\29\188\149\191\131+\196',
-"\204K\26\211\149\196h{\r\205\232\241\235\172\22B,\132*\1931\192J\199\r\188\0310'\v'\250\202G",
-"\170]\157\24\v\160\5p@\138\240\212\239\199 9\143t\1899|\187z\147'\180b\197\19\179\198\214\213",
-'\157\5W\211\246v"77Wq\209\202\164\30\141\20\240v%X&\185\6\1881\197\210\228e@\162\168\226',
-'\230\5\217B\24\239!m\t\187R\226\169\5\142Ns\v2\213\214\239\173^\214a\140SY\244\134\16\193p',
-'B\218B\141a\157\184g\219\128+\146tZ>B@\176M\24(\a\230\137Y\155e\158X\166k\3==i\1\174\24\247',
-'\18xx\255\183\24\af\177\148\222\28\189\214\128\241\227\199\231M\159~\236?\23`71&Z\241\28\172',
-'\145\208=\227\195l\147T4X\230\130\157E\152\157\229\149L\128\244JrS\226\224\253\16hK\243\244\162e^',
-'\3\217K\187u\204\128\6\t\202\1628\131N\t\238UV&\224\144\29g\26Oo\231\17\207{\166\209\249',
-'\193\15\254\225Y\133eQ>\251A\132\226\168]hs\156^\16\200\209>2%\226\152\192\237\148\157\208\130\172',
-'\172\206DAAA\222\148)S\184\\\189\6g\143?\131\208k\r\184\239\190\251\206\3\183g\209\244h\224',
-'\5\bm\173\244z\0\164\0\243><\129g\28A7\224\217S/A\230\171[\186\204\149cZ \229\234\164+#A&%L',
-'\v \197&\225x\187\197\149\207{j\136i\130I\190\198\0051\26e\184\178,\159\19\2\180I\237\131\214',
-'\226\19 \b\243\193\139\141- \199A\14\24\173i\179\215(\228C?(44\187\28\247X.\150]\226\149#+\231',
-'\190\140M\b\204\221\211\163Wn(^l\0306\247\219s\151a-\164\28*(\191\1593^\158fb\216)6\208\174\1486',
-'\30\212\ft6\216V\168{\2090\222\229q\215$H\1988D\167hQ\146\150e\211dI\194Q\22\153\203\234\172lW',
-'\175\171\31Tl\133hyU\155\152G\227\a3\225\159E[\178\28#j\a)\241\195\127\210\22\187\218l\31',
-'\175T\193\29\229.\15\n"\211\243\v\242#\240\142\234>\251\236\179\229=\221W\218+\r\192w\28',
-'.\169\172\170\28\15\192\245\152\145\18h\3o*\144\180\177\188O\1373\176\3{.\219J\t\146dRr\221',
-"\233\152G\141\145\183!\169F\154\147n\175\29\146|\151G\239z1\140\188\140'\r\153b\140\180r\173=\158",
-'yl\151\209\136\249N\243(\213\188\a\155\0:\194\240\196\208\6@\2398C&)\197\24I\134\169\143h+',
-"\199\3\n\3\215\193F\140\28y\194e\151]\246=\178\174'G\143\25p\225\133\23\22\194\221\186@",
-'\141D\237\180\157\244\249\15R{\129\146\148~\210zpe\6t\207t\0C\144uO\213\135;\135\188\248\236',
-'\21z\201t\3I\128\163sL#\208\222l\177\179V.h\0216\16\200(\150\237\25ef\137\fd\25\0\151\0',
-'\171|\230g^g\174\24\143\211\247\141\204p\202A\204\165\29\208\234@\131I\199zp\r\171~\212+A\192',
-'\182F\174\152\142\31;\254\162\227\142;.\167_\25p\230\1883\167\193\244L\162\231Cu#\0\180\127j\f',
-";CP]'\2129k\160\1\165\6\1544\146>\t\172\129\203\188\t\216y\2O\127\31\f\209;\3\1645;O",
-'\173J\169\3u\179~\203\19\128\145lK\0\172\207G\26c8\1S\155Y\158\147z\127O\192\20\22sL\27@',
-"\198z\0>X\128\246\201\244!\146Z\1330\252\r\182\197\132\131a\174\4\148\150\149N\191\246\218k'",
-'\247\132\1=\246\130j\198\212L\229\27$\28|\185f\18\2354\233Q\131(\205\190cN\194|\167$!\1383\128',
-'\131x5\220$\210:\206\206;`\129\f\153i\210J\163\0A\164T\234\159\129\192z\133\6\r4M3\174\28{H',
-'D\aGRl\tF\1zD\235\0041\222\v\225\240\199\24\230\231\149\198\128e\227\130C#\4\243\168\204',
-'\b\177v\26D\175\137\241\206d\161\157f\254\200\20r+\20\199\251f\249\248"\203t\20\243\158\n',
-'\235\230\167\199\f@\161U\28t\216\146xW<LN{\219\234\193R\237`\132\238\2170J"\239\209\t6NLB',
-'\216L\5\187Hi$X\188\194n\211\150"B\192\163\131\b\168\163\2128 \134\23(l\224\203\130\0D\178',
-"\178\185&\3K\24\193\n,\220E\230'\3]\189\166!\178\229\130\21E\145C\130\154EG\216&\173\239a2",
-'\199\193T\139mh\18\202\226Z\15\249"\144A\28\17;\204_a\28\0152\216\167\155\201\180~\178/\185',
-'\152\152br6N\132\127\230\167\199\f\192\200\1436\139\235\129-\244\157\21\200^\3\0@`[i*\208PS{',
-"\216Ig\163\213p\a\6>\2'\147\1968\139\167\20\161\211\0\153\v^\209h>W\31#\5\5\249\161l",
-",\246\17\25\194h\2045{O\6q\239Q\4R\173\151\254\200 \128H\26\174^b\142\194\239\197\5\19'g>P",
-'\22\193\20\210\172\146N\167+\157\250D\141\160v\216\1\193\192\211\14[95I\183\246\178\205,G\237g',
-'\159p\203t\212\159\239\243vw\2371\3\240\1\188\3\1480\22\254U\220\15\180!\176\191\144\b\210',
-'\226\f\24\1970$\132\2%\0\149nf\135X\208\180E\163\185\161\194\130\194pQqQ\152\203\219\173m-',
-'\161\198\198\166\166\189{\246\236njj\220\214\210\218\186\163\181\189ukG[\199^\140AM\240@\248D\n',
-'\203!\145\220\236\236\188\226\236H\2460\188bTU\4\141\197\228\168\22\15\209+\139KJJ\225\189\1',
-'\2060\158\210\181$\26\0144%Z[\154\205{\17\128\228\185\1I\176\216f\155\160Q\250\141\td\186\251',
-'\199\139N\210\6\a\242\155\0qlL\132\128\215\222 \173\155@\143\25\176c\219\182\r\216\r )fc',
-'\188\4\178\177\0062\129ta\153!\27#\228\253P\19p\178\217\154%#\221\188\26\202\28\165=\18\2P',
-'\161\210\210\18>\240\14\225\129w\231\230\205\155?\220\187w\239\154]_\236Z\179g\247\158?<\255\252',
-'\243\159~\244\209G-(D\211\164n\250\20$\225\19\4\5g\156qF\r\236\241d<\195\253\139\242\178\178',
-'\153\248N\208\148\138\17#\162Y\145\225\161\3\141\141\241/\247\237\15\181k\203\fZ\130\190p\214',
-'\140\127\232\147U\195\176\189JK\225\198\31\127%\233)l@\208\v%V\a\152%\241\249\231\159\175\15',
-'\26\210M\160\199\fxk\237\218\183\167\207\152\177\29\235\223\213\0\19\152{\176\29\208\1867',
-'\160\t6\165\158\141\21\163\208\25\179\147\242\173\209O\187\167\153\129t\134\177\164\27nmi\rm',
-'\221\186\245\227\237\219\183\253f\227\198\143\159\196\238\186?\236\222\189\187O/F\236\216\177\163',
-'\0053\247\141\232?\207\223\224\140.\\\184\176~\210\132\t\223\173\170\1699ktmm\253\216qcC_64\240{',
-"\211\2168l\203)\236\155\153\0312\131'\222\162\196\148\v\184\242\144\208\128\128\28\161L\169\159",
-'\188\151\169\133\187\138O&\127\254\198\27o\252\142q\127\238@\161=?^{\237\181_\224\155\nW\237\221',
-'\187\15\15\222\241\150\v\128\230$D\128\251\176s9\rd0I\204\2242\2}}\179\239\20\145\194\226',
-'\162P\217\144!\145\150\230\230\248\150\173[\215l\220\184\233\223\31}t\249s\235\214\173\219\223\243',
-'\22\29>%\246.\149\\w\221u\243\234\234\234\174\192G\252f\14\0316\140\154\23\223\191\191!\193',
-"\15:\1U8J6\203\213\216\130\217\174\6\127\244;\aa\250\251\252\0 56\15'\215\1968\198aa4\242",
-"\222{\239-\1573gN\143\190\198eC{\15\251\0015\222\128o\173\157\131\173'\165\176\203\228}\18|\0M",
-'\176\241\17a\196%\253\251\152[\183g\28\189\155h~^\b\2468\130\145<\188\241\143\31\191\254\214',
-'\127\173^\188p\209\162%\175\190\186\234=\168m\159v\24\244\176\27"\131\169h\127\229\149W>\192:',
-'\254\1950Q\239B&j\208\191\209C\135\r\141\176\31|\137D".\r0M\160\1694\141\208\238\3\153N',
-'\139\vi\251\r\150%"\r\r\r\159c\19\239\197\216-\209\163\'d\189b\192\1545k\26\176\238',
-"\189\181\182\182\246\187hWN\227\129F\249\235\4\1516]K\6\210\136\20\173@<\181\129\235'\21\21",
-'\195#\229\229C\195\159~\250\201\186\213\171W_\139\247\134ox}\245\234\15\129\bu>]G\28m\249p\197',
-"\202\149\203\199\212\214m\137\22D'\215\142\30=4?\26uk\\\240h\200\4\128O\r\160i\2\19xX{a",
-'\135\1541\160\227\29\227Hn^n\28L]\140\207\240\188\218\211\206\244\138\1,\244\217g\159\221\128',
-'\143Z\236\132\180\204\193\220 \23\28\151\237\236\160;\137\169x,f\159\155\241\158\15\23\170\202',
-'\202\134D@\31\134\157\221\179v\237oo\251\217\207n[\240\200#\143\208F\166\19\248C1\138\173ze\213',
-'\187_|\241\197JL8s\209\230\169\181\181\163r\1363\ai\141\v\180\255\206\240\211\156\226\227\127Hk',
-'\15\r-\31\nE\136\196`\247\175_\176`\193\175\14-\184\187\251^3\128\133=\243\2043\239\150WT\172',
-'--.>\26K\1765\209\252|\206\132\240\24\17n*Z\156\1417\f\v\v\n"Pg\f\176C\194\205\205M',
-'\r\235\214\173_\254\196\19O\252\240\214[\255\229q\252_\0\131fj\186\235\252W\165m\218\180\169',
-'\t\253{aHY\217\27\144\252\234\178!e\227\170`2\243\242r)\2502A\208\1300\222!\139`3B\24;#\194\187v',
-'\236\218\244\234k\175^\142\151\187\151~U\153\221\1979=\234\142\164\219\180\194;\127\254\243\191\0275',
-'f\204yx:y\f\252\246\17\240\229s %\24\151c\251\247\237\219\247\t\192~\249\157w\222y\4\222H',
-'\191lf\237\1825\253\159\24\185\233\166\155\230\0285\241\168\v\224\190\158R\\RT\tS\132\t\22',
-'\159\148\198\191\132F\255q\203\150-\143/[\182\236\193\181k\215\238>\156\234\251\202\128\160\206\217',
-"\179g\143\172\159P?2+\154U\n\240[\160\202\187\177cn'\b\250\188\1295\168$\141\1\188\156Q~\242",
-"\201'W\194\r\31\134f\180C\176\216\191m\b\247\248\233W\26\155\159\169:\131@\6\129\f\2\25",
-'\0042\bd\16\200 \144A \131@\6\129\f\2\25\0042\bd\16\200 \144A \131@\6\129\f\2iF',
-'\224\127\1\191\173N5]V\234X\0\0\0\0IEND\174B`\130'}end)()end,[57]=function()local aa,ab,ac=a(57)local ad return(
-function(...)local function ae<T>(af:T):T local ag=af::any function ag.MoveTo(ah,ai:number)ah.tab:_moveElement(ah,ai)end
-function ag.MoveToTop(ah)ah.tab:_moveElement(ah,1)end function ag.MoveToBottom(ah)ah.tab:_moveElement(ah,#ah.tab.
-elements)end function ag.MoveUp(ah)local ai=table.find(ah.tab.elements,ah)if ai then ah.tab:_moveElement(ah,ai-1)end end
-function ag.MoveDown(ah)local ai=table.find(ah.tab.elements,ah)if ai then ah.tab:_moveElement(ah,ai+1)end end return af
-end return ae end)()end,[58]=function()local aa,ab,ac=a(58)local ad return(function(...)local ae={}ae.__index=ae export
-type RequestFn=(...any)->any function ae.getRequestFn(af:any?):RequestFn?af=af or getfenv()return af.request or af.
-http_request or(af.http and af.http.request)or(af.syn and af.syn.request)or(af.fluxus and af.fluxus.request)end return
-ae end)()end,[59]=function()local aa,ab,ac=a(59)local ad return(function(...)local ae=ac(ab.Parent.variables)local af,ag
-=ae.textService,{}ag.__index=ag local ah=20 local function ai(aj,ak,al)local am=Instance.new'GetTextBoundsParams'am.Text
-=al am.Font=aj am.Size=ak am.Width=math.huge local an,ao=pcall(af.GetTextBoundsAsync,af,am)return if an then ao else
-Vector2.new(ak*0.6,ak)end local aj={}local function ak(al,am)local an=tostring(al.Family)..'|'..tostring(al.Weight)..'|'
-..tostring(al.Style)..'|'..tostring(am)local ao=aj[an]if ao then return ao end local ap,aq={},0 for ar=0,9 do local as=
-math.ceil(ai(al,am,tostring(ar)).X)ap[ar]=as if as>aq then aq=as end end ao={advance=ap,maxWidth=aq}aj[an]=ao return ao
-end function ag.new(al,am,an)an=an or{}local ao=setmetatable({window=al,container=am,textSize=an.textSize or 16,
-transparency=an.transparency or 1,duration=an.duration or 0.55,slots={},length=0},ag)ao.roll=TweenInfo.new(ao.duration,
-Enum.EasingStyle.Quint,Enum.EasingDirection.Out)ao.zIndex=math.max(am.ZIndex+1,6)ao.height=math.ceil(ao.textSize)local
-ap=ak(al.theme.Font,ao.textSize)ao.advance=ap.advance ao.maxWidth=ap.maxWidth al:Create('UIListLayout',{FillDirection=
-Enum.FillDirection.Horizontal,VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=an.alignment or Enum.
-HorizontalAlignment.Left,SortOrder=Enum.SortOrder.LayoutOrder,Padding=UDim.new(0,0),Parent=am})return ao end function ag
-._reel(al,am)local an=al.slots[am]if an.reel then return an.reel end local ao=al.window:Create('Frame',{Name='Reel',Size
-=UDim2.fromOffset(al.maxWidth,al.height),BackgroundTransparency=1,BorderSizePixel=0,ClipsDescendants=true,ZIndex=al.
-zIndex,Parent=al.container})local ap=al.window:Create('Frame',{Size=UDim2.fromOffset(al.maxWidth,al.height),AnchorPoint=
-Vector2.new(0.5,0),Position=UDim2.new(0.5,0,0,0),BackgroundTransparency=1,BorderSizePixel=0,ZIndex=al.zIndex,Parent=ao})
-for aq=0,ah-1 do al.window:Create('TextLabel',{Text=tostring(aq%10),Position=UDim2.fromOffset(0,aq*al.height),Size=UDim2
-.fromOffset(al.maxWidth,al.height),BackgroundTransparency=1,BorderSizePixel=0,TextSize=al.textSize,TextXAlignment=Enum.
-TextXAlignment.Center,TextYAlignment=Enum.TextYAlignment.Center,TextTransparency=al.transparency,ZIndex=al.zIndex,Parent
-=ap},{TextColor3='ContentColor',FontFace='Font'})end local aq={cell=ao,strip=ap,digit=0,target=0,stripTween=nil,
-sizeTween=nil}an.reel=aq return aq end function ag._static(al,am)local an=al.slots[am]if an.static then return an.static
-end local ao=al.window:Create('TextLabel',{Name='Static',Size=UDim2.fromOffset(0,al.height),AutomaticSize=Enum.
-AutomaticSize.X,BackgroundTransparency=1,BorderSizePixel=0,TextSize=al.textSize,TextXAlignment=Enum.TextXAlignment.
-Center,TextYAlignment=Enum.TextYAlignment.Center,TextTransparency=al.transparency,ZIndex=al.zIndex,Parent=al.container},
-{TextColor3='ContentColor',FontFace='Font'})an.static=ao return ao end local function al(am)if am.stripTween then am.
-stripTween:Cancel()am.stripTween=nil end if am.sizeTween then am.sizeTween:Cancel()am.sizeTween=nil end end function ag.
-_reelSnap(am,an,ao)al(an)an.cell.Size=UDim2.fromOffset(am.advance[ao],am.height)an.strip.Position=UDim2.new(0.5,0,0,-ao*
-am.height)an.digit=ao an.target=ao end function ag._reelRoll(am,an,ao,ap)if an.stripTween or an.sizeTween then am:
-_reelSnap(an,an.target)end local aq=an.digit if aq==ao then return end local ar,as if ap then ar=aq as=aq+(ao-aq)%10
-else ar=aq+10 as=ar-(aq-ao)%10 end an.strip.Position=UDim2.new(0.5,0,0,-ar*am.height)an.target=ao local at,au=ae.
-tweenService:Create(an.strip,am.roll,{Position=UDim2.new(0.5,0,0,-as*am.height)}),ae.tweenService:Create(an.cell,am.roll
-,{Size=UDim2.fromOffset(am.advance[ao],am.height)})an.stripTween=at an.sizeTween=au at.Completed:Connect(function(av)if
-av==Enum.PlaybackState.Completed and an.stripTween==at then am:_reelSnap(an,ao)end end)at:Play()au:Play()an.digit=ao end
-function ag._putDigit(am,an,ao,ap,aq)local ar=am:_reel(an)local as=not ar.cell.Visible ar.cell.Visible=true ar.cell.
-LayoutOrder=-an if am.slots[an].static then am.slots[an].static.Visible=false end if aq and not as then am:_reelRoll(ar,
-ao,ap)else am:_reelSnap(ar,ao)end end function ag._putStatic(am,an,ao)local ap=am:_static(an)if not ap.Visible then ap.
-TextTransparency=am.transparency end ap.Text=ao ap.Visible=true ap.LayoutOrder=-an if am.slots[an].reel then am.slots[an
-].reel.cell.Visible=false end end function ag._hide(am,an)local ao=am.slots[an]if not ao then return end if ao.reel then
-ao.reel.cell.Visible=false end if ao.static then ao.static.Visible=false end end function ag._render(am,an,ao,ap)an=
-tostring(an)if an==am._lastText then return end am._lastText=an local aq={}for ar,as in utf8.codes(an)do table.insert(aq
-,utf8.char(as))end local ar=#aq for as=0,math.max(ar,am.length)-1 do am.slots[as]=am.slots[as]or{}if as<ar then local at
-=aq[ar-as]if at:match'%d'then am:_putDigit(as,tonumber(at),ap,ao)else am:_putStatic(as,at)end else am:_hide(as)end end
-am.length=ar end function ag.to(am,an,ao)am:_render(an,true,ao)end function ag.snap(am,an)am:_render(an,false,true)end
-function ag.reveal(am,an,ao,ap)am.transparency=an for aq,ar in am.slots do if ar.static and ar.static.Visible then am.
-window:_reveal(ar.static,{TextTransparency=an},ao,ap)end if ar.reel then for as,at in ar.reel.strip:GetChildren()do if
-at:IsA'TextLabel'then am.window:_reveal(at,{TextTransparency=an},ao,ap)end end end end end return ag end)()end,[60]=
-function()local aa,ab,ac=a(60)local ad return(function(...)type OrderedElement={main:GuiObject,descriptor:{main:
-GuiObject}?}local function ae(af:OrderedElement,ag:number)af.main.LayoutOrder=ag if af.descriptor then af.descriptor.
-main.LayoutOrder=ag+1 end end return ae end)()end,[61]=function()local aa,ab,ac=a(61)local ad return(function(...)local
-ae={}function ae.join(af:string,ag:string?):string if not ag or ag==''then return af end return af..'/'..ag end
-local function af(ag:string):string local ah repeat ah=ag ag=ag:gsub('%.%.','')until ag==ah return ag end function ae.
-sanitizeFolder(ag:unknown):string local ah=tostring(ag):gsub('\\','/'):gsub('[:<>"|?*%c]','')ah=af(ah):gsub('/+','/')
-return(ah:gsub('^/+',''))end function ae.sanitizeFile(ag:unknown):string local ah=tostring(ag):gsub('[/\\]',''):gsub(
-'[:<>"|?*%c]','')return af(ah)end function ae.basename(ag:unknown):string return tostring(ag):match'[^/\\]+$'or
-tostring(ag)end function ae.stripExtension(ag:unknown,ah:string?):string if ah and ah~=''then local ai=tostring(ag)if ai
-:sub(-#ah)==ah then return ai:sub(1,-#ah-1)end return ai end local ai=tostring(ag):match'^(.+)%.%w+$'return ai or
-tostring(ag)end return ae end)()end,[62]=function()local aa,ab,ac=a(62)local ad return(function(...)local ae,af,ag={},
-ac(ab.Parent.persistenceConfig),ac(ab.Parent.persistenceSettings)ae.getPath=af.getPath ae.save=af.save ae.load=af.load
-ae.applyTo=af.applyTo ae.list=af.list ae.delete=af.delete ae.getSettingsPath=ag.getSettingsPath ae.saveSettings=ag.
-saveSettings ae.loadSettings=ag.loadSettings return ae end)()end,[63]=function()local aa,ab,ac=a(63)local ad return(
-function(...)local ae,af,ag,ah,ai,aj,ak=ac(ab.Parent.variables),ac(ab.Parent.filesystem),ac(ab.Parent.log),ac(ab.Parent.
-path),ac(ab.Parent.persistencePaths),ac(ab.Parent.persistenceWrite),{}type PersistedControl={value:unknown,flag:string?,
-_canBeNil:boolean?,_serialize:((PersistedControl)->unknown)?,_deserialize:((PersistedControl,unknown)->())?,Set:(
-PersistedControl,unknown)->()}type ConfigWindow={controls:{[string]:PersistedControl},configuration:{fileName:string?,
-customFolder:string?},name:string,_loading:boolean?,_loadedConfig:{[string]:unknown}?,_loadedConfigPath:string?}function
-ak.getPath(al:ConfigWindow,am:unknown?):(string?,string?)return ai.getConfigPath(al,am)end function ak.save(al:
-ConfigWindow,am:unknown?):boolean local an,ao=ak.getPath(al,am)if not an or not ao then ag.warn(
-"Rayfield: configuration name '"..tostring(am).."' has no usable characters")return false end if typeof(af.writefile)~=
-'function'then return false end local ap:{[string]:unknown}={}for aq,ar in al.controls do local as,at=pcall(function()
-local as=ar._serialize if as then return as(ar)end return ar.value end)if as then ap[aq]=at else ag.warn(
-"Rayfield: Failed to serialize flag '"..tostring(aq).."' - "..tostring(at))end end local aq=al._loadedConfig if aq and
-al._loadedConfigPath==ao then for ar,as in aq do if al.controls[ar]==nil then ap[ar]=as end end end local ar,as=pcall(ae
-.httpService.JSONEncode,ae.httpService,ap)if not ar then ag.warn('Rayfield: Failed to encode configuration - '..
-tostring(as))return false end local at,au=pcall(function()aj.write(an,ao,as)end)if not at then ag.warn(
-'Rayfield: Failed to save configuration - '..tostring(au))return false end if al._loadedConfigPath==nil or al.
-_loadedConfigPath==ao then al._loadedConfig=ap al._loadedConfigPath=ao end return true end local function al(am:string):
-({[string]:unknown}?,string?)if not af.isfile(am)then return nil,nil end local an,ao=pcall(af.readfile,am)if not an or
-type(ao)~='string'then ag.warn'Rayfield: Failed to read configuration file'return nil,nil end local ap,aq=pcall(ae.
-httpService.JSONDecode,ae.httpService,ao)if not ap or type(aq)~='table'then return nil,ao end return aq::{[string]:
-unknown},ao end local function am(an:string):string local ao=ah.stripExtension(an,'.rfld')local ap,aq=ao..
-' (Incorrect Format).rfld',2 while aq<=100 and af.isfile(ap)do ap=ao..' (Incorrect Format '..aq..').rfld'aq+=1 end
-return ap end function ak.load(an:ConfigWindow,ao:unknown?):boolean local ap,aq=ak.getPath(an,ao)if not ap or not aq
+"\0\0\0\0\1693_N\0\0'\20IDATx\1\237\157\a\156U\213\157\199_\153\25\166\210\1643\192",
+'\160(\2\139]T0\168\196\18cb\201\198\186*k\178\171\187&\217U"D\147\172%\26V\163F\221\141\162',
+'\168\184\194\218\215^\16\27\24\16T@P:\f\fE\202\0\3\211\251\188\183\223\223\255\220\251x',
+'\195\2127\3\234\238g\238p\223\189\247\220sO\249\253\235\249\159s/\129@\199\214\129@\a\2\29',
+'\bt \208\129@\a\2\29\bt \208\129@\a\2\29\bt \240\141"\16\252FkK\172\178\164\219o',
+'\191=\165o\223\190\201ee\225p\175^\169\181\185\185\185\181\164UQL]bE}ws\127g\b\240\234\171\175\230',
+'\f\0288\240o\186u\235vlJJ\202\240\140\140\140~\192\214=\24\ffF\163\209\164@ X\19\141F\202I\219',
+"URR\1789\18\137,\222\190}\251\162'\158xb\217\180i\211J\190\187\16\127\135[\246\250\235\175\15]",
+'\177b\197\175w\237\218\245~iI\233\174\234\170j\176\142\219"\209h]$\18\5l\176\143K\247N\203\203',
+'\203kv\239.X\153\151\1517\249\149W^\25\246\29\238\234w\170iI\159}\246\217\143\182n\221\250JIIi\161',
+'\15kmmm\180\166\166&\194\177\206\223\185\174\171\170\170\170\171\168\168\172\3\236\186\178\210',
+'\178\186R\246\178\1782\187\174\172\172\140\136@\218H\219\139\138z\232\177\199\30\235\251\157\234m',
+'\v\1419\16*HeD[\168G\183\195_|\241\197\133\217\217\2177t\238\220\249\212N\157:\5\234\234\234',
+'\2\209h \18\164\4TM\0N\183\29\224\3u\181u\129\186H]\0\132]z\148#\231Q\253Q\27\152\a',
+"\244X8\28\14&%'\5\210\211\211\2163\2{\v\246\174_\189v\245u\163G\143\254\176\21m\250\214\179",
+'\28\b\2\180\216\137\143>\250h\204\145G\30y\251!\135\28r&\250= n\15\6\130 \232hW\a\1765',
+"\1815\129Z\128\231\158\17\198'\134\17\2By\233A\228#XS]\29(+/\15\148\151\149E\162\129PY(\24",
+"\173\b'%\213d\164\167\135z\244\236\153\5a\243?\253\244\211qW_}\245\230\22\27\247-g\192\184\29",
+'\188\237\207\127\254s\247\243\207?\255\150~\253\250_\159\150\150\154.\224\209/\209`0D\165Q\128\174',
+"\rTW\215\176W;\208\1Z\\/\201\168\173\169\245\136b\199\16\234'\176u\219\214\202\146\226\226",
+'\229E\197\197\243KKK\191,+*[[UWU\128Q.GUU\167\166\166\134\251\244\233\211i`\159>\225\202H$\255\224',
+'\245\172\249\146g\207\158\157s\2041\199\f^\186t\233\1943\2068\163\180\185\220\a\141\0\159|\242',
+'\201\216#\1428\226\193\30=z\28\139Z\23\a\163j\156\192E\0\184\n\208\197\201\181\156\235\218',
+'\a\190\6\130\212\212p\15I\0\212P\193\238\130\192\150-[rw\228\239xQvc\202\148)\203\232Pus\157',
+'\250\150\238%}\250\233\162\239eg\247\25\223\189{\247s\177U\135\172[\183n,m\153\223\\{\26#\128',
+'\175\150Z\163\215\27+;\248\213W_\221x\216a\135\221\145\158\158\158\185\15\248\160\233m\1\\U]e*',
+'\5\251i\220.\142G2\2\213\0\15#s^\19\220[X\24\196\168n\193\195yh\254\252\249O\207\1533gwc',
+'\149\181&\237\246\211oO\186\232\161\139~H{z\21\21\21\173\199}]\255\227\31\255x+\207\182{<\241',
+'\242\203/g\143\0241\226\199\168\215+\178:w>\185SJJReEe`\193\130O\151>\249\228\147\203[j_c\4h+\240',
+'\129\235\175\191>s\226\196\137\247\225\207_\167\138\29\248\190\186\169\v\224\181\192\221\181\24U',
+'g\\\141\235\157t\152\26\18a\170\225\250\ryy\129\181k\215\206\192E\253\221\243\207?\191\165\165',
+'N\180x\255\136m)]\187t\157<p\208\192\17HU\20{\180+??\127}YY\197\130\146\146\162\5\1557o\254\242',
+'\197\23_\2206c\198\140\178\22\203\26\18\232\244\234\189\175f\231\228\f<\185W\175>\231eee\141',
+'\203\204\204\234-\225\198y\136B\224(\140\19X\182\244\139\251\240\246\138[*\207\231\246\150\242\181x',
+'\159\193P\207\179\207>\251\191\250\247\239\255C\233z\f,\134\214y+\242j*+\171\26\2\143\r\144',
+'\174\23\231K\29\149WT\132V\174XQ\176z\205\154\t\247\222{\239\244\22+M \195SO=u\214\169\167~\239',
+"\181\254\253\251\165'''\a\146\146\28\239\137!\170\170*\139i\199\198\146\210\146\141\180}\r\237",
+'\221\140[[@\158\n\236S2\30[VZZZ\127\28\136\195\144\162a\28\143HOK\235\138\225\167O\226\215hD}',
+'\196]\14\148\149\150\132>\154=\2513T\229\25\v\22,\168h\169\137\a\132\0pN_\192\127\190W\175^',
+'c\233\136\211\245\230V\162\235Q)\213p\182\185\147\158+)\189/\3Lg\197\241\16\160&\128\159\31Z\178',
+'dI\238\202\149+\175|\248\225\135?k\169\225m\185\255\220s\207\253\227\232SN\153\210\165K\215PrJJ\20u',
+'\17\b\133B\1\134z!\220\217zEJ-\202\19\147\221J\nC\1728\164tO\2220\2474\0041{\6\17M\157',
+'\174^\181:\248\241_?\190\244\247\191\255\253K\245\nl\226B\250\161]\219\179\207>\219\227\2363\29',
+'\248pA$\24\162\165\252\147\154\169\168\168\144!5\240}uc\250\30\240\1971F\0288\176\188\172<\244\229',
+'\151K\215\0\254\133\a\v|u\242\242\203/\127|\249\242\21\143\213bc\4XEe\185\181\0030i.\255',
+'\234\234\162\236:j\192\17\1298b&\232`\247H\215\17\170\208=\246(.\177\235ce\133\217\183\138\202\202',
+'P\222\198\188e\132U\222V}\173\217\218E\128\27o\1881m\204\2321O\245\234\211k\172\192\0237iS\251+\202',
+'+\172s\226"\129/\tP\219E\0\243\138\0\30c+\241\15\173\\\181r\211\138\21+/\6\252\21',
+'\173it{\242|4\251\163\219\182m\219\182\154\182\134\164~\0\205\156\2\141C\196\206\141\25@\r',
+'\254\220\166A`\196\218_)\2\194`\242\214\164\134$A\187w\238\n\236\220\177\227\137\197\139\23+f',
+'\213\170\173=\4\b\254\226\23\191\184\a\195\246#:\2\248NF\r\252\138rS+\2\223\237b1\157;',
+'\31_\30\143:\\S[\23Z\189zu1\198\246\170\191\252\229/r/\15\250v\255\253\247\239\222\178y\243',
+'\253j\3\131A\3T\158\153\28\4\237R\137\178K\226n\27\4zN\130\147\216\170\128<\156J8\158k\163',
+"\151\bbR\207o~\254\142\237kss\255'\145N\180\153\0\v\23.\188v\192\128\1\191RC\156{O(A\156",
+'\15W\136\195MI\194O>\240\138\216\232\\\210 \27\192ep\235\214\175\163\248\202\191}\224\129\a',
+"\230&\210\232\246\230\157\251\206'/\23\226\142\18\194\b\137\229\177\1\1803\n\168\24d\156",
+'\129\n\184[\196\168\0h\237r \164J5h\20a\232\vf7\138n\170\147\0170\131N\231\2\184\206s\166N',
+'\157\186=\145\246\181\137\0\232\184\227q\229\254\2213\\2F\214\1\1373\250\213\184J\rS\167t',
+'\228\31\231uA3\1964T\2491\186\1935k\214\188|\215]w=\146H\131\15D\222\187\167\220\189\183\184\184',
+"\244\189\148\148N\214\22\192\244\218i\192\2\174/\185\238(.\175\159\135k\165I3\177'%%\ap?\3Du",
+'\223J\180}\t\19\224\166\155n\2028\249\228\147\31\200\204\204\236&c%\189/\144\197!r%\29\2404\\',
+'v\fnWg\212X\17\195\164\129t\17\3?\127\a\220\127\179\235B\162\205n2\127\156\175\210d\30\187Q',
+'YY\254\185T\162\\R`\247\218\232\218*5\170\182\26\232^\187e\191\1564{\196\162\20\245U\27\2347D8',
+'\164\b\255?a\239\173\177\129\152\21\218\212\2075\215\\s]\239\222\189\191\1358\198\140\174DW\174',
+'\166\235\136k\160\196\148\182[#\173\161\\\235O\4+((\bn\222\184\241\207\136\235\250\166\234ic',
+'\186C\164\21\15\3\216\22||\\\209N\bd\16>Q\187\0052\128J\162\173\f\1343*Qd\245K\246H\236a',
+'\143\230G\2pS!\194\246\143\150-K8\254\148\16\1^\127\253\197!\f\180n\22wK\239K\149\200\171',
+'\145\190\244E\212:b\157\1vu\200:\21\161\31\174\a\24\172\16#\207\181\243\230\207\127\178\0218',
+'\29\180,p~\25\204P\23\f\133\194\234\135\243,U\157\b\225\170\213\209Nc?\22\195u7\213\127\253',
+"\241l(\28\146$\21\174\1523'\225\24UB*\232\232\163GM\234\210\165KO\fQL\245\b|\137\178\25&q9",
+'\128\vl\142\176\149\142nW\171\21\138\214hq\219\246m\143\206\1545k\143\235\201\183\243\203\2326',
+'\3\27\230\249n\180A`\171\189~\155\237\232T\146\147\fO\5\209?\169#\147j5\221\136\19\b0\176K',
+'\230*!<\245x\171\31\1529s\230Q=z\244\186\fu\227\133\147\tI\162\243\229\158\249 \187\198\235\146',
+'M\29\160\2q\tL\15\167\132\2\169\157RC\219\182m-`b\230\21U\254mn\2049\15\134!\2120k\171$',
+"\149V\139u\140\153|\207(f\187\232\143\179\1('\242)]\155\242\203f\164$\167\244\249\245\181\215f&",
+'\218\167V\19\128\208\242\191dd\1641\217Q\27\rk\248N\165U\184g\180\197\26\238\154b\208\1874\26',
+'\1664\240\183M\195~\196=\176s\231\206Y\140\1587%\218\208\3\157\159 \218\201\242\226\156\244:P\141',
+'\0b\156\152\1\1427\188\1584\24c\185\190yDc\244\\\27\205\200\204\232y\212\1521\135&\218\206V',
+'\17\224\1417\222\24\220\187W\239\v\196\241\2\17\174\177\209\163y\n\158\138\241\206=\184\213',
+'\192\152\249BM\6\3\157RS\3\165%%\129\130\157;_O\180\145\a:?\131\190C:w\238r\166\0\215\160',
+'\139\182\235\212\24\201q\190\205OhA\128#\16v\206\\hyGf\211\156\4x\210\17d4\28e\1545e\200\144',
+'!\167&\218\214V\17\224\240\195\15\191\28\n\247\144\219)\238W M\1960\129\245\b`\220\19wNo\192',
+'=d\234\1993R!|\229\1625\185+\150$\218\200\3\157\255\228\19O\190\184k\215.\131\0\222\162\152\28',
+'\130r&\180\vh\169\20\2\133\164iD\236\6\142v_\4\17\17d\243l\151TX\216\221\1401\147O?\164',
+'\173\173\194\212\239S\139\153\21\239a\178\225bQ[\156\172]A4\26m\28c\5\137\225\181\185\163\252',
+"\3m\252\146\198O8\20\198\0'\aJ\203\2027\207\1545\167\253\241}\171\172m?7\223|s\183\236A\217",
+'\191\146\250\145\253R(\\\160\186\b\173\3\187\214\3W#z\133,D\b\159@\202g}\a\15\135\1',
+'\4#\143B\240D\131GM\1556\237\200DZ\214"\1~\250\211\159\30\131\190\28\129\159o\198W\r\209',
+'\128K\155\195\219\228\192\213)\196\197\18\218\28\250v\26f\213\130\252\255\234\234\202\181\0277n',
+'\172\180\196o\233\231\202+\174\156\0P\195\0017\194h\220\139\251\136\251]x\\#y\169%\141m<`-\180',
+'\162\208\185\22\r\196\136\1\145d+\156\196\224\138WTF\187v\237\1545r\228\200+\18\233Z\139\4',
+'\160\177g3\217\157\f\181-\224\166\192\149\2269\166mLG\186!\139G\r\3\222\176\167\21:J\0184P',
+'\145\138\162\195y\1374\238@\231}\231\157w\198\f\26<\232\6\177\137\2j\26\189+\182c\224*\232',
+'\230\159\3\180K\211=\210u\r\227\153\20H*\252sp\176H/8H\146\212G\226c\151\252\2307\191\233\210',
+'\218\182\183D\128p\231\204\206f\172(\\\n\197\130U\28p\221\2289X\157\170\2156\203\224N\189_\167',
+'\178p\183-#\137\219\234\221\254\6/dx\143:\234\168)\132P2+\153\150d\198\203T\144\212\144\237\138',
+'\206r\174\128\155]#\229\178s\230j\195\253J3b\152$\236\147\14\17C\170HR\3A#\168\235!\23^x\225',
+'\15Z\219\181f\t@\208m@zf\250p\185\155\240\1785@"\b\154\6(\21\203\137\182\136\160\231\146',
+'\185z!\136\207\253\146\0\6\155\150\206\20_\179K4Z\219\2326\228\v\159s\2069\0151\138\31\137',
+'\4G\138\139\139\141\251\0056\203!\29\200:z\231\2\29"\217\\A%\209]\vA+\fM\148\212\166O',
+'\141hxO\146\14\167\255M\18\0205\165\143\193\236\236\236\127>\254\248\22750kqk\150\0\131\a\15',
+'\30\202`\165\27bfzF\203E\196\2378mA\237\210\254@m\212\128\215=9 \133\241\165\173\253A$\20W\145',
+'\254w\132h\182\186\22\27\219\214\f\2047L\204\201\201\249;\192\138\178\166\200F\227R?\218\29\151',
+'\19\231\231\\\0jd\175s8\158\232m]\136~\18\178\142p\140\132\176\15!9 6\137#bA\b\127\225\152o',
+'\27)/\13874\230\142;\238h\149K\218l,\b\2453\18\2\4iXTjD\149\tt\t\0b\224i\28\188\1',
+'\18\236\2\176\249gDb\128\233\178p\173\1800v #+\171U\\\209V\160\27{\238\195\15?\188\252\208C',
+'\15\189\3&\136\22\22\22E\203\203\203\0\185\2\224\221\1300q\176\212\139\212\b\1864$\247',
+'\178\172\172\28\143\173\180\f\206/\164\19\133\244\138\152Q0\3[\216\r\r\214\29cks\0H\3',
+"]\167\2390\156<\189\218p\173\25\227\206]:'\17\174\191\134\246\204n\172M\241i\205\18 )%\201\\*",
+'\233{M\1778\245c\224\27\200\30\247\27\192J\245(c\229\203d\216,\153\17\128\6\226\246%\135\195=',
+'\226+?\0\231\148n\155jo\176\189\253\246\219cO8\225\132\135;uJM)*,\140\148\148\20{3Z\154\134t\170G',
+'\128\0196\t1AC<\127\2316b\250\127-,,|\143\137\165\165\204Wl\221\176a\131\194\204\1451c\198\164\14',
+'\29:\180\'+\239\134\246\236\217\243\28\142?\0268`\224aI\153I\146\162\136\194-\204\236[\185"(Rp>+',
+"1\14'z\188\174A\195\226\18\154#@\144%\24\3\1403@7\130\238\215(\156I<SA\206\242\1544\152\r\128",
+'\203\1\1<\220\175\192\199mUM\n\1828)\160\188C\227\234>\16\167\141\2\175\130Y\2313\156\5',
+'\186O3B\237\6\231G\4\176f\235\164b4!/7\147\190\133\0<\192\204\220\23_\127\253\245T\230(\222d',
+'\212\223\168\163\192J\191\26v\189\135\176\129}\230\247\191\255\253;Y\220\245\247C\14\27r\v\139',
+'\208\14A\146"a\128\175M\nK\149E\bZv9\238\184\227.!\239\31\217\155\220\154$\0o\162$3\211',
+'\163I\23\139\16\202\221\210\198\240\220\231::\224\212\144\18d\19t\148\174\247\226?\142$\168}\223',
+'Mb<q8Yd\b<\223\149\179\131\176\221s\207=\217\163G\143y\14U\145S$\240\247\238\213\154#\185\193\6',
+">&-\180\151\180\188\188\188\133;\182m\189\127\2503\207\188\201D}\171'\210\213dT[\1\251\253LP\189",
+'\15\248\143\14\31>\252\20\217J\1694-0\203\136\164\a\b\223\\1i\210\164\255\248\211\159\254',
+'\212\228\v$\254b\152\24\168>\30\23_|q\218\200\163F\254+\161\135C\16)\180\144\r\193\197\205',
+'\198\246\166\251x\138c\189g\r\127~|C,\130$3\16#^\30\164qDmS\158\155;wn\147\r\242\235o\235\241',
+'\134\27n\232\250\243\159\255\252\197\129\3\a\156TTT\28\217\179g\143\2449z\189\20\174\175\14',
+'\17\14\15\174]\189&\239\171e_\253v\202\163Sn\1569k\214R&gj\18\168\175^\127Y6\153O_\223\26\144=`',
+'T\159>}s\0\138`eX6\193\2t\244{\225\244\233\211W7U\190\239\1504\16e\1946\157(,\2213N\198\197R%',
+'\2\\\220.]\163s\17\194\\Pg\196HsU\185\163\187Pl\133vE0`=\199\142\29;\180\169\198\1807]Ls\195',
+'\r7>\158\147\147sZ1\2243\243\22(*.\n\176P6\136\209e\205\206\198\242\249\243\231=\240\206\187',
+'\239\156\nW>\154(\215{\237k\128\21\v\190\242g\207\153\2533\22\15oLJN\14Ik\200\195\146\0033x',
+'\240\224\139\155\235\151O\128\6y\160\156\164#L\240\207\3_\245\250\187%\tl\151\160_\241\133\161',
+'\174\vm\238h\4\146\26\163 \150\247\133\241\145\199\185\251\a\2527\233\15\127\248\195\131\131',
+'\6\r\252)\28\29\217\189{w\0\195\171\245I!\206\131\139\22-\156=o\238\2203o\187\237\246\tM',
+'\233\249\246\180\136\165\148\235\243\2426Ld\156Q\135\212[pO..\239\188\157\246\224\131\15\246n\170',
+'\236&\t\192\140\145\224dwA7\1\25\155-\178\193\151\31\140\243\1\167\n\233\31.\225v\30t',
+'\187\187\150\0048\181\143m:\159e\140\25M5\168\173\233,k\252#s\22\215"\185\209\29;\242\3\133E',
+'\133AF\187\1615kVo\251x\246\156_L\1520\225\a\188\190\180\160\173\229\183\230\185+\175\188\242\181',
+'\252\157\249s\t\189\155f``\23\201\202\204\234\127\236\177\199\158\222\212\243M\18\0001\170A\147k',
+'\166}\31\240\\8\170\24\184T\226F\193"\129\210\133\190\254\236\204#\128\148\149\198\t\18K',
+'\0066Q\214\206\15\255\215_\255z\180e:@?\139\23.\158\132\17\156\4\231G\243w\228k\133rh\211\166M',
+'\145\5\243\23Lg\161\236\169\247?p\191\150\19046_+\185=\144[-\198}*\253\180y\19\173\154\211\235S',
+"\196\211\206i\170\146&\t@'\136ZF\139dLM\141\196q\181\207\221\238(\240%\r\210U~5\222\137\163\1502",
+'\152\219GjTj\232\200!C\198\2519\219{d\25\224?\142\0249\226\143x8\226\252 \28\24"m\209\199\31',
+"\127|\222\164\155'\141g\225p^{\235H\228\249u\235\214\205\197\213\221\149\156\20\214\b\218B\21",
+'\168\161QW]uU\163R\223$\1pC\171Q\27\1875\128r\\m\\o`:\21\163fA\28\185\165\30\222f\176!\148',
+'\174\r{\221\183sf\158\224\6\221\231\217(\3\153\v\254\231\217g\143J\164c\141\229\1577o\222O',
+'\134\r\27\246 \158M\18~|p\201\146/\182\0\252\191\252\231\127\254\254\140\135\30zhVc\207\236',
+'\151\230\181|\191\212v\\\162\230v\162\25171\248\163\239n\189\20L\151s\222y\231\rl\172\216&\199',
+'\1d\142\176jy+/\31x*\200\215\237\14a\n\151\179\169\14\152\190Se\138\249H\221\buQ\197;\229',
+'\204-_\209\bQ!\1\198\3\153G\159x\226\r<\251\179\198\26\213\154\180w\223}\247\140\225#FL/..I',
+'_\180\240\243\252u\185\185\255\197\203\128\143\188\249\230\155\155[x\222\220\133\22\242\180\2496q',
+'\167j\194\218\187\240\183\3A\164\18\213\27a\0\154\129g6\130BW\237_ps\4P\228o\157\194\t\146',
+'\0008\221(\234\25Xgm)\205\0\247J\213=\197\128do\2379\209\194\203\195BJ\v|\225\154i0\23\237\215',
+'\175\223e\239\191?s\218Yg\157;o\255F\181t\205*\234\204\156\156\193w\230\174[\183\145\183!_d\\1\227',
+'\165\151^\202k\2339\239\190\154tP7\156 \248\204\153\23\164>\170\151A\232\247\209T\218`\225n\179\4',
+'(..\251J\170\131\2\r|\143\165\5\190h\18D\161\192\253\174/\142\173t\1613\17\v\213\165\155',
+'"\156\228!\228\212\144\164\1285\153Q\184"m\216\208\17w3\229y\22\139s[|\147\196\213\226~Qa',
+'\21\168\249\191c\219EJB#\216\248r\218x\238\144u\188\213\160\b&\230;\177\228\165\135\250\174?\169]',
+'mH\253\161\r2\147\208\164\rP\230\173[7\175B\159\21\137\162\226t\r\184\236\168\149\193:\151a',
+'\22\192\251\210\1894\210I\211\238\6az\206\157+\228k\249\17\131~\217\217c\198\143\31\175\245\161',
+"\tm\151\\rI\29\224o\226\161o\26|\191\157MJ\17\179a=!\192\0001\1742\25!\192\14)\200\230\210'",
+'\158_N\243\4`\b\189\137\129\204z\25\20J\210?\175@\15|#\138\\LG\28\3\29\130\248`;\163',
+'\171\188^~\142\154s\213\196\135\184\131\198E\tdM\252\224\131\15\206\136\181\232\224\1584\0\160',
+'\r\2135\t\190\202\226\141\201\0191\186\189\152\194\4\6\147\0[\21\14\19+\18\f\144\245',
+"\183f%\0\189Z]^Q>'5\181S\140\154\142\16\162\4\28n\192\202\253\228\220\133\27\28\216v\238q?",
+'\247\226\t\161\241\128\214\220K2D\0\194\19iLdO}\230\153g\6\213o\218\255\205+\194\212W\200\206',
+'i\238\220i\0011\167lc0\245\164\147Nj0\31\210,\1\4\193\142\29;f\17G\209\132\188\f\129\175',
+'\130dH\141\211\193\208\184Y\149\b\\K\215=\157{\187\191\142F\17U\1/\241ThX\207\202K`\1602d\220',
+'\25\227\158\194\22tm\'\236\226p\127ogQ\137?\206;\195\1991\'lo\137"\233\240\167\152S/\243\209(~',
+'\210x\5w\255R\27$\236\159\1\15\227\179\138\138\242\r\204\6)\bgT\21!\4\158\175Z\246',
+'\217\2/]\247\226\238\139\16\182\198&N2l\234\143\216\1886f\218"}\250\2469\227\130\v.x\226\218',
+'k\175M\223\191\r\173\184\222\31\244\166\212DS\233MU\161r[\187\133F\142<\234\183\204?\164\19\136',
+'\139\154\r0\28\156\163\130-\173\219^Q\225b\250q%\182H\0\0222\17\211*\156\137\215b\143\25\240',
+'\20\204?#\130H,B\152$\136\243m\247\2108\247\185^\18a;R\224K\135\139\207\19!\160\155\146\132\193',
+'\131\a\255\237M7MzDQ\205\18466u\234\131\227\31\227\243\197\167\233<\254:>\223\1;gn\224o\179\179',
+'\251_\4\240QM\226\139)\221T:\163%\184\31\2\1482\195\214\192\219k\145\0j\225\134\r\27\158',
+'\129\170\149Z\205\237\128\246A\151\151\233@\199\228\216,\139\187\214$\142\192\151*r\247\181\174&\182',
+'\182\198\158A\0291\199\204G7l|\160F\138\bC\134\28:\158\t\149\167\239\185\231\201\172\22\208',
+'\217\159\155u\29\191\251\143\251i\254u"\199\253\235h\244Y\156\149\193,y\185\23\227\171\249\134',
+'\168^@\164/z\191\213\192W\179 \204\14\30fII\253\173U\4`\24\189\136\216\208\199\248\178zu\4',
+'\227\238\f\168\169\25\137\130mH\5\21\250\18\226l\129[3\227K\133\210b\v\157\180\164\195\22B',
+'\213\4\b\162Y\252\\\140J\195\163H\194\197W]u\238\203tl`\253\230\214\191\162.c\136\250\169\223',
+'\236\21\238pg\2308\158`\14x\16\203w"Z\198\226\212\173\217@\248\202E\1\192/\175\177\1505K\0',
+'\175\131\18\223:\222jy\132\225]$\232K\1\1923\232\213\218\148\152\20\248\4\208Q\160\155{\170s',
+'\169\31_\245\24\240\254z\26g\0274?\235\136P\169\197\1886|\231c}g\157{\238\185\239#\218\227\26k',
+'\184\159F\a\197\1>\23\248\201\254\241\160\170\31\214\254\164\179\252\228\241A\131\6\141c\128',
+'\25\177\197^\142\251\213_[]-\223E\246\142{K\253F\197\31\155%\128\168\231o\207O\1568\19[0\183sVV',
+"\200\0038\136~\215\128\140K\a\184\169'\b\227s\188o\31L\31z\132\144M0\2067\149\228\150\5j\181",
+'\133\220\182\146\226\0185\212\208\148:\130\171\1428\233\196\147\222\248\242\203/o\201\201\201i\224C{',
+'\224\251Ml\236\216\28q\26\203\175\180V\17M\223Bb\226\127\6\227\152KP/\17\169R\1\173\145\190',
+'\129O\255\132\a\209\228\224\158={k`\224\196\t@cp\161\140\195\2S\23/\174\201]\147\251\239\196',
+'\183k\152-SC=\224\221\187\178\170\204\215\249\245\b\129\r\0Lo\1514\176#\5\182\234X\210\128K*',
+'\t\144\222\212B\'u\132\1432\145_\207E"i\25\233\25\140\19&\227\141\189\245\206;\239\141Q\197',
+'\ai\147:s6\142\1904\183\177\220\229\24>{0\147\245F?\161\237,w)\181\197^50\146\236\26*H3b|N\205',
+'\150d\6\139\138\n7\191\255\254\251k\27+s\31\1397v\183\1454\190\231\160\165\30W3>\128\153q\177',
+'\188<\2\221m\178\250P\135\203}\18\228"\165\246\170\18A*wd\29\141\206\137\160\234\157\3\189',
+'C\160E\188\250\2\137B\224Z\206\206\144>\160o\203\137)\233L\b\226TR\2394$\226AVm7\186\222F z\r',
+'\137\29|&\138%\180\241Dq\30\190\206\248\15|\142\231vf\246zh\198+\198\2490\146\152I\210lL\134\157',
+'\204\204\200dB&9\180t\233\146\23\177\163\1516Vm\179\193\184\198\30\152?{\246\157\227\206=\247\236d',
+'\222\137\170\168)\199\247q\219>\2\232\26"\240k\1k\29\181\203pC.}\196F\1299X\1414\206\165',
+"\154\180\138\192\174\177'vt\198\\\220\1647k\156\v\28\142\224e\164\2\194\245\f\220.\205]\159",
+'\251\210\214\175\183N=\237\180\211$\218~3Dt\154\226\136\16\127N\158\246l\1619s\230\156\199\148\231D',
+'\234\254\158\150]\18\170\143\148\218\2_\190\250%\240\145\226\152\164\163f\197|Jg9L\148\185\138',
+'\6QP\1911\r\184\197\191\209\220q\246\135\179\255a`\206\160\199y\223\203\176\21hb\249\250D\240',
+'\200`58\169P\138\207\245j\160I\2\199`\216-\2373i@\18\194HB\18R\160\149f\146\6\133sSS\245U\196T',
+"\187\166\28n\133d/*\240.\230\177\184\234e\1909\241\193e\151]\182\190\185v'z\143\201\149\190\132\15",
+'~\192\250\158\241]\186v\25\v\3\4YQ\23\169`}\145\255I\6{\135\192\1889\169Y\143\251a*I2\v',
+'\171B\5{\n\2141a?\234\181\215^+l\172\2546\17\128\130\146\23/Z\252\2\175-]\196\186\27Fw!\243',
+'yE\4#\6\f)\154H\21y\160\139P\\\tt\29D\16G\148\144\184\0310}\245\228\212\145\214\213\184',
+'\165~"\128v\17G\132@\b\2\169ii\166\174(Cz\214V @\140=\140U\22\211\158\207\180\195u+\136e',
+'\237bo\237\138\236\224\228\201\147\187\159p\244\209\3\250\f\24p\18s\215\227\232\223\152\172',
+'\140\172\254aV\1871\144\226\157\130\170\168\128\215\ni\1270\233\212\142l\154\198=\222`\211c\200',
+'\244\140\244\208\162E_\220}\245\213W\222"$\26\219\218J\128\0\2201\240\148SF\207\225\235"',
+'\131e\136\188\177\1\30\128\192\151\n\17\206N\205\24\232\232{3\24F\21T\16G\129\234\31u\238',
+'_\27\224\136\185\17\6\240%\242I\128\224\231\241&8\144\138N\154\2320I\161#\177\143.\233]d\198\141',
+'{Q\t\219\25moA2\181o\199\213-&\173\146\193j$9\20JJNMNcl\211\21\134\237\15\179\2300q\1971\220',
+'\31\219\163\215\231\r\212\154\218\234\136\150\231+\140\238\6XR5\17\185\202Fxq\189T\143\244\190',
+'\27\2518\143\144\231C\213\213U{\248\228\218)L 5j\128E\1446\19@\15\191\245\214\204\159\f\206\25',
+'\244<+\207\146\232\160\26\165\198\201\r\227\174\152~\223\6\220va\162`B \240\149d\6\214@\150z2',
+'\130\136\227=\2\249D1\149\132\180\200X\139@zV\210#bh\229\157>\188\145\140\225V>+\133\2\164\202',
+'\\\29\251\218\209\220\153y^P\135\17\187\190\226k#t\29]\191\220\156\246\190>\210O\250\171\209',
+'\189\250\235\250-\198s\131Mf]C\203W\174|\240\202+\174\184\177\185:\219E\0\161\183|\249\242wy\1',
+'\251\236\189\133{#Z\242\2378A\141\2jC\219U\15\131ca\217\141\14\174Z\129-\132\194p\184\142\2]',
+'\1710|\208\141\24\220s\156\175{N])\221\238yRc\146\226\1712\17\5"h9\136\b\224?\235\219\27G',
+'\17g\175\252\241\138q\176\a\162\198(\214\a\128\149\131\224s\181\203\3\192\150\230\250\231\6',
+'\155:w\\\239\174k\197 \161\162\146\146\252\23\158{n\204\211O?\221\172]J\216\vrp\198~\163tp!.',
+"\217\217%\248\239\26\130\171\17\254&\181\228\251\169uQ'\1\204cB\3(\195\165\212\148N\17fN\228",
+'\29\1,\249\\\25"\132\128\22\1\252\1638M\28Nn\143P\14\224}\234k\31a\200E\217\202\231',
+"\202\216'q\214>*w\30\151#\6\2L{<\194\232\158\b\160k\129K?\24\216\218Qi1\192m\172B\159M\229*",
+'\221\245_jq\237\186\213\247\180\4\190\218\209^\2\4\194\201\201\00350\131\234\130\19\20U\172',
+'\253\232\196\26\167d4\170]\211~\4A\nI\127\\\224\146:\175Qs\3\202\t\133<\14\215\138\23',
+'\162\31t\204\129H2\183jc\6[\224\27\184\158\228\b|m.]\207x;i\246\130\185\221m\248\227\3\239',
+'\219.\a\178\b &q\128\219\236\22\231\202\19#\128\136#\149\235\17\0\143Hs\221\225\188\188\188',
+'y\211\30\1596\181aM\rS\218E\0\6%G\247\235\211\231\135L[\170eV\186\26\163M\151j\168:\16O\16',
+'q\1796\19i\1\196m\129\168M\191\26#\136."\138\0tD\0h\1590\228\17\152\142\211}\1289\154:re',
+'\171,\149i\220\175s\187\230\215#\144\149\207\143\210\213:\255\218uA]q\160\171\19&%\230Xx\233q\4P>',
+'G\16\245\181N\132\15\227\154\23\179Rc\2\31\175m\249\27\164T\221f\2\176\238=k\212\168Q\0153',
+'\165x\b\159\23&\186\128\248\153\216\1627\205%s\156\226\b\160\190;p\156\151\228\1760 \129\193',
+"\193/\201`\147\138\178\4\215a\193'\3\167\163\143\31/\fyD\240\203\245\212\149 \181j\\^\191N",
+'\29\221\185k\131\131\29a\5@\'\178\190\224R\167\254\4\172\199<"\128\2173?\221@\23\217\148',
+'\206/\4\0173Ap\173\192\14,Y\186\228\223X\20\182P]i\205\230\183\1685y\227\243\4W\174^\253\200',
+'\176\161C\255\137\181\144\145\237\219\182\ad\3\170\bFU\219\136\144\21\1^\195\173\147>\0',
+'\134\143\171\18H\f,I\132\f\164\15\156_I\172a\202fv@\\\230\164\196Q\204\129\236\30t\185\205',
+'\221\141=\168;\252\153\196\249y)]\216yyhb\140\168:\215M\181\215\2068\26!\188\163\15\184\187\183',
+'\143\185\156\148\243\181\148\148T}zs\234\132\t7\2543y\1961\173\218\218$\1|\176\239gC\14=\244:',
+'\6%Q\6=\246\214 >/~\178\2knh\174\218\29\231\232\5=OW\3\134\245\31\0\236hy\248A\207\19',
+'\167\224D\169\234\184;7\206%\133\b5e\tN\25l\253\176\199o\164I\142\156\157\151\218"\246\164',
+'\251\2\223\236\n\231&>~\173\241\15\251\231\170\215?\23\130\\x0:5\227\221$S\157t>\220 \15IG',
+'\166kC\171V\173x\231\158{\238\158@\t\173\6_\181%L\128\183\222z\235x>\222q\159D\142u\247\22\tT',
+'\24V\175o\234\b\215\132\228\5\200#\202\202J\a\140\136"\156\188\196&\140\157\255\238\186I',
+'\135\0\26h\r\\Ah\bp\208\185\207\137F\4\175K>7\139H\2457q8\192\240\197d\31h\148\130V\142',
+'\1976SAz\204\202W6H$ \149Ci\156\248\28\175$\17\195\181\1\194\200\6\232\207\207c\224;/I\179`',
+'\171V\173\252\132\1\2155|\143\186Uz_\229\251[B\4\208\135.x\241\236Q\220\206\174\172D\142\232=+',
+'\173JF\18\130D\6Q\233\225\224\206]\249e\187w\21\188\206\154\205\185\221\187w\201\236\217\179\199',
+'E\253\251\15\24\173\152I\21\171+T\177\15\174u>v\r\24$x\248\187\206\210iS+\150\202\163\17g|',
+'\197\204\202\27\191\1854%z\b\235\204/\204\206=\233\243\206\141\199\227\n\137\129m\229\nlW\129',
+'\142\22^\225\168s%\235\133EY\15F\226\2\255\175\132;.\231U\165\157\20\157\240\182\175\181-?\26',
+'\204\205\205\157r\216a\135]\135\218\137\240\t\248\0\0194\16\0\15\b-CP,\176y\243\166\215V',
+'\172X\250\199i\211f,\138+.\149\161\248/\135\0301\244\246\204\172\172\140\194\189\133\24l\183\220Q`',
+'\249\192\169c\192\234\253\179\v\174]\243\156\1\221?\205\213 uc@\139\163\217\164\18\\~\187\226',
+'\1352\236_\\W]\1651\144Ui|\233\14h\151Bq*\213\3\223\25\\\6x\246_\167\172Y\179\250\2137\223',
+'|\227:\230*\180D\178M[\\\171\154\127\158/\129\143?\246\216\227\158\210K\206\188\v\133\238\223+',
+'\149\195\219\227u\129\175\191\222\178j\197\138\229w\242*\206\243\148\226\247\165^\129\191\251\221',
+'\239\198\158p\252\241\247\245\207\206>\17\233\208\4\134\253\2231\202$\237.\bD\132x}\171t/\128',
+'\20\199\205*\2225\219\231R\149\225s\167\27\180y\247U&\4\178b\188g,/\233\150C\245y\207*\221\210',
+'\248\177v\128|\252=?\220 \174\215\244\233\234\181k\30\152|\215]\n\178\233;\14m\222\\K[x\28',
+'\189?\140\137\231\217\f\184z\235\205\19\189\252F\0N\239^\149\229\174]\247\216\2193\223\190\1875',
+'\\\192\178\189\204_\254\242\151\147\176!\191b\217{W$(\138\235f&Wb\174\198\24!L\231r\17\227T\r',
+'\221\184k\172\238\192\174\223d\159x\148\129\177\137\233{\149\231D\203Jv\207\236\179/v\237\1n\168+',
+'\193\171\3\195d\4\240\129\':\27LMK\r"\249\219\191\252b\233o\30}\252\209\25\174\188\246',
+'\253\182H\128\211O?=\245\191\255\251\153\183\251\246\2373n\195\134\r\188\252V`\28\192\249\188\229',
+'\203\151\221\204WH>I\180\t\188Jz\f\239M\221\145\157=\224<\fv\152\143gD\181\152\169\30p\20*',
+'\14\212\196\141\233`]\27\152\2\216\1\174z\245\140\15\178\29\185\246;\165\231\205\208Bb\201',
+'\152\198\29\202c\249T\150e\140{\222\242;\26(\143\192W6y9\nC\231\229\173\127\253\243\207?\159\b',
+'C6:\27\167\199\19\221\252\1826\249\220\178e+n\0256\236\200\201\1556o\138\22\240\182a^\222\198\221',
+'\171W\175\185\239\182\219\254\237!\30rK\219\154|\186\217\27\193\223\222z\235\217#\134\14\157\212',
+'\171W\239\211!DH\170\tw\214\240V\195\4\160\1f\197pe\255<\245\225\193l`:Ry\185t\159\167\189\188',
+'\146(\187\237\229\17\131\vT%\186\163N\235\19YjP\145V\166C\249vD$\192\235\172\203\233\243\228\199',
+'\30{\228Er\239\239\4\171\1766o\205\18\224\195\143?\28=\234\184\147g\149\150\22g\242y\249\192',
+'\250\188\r/}\244\193\a\183\189\240\194\v\r\222\244hs\v0\224\183\222z\235\153L5\254S\183n',
+'\221\207a\1909\r\207J3N|\207\205\r\232\132\167\227aj\137\161\166S!\201.Te,\213\27\210l1\166\142',
+'\241y\149\207\178\186.\27a\149G\127\168<\27P\2418j6\152\218\169SP\147.;\243\243Wm\217\178\249QB.',
+'\211\249\210W\1633Z<\210\174\205\181\166\145"\2542y\242!\23\141\31\255!\223\195<z\206\199sV~',
+'\181d\201\157wN\158,#\219\214\205\175K\1685\186\2419\252\227\142<r\248\229\189{\247\188 3#\235\240',
+'\20&\228\249\198\179yZ,\31\0053\244\178\140\170\191\233T\165\238ckSW.\201\169\150\24\17\148\232=',
+'\17047\130uDbN!(\224\21\190.)-\174\194S\251d\195\134\188\25\207>;\2275\236\212A\1\222\239\130',
+'\15\138\127\29;\242q\213\159\163_\239\228\165\183G\152\211\156\130\231S\16\187\217\246\147\253',
+'\235\139Cs_\161,x\234\194\162\172\211\178\179\179\207\203\202\236|\26S{C\152\165\226[\24\238\255',
+'\162azP\241\23<Nvq\185t<%\251\\lX\139\187u\143MG\179/\220\1441\213 2E\255\143\fs\6\1383\241?i',
+'\148\149\20\151\174\220\181+\255}8\253\r\222\172\148\27}@U\1415\164\145\159\253\1\137ea\209Q',
+'\207\247\222{/\196\255V\154\240\a\169c\133\212?i\172\174F\t\16\255X\247\238C:_u\213yG\245\239',
+'\223\255T\150\b\141\226\191\138:<)\156\156\221)59\v\142\181\239>\171\16\173\1600\245\3\155',
+'\2035\214F\136\156$s\228\141\0\0263h\1492\234\165\144\184\213\230\189{\247\172***\249d\199\142\221',
+'\243\166O\127Bj5\145oFX\29\237\253i\f\148\246\150y\144\159\207N\187\244\2101\253X\0148\16#98=3s@',
+'R(\1697\255\165d7\130?]\25\143\165\128:\159Y`\225^\164\174\28;\194\164|0\191\170\170"\191\180',
+'\180|kEE\217f\\\233\r\188M)\198j\151\15\127\144;\218Q|\a\2\29\bt \208\129@\a\2\29',
+'\bt \240\255\24\129\255\5\143\2006p=\\u\b\0\0\0\0IEND\174B`\130'}end)()end,[57]=function()local aa,ab,ac=a(57)local ad
+return(function(...)local function ae<T>(af:T):T local ag=af::any function ag.MoveTo(ah,ai:number)ah.tab:_moveElement(ah
+,ai)end function ag.MoveToTop(ah)ah.tab:_moveElement(ah,1)end function ag.MoveToBottom(ah)ah.tab:_moveElement(ah,#ah.tab
+.elements)end function ag.MoveUp(ah)local ai=table.find(ah.tab.elements,ah)if ai then ah.tab:_moveElement(ah,ai-1)end
+end function ag.MoveDown(ah)local ai=table.find(ah.tab.elements,ah)if ai then ah.tab:_moveElement(ah,ai+1)end end return
+af end return ae end)()end,[58]=function()local aa,ab,ac=a(58)local ad return(function(...)local ae={}ae.__index=ae
+export type RequestFn=(...any)->any function ae.getRequestFn(af:any?):RequestFn?af=af or getfenv()return af.request or
+af.http_request or(af.http and af.http.request)or(af.syn and af.syn.request)or(af.fluxus and af.fluxus.request)end
+return ae end)()end,[59]=function()local aa,ab,ac=a(59)local ad return(function(...)local ae=ac(ab.Parent.variables)
+local af,ag=ae.textService,{}ag.__index=ag local ah=20 local function ai(aj,ak,al)local am=Instance.new
+'GetTextBoundsParams'am.Text=al am.Font=aj am.Size=ak am.Width=math.huge local an,ao=pcall(af.GetTextBoundsAsync,af,am)
+return if an then ao else Vector2.new(ak*0.6,ak)end local aj={}local function ak(al,am)local an=tostring(al.Family)..'|'
+..tostring(al.Weight)..'|'..tostring(al.Style)..'|'..tostring(am)local ao=aj[an]if ao then return ao end local ap,aq={},
+0 for ar=0,9 do local as=math.ceil(ai(al,am,tostring(ar)).X)ap[ar]=as if as>aq then aq=as end end ao={advance=ap,
+maxWidth=aq}aj[an]=ao return ao end function ag.new(al,am,an)an=an or{}local ao=setmetatable({window=al,container=am,
+textSize=an.textSize or 16,transparency=an.transparency or 1,duration=an.duration or 0.55,slots={},length=0},ag)ao.roll=
+TweenInfo.new(ao.duration,Enum.EasingStyle.Quint,Enum.EasingDirection.Out)ao.zIndex=math.max(am.ZIndex+1,6)ao.height=
+math.ceil(ao.textSize)local ap=ak(al.theme.Font,ao.textSize)ao.advance=ap.advance ao.maxWidth=ap.maxWidth al:Create(
+'UIListLayout',{FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.VerticalAlignment.Center,
+HorizontalAlignment=an.alignment or Enum.HorizontalAlignment.Left,SortOrder=Enum.SortOrder.LayoutOrder,Padding=UDim.new(
+0,0),Parent=am})return ao end function ag._reel(al,am)local an=al.slots[am]if an.reel then return an.reel end local ao=
+al.window:Create('Frame',{Name='Reel',Size=UDim2.fromOffset(al.maxWidth,al.height),BackgroundTransparency=1,
+BorderSizePixel=0,ClipsDescendants=true,ZIndex=al.zIndex,Parent=al.container})local ap=al.window:Create('Frame',{Size=
+UDim2.fromOffset(al.maxWidth,al.height),AnchorPoint=Vector2.new(0.5,0),Position=UDim2.new(0.5,0,0,0),
+BackgroundTransparency=1,BorderSizePixel=0,ZIndex=al.zIndex,Parent=ao})for aq=0,ah-1 do al.window:Create('TextLabel',{
+Text=tostring(aq%10),Position=UDim2.fromOffset(0,aq*al.height),Size=UDim2.fromOffset(al.maxWidth,al.height),
+BackgroundTransparency=1,BorderSizePixel=0,TextSize=al.textSize,TextXAlignment=Enum.TextXAlignment.Center,TextYAlignment
+=Enum.TextYAlignment.Center,TextTransparency=al.transparency,ZIndex=al.zIndex,Parent=ap},{TextColor3='ContentColor',
+FontFace='Font'})end local aq={cell=ao,strip=ap,digit=0,target=0,stripTween=nil,sizeTween=nil}an.reel=aq return aq end
+function ag._static(al,am)local an=al.slots[am]if an.static then return an.static end local ao=al.window:Create(
+'TextLabel',{Name='Static',Size=UDim2.fromOffset(0,al.height),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency=
+1,BorderSizePixel=0,TextSize=al.textSize,TextXAlignment=Enum.TextXAlignment.Center,TextYAlignment=Enum.TextYAlignment.
+Center,TextTransparency=al.transparency,ZIndex=al.zIndex,Parent=al.container},{TextColor3='ContentColor',FontFace='Font'
+})an.static=ao return ao end local function al(am)if am.stripTween then am.stripTween:Cancel()am.stripTween=nil end if
+am.sizeTween then am.sizeTween:Cancel()am.sizeTween=nil end end function ag._reelSnap(am,an,ao)al(an)an.cell.Size=UDim2.
+fromOffset(am.advance[ao],am.height)an.strip.Position=UDim2.new(0.5,0,0,-ao*am.height)an.digit=ao an.target=ao end
+function ag._reelRoll(am,an,ao,ap)if an.stripTween or an.sizeTween then am:_reelSnap(an,an.target)end local aq=an.digit
+if aq==ao then return end local ar,as if ap then ar=aq as=aq+(ao-aq)%10 else ar=aq+10 as=ar-(aq-ao)%10 end an.strip.
+Position=UDim2.new(0.5,0,0,-ar*am.height)an.target=ao local at,au=ae.tweenService:Create(an.strip,am.roll,{Position=
+UDim2.new(0.5,0,0,-as*am.height)}),ae.tweenService:Create(an.cell,am.roll,{Size=UDim2.fromOffset(am.advance[ao],am.
+height)})an.stripTween=at an.sizeTween=au at.Completed:Connect(function(av)if av==Enum.PlaybackState.Completed and an.
+stripTween==at then am:_reelSnap(an,ao)end end)at:Play()au:Play()an.digit=ao end function ag._putDigit(am,an,ao,ap,aq)
+local ar=am:_reel(an)local as=not ar.cell.Visible ar.cell.Visible=true ar.cell.LayoutOrder=-an if am.slots[an].static
+then am.slots[an].static.Visible=false end if aq and not as then am:_reelRoll(ar,ao,ap)else am:_reelSnap(ar,ao)end end
+function ag._putStatic(am,an,ao)local ap=am:_static(an)if not ap.Visible then ap.TextTransparency=am.transparency end ap
+.Text=ao ap.Visible=true ap.LayoutOrder=-an if am.slots[an].reel then am.slots[an].reel.cell.Visible=false end end
+function ag._hide(am,an)local ao=am.slots[an]if not ao then return end if ao.reel then ao.reel.cell.Visible=false end if
+ao.static then ao.static.Visible=false end end function ag._render(am,an,ao,ap)an=tostring(an)if an==am._lastText then
+return end am._lastText=an local aq={}for ar,as in utf8.codes(an)do table.insert(aq,utf8.char(as))end local ar=#aq for
+as=0,math.max(ar,am.length)-1 do am.slots[as]=am.slots[as]or{}if as<ar then local at=aq[ar-as]if at:match'%d'then am:
+_putDigit(as,tonumber(at),ap,ao)else am:_putStatic(as,at)end else am:_hide(as)end end am.length=ar end function ag.to(am
+,an,ao)am:_render(an,true,ao)end function ag.snap(am,an)am:_render(an,false,true)end function ag.reveal(am,an,ao,ap)am.
+transparency=an for aq,ar in am.slots do if ar.static and ar.static.Visible then am.window:_reveal(ar.static,{
+TextTransparency=an},ao,ap)end if ar.reel then for as,at in ar.reel.strip:GetChildren()do if at:IsA'TextLabel'then am.
+window:_reveal(at,{TextTransparency=an},ao,ap)end end end end end return ag end)()end,[60]=function()local aa,ab,ac=a(60
+)local ad return(function(...)type OrderedElement={main:GuiObject,descriptor:{main:GuiObject}?}local function ae(af:
+OrderedElement,ag:number)af.main.LayoutOrder=ag if af.descriptor then af.descriptor.main.LayoutOrder=ag+1 end end return
+ae end)()end,[61]=function()local aa,ab,ac=a(61)local ad return(function(...)local ae={}function ae.join(af:string,ag:
+string?):string if not ag or ag==''then return af end return af..'/'..ag end local function af(ag:string):string local
+ah repeat ah=ag ag=ag:gsub('%.%.','')until ag==ah return ag end function ae.sanitizeFolder(ag:unknown):string local ah=
+tostring(ag):gsub('\\','/'):gsub('[:<>"|?*%c]','')ah=af(ah):gsub('/+','/')return(ah:gsub('^/+',''))end function ae.
+sanitizeFile(ag:unknown):string local ah=tostring(ag):gsub('[/\\]',''):gsub('[:<>"|?*%c]','')return af(ah)end function
+ae.basename(ag:unknown):string return tostring(ag):match'[^/\\]+$'or tostring(ag)end function ae.stripExtension(ag:
+unknown,ah:string?):string if ah and ah~=''then local ai=tostring(ag)if ai:sub(-#ah)==ah then return ai:sub(1,-#ah-1)end
+return ai end local ai=tostring(ag):match'^(.+)%.%w+$'return ai or tostring(ag)end return ae end)()end,[62]=function()
+local aa,ab,ac=a(62)local ad return(function(...)local ae,af,ag={},ac(ab.Parent.persistenceConfig),ac(ab.Parent.
+persistenceSettings)ae.getPath=af.getPath ae.save=af.save ae.load=af.load ae.applyTo=af.applyTo ae.list=af.list ae.
+delete=af.delete ae.getSettingsPath=ag.getSettingsPath ae.saveSettings=ag.saveSettings ae.loadSettings=ag.loadSettings
+return ae end)()end,[63]=function()local aa,ab,ac=a(63)local ad return(function(...)local ae,af,ag,ah,ai,aj,ak=ac(ab.
+Parent.variables),ac(ab.Parent.filesystem),ac(ab.Parent.log),ac(ab.Parent.path),ac(ab.Parent.persistencePaths),ac(ab.
+Parent.persistenceWrite),{}type PersistedControl={value:unknown,flag:string?,_canBeNil:boolean?,_serialize:((
+PersistedControl)->unknown)?,_deserialize:((PersistedControl,unknown)->())?,Set:(PersistedControl,unknown)->()}type
+ConfigWindow={controls:{[string]:PersistedControl},configuration:{fileName:string?,customFolder:string?},name:string,
+_loading:boolean?,_loadedConfig:{[string]:unknown}?,_loadedConfigPath:string?}function ak.getPath(al:ConfigWindow,am:
+unknown?):(string?,string?)return ai.getConfigPath(al,am)end function ak.save(al:ConfigWindow,am:unknown?):boolean local
+an,ao=ak.getPath(al,am)if not an or not ao then ag.warn("Rayfield: configuration name '"..tostring(am)..
+"' has no usable characters")return false end if typeof(af.writefile)~='function'then return false end local ap:{[string
+]:unknown}={}for aq,ar in al.controls do local as,at=pcall(function()local as=ar._serialize if as then return as(ar)end
+return ar.value end)if as then ap[aq]=at else ag.warn("Rayfield: Failed to serialize flag '"..tostring(aq).."' - "..
+tostring(at))end end local aq=al._loadedConfig if aq and al._loadedConfigPath==ao then for ar,as in aq do if al.controls
+[ar]==nil then ap[ar]=as end end end local ar,as=pcall(ae.httpService.JSONEncode,ae.httpService,ap)if not ar then ag.
+warn('Rayfield: Failed to encode configuration - '..tostring(as))return false end local at,au=pcall(function()aj.write(
+an,ao,as)end)if not at then ag.warn('Rayfield: Failed to save configuration - '..tostring(au))return false end if al.
+_loadedConfigPath==nil or al._loadedConfigPath==ao then al._loadedConfig=ap al._loadedConfigPath=ao end return true end
+local function al(am:string):({[string]:unknown}?,string?)if not af.isfile(am)then return nil,nil end local an,ao=pcall(
+af.readfile,am)if not an or type(ao)~='string'then ag.warn'Rayfield: Failed to read configuration file'return nil,nil
+end local ap,aq=pcall(ae.httpService.JSONDecode,ae.httpService,ao)if not ap or type(aq)~='table'then return nil,ao end
+return aq::{[string]:unknown},ao end local function am(an:string):string local ao=ah.stripExtension(an,'.rfld')local ap,
+aq=ao..' (Incorrect Format).rfld',2 while aq<=100 and af.isfile(ap)do ap=ao..' (Incorrect Format '..aq..').rfld'aq+=1
+end return ap end function ak.load(an:ConfigWindow,ao:unknown?):boolean local ap,aq=ak.getPath(an,ao)if not ap or not aq
 then ag.warn("Rayfield: configuration name '"..tostring(ao).."' has no usable characters")return false end if typeof(af.
 isfile)~='function'then return false end local ar,as=al(aq)if not ar and af.isfile(aq)then local at,au=al(aj.
 tempPathFor(aq))if at and au then ar=at pcall(aj.write,ap,aq,au)end end if not ar then if as then ag.warn
@@ -3029,35 +3117,35 @@ maxAspectRatio))return UDim2.fromOffset(au,av)end function af.fit(ar:Vector2?,as
 ~=nil and at<1 local av=af.profile(as,au)if not ar or ar.X<ag or ar.Y<ag then return UDim2.fromOffset(av.defaultSize.X,
 av.defaultSize.Y)end if au then ar/=at::number end local aw,ax=math.min(ar.X*av.maxOccupancyX,ar.X-av.marginFloorX),an(
 av,ar.Y)if av.minAspectRatio then return aq(av,aw,ax)end return ap(av,aw,ax)end return af end)()end},{{1,2,{'Rayfield'},
-{{38,2,{'types'}},{2,1,{'components'},{{16,2,{'popup'}},{4,2,{'button'}},{25,2,{'tabSelector'}},{11,2,{'dropdown'}},{15,
-2,{'notification'}},{23,2,{'tab'}},{30,2,{'window'}},{29,2,{'toggle'}},{6,2,{'colorpicker'}},{28,2,{'toast'}},{27,2,{
-'text'}},{22,2,{'stat'}},{21,2,{'slider'}},{14,2,{'keybind'}},{7,2,{'console'}},{10,2,{'drag'}},{24,2,{'tabSection'}},{9
-,2,{'divider'}},{26,2,{'tag'}},{8,2,{'descriptor'}},{20,2,{'sidebar'}},{13,2,{'input'}},{17,2,{'progress'}},{12,2,{
-'group'}},{19,2,{'section'}},{5,2,{'chrome'}},{18,2,{'search'}},{3,2,{'action'}}}},{39,1,{'utility'},{{48,2,{
-'fontManager'}},{51,2,{'imageCache'}},{61,2,{'path'}},{65,2,{'persistenceSettings'}},{58,2,{'network'}},{57,2,{
-'moveable'}},{56,2,{'logoImage'}},{60,2,{'ordering'}},{41,2,{'assetResolver'}},{50,2,{'image'}},{42,2,{'colors'}},{63,2,
-{'persistenceConfig'}},{45,2,{'filesystem'}},{69,2,{'services'}},{40,2,{'HapticEngine'}},{54,2,{'lockable'}},{67,2,{
-'pointer'}},{46,2,{'filesystemManager'}},{66,2,{'persistenceWrite'}},{70,2,{'textMetrics'}},{55,2,{'log'}},{52,2,{
-'layouts'}},{53,2,{'locale'}},{49,2,{'functions'}},{43,2,{'constants'}},{59,2,{'odometer'}},{72,2,{'windowSizing'}},{62,
-2,{'persistence'}},{68,2,{'runtime'}},{64,2,{'persistencePaths'}},{71,2,{'variables'}},{47,2,{'flagNames'}},{44,2,{
-'enums'}}}},{31,1,{'themes'},{{34,2,{'default'}},{37,2,{'rose'}},{33,2,{'cobalt'}},{36,2,{'frost'}},{35,2,{'ember'}},{32
-,2,{'amethyst'}}}}}}},'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,
-pcall,xpcall,tostring,tonumber,_VERSION local av,aw,ax,ay,az,aA,aB=aj.insert,aj.remove,aj.freeze or function(av)return
-av end,al.wrap,ae.sub,ae.match,ae.gmatch if at and az(at,1,4)=='Lune'then local aC,aD=ap(ao,'@lune/task')if aC and aD
-then af=aD end end local aC=af and af.defer local aD,aE,b,c,d,e,f,g,h=aC or function(aD,...)ay(aD)(...)end,{[1]='Folder'
-,[2]='ModuleScript',[3]='Script',[4]='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local i,j={GetFullName={{},
-function(i)local j,k=i.Name,i.Parent while k do j=k.Name..'.'..j k=k.Parent end return j end},GetChildren={{},function(i
-)local j={}for k in ai,h[i]do av(j,k)end return j end},GetDescendants={{},function(i)local j={}for k in ai,h[i]do av(j,k
-)for l,m in ai,k:GetDescendants()do av(j,m)end end return j end},FindFirstChild={{'string','boolean?'},function(i,j,k)
-local l=h[i]for m in ai,l do if m.Name==j then return m end end if k then for m in ai,l do return m:FindFirstChild(j,
-true)end end end},FindFirstAncestor={{'string'},function(i,j)local k=i.Parent while k do if k.Name==j then return k end
-k=k.Parent end end},WaitForChild={{'string','number?'},function(i,j)return i:FindFirstChild(j)end}},{}for k,l in ai,i do
-local m,n,o=l[1],l[2],{}for p,q in ai,m do local r,s=aA(q,'^([^%?]+)(%??)')o[p]={r,s}end j[k]=function(p,...)if not h[p]
-then ah("Expected ':' not '.' calling member function "..k,2)end local q={...}for r,s in ai,o do local t=q[r]local u,v,w
-=an(t),s[1],s[2]if t==nil and not w then ah('Argument '..t..' missing or nil',3)end if v~='any'and u~=v and not(u=='nil'
-and w)then ah('Argument '..r..' expects type "'..v..'", got "'..u..'"',2)end end return n(p,...)end end local function k
-(l,m,n)local o,p=(ag({},{__mode='k'}))local function q(r)ah(r..' is not a valid (virtual) member of '..l..' "'..m..'"',3
-)end local function r(s)ah('Unable to assign (virtual) property '..s..'. Property is read only',3)end local s,t={},{}t.
+{{39,1,{'utility'},{{61,2,{'path'}},{52,2,{'layouts'}},{56,2,{'logoImage'}},{42,2,{'colors'}},{53,2,{'locale'}},{44,2,{
+'enums'}},{49,2,{'functions'}},{64,2,{'persistencePaths'}},{46,2,{'filesystemManager'}},{54,2,{'lockable'}},{59,2,{
+'odometer'}},{57,2,{'moveable'}},{71,2,{'variables'}},{40,2,{'HapticEngine'}},{58,2,{'network'}},{45,2,{'filesystem'}},{
+72,2,{'windowSizing'}},{69,2,{'services'}},{55,2,{'log'}},{51,2,{'imageCache'}},{70,2,{'textMetrics'}},{68,2,{'runtime'}
+},{41,2,{'assetResolver'}},{63,2,{'persistenceConfig'}},{47,2,{'flagNames'}},{48,2,{'fontManager'}},{50,2,{'image'}},{67
+,2,{'pointer'}},{43,2,{'constants'}},{65,2,{'persistenceSettings'}},{62,2,{'persistence'}},{60,2,{'ordering'}},{66,2,{
+'persistenceWrite'}}}},{31,1,{'themes'},{{35,2,{'ember'}},{37,2,{'rose'}},{36,2,{'frost'}},{32,2,{'amethyst'}},{33,2,{
+'cobalt'}},{34,2,{'default'}}}},{38,2,{'types'}},{2,1,{'components'},{{24,2,{'tabSection'}},{30,2,{'window'}},{5,2,{
+'chrome'}},{20,2,{'sidebar'}},{15,2,{'notification'}},{28,2,{'toast'}},{9,2,{'divider'}},{4,2,{'button'}},{27,2,{'text'}
+},{16,2,{'popup'}},{26,2,{'tag'}},{8,2,{'descriptor'}},{14,2,{'keybind'}},{10,2,{'drag'}},{19,2,{'section'}},{12,2,{
+'group'}},{22,2,{'stat'}},{23,2,{'tab'}},{18,2,{'search'}},{21,2,{'slider'}},{25,2,{'tabSelector'}},{29,2,{'toggle'}},{
+17,2,{'progress'}},{7,2,{'console'}},{11,2,{'dropdown'}},{13,2,{'input'}},{3,2,{'action'}},{6,2,{'colorpicker'}}}}}}},
+'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,tostring,
+tonumber,_VERSION local av,aw,ax,ay,az,aA,aB=aj.insert,aj.remove,aj.freeze or function(av)return av end,al.wrap,ae.sub,
+ae.match,ae.gmatch if at and az(at,1,4)=='Lune'then local aC,aD=ap(ao,'@lune/task')if aC and aD then af=aD end end local
+aC=af and af.defer local aD,aE,b,c,d,e,f,g,h=aC or function(aD,...)ay(aD)(...)end,{[1]='Folder',[2]='ModuleScript',[3]=
+'Script',[4]='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local i,j={GetFullName={{},function(i)local j,k=i.Name
+,i.Parent while k do j=k.Name..'.'..j k=k.Parent end return j end},GetChildren={{},function(i)local j={}for k in ai,h[i]
+do av(j,k)end return j end},GetDescendants={{},function(i)local j={}for k in ai,h[i]do av(j,k)for l,m in ai,k:
+GetDescendants()do av(j,m)end end return j end},FindFirstChild={{'string','boolean?'},function(i,j,k)local l=h[i]for m
+in ai,l do if m.Name==j then return m end end if k then for m in ai,l do return m:FindFirstChild(j,true)end end end},
+FindFirstAncestor={{'string'},function(i,j)local k=i.Parent while k do if k.Name==j then return k end k=k.Parent end end
+},WaitForChild={{'string','number?'},function(i,j)return i:FindFirstChild(j)end}},{}for k,l in ai,i do local m,n,o=l[1],
+l[2],{}for p,q in ai,m do local r,s=aA(q,'^([^%?]+)(%??)')o[p]={r,s}end j[k]=function(p,...)if not h[p]then ah(
+"Expected ':' not '.' calling member function "..k,2)end local q={...}for r,s in ai,o do local t=q[r]local u,v,w=an(t),s
+[1],s[2]if t==nil and not w then ah('Argument '..t..' missing or nil',3)end if v~='any'and u~=v and not(u=='nil'and w)
+then ah('Argument '..r..' expects type "'..v..'", got "'..u..'"',2)end end return n(p,...)end end local function k(l,m,n
+)local o,p=(ag({},{__mode='k'}))local function q(r)ah(r..' is not a valid (virtual) member of '..l..' "'..m..'"',3)end
+local function r(s)ah('Unable to assign (virtual) property '..s..'. Property is read only',3)end local s,t={},{}t.
 __metatable=false t.__index=function(u,v)if v=='ClassName'then return l elseif v=='Name'then return m elseif v=='Parent'
 then return n elseif l=='StringValue'and v=='Value'then return p else local w=j[v]if w then return w end end for w in ai
 ,o do if w.Name==v then return w end end q(v)end t.__newindex=function(u,v,w)if v=='ClassName'then r(v)elseif v=='Name'

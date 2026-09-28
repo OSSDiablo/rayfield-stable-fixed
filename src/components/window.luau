@@ -293,7 +293,8 @@ function Window.new(properties)
     end
 
     local self = setmetatable({
-        name = properties.name or properties.Name or "Astris Hub",
+        -- a placeholder: every hub is expected to pass its own name
+        name = properties.name or properties.Name or "Example",
         -- no subtitle means the game being played, filled in once its name arrives; false means none
         subheading = if (properties.subtitle or properties.Subtitle) ~= nil
             then (properties.subtitle or properties.Subtitle) or nil
@@ -308,7 +309,8 @@ function Window.new(properties)
         connections = {},
 
         icon = icon,
-        showName = properties.showName or properties.ShowName or "Astris Hub",
+        -- the pill carries the window's own name unless the script gives it another
+        showName = properties.showName or properties.ShowName or properties.name or properties.Name or "Example",
         -- the pill shows the header logo unless the script names its own
         showIcon = properties.showIcon or properties.ShowIcon or icon or constants.icons.rayfield,
         -- collapse to a round badge rather than an icon-and-label pill

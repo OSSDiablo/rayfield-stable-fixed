@@ -17,7 +17,7 @@ local Window = Rayfield:CreateWindow({
 
 | Option | Type | What it does |
 |---|---|---|
-| `name` | string | Title in the header. Default "Astris Hub" |
+| `name` | string | Title in the header. Shows "Example" until you set one |
 | `subtitle` | string or `false` | Smaller line under the title. Leave it out to show the game being played, or `false` for none |
 | `sidebarLayout` | boolean | `true` puts tabs down the left side. Default is tabs across the top |
 | `icon` | number, string or `false` | Header logo. Leave it out for the built-in logo, pass an asset id for your own, or `false` for none |
@@ -27,7 +27,7 @@ local Window = Rayfield:CreateWindow({
 | `discordInvite` | string | The invite the Home tab and the reminder show. Defaults to the Astris Hub server |
 | `theme` | string or table | Starting theme. See [Themes and mobile](themes-and-mobile.md) |
 | `configuration` | table | Saving. See [Getting started](getting-started.md#saving-settings) |
-| `showName` | string | Text on the small pill shown when the window is hidden. Default "Astris Hub" |
+| `showName` | string | Text on the small pill shown when the window is hidden. Defaults to `name` |
 | `showIcon` | number or string | Icon on that pill. Defaults to the header logo |
 | `showIconOnly` | boolean | Show the pill as a round icon only, with no text |
 | `profile` | string | Line under the player's name at the bottom of the sidebar |
