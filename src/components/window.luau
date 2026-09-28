@@ -83,7 +83,7 @@ local compactOverlayShare = 0.8
 
 -- The hide pill's scale on a phone. The window's own scale made it too small to tap, and full
 -- size read too big on a small screen.
-local compactPillScale = 0.88
+local compactPillScale = 0.8
 local compactActionIcon, compactActionCell, compactActionGap = 16, 28, 5
 
 -- The Home tab and the Discord reminder every window gets. homeTab = false and
