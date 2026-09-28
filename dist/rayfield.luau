@@ -1,4 +1,4 @@
--- Rayfield Gen2 v1.2.0-preview mobile (afc3304+pill, 2026-09-28)
+-- Rayfield Gen2 v1.2.0-preview mobile (baf169b+scale76, 2026-09-28)
 local a local aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au={function()local b,c,d=a(1)local e return(
 function(...)local f,g,h,i,j=d(c.utility.variables),d(c.utility.image),d(c.utility.locale),d(c.utility.constants),d(c.
 types)export type Theme=j.Theme export type Translator=j.Translator export type Translations=j.Translations export type
@@ -2988,9 +2988,9 @@ maxAspectRatio:number,minAspectRatio:number?,widthCompensation:number?,chromeHei
 ={defaultSize=Vector2.new(475,500),minSize=Vector2.new(300,285),maxOccupancyX=0.86,topbarClearance=36,marginFloorX=24,
 marginFloorY=28,maxAspectRatio=2.3,widthCompensation=130,chromeHeight=ae.top.chromeHeight}::Profile,sidebar={defaultSize
 =Vector2.new(685,450),minSize=Vector2.new(560,350),maxOccupancyX=0.92,maxOccupancyY=0.8,marginFloorX=24,marginFloorY=28,
-maxAspectRatio=2.6,minAspectRatio=1.2,chromeHeight=ae.sidebar.chromeHeight}::Profile},600,475,0.55 local function al(am:
+maxAspectRatio=2.6,minAspectRatio=1.2,chromeHeight=ae.sidebar.chromeHeight}::Profile},600,513,0.55 local function al(am:
 Profile,an:Vector2,ao:number?):Profile local ap=table.clone(am)ap.defaultSize=an ap.maxOccupancyY=ao or am.maxOccupancyY
-return ap end local am={top=al(ah.top,Vector2.new(450,560)),sidebar=al(ah.sidebar,Vector2.new(600,520),0.86)}function af
+return ap end local am={top=al(ah.top,Vector2.new(450,560)),sidebar=al(ah.sidebar,Vector2.new(645,520),0.86)}function af
 .profile(an:ae.Mode?,ao:boolean?):Profile local ap=if ao then am else ah if an=='sidebar'then return ap.sidebar end
 return ap.top end function af.scale(an:Vector2?,ao:boolean?):number if not ao or not an then return 1 end if an.Y<ag or
 an.Y>=ai then return 1 end return math.clamp(an.Y/aj,ak,1)end function af.pageHeight(an:number?,ao:ae.Mode?):number
@@ -3007,23 +3007,23 @@ maxAspectRatio))return UDim2.fromOffset(au,av)end function af.fit(ar:Vector2?,as
 ~=nil and at<1 local av=af.profile(as,au)if not ar or ar.X<ag or ar.Y<ag then return UDim2.fromOffset(av.defaultSize.X,
 av.defaultSize.Y)end if au then ar/=at::number end local aw,ax=math.min(ar.X*av.maxOccupancyX,ar.X-av.marginFloorX),an(
 av,ar.Y)if av.minAspectRatio then return aq(av,aw,ax)end return ap(av,aw,ax)end return af end)()end},{{1,2,{'Rayfield'},
-{{38,2,{'types'}},{2,1,{'components'},{{13,2,{'input'}},{21,2,{'slider'}},{16,2,{'popup'}},{10,2,{'drag'}},{28,2,{
-'toast'}},{24,2,{'tabSection'}},{7,2,{'console'}},{14,2,{'keybind'}},{30,2,{'window'}},{3,2,{'action'}},{17,2,{
-'progress'}},{15,2,{'notification'}},{29,2,{'toggle'}},{4,2,{'button'}},{27,2,{'text'}},{6,2,{'colorpicker'}},{25,2,{
-'tabSelector'}},{26,2,{'tag'}},{11,2,{'dropdown'}},{9,2,{'divider'}},{23,2,{'tab'}},{22,2,{'stat'}},{5,2,{'chrome'}},{12
-,2,{'group'}},{18,2,{'search'}},{8,2,{'descriptor'}},{19,2,{'section'}},{20,2,{'sidebar'}}}},{31,1,{'themes'},{{33,2,{
-'cobalt'}},{37,2,{'rose'}},{34,2,{'default'}},{32,2,{'amethyst'}},{35,2,{'ember'}},{36,2,{'frost'}}}},{39,1,{'utility'},
-{{71,2,{'windowSizing'}},{69,2,{'textMetrics'}},{58,2,{'network'}},{40,2,{'HapticEngine'}},{50,2,{'image'}},{61,2,{
-'path'}},{68,2,{'services'}},{60,2,{'ordering'}},{47,2,{'flagNames'}},{56,2,{'logoImage'}},{59,2,{'odometer'}},{62,2,{
-'persistence'}},{65,2,{'persistenceSettings'}},{67,2,{'runtime'}},{63,2,{'persistenceConfig'}},{43,2,{'constants'}},{66,
-2,{'persistenceWrite'}},{64,2,{'persistencePaths'}},{70,2,{'variables'}},{57,2,{'moveable'}},{49,2,{'functions'}},{51,2,
-{'imageCache'}},{45,2,{'filesystem'}},{41,2,{'assetResolver'}},{48,2,{'fontManager'}},{46,2,{'filesystemManager'}},{52,2
-,{'layouts'}},{44,2,{'enums'}},{42,2,{'colors'}},{53,2,{'locale'}},{55,2,{'log'}},{54,2,{'lockable'}}}}}}},'0.4.1',
-'Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,tostring,tonumber
-,_VERSION local av,aw,ax,ay,az,b,c=aj.insert,aj.remove,aj.freeze or function(av)return av end,al.wrap,ae.sub,ae.match,ae
-.gmatch if at and az(at,1,4)=='Lune'then local d,e=ap(ao,'@lune/task')if d and e then af=e end end local d=af and af.
-defer local e,f,g,h,i,j,k,l,m=d or function(e,...)ay(e)(...)end,{[1]='Folder',[2]='ModuleScript',[3]='Script',[4]=
-'LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local n,o={GetFullName={{},function(n)local o,p=n.Name,n.Parent
+{{2,1,{'components'},{{23,2,{'tab'}},{13,2,{'input'}},{25,2,{'tabSelector'}},{19,2,{'section'}},{15,2,{'notification'}},
+{8,2,{'descriptor'}},{3,2,{'action'}},{17,2,{'progress'}},{14,2,{'keybind'}},{30,2,{'window'}},{29,2,{'toggle'}},{12,2,{
+'group'}},{11,2,{'dropdown'}},{28,2,{'toast'}},{27,2,{'text'}},{22,2,{'stat'}},{6,2,{'colorpicker'}},{9,2,{'divider'}},{
+20,2,{'sidebar'}},{26,2,{'tag'}},{5,2,{'chrome'}},{7,2,{'console'}},{21,2,{'slider'}},{18,2,{'search'}},{10,2,{'drag'}},
+{16,2,{'popup'}},{24,2,{'tabSection'}},{4,2,{'button'}}}},{31,1,{'themes'},{{32,2,{'amethyst'}},{33,2,{'cobalt'}},{36,2,
+{'frost'}},{37,2,{'rose'}},{35,2,{'ember'}},{34,2,{'default'}}}},{39,1,{'utility'},{{47,2,{'flagNames'}},{65,2,{
+'persistenceSettings'}},{50,2,{'image'}},{45,2,{'filesystem'}},{71,2,{'windowSizing'}},{53,2,{'locale'}},{59,2,{
+'odometer'}},{41,2,{'assetResolver'}},{48,2,{'fontManager'}},{43,2,{'constants'}},{51,2,{'imageCache'}},{57,2,{
+'moveable'}},{69,2,{'textMetrics'}},{44,2,{'enums'}},{40,2,{'HapticEngine'}},{66,2,{'persistenceWrite'}},{67,2,{
+'runtime'}},{64,2,{'persistencePaths'}},{70,2,{'variables'}},{52,2,{'layouts'}},{62,2,{'persistence'}},{42,2,{'colors'}}
+,{55,2,{'log'}},{60,2,{'ordering'}},{56,2,{'logoImage'}},{58,2,{'network'}},{46,2,{'filesystemManager'}},{68,2,{
+'services'}},{49,2,{'functions'}},{54,2,{'lockable'}},{63,2,{'persistenceConfig'}},{61,2,{'path'}}}},{38,2,{'types'}}}}}
+,'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,tostring
+,tonumber,_VERSION local av,aw,ax,ay,az,b,c=aj.insert,aj.remove,aj.freeze or function(av)return av end,al.wrap,ae.sub,ae
+.match,ae.gmatch if at and az(at,1,4)=='Lune'then local d,e=ap(ao,'@lune/task')if d and e then af=e end end local d=af
+and af.defer local e,f,g,h,i,j,k,l,m=d or function(e,...)ay(e)(...)end,{[1]='Folder',[2]='ModuleScript',[3]='Script',[4]
+='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local n,o={GetFullName={{},function(n)local o,p=n.Name,n.Parent
 while p do o=p.Name..'.'..o p=p.Parent end return o end},GetChildren={{},function(n)local o={}for p in ai,m[n]do av(o,p)
 end return o end},GetDescendants={{},function(n)local o={}for p in ai,m[n]do av(o,p)for q,r in ai,p:GetDescendants()do
 av(o,r)end end return o end},FindFirstChild={{'string','boolean?'},function(n,o,p)local q=m[n]for r in ai,q do if r.Name
