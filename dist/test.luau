@@ -1,4 +1,5 @@
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau?t=" .. tostring(os.time())))()
+local libUrl = ... or "https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau"
+local Rayfield = loadstring(game:HttpGet(libUrl))()
 
 -- Let the viewport settle before opening, so the window fits to the full screen size.
 task.wait(2)
