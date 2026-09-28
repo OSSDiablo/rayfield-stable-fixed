@@ -30,6 +30,10 @@ local backdropInfo = TweenInfo.new(0.35, Enum.EasingStyle.Exponential, Enum.Easi
 
 -- Card metrics.
 local cardWidth = 400
+
+-- On a phone the card takes this share of the window's scale: a little under the window, and
+-- more than a notification gets, since a popup is read rather than glanced at.
+local popupShare = 0.95
 local sidePadding = 22
 local topPadding = 24
 local bottomPadding = 22
@@ -185,7 +189,7 @@ function Popup:_build()
     })
     self:_fade(self.card, "BackgroundTransparency", 0)
     -- drawn at the window's scale, so a phone gets a card its own size rather than a desktop one
-    window:_scaleOverlay(self.card)
+    window:_scaleOverlay(self.card, popupShare)
 
     window:Create("UIGradient", {
         Rotation = 270,

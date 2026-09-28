@@ -1603,9 +1603,9 @@ function Window:_applyWindowSize()
     self:_applyActionSize()
     -- closed popups leave their scale behind unparented; drop those as we go
     for index = #self._overlayScales, 1, -1 do
-        local overlayScale = self._overlayScales[index]
-        if overlayScale.Parent then
-            overlayScale.Scale = self:_overlayScale()
+        local overlay = self._overlayScales[index]
+        if overlay.instance.Parent then
+            overlay.instance.Scale = self:_overlayScale(overlay.share)
         else
             table.remove(self._overlayScales, index)
         end
@@ -1638,17 +1638,19 @@ function Window:_pillScale(): number
     return if self.scale < 1 then compactPillScale else 1
 end
 
-function Window:_overlayScale(): number
-    return if self.scale < 1 then self.scale * compactOverlayShare else 1
+-- share: how much of the window's phone scale this overlay takes. Notifications and toasts
+-- take compactOverlayShare; a popup passes its own, since it is read rather than glanced at.
+function Window:_overlayScale(share: number?): number
+    return if self.scale < 1 then self.scale * (share or compactOverlayShare) else 1
 end
 
-function Window:_scaleOverlay(frame: GuiObject)
+function Window:_scaleOverlay(frame: GuiObject, share: number?)
     local overlayScale = self:Create("UIScale", {
-        Scale = self:_overlayScale(),
+        Scale = self:_overlayScale(share),
 
         Parent = frame,
     })
-    table.insert(self._overlayScales, overlayScale)
+    table.insert(self._overlayScales, { instance = overlayScale, share = share })
     return overlayScale
 end
 
