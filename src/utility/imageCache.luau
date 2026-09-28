@@ -82,7 +82,13 @@ function imageCache.logo(): string?
     end
 
     local bytes = require(script.Parent.logoImage)
-    local filePath = path.join(cacheFolder, "logo.png")
+    -- named after its own bytes: getcustomasset caches by path for the session, so a new logo
+    -- (or a sibling build with a different one) under the same name would keep showing the old
+    local hash = 0
+    for index = 1, #bytes, 7 do
+        hash = (hash * 31 + string.byte(bytes, index)) % 2147483647
+    end
+    local filePath = path.join(cacheFolder, string.format("logo_%d_%d.png", #bytes, hash))
     local current = nil
     if filesystem.isfile(filePath) then
         local ok, contents = pcall(filesystem.readfile, filePath)
