@@ -1,5 +1,12 @@
 # FAQ
 
+## Stable or preview?
+
+This is **Rayfield Stable Fixed**, built on Sirius's stable Gen2 release (1.2.0). It only moves when
+Sirius ships a stable release. [Rayfield Preview Fixed](https://ossdiablo.github.io/rayfield-preview-fixed/)
+follows the preview channel, which gets new features first and can change more often. Right now the
+two are the same code, with the same fixes.
+
 ## I pushed a change but the old version still loads
 
 GitHub caches `main` links for a few minutes after a push, and adding `?t=...` to the URL does not
@@ -8,11 +15,11 @@ stale:
 
 ```lua
 local sha = "put-the-commit-hash-here"
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/" .. sha .. "/dist/rayfield.luau"))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-stable-fixed/" .. sha .. "/dist/rayfield.luau"))()
 ```
 
 The first line of the library says which build you have:
-`-- Rayfield Preview Fixed v1.2.0 by Astris Hub (...)`.
+`-- Rayfield Stable Fixed v1.2.0 by Astris Hub (...)`.
 
 ## My icon does not show up
 

@@ -1,4 +1,4 @@
-# Rayfield Preview Fixed
+# Rayfield Stable Fixed
 
 ## What's different from Gen2
 
@@ -14,7 +14,7 @@
 ## Quick start
 
 ```lua
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/main/dist/rayfield.luau"))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-stable-fixed/main/dist/rayfield.luau"))()
 
 local Window = Rayfield:CreateWindow({
     name = "My Hub",
@@ -36,7 +36,7 @@ Main:CreateToggle({
 To see every element at once, run the demo:
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/main/dist/test.luau"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-stable-fixed/main/dist/test.luau"))()
 ```
 
 ## Where to next

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FAQ - Rayfield Preview Fixed</title>
-<meta name="description" content="Docs for Rayfield Preview Fixed by Astris Hub, a phone-friendly build of the Rayfield Gen2 preview for Roblox.">
+<title>FAQ - Rayfield Stable Fixed</title>
+<meta name="description" content="Docs for Rayfield Stable Fixed by Astris Hub, a phone-friendly build of the stable Rayfield Gen2 release for Roblox.">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +15,8 @@
 <body class="page-faq">
 <header class="topbar">
   <button class="menu" type="button" aria-label="Open navigation">Menu</button>
-  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Preview Fixed</span></a>
-  <a class="gh" href="https://github.com/OSSDiablo/rayfield-preview-fixed">GitHub</a>
+  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Stable Fixed</span></a>
+  <a class="gh" href="https://github.com/OSSDiablo/rayfield-stable-fixed">GitHub</a>
 </header>
 <div class="layout">
   <nav class="sidebar">
@@ -35,6 +35,7 @@
       <a href="example.html">Full example</a>
       <a href="faq.html" class="current">FAQ</a>
       <div class="toc">
+        <a href="#stable-or-preview">Stable or preview?</a>
         <a href="#i-pushed-a-change-but-the-old-version-still-loads">I pushed a change but the old version still loads</a>
         <a href="#my-icon-does-not-show-up">My icon does not show up</a>
         <a href="#the-logo-in-the-header-is-missing">The logo in the header is missing</a>
@@ -49,11 +50,13 @@
   </nav>
   <main class="content">
 <h1>FAQ</h1>
+<h2 id="stable-or-preview"><a class="anchor" href="#stable-or-preview">Stable or preview?</a></h2>
+<p>This is <strong>Rayfield Stable Fixed</strong>, built on Sirius's stable Gen2 release (1.2.0). It only moves when Sirius ships a stable release. <a href="https://ossdiablo.github.io/rayfield-preview-fixed/">Rayfield Preview Fixed</a> follows the preview channel, which gets new features first and can change more often. Right now the two are the same code, with the same fixes.</p>
 <h2 id="i-pushed-a-change-but-the-old-version-still-loads"><a class="anchor" href="#i-pushed-a-change-but-the-old-version-still-loads">I pushed a change but the old version still loads</a></h2>
 <p>GitHub caches <code>main</code> links for a few minutes after a push, and adding <code>?t=...</code> to the URL does not always get around it. Load from a commit instead. A commit link never changes, so it cannot be stale:</p>
 <div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local sha = &quot;put-the-commit-hash-here&quot;
-local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/&quot; .. sha .. &quot;/dist/rayfield.luau&quot;))()</code></pre></div>
-<p>The first line of the library says which build you have: <code>-- Rayfield Preview Fixed v1.2.0 by Astris Hub (...)</code>.</p>
+local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-stable-fixed/&quot; .. sha .. &quot;/dist/rayfield.luau&quot;))()</code></pre></div>
+<p>The first line of the library says which build you have: <code>-- Rayfield Stable Fixed v1.2.0 by Astris Hub (...)</code>.</p>
 <h2 id="my-icon-does-not-show-up"><a class="anchor" href="#my-icon-does-not-show-up">My icon does not show up</a></h2>
 <p>Icons must be image asset ids: a number like <code>10723424646</code>, or a string like <code>&quot;rbxassetid://10723424646&quot;</code>. A name such as <code>&quot;home&quot;</code> shows nothing, and no error is printed.</p>
 <h2 id="the-logo-in-the-header-is-missing"><a class="anchor" href="#the-logo-in-the-header-is-missing">The logo in the header is missing</a></h2>
@@ -79,7 +82,7 @@ local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com
 <p>For the common elements, yes. The original Rayfield option names work alongside the new camelCase ones: <code>Name</code>, <code>Callback</code>, <code>Flag</code>, <code>CurrentValue</code>, <code>Range</code>, <code>Increment</code>, <code>Options</code>, <code>CurrentOption</code>, <code>CurrentKeybind</code>, <code>HoldToInteract</code> and <code>PlaceholderText</code>. Check anything more unusual against the <a href="elements.html">Elements</a> page.</p>
     <footer class="page-foot">
       <div class="pager"><a class="prev" href="example.html"><span>Previous</span>Full example</a></div>
-      <a class="edit" href="https://github.com/OSSDiablo/rayfield-preview-fixed/blob/main/docs/faq.md">Edit this page on GitHub</a>
+      <a class="edit" href="https://github.com/OSSDiablo/rayfield-stable-fixed/blob/main/docs/faq.md">Edit this page on GitHub</a>
     </footer>
   </main>
 </div>

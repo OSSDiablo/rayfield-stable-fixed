@@ -4,7 +4,7 @@ A complete hub script you can copy and change. It builds a sidebar window with t
 tabs, saved settings and a notification. The built-in Home and Theme tabs are added for you.
 
 ```lua
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/main/dist/rayfield.luau"))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-stable-fixed/main/dist/rayfield.luau"))()
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
