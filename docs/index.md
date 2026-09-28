@@ -19,7 +19,6 @@ local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSD
 local Window = Rayfield:CreateWindow({
     name = "My Hub",
     subtitle = "by me",
-    sidebarLayout = true,
 })
 
 local Main = Window:CreateTab({ name = "Main", icon = 10723424646 })

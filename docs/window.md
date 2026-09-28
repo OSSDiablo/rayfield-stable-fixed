@@ -6,7 +6,6 @@
 local Window = Rayfield:CreateWindow({
     name = "My Hub",
     subtitle = "v1.0",
-    sidebarLayout = true,
     theme = "Default",
     configuration = {
         autoSave = true,

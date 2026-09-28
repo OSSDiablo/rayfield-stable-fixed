@@ -27,7 +27,6 @@ local translations = {
 
 local window = Rayfield:CreateWindow({
     translations = translations,
-    sidebarLayout = true, -- flip this for tabs across the top instead of down the left
     configuration = {
         autoSave = true,
         autoLoad = true,
@@ -35,12 +34,9 @@ local window = Rayfield:CreateWindow({
     },
 })
 
--- Rail sections group the tabs under them. Sidebar layout only - on the top strip they do
--- nothing. This one heads the list, so it carries no space above it.
-window:CreateSection({ name = "General" })
 
--- Home ----------------------------------------------------------------------
-local home = window:CreateTab({ name = "Home", icon = 93364949241311 })
+-- Main ----------------------------------------------------------------------
+local home = window:CreateTab({ name = "Main", icon = 93364949241311 })
 
 home:CreateSection({ name = "Gameplay" })
 
@@ -202,7 +198,6 @@ rightColumn:CreateToggle({ name = "Tracers" })
 
 -- Text ----------------------------------------------------------------------
 -- this one follows tabs, so it sits with a gap above it
-window:CreateSection({ name = "Reference" })
 
 local text = window:CreateTab({ name = "Text", icon = 100604009889706 })
 

@@ -41,7 +41,7 @@
   </nav>
   <main class="content">
 <h1>Full example</h1>
-<p>A complete hub script you can copy and change. It builds a sidebar window with two headings, three tabs, saved settings and a notification. The built-in Home and Theme tabs are added for you.</p>
+<p>A complete hub script you can copy and change. It builds a window with three tabs, saved settings and a notification. The built-in Home and Theme tabs are added for you.</p>
 <div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-stable-fixed/main/dist/rayfield.luau&quot;))()
 
 local Players = game:GetService(&quot;Players&quot;)
@@ -50,7 +50,6 @@ local player = Players.LocalPlayer
 local Window = Rayfield:CreateWindow({
     name = &quot;Astris Hub&quot;,
     subtitle = &quot;Example Game&quot;,
-    sidebarLayout = true,
     configuration = {
         autoSave = true,
         autoLoad = true,
@@ -60,7 +59,6 @@ local Window = Rayfield:CreateWindow({
 
 -- Farming ---------------------------------------------------------------
 
-Window:CreateSection({ name = &quot;Main&quot; })
 local Farm = Window:CreateTab({ name = &quot;Farm&quot;, icon = 10723395708 })
 
 local farming = false
@@ -142,7 +140,6 @@ Player:CreateKeybind({
 
 -- Misc ------------------------------------------------------------------
 
-Window:CreateSection({ name = &quot;Other&quot; })
 local Misc = Window:CreateTab({ name = &quot;Misc&quot;, icon = 10709805144 })
 
 Misc:CreateButton({
@@ -170,7 +167,7 @@ Window:Notify({
     content = &quot;Open the menu with the pill at the top of the screen.&quot;,
 })</code></pre></div>
 <h2 id="what-each-part-does"><a class="anchor" href="#what-each-part-does">What each part does</a></h2>
-<ul><li>**<code>CreateWindow</code>** with <code>configuration</code> saves every element that has a <code>flag</code>, and loads it again next time the script runs.</li><li>**<code>CreateSection</code>** puts a heading in the sidebar. Tabs made after it sit under it.</li><li><strong>Icons</strong> are image asset ids. The ones above are from the Lucide set: <code>10723395708</code> is a gauge, <code>10747373426</code> people, <code>10709805144</code> a clock.</li><li>**<code>CreateGroup</code>** puts the two sliders side by side.</li><li>**<code>Window:Set(&quot;WalkSpeed&quot;, 16)</code>** changes a saved element from anywhere, by its flag.</li><li>**<code>Window:Popup</code>** asks before doing something the player cannot undo.</li></ul>
+<ul><li>**<code>CreateWindow</code>** with <code>configuration</code> saves every element that has a <code>flag</code>, and loads it again next time the script runs.</li><li><strong>Icons</strong> are image asset ids. The ones above are from the Lucide set: <code>10723395708</code> is a gauge, <code>10747373426</code> people, <code>10709805144</code> a clock.</li><li>**<code>CreateGroup</code>** puts the two sliders side by side.</li><li>**<code>Window:Set(&quot;WalkSpeed&quot;, 16)</code>** changes a saved element from anywhere, by its flag.</li><li>**<code>Window:Popup</code>** asks before doing something the player cannot undo.</li></ul>
 
     <footer class="page-foot">
       <div class="pager"><a class="prev" href="themes-and-mobile.html"><span>Previous</span>Themes and mobile</a><a class="next" href="faq.html"><span>Next</span>FAQ</a></div>

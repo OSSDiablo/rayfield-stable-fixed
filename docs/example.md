@@ -1,7 +1,7 @@
 # Full example
 
-A complete hub script you can copy and change. It builds a sidebar window with two headings, three
-tabs, saved settings and a notification. The built-in Home and Theme tabs are added for you.
+A complete hub script you can copy and change. It builds a window with three tabs, saved settings
+and a notification. The built-in Home and Theme tabs are added for you.
 
 ```lua
 local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-stable-fixed/main/dist/rayfield.luau"))()
@@ -12,7 +12,6 @@ local player = Players.LocalPlayer
 local Window = Rayfield:CreateWindow({
     name = "Astris Hub",
     subtitle = "Example Game",
-    sidebarLayout = true,
     configuration = {
         autoSave = true,
         autoLoad = true,
@@ -22,7 +21,6 @@ local Window = Rayfield:CreateWindow({
 
 -- Farming ---------------------------------------------------------------
 
-Window:CreateSection({ name = "Main" })
 local Farm = Window:CreateTab({ name = "Farm", icon = 10723395708 })
 
 local farming = false
@@ -104,7 +102,6 @@ Player:CreateKeybind({
 
 -- Misc ------------------------------------------------------------------
 
-Window:CreateSection({ name = "Other" })
 local Misc = Window:CreateTab({ name = "Misc", icon = 10709805144 })
 
 Misc:CreateButton({
@@ -137,7 +134,6 @@ Window:Notify({
 
 - **`CreateWindow`** with `configuration` saves every element that has a `flag`, and loads it again
   next time the script runs.
-- **`CreateSection`** puts a heading in the sidebar. Tabs made after it sit under it.
 - **Icons** are image asset ids. The ones above are from the Lucide set: `10723395708` is a gauge,
   `10747373426` people, `10709805144` a clock.
 - **`CreateGroup`** puts the two sliders side by side.

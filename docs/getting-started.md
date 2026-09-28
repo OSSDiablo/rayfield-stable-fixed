@@ -15,9 +15,11 @@ The first line of the file says which build you have, for example
 local Window = Rayfield:CreateWindow({
     name = "My Hub",
     subtitle = "v1.0",
-    sidebarLayout = true, -- tabs down the left. Leave it out for tabs across the top
 })
 ```
+
+Tabs run across the top of the window, like standard Gen2. Pass `sidebarLayout = true` if you want
+them down the left side instead.
 
 A window holds tabs, and tabs hold elements:
 
