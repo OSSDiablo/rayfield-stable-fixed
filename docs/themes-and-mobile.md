@@ -59,8 +59,8 @@ executor that supports custom assets. It does not show in Roblox Studio.
 
 ## On phones
 
-Nothing to set up. On a touch screen shorter than 600 pixels (a phone, in either orientation) the
-library:
+Nothing to set up. On a touch screen shorter than 600 pixels (a phone held sideways, which is how
+Roblox runs on phones) the library:
 
 - draws the whole window smaller, so more fits on screen and the window is narrower and taller
   than it would be at full size
