@@ -1822,6 +1822,39 @@ return function()
             expect(target.Y.Offset - w.size.Y.Offset * w.scale / 2 >= 0).to.equal(true)
         end)
 
+        it("minimises a window pushed to the bottom into a bar that stays on screen", function()
+            setViewport(1920, 1080)
+            local w = makeWindow()
+            w.screenGui.AbsoluteSize = Vector2.new(1920, 1080)
+            local full = w.size.Y.Offset * w.scale
+            local bar = w.layout.topbarHeight * w.scale
+
+            -- dragged down until only the header shows at the bottom edge
+            local pushed = UDim2.fromOffset(900, 1080 - bar + full / 2)
+            local target = w:_headerAnchored(pushed, w.size.Y.Offset, w.layout.topbarHeight)
+
+            -- the bar sits where the header was, whole and on screen
+            expect(target.Y.Offset + bar / 2 <= 1080).to.equal(true)
+            expect(target.Y.Offset - bar / 2 >= 0).to.equal(true)
+        end)
+
+        it("folds up into the header and unfolds back down from it", function()
+            setViewport(1920, 1080)
+            local w = makeWindow()
+            w.screenGui.AbsoluteSize = Vector2.new(1920, 1080)
+            local full = w.size.Y.Offset * w.scale
+            local bar = w.layout.topbarHeight * w.scale
+
+            local start = UDim2.fromOffset(900, 500)
+            local headerTop = 500 - full / 2
+
+            local folded = w:_headerAnchored(start, w.size.Y.Offset, w.layout.topbarHeight)
+            expect(math.abs((folded.Y.Offset - bar / 2) - headerTop) < 1).to.equal(true)
+
+            local unfolded = w:_headerAnchored(folded, w.layout.topbarHeight, w.size.Y.Offset)
+            expect(math.abs(unfolded.Y.Offset - 500) < 1).to.equal(true)
+        end)
+
         it("keeps the drag bar under the window's bottom edge", function()
             setViewport(1920, 1080)
             local w = makeWindow()

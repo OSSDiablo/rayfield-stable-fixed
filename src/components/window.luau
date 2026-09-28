@@ -1413,9 +1413,8 @@ function Window:ToggleMinimise()
         self.minimised = false
         image.assign(self.minimiseAction.iconLabel, "Image", constants.icons.minimise) -- back to the minimise icon
 
-        -- the bar may have been parked where the full window does not fit, so grow into the
-        -- nearest place that does rather than pushing the header off the top
-        local target = self:_clampedPosition(self.main.Position)
+        -- unfold downward from the header, into the nearest place the full window can be reached
+        local target = self:_headerAnchored(self.main.Position, self.layout.topbarHeight, self.size.Y.Offset)
         variables.tweenService:Create(self.main, sizeInfo, { Size = self.size, Position = target }):Play()
         self:_fadeSurfaces(true, fadeInfo)
 
@@ -1481,17 +1480,22 @@ function Window:ToggleMinimise()
         end)
 
         self:_fadeSurfaces(false, fadeInfo)
+        -- fold up into the header where it sits, then keep the bar on screen
+        local target = self:_headerAnchored(self.main.Position, self.size.Y.Offset, self.layout.topbarHeight)
         variables.tweenService
-            :Create(self.main, sizeInfo, { Size = UDim2.fromOffset(self.size.X.Offset, self.layout.topbarHeight) })
+            :Create(self.main, sizeInfo, {
+                Size = UDim2.fromOffset(self.size.X.Offset, self.layout.topbarHeight),
+                Position = target,
+            })
             :Play()
 
         variables.tweenService
             :Create(self.drag.drag, sizeInfo, {
                 Position = UDim2.new(
-                    self.main.Position.X.Scale,
-                    self.main.Position.X.Offset,
-                    self.main.Position.Y.Scale,
-                    self.main.Position.Y.Offset + self.layout.topbarHeight * self.scale / 2 + 15
+                    target.X.Scale,
+                    target.X.Offset,
+                    target.Y.Scale,
+                    target.Y.Offset + self.layout.topbarHeight * self.scale / 2 + 15
                 ),
             })
             :Play()
@@ -1537,6 +1541,22 @@ function Window:_fitCenter(x: number, y: number, size: Vector2): (number, number
     local header = math.min(self.layout.topbarHeight * self.scale, size.Y)
     x = math.clamp(x, keepInView - halfX, math.max(keepInView - halfX, screen.X - keepInView + halfX))
     return x, math.clamp(y, minY, math.max(minY, screen.Y - header + halfY))
+end
+
+-- Where main's centre goes when it changes height from `fromHeight` to `toHeight` (both in the
+-- window's own units) with its header left where it is. Minimise folds the window up into its
+-- header and restore unfolds it downward, rather than both working around the centre, which
+-- put a bar minimised near the bottom below the screen. The result is kept where the new size
+-- can be reached.
+function Window:_headerAnchored(position: UDim2, fromHeight: number, toHeight: number): UDim2
+    local screen = self.screenGui.AbsoluteSize
+    local x = position.X.Scale * screen.X + position.X.Offset
+    local y = position.Y.Scale * screen.Y + position.Y.Offset
+    y += (toHeight - fromHeight) * self.scale / 2
+
+    local size = Vector2.new(self.size.X.Offset, toHeight) * self.scale
+    x, y = self:_fitCenter(x, y, size)
+    return UDim2.fromOffset(x, y)
 end
 
 function Window:_clampedPosition(position: UDim2): UDim2

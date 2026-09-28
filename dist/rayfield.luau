@@ -1,4 +1,4 @@
--- Rayfield Gen2 v1.2.0-preview mobile (6764795+scale70small, 2026-09-28)
+-- Rayfield Gen2 v1.2.0-preview mobile (d863d0b+minimise, 2026-09-28)
 local a local aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au={function()local b,c,d=a(1)local e return(
 function(...)local f,g,h,i,j=d(c.utility.variables),d(c.utility.image),d(c.utility.locale),d(c.utility.constants),d(c.
 types)export type Theme=j.Theme export type Translator=j.Translator export type Translations=j.Translations export type
@@ -1895,39 +1895,42 @@ return end if as.hidden then as:Show()else as:Hide()end end function j.ToggleMin
 then return end if as._searching then f.close(as,{showTabs=true})end as.animating=true local at,au=TweenInfo.new(0.5,
 Enum.EasingStyle.Exponential,Enum.EasingDirection.Out),TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.
 EasingDirection.Out)if as.minimised then as.minimised=false af.assign(as.minimiseAction.iconLabel,'Image',ai.icons.
-minimise)local av=as:_clampedPosition(as.main.Position)h.tweenService:Create(as.main,at,{Size=as.size,Position=av}):
-Play()as:_fadeSurfaces(true,au)h.tweenService:Create(as.drag.drag,at,{Position=UDim2.new(av.X.Scale,av.X.Offset,av.Y.
-Scale,av.Y.Offset+as.size.Y.Offset*as.scale/2+15)}):Play()task.delay(0.2,function()if as.minimised or as.hidden then
-return end as:_setContentVisible(true)for aw,X in pairs(as.tabs)do if not X.neglectSelector and X.topbarItem then X.
-topbarItem.Visible=true X:_applyVisual(if as.selectedTab==X then'selected'else'unselected',au)end end as:
-_setTabSectionsVisible(true)as:_setTabSectionsShown(true,au)as:_revealElements(0.035,0.4)end)task.delay(0.5,function()as
-.animating=false end)else as.minimised=true af.assign(as.minimiseAction.iconLabel,'Image',ai.icons.maximise)as:
-_fadeSelectedElementsOut()for av,aw in pairs(as.tabs)do if not aw.neglectSelector and aw.topbarItem then aw:
-_applyVisual('hidden',au)end end as:_setTabSectionsShown(false,au)task.delay(0.3,function()if not as.minimised then
-return end as:_setContentVisible(false)for av,aw in pairs(as.tabs)do if not aw.neglectSelector and aw.topbarItem then aw
-.topbarItem.Visible=false end end as:_setTabSectionsVisible(false)end)as:_fadeSurfaces(false,au)h.tweenService:Create(as
-.main,at,{Size=UDim2.fromOffset(as.size.X.Offset,as.layout.topbarHeight)}):Play()h.tweenService:Create(as.drag.drag,at,{
-Position=UDim2.new(as.main.Position.X.Scale,as.main.Position.X.Offset,as.main.Position.Y.Scale,as.main.Position.Y.Offset
-+as.layout.topbarHeight*as.scale/2+15)}):Play()task.delay(0.5,function()as.animating=false end)end end function j.
-_syncDragBar(as)local at=as.drag and as.drag.drag if not at then return end local au,av=as.main.Position,as.size.Y.
-Offset*as.scale/2+15 at.Position=UDim2.new(au.X.Scale,au.X.Offset,au.Y.Scale,au.Y.Offset+av)end function j._fitCenter(as
-,at:number,au:number,av:Vector2):(number,number)local aw,X,Y=as.screenGui.AbsoluteSize,av.X/2,av.Y/2 local Z=Y+y if as.
-settings and as.settings.keepOnScreen then at=math.clamp(at,X+y,math.max(X+y,aw.X-X-y))return at,math.clamp(au,Z,math.
-max(Z,aw.Y-Y-y))end local _=math.min(as.layout.topbarHeight*as.scale,av.Y)at=math.clamp(at,z-X,math.max(z-X,aw.X-z+X))
-return at,math.clamp(au,Z,math.max(Z,aw.Y-_+Y))end function j._clampedPosition(as,at:UDim2):UDim2 if at.X.Scale~=0 or at
-.Y.Scale~=0 then return at end local au=Vector2.new(as.size.X.Offset,as.size.Y.Offset)*as.scale local av,aw=as:
-_fitCenter(at.X.Offset,at.Y.Offset,au)if av==at.X.Offset and aw==at.Y.Offset then return at end return UDim2.fromOffset(
-av,aw)end function j._clampToScreen(as)as.main.Position=as:_clampedPosition(as.main.Position)end function j.
-_applyWindowSize(as)if as.unloaded then return end local at,au=L(as.layout.mode)local av=at~=as.size or au~=as.scale as.
-size=at as.scale=au if not as.hidden then as.uiScale.Scale=au end as:_applyActionSize()for aw=#as._overlayScales,1,-1 do
-local X=as._overlayScales[aw]if X.Parent then X.Scale=as:_overlayScale()else table.remove(as._overlayScales,aw)end end
-as:_applyRailWidth()if as.hidden or as.minimised or as.animating or as._revealing then as._pendingResize=as.
-_pendingResize or av return end if not av and not as._pendingResize then return end as._pendingResize=false as.main.Size
-=at as:_clampToScreen()as:_syncDragBar()end function j._overlayScale(as):number return if as.scale<1 then as.scale*D
-else 1 end function j._scaleOverlay(as,at:GuiObject)local au=as:Create('UIScale',{Scale=as:_overlayScale(),Parent=at})
-table.insert(as._overlayScales,au)return au end function j._applyActionSize(as)if not as.actionContainer then return end
-local at,au,av=A,B,C if as.scale<1 then at=math.round(E/as.scale)au=math.round(F/as.scale)av=math.round(G/as.scale)end
-as.actionContainer.Size=UDim2.fromOffset(0,au)as.actionsListLayout.Padding=UDim.new(0,av)for aw,X in ipairs(as.
+minimise)local av=as:_headerAnchored(as.main.Position,as.layout.topbarHeight,as.size.Y.Offset)h.tweenService:Create(as.
+main,at,{Size=as.size,Position=av}):Play()as:_fadeSurfaces(true,au)h.tweenService:Create(as.drag.drag,at,{Position=UDim2
+.new(av.X.Scale,av.X.Offset,av.Y.Scale,av.Y.Offset+as.size.Y.Offset*as.scale/2+15)}):Play()task.delay(0.2,function()if
+as.minimised or as.hidden then return end as:_setContentVisible(true)for aw,X in pairs(as.tabs)do if not X.
+neglectSelector and X.topbarItem then X.topbarItem.Visible=true X:_applyVisual(if as.selectedTab==X then'selected'else
+'unselected',au)end end as:_setTabSectionsVisible(true)as:_setTabSectionsShown(true,au)as:_revealElements(0.035,0.4)end)
+task.delay(0.5,function()as.animating=false end)else as.minimised=true af.assign(as.minimiseAction.iconLabel,'Image',ai.
+icons.maximise)as:_fadeSelectedElementsOut()for av,aw in pairs(as.tabs)do if not aw.neglectSelector and aw.topbarItem
+then aw:_applyVisual('hidden',au)end end as:_setTabSectionsShown(false,au)task.delay(0.3,function()if not as.minimised
+then return end as:_setContentVisible(false)for av,aw in pairs(as.tabs)do if not aw.neglectSelector and aw.topbarItem
+then aw.topbarItem.Visible=false end end as:_setTabSectionsVisible(false)end)as:_fadeSurfaces(false,au)local av=as:
+_headerAnchored(as.main.Position,as.size.Y.Offset,as.layout.topbarHeight)h.tweenService:Create(as.main,at,{Size=UDim2.
+fromOffset(as.size.X.Offset,as.layout.topbarHeight),Position=av}):Play()h.tweenService:Create(as.drag.drag,at,{Position=
+UDim2.new(av.X.Scale,av.X.Offset,av.Y.Scale,av.Y.Offset+as.layout.topbarHeight*as.scale/2+15)}):Play()task.delay(0.5,
+function()as.animating=false end)end end function j._syncDragBar(as)local at=as.drag and as.drag.drag if not at then
+return end local au,av=as.main.Position,as.size.Y.Offset*as.scale/2+15 at.Position=UDim2.new(au.X.Scale,au.X.Offset,au.Y
+.Scale,au.Y.Offset+av)end function j._fitCenter(as,at:number,au:number,av:Vector2):(number,number)local aw,X,Y=as.
+screenGui.AbsoluteSize,av.X/2,av.Y/2 local Z=Y+y if as.settings and as.settings.keepOnScreen then at=math.clamp(at,X+y,
+math.max(X+y,aw.X-X-y))return at,math.clamp(au,Z,math.max(Z,aw.Y-Y-y))end local _=math.min(as.layout.topbarHeight*as.
+scale,av.Y)at=math.clamp(at,z-X,math.max(z-X,aw.X-z+X))return at,math.clamp(au,Z,math.max(Z,aw.Y-_+Y))end function j.
+_headerAnchored(as,at:UDim2,au:number,av:number):UDim2 local aw=as.screenGui.AbsoluteSize local X,Y=at.X.Scale*aw.X+at.X
+.Offset,at.Y.Scale*aw.Y+at.Y.Offset Y+=(av-au)*as.scale/2 local Z=Vector2.new(as.size.X.Offset,av)*as.scale X,Y=as:
+_fitCenter(X,Y,Z)return UDim2.fromOffset(X,Y)end function j._clampedPosition(as,at:UDim2):UDim2 if at.X.Scale~=0 or at.Y
+.Scale~=0 then return at end local au=Vector2.new(as.size.X.Offset,as.size.Y.Offset)*as.scale local av,aw=as:_fitCenter(
+at.X.Offset,at.Y.Offset,au)if av==at.X.Offset and aw==at.Y.Offset then return at end return UDim2.fromOffset(av,aw)end
+function j._clampToScreen(as)as.main.Position=as:_clampedPosition(as.main.Position)end function j._applyWindowSize(as)if
+as.unloaded then return end local at,au=L(as.layout.mode)local av=at~=as.size or au~=as.scale as.size=at as.scale=au if
+not as.hidden then as.uiScale.Scale=au end as:_applyActionSize()for aw=#as._overlayScales,1,-1 do local X=as.
+_overlayScales[aw]if X.Parent then X.Scale=as:_overlayScale()else table.remove(as._overlayScales,aw)end end as:
+_applyRailWidth()if as.hidden or as.minimised or as.animating or as._revealing then as._pendingResize=as._pendingResize
+or av return end if not av and not as._pendingResize then return end as._pendingResize=false as.main.Size=at as:
+_clampToScreen()as:_syncDragBar()end function j._overlayScale(as):number return if as.scale<1 then as.scale*D else 1 end
+function j._scaleOverlay(as,at:GuiObject)local au=as:Create('UIScale',{Scale=as:_overlayScale(),Parent=at})table.insert(
+as._overlayScales,au)return au end function j._applyActionSize(as)if not as.actionContainer then return end local at,au,
+av=A,B,C if as.scale<1 then at=math.round(E/as.scale)au=math.round(F/as.scale)av=math.round(G/as.scale)end as.
+actionContainer.Size=UDim2.fromOffset(0,au)as.actionsListLayout.Padding=UDim.new(0,av)for aw,X in ipairs(as.
 actionContainer:GetChildren())do if X:IsA'Frame'then X.Size=UDim2.fromOffset(au,au)local Y=X:FindFirstChild'ImageLabel'
 if Y and Y:IsA'ImageLabel'then Y.Size=UDim2.fromOffset(at,at)end end end end function j._applyRailWidth(as)if as.layout.
 mode~='sidebar'then return end g.applyWidth(as,d.railWidthFor(as.layout,as.size.X.Offset))end function j._watchViewport(
@@ -3010,30 +3013,30 @@ maxAspectRatio))return UDim2.fromOffset(au,av)end function af.fit(ar:Vector2?,as
 ~=nil and at<1 local av=af.profile(as,au)if not ar or ar.X<ag or ar.Y<ag then return UDim2.fromOffset(av.defaultSize.X,
 av.defaultSize.Y)end if au then ar/=at::number end local aw,ax=math.min(ar.X*av.maxOccupancyX,ar.X-av.marginFloorX),an(
 av,ar.Y)if av.minAspectRatio then return aq(av,aw,ax)end return ap(av,aw,ax)end return af end)()end},{{1,2,{'Rayfield'},
-{{38,2,{'types'}},{39,1,{'utility'},{{57,2,{'moveable'}},{71,2,{'windowSizing'}},{50,2,{'image'}},{45,2,{'filesystem'}},
-{55,2,{'log'}},{52,2,{'layouts'}},{63,2,{'persistenceConfig'}},{67,2,{'runtime'}},{46,2,{'filesystemManager'}},{59,2,{
-'odometer'}},{47,2,{'flagNames'}},{42,2,{'colors'}},{65,2,{'persistenceSettings'}},{62,2,{'persistence'}},{44,2,{'enums'
-}},{68,2,{'services'}},{64,2,{'persistencePaths'}},{53,2,{'locale'}},{54,2,{'lockable'}},{58,2,{'network'}},{40,2,{
-'HapticEngine'}},{60,2,{'ordering'}},{51,2,{'imageCache'}},{61,2,{'path'}},{70,2,{'variables'}},{48,2,{'fontManager'}},{
-69,2,{'textMetrics'}},{41,2,{'assetResolver'}},{56,2,{'logoImage'}},{66,2,{'persistenceWrite'}},{49,2,{'functions'}},{43
-,2,{'constants'}}}},{2,1,{'components'},{{16,2,{'popup'}},{20,2,{'sidebar'}},{11,2,{'dropdown'}},{28,2,{'toast'}},{3,2,{
-'action'}},{12,2,{'group'}},{19,2,{'section'}},{8,2,{'descriptor'}},{17,2,{'progress'}},{10,2,{'drag'}},{15,2,{
-'notification'}},{13,2,{'input'}},{30,2,{'window'}},{18,2,{'search'}},{6,2,{'colorpicker'}},{29,2,{'toggle'}},{26,2,{
-'tag'}},{27,2,{'text'}},{25,2,{'tabSelector'}},{4,2,{'button'}},{24,2,{'tabSection'}},{5,2,{'chrome'}},{9,2,{'divider'}}
-,{23,2,{'tab'}},{22,2,{'stat'}},{7,2,{'console'}},{21,2,{'slider'}},{14,2,{'keybind'}}}},{31,1,{'themes'},{{36,2,{
-'frost'}},{37,2,{'rose'}},{33,2,{'cobalt'}},{35,2,{'ember'}},{32,2,{'amethyst'}},{34,2,{'default'}}}}}}},'0.4.1',
-'Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,tostring,tonumber
-,_VERSION local av,aw,ax,ay,az,aA,b=aj.insert,aj.remove,aj.freeze or function(av)return av end,al.wrap,ae.sub,ae.match,
-ae.gmatch if at and az(at,1,4)=='Lune'then local c,d=ap(ao,'@lune/task')if c and d then af=d end end local c=af and af.
-defer local d,e,f,g,h,i,j,k,l=c or function(d,...)ay(d)(...)end,{[1]='Folder',[2]='ModuleScript',[3]='Script',[4]=
-'LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local m,n={GetFullName={{},function(m)local n,o=m.Name,m.Parent
-while o do n=o.Name..'.'..n o=o.Parent end return n end},GetChildren={{},function(m)local n={}for o in ai,l[m]do av(n,o)
-end return n end},GetDescendants={{},function(m)local n={}for o in ai,l[m]do av(n,o)for p,q in ai,o:GetDescendants()do
-av(n,q)end end return n end},FindFirstChild={{'string','boolean?'},function(m,n,o)local p=l[m]for q in ai,p do if q.Name
-==n then return q end end if o then for q in ai,p do return q:FindFirstChild(n,true)end end end},FindFirstAncestor={{
-'string'},function(m,n)local o=m.Parent while o do if o.Name==n then return o end o=o.Parent end end},WaitForChild={{
-'string','number?'},function(m,n)return m:FindFirstChild(n)end}},{}for o,p in ai,m do local q,r,s=p[1],p[2],{}for t,u in
-ai,q do local v,w=aA(u,'^([^%?]+)(%??)')s[t]={v,w}end n[o]=function(t,...)if not l[t]then ah(
+{{31,1,{'themes'},{{32,2,{'amethyst'}},{37,2,{'rose'}},{35,2,{'ember'}},{34,2,{'default'}},{33,2,{'cobalt'}},{36,2,{
+'frost'}}}},{39,1,{'utility'},{{50,2,{'image'}},{48,2,{'fontManager'}},{62,2,{'persistence'}},{46,2,{'filesystemManager'
+}},{70,2,{'variables'}},{52,2,{'layouts'}},{61,2,{'path'}},{49,2,{'functions'}},{56,2,{'logoImage'}},{55,2,{'log'}},{68,
+2,{'services'}},{40,2,{'HapticEngine'}},{67,2,{'runtime'}},{42,2,{'colors'}},{64,2,{'persistencePaths'}},{65,2,{
+'persistenceSettings'}},{41,2,{'assetResolver'}},{45,2,{'filesystem'}},{53,2,{'locale'}},{66,2,{'persistenceWrite'}},{63
+,2,{'persistenceConfig'}},{71,2,{'windowSizing'}},{51,2,{'imageCache'}},{44,2,{'enums'}},{54,2,{'lockable'}},{69,2,{
+'textMetrics'}},{43,2,{'constants'}},{58,2,{'network'}},{57,2,{'moveable'}},{59,2,{'odometer'}},{47,2,{'flagNames'}},{60
+,2,{'ordering'}}}},{2,1,{'components'},{{6,2,{'colorpicker'}},{16,2,{'popup'}},{19,2,{'section'}},{28,2,{'toast'}},{26,2
+,{'tag'}},{27,2,{'text'}},{10,2,{'drag'}},{25,2,{'tabSelector'}},{18,2,{'search'}},{29,2,{'toggle'}},{30,2,{'window'}},{
+13,2,{'input'}},{23,2,{'tab'}},{7,2,{'console'}},{5,2,{'chrome'}},{22,2,{'stat'}},{12,2,{'group'}},{21,2,{'slider'}},{20
+,2,{'sidebar'}},{11,2,{'dropdown'}},{17,2,{'progress'}},{8,2,{'descriptor'}},{9,2,{'divider'}},{4,2,{'button'}},{24,2,{
+'tabSection'}},{15,2,{'notification'}},{3,2,{'action'}},{14,2,{'keybind'}}}},{38,2,{'types'}}}}},'0.4.1','Rayfield',
+string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,tostring,tonumber,_VERSION
+local av,aw,ax,ay,az,aA,b=aj.insert,aj.remove,aj.freeze or function(av)return av end,al.wrap,ae.sub,ae.match,ae.gmatch
+if at and az(at,1,4)=='Lune'then local c,d=ap(ao,'@lune/task')if c and d then af=d end end local c=af and af.defer local
+d,e,f,g,h,i,j,k,l=c or function(d,...)ay(d)(...)end,{[1]='Folder',[2]='ModuleScript',[3]='Script',[4]='LocalScript',[5]=
+'StringValue'},{},{},{},{},{},{},{}local m,n={GetFullName={{},function(m)local n,o=m.Name,m.Parent while o do n=o.Name..
+'.'..n o=o.Parent end return n end},GetChildren={{},function(m)local n={}for o in ai,l[m]do av(n,o)end return n end},
+GetDescendants={{},function(m)local n={}for o in ai,l[m]do av(n,o)for p,q in ai,o:GetDescendants()do av(n,q)end end
+return n end},FindFirstChild={{'string','boolean?'},function(m,n,o)local p=l[m]for q in ai,p do if q.Name==n then return
+q end end if o then for q in ai,p do return q:FindFirstChild(n,true)end end end},FindFirstAncestor={{'string'},function(
+m,n)local o=m.Parent while o do if o.Name==n then return o end o=o.Parent end end},WaitForChild={{'string','number?'},
+function(m,n)return m:FindFirstChild(n)end}},{}for o,p in ai,m do local q,r,s=p[1],p[2],{}for t,u in ai,q do local v,w=
+aA(u,'^([^%?]+)(%??)')s[t]={v,w}end n[o]=function(t,...)if not l[t]then ah(
 "Expected ':' not '.' calling member function "..o,2)end local u={...}for v,w in ai,s do local x=u[v]local y,z,A=an(x),w
 [1],w[2]if x==nil and not A then ah('Argument '..x..' missing or nil',3)end if z~='any'and y~=z and not(y=='nil'and A)
 then ah('Argument '..v..' expects type "'..z..'", got "'..y..'"',2)end end return r(t,...)end end local function o(p,q,r
