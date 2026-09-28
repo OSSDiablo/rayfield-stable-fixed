@@ -57,25 +57,10 @@ To see every element at once, run the demo:
 loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/test.luau"))()
 ```
 
-## Docs
+## Where to next
 
-Read them as a site at **https://ossdiablo.github.io/rayfield-gen2-mobile/**, or here on GitHub:
-
-1. [Getting started](docs/getting-started.md): loading, your first window, how saving works
-2. [Window](docs/window.md): window options, tabs, notifications, popups, configs
-3. [Elements](docs/elements.md): every element with its options and methods
-4. [Layout](docs/layout.md): sections, text, dividers and side-by-side groups
-5. [Themes and mobile](docs/themes-and-mobile.md): built-in themes, custom themes, phone behaviour
-
-## Building from source
-
-The library lives in `src/`. `make bundle` builds `build/bundled.luau`, which is what gets copied to
-`dist/rayfield.luau`. `make ci` runs formatting, linting, type checks and the tests. `python3 scripts/build_docs.py` rebuilds the docs site from `docs/*.md`. See
-[CONTRIBUTING.md](CONTRIBUTING.md) for the toolchain.
-
-## License
-
-Rayfield Gen2 is by Sirius and released under the Mozilla Public License 2.0. This build keeps that
-license. See [LICENSE](LICENSE).
-
-Copyright (c) 2026 Corridon Capital.
+- [Getting started](getting-started.md): loading, your first window, how saving works
+- [Window](window.md): window options, tabs, notifications, popups, configs
+- [Elements](elements.md): every element with its options and methods
+- [Layout](layout.md): sections, text, dividers and side-by-side groups
+- [Themes and mobile](themes-and-mobile.md): built-in themes, custom themes, phone behaviour

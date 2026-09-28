@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rayfield Gen2 Mobile</title>
+<meta name="description" content="Docs for Rayfield Gen2 Mobile, a phone-friendly build of the Rayfield Gen2 Roblox UI library.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu" type="button" aria-label="Menu">Menu</button>
+  <a class="brand" href="index.html">Rayfield Gen2 Mobile</a>
+  <a class="gh" href="https://github.com/OSSDiablo/rayfield-gen2-mobile">GitHub</a>
+</header>
+<div class="layout">
+  <nav class="sidebar">
+    <a href="index.html" class="current">Overview</a>
+    <a href="getting-started.html">Getting started</a>
+    <a href="window.html">Window</a>
+    <a href="elements.html">Elements</a>
+    <a href="layout.html">Layout</a>
+    <a href="themes-and-mobile.html">Themes and mobile</a>
+  </nav>
+  <main class="content">
+<h1>Rayfield Gen2 Mobile</h1>
+<p>A build of <a href="https://docs.sirius.menu/rayfield-gen2">Rayfield Gen2</a> that works properly on phones. Same API as Gen2, so any Gen2 script runs on it unchanged.</p>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau&quot;))()</code></pre></div>
+<h2 id="whats-different-from-stock-gen2"><a class="anchor" href="#whats-different-from-stock-gen2">What's different from stock Gen2</a></h2>
+<ul><li><strong>Fits on a phone.</strong> On a short touch screen the whole window is drawn smaller, so it comes out narrower and taller and shows more at once instead of desktop-sized rows filling the screen.</li><li><strong>Bigger header buttons on phones.</strong> Search, settings, minimise and close stay easy to tap.</li><li><strong>Drag it anywhere.</strong> The window can hang off the sides and bottom of the screen. It can never go past the top, so the header is always there to grab it back.</li><li><strong>Minimise near the top works.</strong> Restoring a minimised window parked at the top edge no longer pushes the header off screen.</li><li><strong>Theme tab built in.</strong> Every window gets a Theme tab where players pick the menu's look. Their pick is saved.</li><li><strong>Header logo by default.</strong> Shown next to the title unless you set your own.</li></ul>
+<h2 id="quick-start"><a class="anchor" href="#quick-start">Quick start</a></h2>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau&quot;))()
+
+local Window = Rayfield:CreateWindow({
+    name = &quot;My Hub&quot;,
+    subtitle = &quot;by me&quot;,
+    sidebarLayout = true,
+})
+
+local Main = Window:CreateTab({ name = &quot;Main&quot; })
+
+Main:CreateToggle({
+    name = &quot;Auto Farm&quot;,
+    flag = &quot;AutoFarm&quot;,
+    callback = function(on)
+        print(&quot;Auto Farm:&quot;, on)
+    end,
+})
+
+Main:CreateSlider({
+    name = &quot;Walk Speed&quot;,
+    range = { 16, 100 },
+    value = 16,
+    callback = function(speed)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+    end,
+})</code></pre></div>
+<p>To see every element at once, run the demo:</p>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/test.luau&quot;))()</code></pre></div>
+<h2 id="where-to-next"><a class="anchor" href="#where-to-next">Where to next</a></h2>
+<ul><li><a href="getting-started.html">Getting started</a>: loading, your first window, how saving works</li><li><a href="window.html">Window</a>: window options, tabs, notifications, popups, configs</li><li><a href="elements.html">Elements</a>: every element with its options and methods</li><li><a href="layout.html">Layout</a>: sections, text, dividers and side-by-side groups</li><li><a href="themes-and-mobile.html">Themes and mobile</a>: built-in themes, custom themes, phone behaviour</li></ul>
+    <footer class="pager"><a class="next" href="getting-started.html"><span>Next</span>Getting started</a></footer>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/lua.min.js"></script>
+<script>
+hljs.highlightAll();
+document.querySelectorAll(".copy").forEach(function (button) {
+  button.addEventListener("click", function () {
+    var code = button.parentElement.querySelector("code").innerText;
+    navigator.clipboard.writeText(code).then(function () {
+      button.textContent = "Copied";
+      setTimeout(function () { button.textContent = "Copy"; }, 1500);
+    });
+  });
+});
+document.querySelector(".menu").addEventListener("click", function () {
+  document.body.classList.toggle("nav-open");
+});
+document.querySelectorAll(".sidebar a").forEach(function (link) {
+  link.addEventListener("click", function () { document.body.classList.remove("nav-open"); });
+});
+</script>
+</body>
+</html>

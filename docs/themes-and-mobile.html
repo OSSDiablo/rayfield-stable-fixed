@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Themes and mobile - Rayfield Gen2 Mobile</title>
+<meta name="description" content="Docs for Rayfield Gen2 Mobile, a phone-friendly build of the Rayfield Gen2 Roblox UI library.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu" type="button" aria-label="Menu">Menu</button>
+  <a class="brand" href="index.html">Rayfield Gen2 Mobile</a>
+  <a class="gh" href="https://github.com/OSSDiablo/rayfield-gen2-mobile">GitHub</a>
+</header>
+<div class="layout">
+  <nav class="sidebar">
+    <a href="index.html">Overview</a>
+    <a href="getting-started.html">Getting started</a>
+    <a href="window.html">Window</a>
+    <a href="elements.html">Elements</a>
+    <a href="layout.html">Layout</a>
+    <a href="themes-and-mobile.html" class="current">Themes and mobile</a>
+    <div class="toc">
+      <a href="#built-in-themes">Built-in themes</a>
+      <a href="#the-theme-tab">The Theme tab</a>
+      <a href="#custom-themes">Custom themes</a>
+      <a href="#header-logo">Header logo</a>
+      <a href="#on-phones">On phones</a>
+      <a href="#moving-the-window">Moving the window</a>
+    </div>
+  </nav>
+  <main class="content">
+<h1>Themes and mobile</h1>
+<h2 id="built-in-themes"><a class="anchor" href="#built-in-themes">Built-in themes</a></h2>
+<p><code>Default</code>, <code>Amethyst</code>, <code>Cobalt</code>, <code>Ember</code>, <code>Frost</code> and <code>Rose</code>.</p>
+<p>Pick one when you make the window:</p>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Window = Rayfield:CreateWindow({ name = &quot;My Hub&quot;, theme = &quot;Ember&quot; })</code></pre></div>
+<p>or change it later:</p>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Window:ChangeTheme(&quot;Frost&quot;)</code></pre></div>
+<h2 id="the-theme-tab"><a class="anchor" href="#the-theme-tab">The Theme tab</a></h2>
+<p>Every window has a Theme tab, always last in the tab list, where players pick a theme from a dropdown. The change shows right away and is saved, so it is still there next time they run your script. A player's pick wins over the <code>theme</code> you set in <code>CreateWindow</code>.</p>
+<p>To leave the tab out:</p>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Rayfield:CreateWindow({ name = &quot;My Hub&quot;, themeTab = false })</code></pre></div>
+<h2 id="custom-themes"><a class="anchor" href="#custom-themes">Custom themes</a></h2>
+<p>Pass a table instead of a name. Anything you leave out comes from the Default theme, so you only list what you want to change:</p>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Window:ChangeTheme({
+    AccentColor = Color3.fromRGB(255, 90, 90),  -- toggles and sliders when on
+    AccentStroke = Color3.fromRGB(255, 140, 140),
+    TitlingColor = Color3.fromRGB(255, 255, 255), -- title text and the header logo
+    CornerRoundness = UDim.new(0, 12),          -- window corners
+})</code></pre></div>
+<p>The full list of keys is in [<code>src/themes/default.luau</code>](../src/themes/default.luau).</p>
+<h2 id="header-logo"><a class="anchor" href="#header-logo">Header logo</a></h2>
+<p>The window shows a logo next to its title by default. To use your own, pass an image asset id, or <code>false</code> for no logo:</p>
+<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Rayfield:CreateWindow({ name = &quot;My Hub&quot;, icon = 10723424646 })
+Rayfield:CreateWindow({ name = &quot;My Hub&quot;, icon = false })</code></pre></div>
+<p>The built-in logo ships inside the library and is loaded with <code>getcustomasset</code>, so it shows on any executor that supports custom assets. It does not show in Roblox Studio.</p>
+<h2 id="on-phones"><a class="anchor" href="#on-phones">On phones</a></h2>
+<p>Nothing to set up. On a touch screen shorter than 600 pixels (a phone held sideways, which is how Roblox runs on phones) the library:</p>
+<ul><li>draws the whole window smaller, so more fits on screen and the window is narrower and taller than it would be at full size</li><li>keeps the header buttons (search, settings, minimise, close) easy to tap</li><li>draws popups, notifications and toasts at the same smaller size</li><li>keeps everything else, like sliders, dropdowns and the drag bar, lined up at the smaller size</li></ul>
+<p>Tablets and computers get the normal size.</p>
+<h2 id="moving-the-window"><a class="anchor" href="#moving-the-window">Moving the window</a></h2>
+<p>Drag the window by its header or by the bar under it. It can be pushed partly off the left, right and bottom of the screen, but never past the top, so the header is always there to grab it back.</p>
+<p>Players who want the whole window kept on screen can turn on "Keep window on screen" in the settings page (the cog in the header).</p>
+    <footer class="pager"><a class="prev" href="layout.html"><span>Previous</span>Layout</a></footer>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/lua.min.js"></script>
+<script>
+hljs.highlightAll();
+document.querySelectorAll(".copy").forEach(function (button) {
+  button.addEventListener("click", function () {
+    var code = button.parentElement.querySelector("code").innerText;
+    navigator.clipboard.writeText(code).then(function () {
+      button.textContent = "Copied";
+      setTimeout(function () { button.textContent = "Copy"; }, 1500);
+    });
+  });
+});
+document.querySelector(".menu").addEventListener("click", function () {
+  document.body.classList.toggle("nav-open");
+});
+document.querySelectorAll(".sidebar a").forEach(function (link) {
+  link.addEventListener("click", function () { document.body.classList.remove("nav-open"); });
+});
+</script>
+</body>
+</html>
