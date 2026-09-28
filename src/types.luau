@@ -30,6 +30,9 @@ export type WindowProps = {
     theme: Theme?,
     icon: (string | number | boolean)?, -- header logo; defaults to the built-in one, false removes it
     themeTab: boolean?, -- false leaves out the built-in Theme tab
+    homeTab: boolean?, -- false leaves out the built-in Home tab
+    discordReminder: boolean?, -- false stops the Discord notification every 3 minutes
+    discordInvite: string?, -- the invite the Home tab and the reminder show
     showName: string?,
     showIcon: (string | number)?,
     showIconOnly: boolean?, -- collapse to a round icon badge instead of an icon-and-label pill

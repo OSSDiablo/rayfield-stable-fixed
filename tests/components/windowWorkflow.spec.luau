@@ -33,17 +33,37 @@ return function()
         end)
 
         it("adds a Theme tab that stays last and never takes the first selection", function()
-            local w = makeWindow()
+            local w = makeWindow({ name = "Theme Only", homeTab = false, discordReminder = false })
             expect(w.themeTab).to.be.ok()
             expect(w.themeTab.builtIn).to.equal(true)
 
-            local home = w:CreateTab({ name = "Home" })
-            expect(w.selectedTab).to.equal(home)
-            expect(w.themeTab.topbarItem.LayoutOrder > home.topbarItem.LayoutOrder).to.equal(true)
+            local main = w:CreateTab({ name = "Main" })
+            expect(w.selectedTab).to.equal(main)
+            expect(w.themeTab.topbarItem.LayoutOrder > main.topbarItem.LayoutOrder).to.equal(true)
+        end)
+
+        it("opens on a Home tab that stays first and keeps the selection", function()
+            local w = makeWindow()
+            expect(w.homeTab).to.be.ok()
+
+            local main = w:CreateTab({ name = "Main" })
+            expect(w.selectedTab).to.equal(w.homeTab)
+            expect(w.homeTab.topbarItem.LayoutOrder < main.topbarItem.LayoutOrder).to.equal(true)
+            expect(w.discordInvite).to.equal("https://discord.gg/Bukn7UyvKx")
+        end)
+
+        it("leaves the Home tab out and takes another invite when the script asks", function()
+            local w = makeWindow({
+                name = "No Home",
+                homeTab = false,
+                discordInvite = "https://discord.gg/example",
+            })
+            expect(w.homeTab).to.equal(nil)
+            expect(w.discordInvite).to.equal("https://discord.gg/example")
         end)
 
         it("leaves the Theme tab out when the script asks", function()
-            local w = makeWindow({ name = "No Theme", themeTab = false })
+            local w = makeWindow({ name = "No Theme", themeTab = false, homeTab = false })
             expect(w.themeTab).to.equal(nil)
             expect(#w.tabs).to.equal(1)
         end)
@@ -69,8 +89,8 @@ return function()
             local w = makeWindow()
             expect(w.name).to.equal("Spec Window")
             expect(w.hidden).to.equal(true)
-            -- the settings tab and the built-in Theme tab
-            expect(#w.tabs).to.equal(2)
+            -- the settings tab and the built-in Home and Theme tabs
+            expect(#w.tabs).to.equal(3)
 
             local tag = w:CreateTag({
                 text = "Beta",
@@ -89,6 +109,8 @@ return function()
 
             local first = w:CreateTab({ name = "Main", icon = 100 })
             local second = w:CreateTab({ name = "Second" })
+            expect(w.selectedTab).to.equal(w.homeTab) -- the built-in Home tab opens first
+            first:Select()
             expect(w.selectedTab).to.equal(first)
             second:Select()
             expect(w.selectedTab).to.equal(second)
@@ -446,6 +468,7 @@ return function()
             local w = makeWindow({
                 name = "Nav Window",
                 showName = "Nav",
+                homeTab = false,
                 configuration = { autoSave = false, autoLoad = false },
             })
             local home = w:CreateTab({ name = "Home" })

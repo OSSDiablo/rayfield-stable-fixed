@@ -23,6 +23,9 @@ local Window = Rayfield:CreateWindow({
 | `sidebarLayout` | boolean | `true` puts tabs down the left side. Default is tabs across the top |
 | `icon` | number, string or `false` | Header logo. Leave it out for the built-in logo, pass an asset id for your own, or `false` for none |
 | `themeTab` | boolean | `false` leaves out the built-in Theme tab |
+| `homeTab` | boolean | `false` leaves out the built-in Home tab |
+| `discordReminder` | boolean | `false` stops the Discord notification every 3 minutes |
+| `discordInvite` | string | The invite the Home tab and the reminder show. Defaults to the Astris Hub server |
 | `theme` | string or table | Starting theme. See [Themes and mobile](themes-and-mobile.md) |
 | `configuration` | table | Saving. See [Getting started](getting-started.md#saving-settings) |
 | `showName` | string | Text on the small pill shown when the window is hidden |
@@ -38,7 +41,9 @@ local Window = Rayfield:CreateWindow({
 local Main = Window:CreateTab({ name = "Main", icon = 10723424646 })
 ```
 
-The first tab you create opens first. The built-in Theme tab always stays last.
+Every window has two built-in tabs. **Home** is always first and is the tab the menu opens on. It
+shows live FPS, ping and player count, and a card for the Astris Hub Discord with a button that
+copies the invite. **Theme** is always last. Your own tabs sit between them.
 
 Tab methods:
 
@@ -63,6 +68,9 @@ local Misc = Window:CreateTab({ name = "Misc" })
 ```
 
 ## Notifications
+
+Every 3 minutes the window posts a notification asking players to join the Astris Hub Discord.
+Turn it off with `discordReminder = false`.
 
 ```lua
 Window:Notify({

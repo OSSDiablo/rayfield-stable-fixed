@@ -70,6 +70,8 @@ function Tab.new(window, properties)
         -- a tab the library adds itself (Theme): it never takes the first-tab selection from
         -- the script's own tabs
         builtIn = properties.builtIn or false,
+        -- a built-in tab that opens first anyway (Home), and keeps that from the script's tabs
+        keepSelection = properties.keepSelection or false,
         -- when true, controls on this tab default to not persisting to config (the settings tab)
         forgetState = properties.forgetState or properties.ForgetState or false,
 

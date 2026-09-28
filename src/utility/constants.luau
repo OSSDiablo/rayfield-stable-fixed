@@ -32,6 +32,8 @@ constants.icons = {
     config = 125823673784681, -- saved-configurations picker
     rayfield = 80387863064905, -- default show icon on the sign-in toast
     palette = 10734910430, -- the built-in Theme tab
+    home = 10723424646, -- the built-in Home tab
+    discord = 10734888000, -- the Discord reminder notification
 }
 
 -- Accent used by the toggle switch + slider glow when active.

@@ -16,6 +16,7 @@ local log = require(utility.log)
 local hapticEngine = require(utility.HapticEngine)
 local windowSizing = require(utility.windowSizing)
 local imageCache = require(utility.imageCache)
+local services = require(utility.services)
 local layouts = require(utility.layouts)
 local chrome = require(script.Parent.chrome)
 local search = require(script.Parent.search)
@@ -75,6 +76,13 @@ local keepInView = 80
 -- the compact values on screen instead.
 local actionIcon, actionCell, actionGap = 20, 24, 5
 local compactActionIcon, compactActionCell, compactActionGap = 16, 28, 5
+
+-- The Home tab and the Discord reminder every window gets. homeTab = false and
+-- discordReminder = false leave them out; discordInvite points both at another server.
+local defaultDiscordInvite = "https://discord.gg/Bukn7UyvKx"
+local homeTabOrder = -100000
+local discordReminderInterval = 180
+local homeRefreshInterval = 1
 
 -- The size the current screen calls for, for this window's layout. Everything downstream (the
 -- reveal target, drag clamp, collapse) reads self.size, so it all inherits whatever this returns.
@@ -743,6 +751,13 @@ function Window.new(properties)
     self:_bindTopbarDrag()
     self:_watchViewport()
     self:_buildSettingsUI()
+    self.discordInvite = properties.discordInvite or properties.DiscordInvite or defaultDiscordInvite
+    if properties.homeTab ~= false and properties.HomeTab ~= false then
+        self:_buildHomeTab()
+    end
+    if properties.discordReminder ~= false and properties.DiscordReminder ~= false then
+        self:_startDiscordReminder()
+    end
     if properties.themeTab ~= false and properties.ThemeTab ~= false then
         self:_buildThemeTab()
     end
@@ -755,6 +770,101 @@ function Window.new(properties)
     self:_syncLiveAnimation()
 
     return self
+end
+
+local function copyToClipboard(text: string): boolean
+    local env = getfenv()
+    local clipboard = (env.getgenv and env.getgenv().setclipboard) or env.setclipboard or env.toclipboard
+    if type(clipboard) ~= "function" then
+        return false
+    end
+    return (pcall(clipboard, text))
+end
+
+-- Round trip to the server in milliseconds. The Stats service reading is what the player's own
+-- performance panel shows; GetNetworkPing is one way, so it is doubled when that is all there is.
+local function readPing(): number
+    local ok, value = pcall(function()
+        return services.getService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue()
+    end)
+    if ok and type(value) == "number" then
+        return value
+    end
+    local player = variables.localPlayer
+    local okNetwork, oneWay = pcall(function()
+        return player:GetNetworkPing()
+    end)
+    return if okNetwork and type(oneWay) == "number" then oneWay * 2000 else 0
+end
+
+local function playerCount(): number
+    local ok, players = pcall(function()
+        return #services.getService("Players"):GetPlayers()
+    end)
+    return if ok then players else 0
+end
+
+function Window:_buildHomeTab()
+    self.homeTab = self:CreateTab({
+        name = "Home",
+        icon = constants.icons.home,
+        customOrder = homeTabOrder,
+        builtIn = true,
+        keepSelection = true,
+        forgetState = true,
+    })
+
+    local stats = self.homeTab:CreateGroup({ direction = "row" })
+    local fps = stats:CreateStat({ name = "FPS", value = 60, numberEasing = false })
+    local ping = stats:CreateStat({ name = "Ping", value = 0, suffix = " ms", numberEasing = false })
+    local players = stats:CreateStat({ name = "Players", value = playerCount(), numberEasing = false })
+
+    local invite = self.discordInvite
+    self.homeTab:CreateText({
+        name = "Astris Hub Discord",
+        text = "Updates, new scripts and help. " .. string.gsub(invite, "^https?://", ""),
+    })
+    self.homeTab:CreateButton({
+        name = "Copy Discord invite",
+        callback = function()
+            if copyToClipboard(invite) then
+                self:Toast({ title = "Invite copied", subtitle = "Paste it in your browser or Discord" })
+            else
+                self:Toast({ title = invite, subtitle = "Your executor can't copy, type it in instead" })
+            end
+        end,
+    })
+
+    -- frames counted over a second rather than 1 / the last frame's delta, which jitters every tick
+    local frames, elapsed = 0, 0
+    self:Connect(variables.runService.Heartbeat, function(delta: number)
+        frames += 1
+        elapsed += delta
+        if elapsed < homeRefreshInterval then
+            return
+        end
+        fps:Set(math.round(frames / elapsed))
+        ping:Set(math.round(readPing()))
+        players:Set(playerCount())
+        frames, elapsed = 0, 0
+    end)
+end
+
+function Window:_startDiscordReminder()
+    local invite = string.gsub(self.discordInvite, "^https?://", "")
+    local elapsed = 0
+    self:Connect(variables.runService.Heartbeat, function(delta: number)
+        elapsed += delta
+        if elapsed < discordReminderInterval then
+            return
+        end
+        elapsed = 0
+        self:Notify({
+            title = "Join the Astris Hub Discord",
+            content = invite,
+            icon = constants.icons.discord,
+        })
+    end)
 end
 
 -- The Theme tab every window gets unless the script passes themeTab = false. Pinned last in the
@@ -903,9 +1013,9 @@ function Window:CreateTab(properties)
     if not newTab.neglectSelector then
         -- built-in tabs sit out the first-tab pick both ways: they never take it, and they
         -- never stop the script's first tab taking it from them
-        local isFirstVisible = not newTab.builtIn
+        local isFirstVisible = not newTab.builtIn or newTab.keepSelection
         for _, tab in self.tabs do
-            if tab ~= newTab and not tab.neglectSelector and not tab.builtIn then
+            if tab ~= newTab and not tab.neglectSelector and (not tab.builtIn or tab.keepSelection) then
                 isFirstVisible = false
                 break
             end
