@@ -1,4 +1,4 @@
--- Rayfield Stable Fixed v1.2.0 by Astris Hub (57bbcdf, 2026-09-28)
+-- Rayfield Stable Fixed v1.2.0 by Astris Hub (053e2fe, 2026-09-28)
 local a local aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au={function()local b,c,d=a(1)local e return(
 function(...)local f,g,h,i,j=d(c.utility.variables),d(c.utility.image),d(c.utility.locale),d(c.utility.constants),d(c.
 types)export type Theme=j.Theme export type Translator=j.Translator export type Translations=j.Translations export type
@@ -15,49 +15,43 @@ Toggle export type Slider=j.Slider export type Dropdown=j.Dropdown export type I
 Keybind export type ColorPicker=j.ColorPicker export type Stat=j.Stat export type Progress=j.Progress export type
 Console=j.Console export type Section=j.Section export type TabSection=j.TabSection export type Text=j.Text export type
 Divider=j.Divider export type Tag=j.Tag export type Popup=j.Popup export type Rayfield=j.Rayfield type WindowModule={new
-:(j.WindowProps)->j.Window}local k={}::Rayfield local function l()local m=Instance.new'ScreenGui'm.Name=f.httpService:
-GenerateGUID(false)m.ClipToDeviceSafeArea=false m.DisplayOrder=i.displayOrder.banner m.IgnoreGuiInset=true m.
-ResetOnSpawn=false m.Enabled=true m.SafeAreaCompatibility=Enum.SafeAreaCompatibility.None m.ScreenInsets=Enum.
-ScreenInsets.DeviceSafeInsets m.ZIndexBehavior=Enum.ZIndexBehavior.Sibling m.Parent=f.guiContainer local n=Instance.new
-'ImageLabel'n.Name='Banner'n.AnchorPoint=Vector2.new(0.5,0.5)n.BackgroundColor3=Color3.fromRGB(255,255,255)n.
-BackgroundTransparency=1 n.BorderColor3=Color3.fromRGB(0,0,0)n.BorderSizePixel=0 n.Image=g.resolve(i.icons.banner)n.
-Position=UDim2.fromScale(0.5,0.5)n.Size=UDim2.fromOffset(262,60)n.Parent=m return m end function k.CreateWindow(m,n:j.
-WindowProps):j.Window local o,p:j.Window?,q:(()->())?=(l())if f.secureMode then g.preload(function(r)if r<=0 then return
-end local function s()if not p or p.unloaded then return end p:Notify{title=h.resolve'Secure mode',content=if r==1 then
-h.resolve"An asset couldn't be cached and won't appear."else h.resolve"Some assets couldn't be cached and won't appear."
-}end if p then s()else q=s end end)end local r,s=pcall(function()return(d(c.components.window)::WindowModule).new(n)end)
-if not r then o:Destroy()error(s,0)end local t=s::j.Window p=t if q then task.spawn(q)q=nil end if f.secureMode then
-task.spawn(function()local u,v=f.fontManager:loadFont(i.fontAsset,Enum.FontWeight.Medium),f.fontManager:loadFont(i.
-fontAsset,Enum.FontWeight.SemiBold)if not t.unloaded and u and v and u~=f.fallbackFont and v~=f.fallbackFont then t:
-ChangeTheme{Font=u,TitleFont=v}end end)end task.spawn(function()task.wait(0.5)o:Destroy()task.wait(0.5)if not t.unloaded
-then t:Show()end end)return t end return k end)()end,[3]=function()local b,c,d=a(3)local e return(function(...)local f={
-}f.__index=f f.__type='Action'local g=c.Parent.Parent.utility local h,i,j=d(g.variables),d(g.log),d(g.HapticEngine)
-function f.new(k,l)l=if typeof(l)=='table'then l else{}local m=setmetatable({window=assert(k,
-'Missing argument #1 (Window expected)'),name=l.name or l.Name or'Action',icon=assert(l.icon or l.Icon,
-'Missing argument (Icon expected)'),callback=assert(l.callback or l.Callback,'Missing argument (Function expected)'),
-linkedTab=l.linkedTab or l.LinkedTab},f)m.action=m.window:Create('Frame',{Name=m.name,BorderSizePixel=0,LayoutOrder=-(l.
-order or 0),Size=UDim2.fromOffset(24,24),BackgroundTransparency=1,Parent=m.window.actionContainer})m.iconLabel=m.window:
-Create('ImageLabel',{Image=m.icon,Size=UDim2.fromOffset(20,20),BorderSizePixel=0,AnchorPoint=Vector2.new(0.5,0.5),
-Position=UDim2.fromScale(0.5,0.5),BackgroundTransparency=1,ImageTransparency=1,Parent=m.action},{ImageColor3=
-'ActionColor'})m.interact=m.window:Create('TextButton',{BackgroundTransparency=1,Size=UDim2.fromScale(1,1),
-BorderSizePixel=0,Position=UDim2.fromScale(0.5,0.5),AnchorPoint=Vector2.new(0.5,0.5),TextTransparency=1,Parent=m.action}
-)local function n()if not m.window:_settled()then return end if m.linkedTab and m.window.selectedTab==m.linkedTab then
-return end if m.isLit and m:isLit()then return end h.tweenService:Create(m.iconLabel,TweenInfo.new(0.25,Enum.EasingStyle
-.Quint,Enum.EasingDirection.Out),{ImageTransparency=0.6}):Play()end m.window:Connect(m.interact.MouseButton1Click,
-function()j.click()task.spawn(function()local o,p=pcall(m.callback)if not o then i.warn(`Rayfield encountered an error, with the callback for a {
-m.__type} component named '{m.name}':`)i.print(p)end n()end)end)m.window:Connect(m.interact.MouseEnter,function()if not
-m.window:_interactive()then return end h.tweenService:Create(m.iconLabel,TweenInfo.new(0.25,Enum.EasingStyle.Quint,Enum.
-EasingDirection.Out),{ImageTransparency=0.2}):Play()end)m.window:Connect(m.interact.MouseLeave,n)m.window:
-_applyActionSize()return m end return f end)()end,[4]=function()local b,c,d=a(4)local e return(function(...)local f={}f.
-__index=f f.__type='Button'local g=c.Parent.Parent.utility local h,i,j,k,l,m=d(g.variables),d(g.functions),d(g.moveable)
-,d(g.lockable),d(g.locale),d(g.HapticEngine)function f.new(n,o)o=if typeof(o)=='table'then o else{}local p=setmetatable(
-{tab=assert(n,'Missing argument #1 (Tab expected)'),window=n.window,name=o.name or o.Name or'Button',icon=o.icon or o.
-Icon,description=o.description or o.Description,compact=n.compact or false,callback=o.callback or o.Callback or function
-()end},f)if p.compact then p:_buildCompact()else p:_buildFull()end if p.description and not p.compact then p.descriptor=
-d(c.Parent.descriptor).new(p.tab,{description=p.description})end return p end function f._runCallback(n)n.window:
-_runGuarded(n,n.callback)end function f._buildFull(n)n.main=n.window:Create('Frame',{Size=UDim2.new(1,-20,0,43),
-BorderSizePixel=0,Name=n.name,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1,Parent=n.tab.tabPage
-},{BackgroundTransparency='ElementTransparency'})n.stroke=n.window:StyleElementBody(n.main)n.hoverOverlay=n.window:
+:(j.WindowProps)->j.Window}local k={}::Rayfield function k.CreateWindow(l,m:j.WindowProps):j.Window local n:j.Window?,o:
+(()->())?if f.secureMode then g.preload(function(p)if p<=0 then return end local function q()if not n or n.unloaded then
+return end n:Notify{title=h.resolve'Secure mode',content=if p==1 then h.resolve
+"An asset couldn't be cached and won't appear."else h.resolve"Some assets couldn't be cached and won't appear."}end if n
+then q()else o=q end end)end local p,q=pcall(function()return(d(c.components.window)::WindowModule).new(m)end)if not p
+then error(q,0)end local r=q::j.Window n=r if o then task.spawn(o)o=nil end if f.secureMode then task.spawn(function()
+local s,t=f.fontManager:loadFont(i.fontAsset,Enum.FontWeight.Medium),f.fontManager:loadFont(i.fontAsset,Enum.FontWeight.
+SemiBold)if not r.unloaded and s and t and s~=f.fallbackFont and t~=f.fallbackFont then r:ChangeTheme{Font=s,TitleFont=t
+}end end)end task.spawn(function()task.wait(0.5)if not r.unloaded then r:Show()end end)return r end return k end)()end,[
+3]=function()local b,c,d=a(3)local e return(function(...)local f={}f.__index=f f.__type='Action'local g=c.Parent.Parent.
+utility local h,i,j=d(g.variables),d(g.log),d(g.HapticEngine)function f.new(k,l)l=if typeof(l)=='table'then l else{}
+local m=setmetatable({window=assert(k,'Missing argument #1 (Window expected)'),name=l.name or l.Name or'Action',icon=
+assert(l.icon or l.Icon,'Missing argument (Icon expected)'),callback=assert(l.callback or l.Callback,
+'Missing argument (Function expected)'),linkedTab=l.linkedTab or l.LinkedTab},f)m.action=m.window:Create('Frame',{Name=m
+.name,BorderSizePixel=0,LayoutOrder=-(l.order or 0),Size=UDim2.fromOffset(24,24),BackgroundTransparency=1,Parent=m.
+window.actionContainer})m.iconLabel=m.window:Create('ImageLabel',{Image=m.icon,Size=UDim2.fromOffset(20,20),
+BorderSizePixel=0,AnchorPoint=Vector2.new(0.5,0.5),Position=UDim2.fromScale(0.5,0.5),BackgroundTransparency=1,
+ImageTransparency=1,Parent=m.action},{ImageColor3='ActionColor'})m.interact=m.window:Create('TextButton',{
+BackgroundTransparency=1,Size=UDim2.fromScale(1,1),BorderSizePixel=0,Position=UDim2.fromScale(0.5,0.5),AnchorPoint=
+Vector2.new(0.5,0.5),TextTransparency=1,Parent=m.action})local function n()if not m.window:_settled()then return end if
+m.linkedTab and m.window.selectedTab==m.linkedTab then return end if m.isLit and m:isLit()then return end h.tweenService
+:Create(m.iconLabel,TweenInfo.new(0.25,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=0.6}):Play()
+end m.window:Connect(m.interact.MouseButton1Click,function()j.click()task.spawn(function()local o,p=pcall(m.callback)if
+not o then i.warn(`Rayfield encountered an error, with the callback for a {m.__type} component named '{m.name}':`)i.
+print(p)end n()end)end)m.window:Connect(m.interact.MouseEnter,function()if not m.window:_interactive()then return end h.
+tweenService:Create(m.iconLabel,TweenInfo.new(0.25,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=
+0.2}):Play()end)m.window:Connect(m.interact.MouseLeave,n)m.window:_applyActionSize()return m end return f end)()end,[4]=
+function()local b,c,d=a(4)local e return(function(...)local f={}f.__index=f f.__type='Button'local g=c.Parent.Parent.
+utility local h,i,j,k,l,m=d(g.variables),d(g.functions),d(g.moveable),d(g.lockable),d(g.locale),d(g.HapticEngine)
+function f.new(n,o)o=if typeof(o)=='table'then o else{}local p=setmetatable({tab=assert(n,
+'Missing argument #1 (Tab expected)'),window=n.window,name=o.name or o.Name or'Button',icon=o.icon or o.Icon,description
+=o.description or o.Description,compact=n.compact or false,callback=o.callback or o.Callback or function()end},f)if p.
+compact then p:_buildCompact()else p:_buildFull()end if p.description and not p.compact then p.descriptor=d(c.Parent.
+descriptor).new(p.tab,{description=p.description})end return p end function f._runCallback(n)n.window:_runGuarded(n,n.
+callback)end function f._buildFull(n)n.main=n.window:Create('Frame',{Size=UDim2.new(1,-20,0,43),BorderSizePixel=0,Name=n
+.name,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1,Parent=n.tab.tabPage},{
+BackgroundTransparency='ElementTransparency'})n.stroke=n.window:StyleElementBody(n.main)n.hoverOverlay=n.window:
 CreateHoverOverlay(n.main)n.container=n.window:Create('Frame',{BorderSizePixel=0,Parent=n.main,Size=UDim2.new(0,170,0,16
 ),Position=UDim2.new(0,20,0.5,0),AnchorPoint=Vector2.new(0,0.5),BackgroundTransparency=1})n.containerLayout=n.window:
 Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
@@ -2383,16 +2377,16 @@ af)=='ColorSequence'then af else ColorSequence.new(af)end function ae.contrastTe
 )end,[43]=function()local aa,ab,ac=a(43)local ad return(function(...)local ae={}ae.fontAsset='rbxassetid://12187365364'
 ae.pillResizeInfo=TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)ae.icons={close=83277910885129
 ,minimise=108115485663409,maximise=88738500661569,settings=129180860773723,search=100604009889706,chevron=88479147175134
-,check=125626312718314,dot=91452555903853,colorpicker=91452555903853,banner=111263549366178,config=125823673784681,
-rayfield=80387863064905,palette=10734910430,home=10723424646,discord=10734888000}ae.accent={on=Color3.fromRGB(23,153,110
-),onStroke=Color3.fromRGB(32,201,144)}ae.statAccents={positive={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.
-fromRGB(0,134,98)),stroke=ColorSequence.new(Color3.fromRGB(0,213,156),Color3.fromRGB(0,189,135))},negative={fill=
-ColorSequence.new(Color3.fromRGB(172,47,47),Color3.fromRGB(135,37,37)),stroke=ColorSequence.new(Color3.fromRGB(255,75,75
-),Color3.fromRGB(244,67,67))},neutral={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.fromRGB(0,134,98)),stroke
-=ColorSequence.new(Color3.fromRGB(0,213,156),Color3.fromRGB(0,189,135))}}ae.zIndex={elementLock=60,elementLockContent=65
-,bottomFade=100,notification=1500,drag=1000,toast=2000,toastContent=2001,restoreContent=100001,restoreInteract=100002}ae
-.displayOrder={window=99999,banner=100000,popup=100001}return ae end)()end,[44]=function()local aa,ab,ac=a(44)local ad
-return(function(...)return table.concat{'\137PNG\r\n\26\n\0\0\0\rIHDR\0\0\0\24\0\0\0\24\b\6\0\0\0\224w',
+,check=125626312718314,dot=91452555903853,colorpicker=91452555903853,config=125823673784681,rayfield=80387863064905,
+palette=10734910430,home=10723424646,discord=10734888000}ae.accent={on=Color3.fromRGB(23,153,110),onStroke=Color3.
+fromRGB(32,201,144)}ae.statAccents={positive={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.fromRGB(0,134,98))
+,stroke=ColorSequence.new(Color3.fromRGB(0,213,156),Color3.fromRGB(0,189,135))},negative={fill=ColorSequence.new(Color3.
+fromRGB(172,47,47),Color3.fromRGB(135,37,37)),stroke=ColorSequence.new(Color3.fromRGB(255,75,75),Color3.fromRGB(244,67,
+67))},neutral={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.fromRGB(0,134,98)),stroke=ColorSequence.new(
+Color3.fromRGB(0,213,156),Color3.fromRGB(0,189,135))}}ae.zIndex={elementLock=60,elementLockContent=65,bottomFade=100,
+notification=1500,drag=1000,toast=2000,toastContent=2001,restoreContent=100001,restoreInteract=100002}ae.displayOrder={
+window=99999,banner=100000,popup=100001}return ae end)()end,[44]=function()local aa,ab,ac=a(44)local ad return(function(
+...)return table.concat{'\137PNG\r\n\26\n\0\0\0\rIHDR\0\0\0\24\0\0\0\24\b\6\0\0\0\224w',
 '=\248\0\0\0\tpHYs\0\0\v\19\0\0\v\19\1\0\154\156\24\0\0\1;IDATx\156',
 '\237\212\205*\133Q\20\198\241#L\fI\29.\0\199\0050\246\145\148\145\v0V\226\\\128\220\5',
 '\3\198\190K\153H\162\196P\220\128\177\129\146\144\143H\241\211\174w\176\29\239\230\224\152y\234',
@@ -3135,31 +3129,31 @@ maxAspectRatio))return UDim2.fromOffset(au,av)end function af.fit(ar:Vector2?,as
 ~=nil and at<1 local av=af.profile(as,au)if not ar or ar.X<ag or ar.Y<ag then return UDim2.fromOffset(av.defaultSize.X,
 av.defaultSize.Y)end if au then ar/=at::number end local aw,ax=math.min(ar.X*av.maxOccupancyX,ar.X-av.marginFloorX),an(
 av,ar.Y)if av.minAspectRatio then return aq(av,aw,ax)end return ap(av,aw,ax)end return af end)()end},{{1,2,{'Rayfield'},
-{{38,2,{'types'}},{39,1,{'utility'},{{70,2,{'services'}},{67,2,{'persistenceWrite'}},{41,2,{'assetResolver'}},{47,2,{
-'filesystemManager'}},{45,2,{'enums'}},{66,2,{'persistenceSettings'}},{58,2,{'moveable'}},{54,2,{'locale'}},{46,2,{
-'filesystem'}},{61,2,{'ordering'}},{68,2,{'pointer'}},{42,2,{'colors'}},{48,2,{'flagNames'}},{57,2,{'logoImage'}},{63,2,
-{'persistence'}},{73,2,{'windowSizing'}},{72,2,{'variables'}},{50,2,{'functions'}},{56,2,{'log'}},{59,2,{'network'}},{55
-,2,{'lockable'}},{44,2,{'discordIcon'}},{53,2,{'layouts'}},{71,2,{'textMetrics'}},{62,2,{'path'}},{69,2,{'runtime'}},{64
-,2,{'persistenceConfig'}},{51,2,{'image'}},{43,2,{'constants'}},{49,2,{'fontManager'}},{65,2,{'persistencePaths'}},{52,2
-,{'imageCache'}},{60,2,{'odometer'}},{40,2,{'HapticEngine'}}}},{31,1,{'themes'},{{35,2,{'ember'}},{33,2,{'cobalt'}},{34,
-2,{'default'}},{37,2,{'rose'}},{36,2,{'frost'}},{32,2,{'amethyst'}}}},{2,1,{'components'},{{14,2,{'keybind'}},{17,2,{
-'progress'}},{20,2,{'sidebar'}},{10,2,{'drag'}},{4,2,{'button'}},{25,2,{'tabSelector'}},{13,2,{'input'}},{6,2,{
-'colorpicker'}},{22,2,{'stat'}},{11,2,{'dropdown'}},{24,2,{'tabSection'}},{30,2,{'window'}},{21,2,{'slider'}},{29,2,{
-'toggle'}},{3,2,{'action'}},{28,2,{'toast'}},{9,2,{'divider'}},{19,2,{'section'}},{23,2,{'tab'}},{8,2,{'descriptor'}},{
-18,2,{'search'}},{5,2,{'chrome'}},{27,2,{'text'}},{16,2,{'popup'}},{26,2,{'tag'}},{7,2,{'console'}},{15,2,{
-'notification'}},{12,2,{'group'}}}}}}},'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,
-script,type,require,pcall,xpcall,tostring,tonumber,_VERSION local av,aw,ax,ay,az,aA,aB=aj.insert,aj.remove,aj.freeze or
-function(av)return av end,al.wrap,ae.sub,ae.match,ae.gmatch if at and az(at,1,4)=='Lune'then local aC,aD=ap(ao,
-'@lune/task')if aC and aD then af=aD end end local aC=af and af.defer local aD,aE,aF,b,c,d,e,f,g=aC or function(aD,...)
-ay(aD)(...)end,{[1]='Folder',[2]='ModuleScript',[3]='Script',[4]='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}
-local h,i={GetFullName={{},function(h)local i,j=h.Name,h.Parent while j do i=j.Name..'.'..i j=j.Parent end return i end}
-,GetChildren={{},function(h)local i={}for j in ai,g[h]do av(i,j)end return i end},GetDescendants={{},function(h)local i=
-{}for j in ai,g[h]do av(i,j)for k,l in ai,j:GetDescendants()do av(i,l)end end return i end},FindFirstChild={{'string',
-'boolean?'},function(h,i,j)local k=g[h]for l in ai,k do if l.Name==i then return l end end if j then for l in ai,k do
-return l:FindFirstChild(i,true)end end end},FindFirstAncestor={{'string'},function(h,i)local j=h.Parent while j do if j.
-Name==i then return j end j=j.Parent end end},WaitForChild={{'string','number?'},function(h,i)return h:FindFirstChild(i)
-end}},{}for j,k in ai,h do local l,m,n=k[1],k[2],{}for o,p in ai,l do local q,r=aA(p,'^([^%?]+)(%??)')n[o]={q,r}end i[j]
-=function(o,...)if not g[o]then ah("Expected ':' not '.' calling member function "..j,2)end local p={...}for q,r in ai,n
+{{39,1,{'utility'},{{70,2,{'services'}},{68,2,{'pointer'}},{45,2,{'enums'}},{61,2,{'ordering'}},{62,2,{'path'}},{48,2,{
+'flagNames'}},{56,2,{'log'}},{63,2,{'persistence'}},{60,2,{'odometer'}},{53,2,{'layouts'}},{69,2,{'runtime'}},{51,2,{
+'image'}},{52,2,{'imageCache'}},{66,2,{'persistenceSettings'}},{64,2,{'persistenceConfig'}},{55,2,{'lockable'}},{58,2,{
+'moveable'}},{46,2,{'filesystem'}},{43,2,{'constants'}},{40,2,{'HapticEngine'}},{41,2,{'assetResolver'}},{50,2,{
+'functions'}},{49,2,{'fontManager'}},{47,2,{'filesystemManager'}},{67,2,{'persistenceWrite'}},{59,2,{'network'}},{73,2,{
+'windowSizing'}},{44,2,{'discordIcon'}},{72,2,{'variables'}},{54,2,{'locale'}},{65,2,{'persistencePaths'}},{57,2,{
+'logoImage'}},{42,2,{'colors'}},{71,2,{'textMetrics'}}}},{38,2,{'types'}},{31,1,{'themes'},{{33,2,{'cobalt'}},{34,2,{
+'default'}},{32,2,{'amethyst'}},{35,2,{'ember'}},{37,2,{'rose'}},{36,2,{'frost'}}}},{2,1,{'components'},{{13,2,{'input'}
+},{12,2,{'group'}},{17,2,{'progress'}},{18,2,{'search'}},{9,2,{'divider'}},{14,2,{'keybind'}},{30,2,{'window'}},{10,2,{
+'drag'}},{29,2,{'toggle'}},{28,2,{'toast'}},{7,2,{'console'}},{27,2,{'text'}},{15,2,{'notification'}},{20,2,{'sidebar'}}
+,{26,2,{'tag'}},{25,2,{'tabSelector'}},{6,2,{'colorpicker'}},{24,2,{'tabSection'}},{11,2,{'dropdown'}},{3,2,{'action'}},
+{23,2,{'tab'}},{8,2,{'descriptor'}},{21,2,{'slider'}},{22,2,{'stat'}},{19,2,{'section'}},{5,2,{'chrome'}},{4,2,{'button'
+}},{16,2,{'popup'}}}}}}},'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,
+require,pcall,xpcall,tostring,tonumber,_VERSION local av,aw,ax,ay,az,aA,aB=aj.insert,aj.remove,aj.freeze or function(av)
+return av end,al.wrap,ae.sub,ae.match,ae.gmatch if at and az(at,1,4)=='Lune'then local aC,aD=ap(ao,'@lune/task')if aC
+and aD then af=aD end end local aC=af and af.defer local aD,aE,aF,b,c,d,e,f,g=aC or function(aD,...)ay(aD)(...)end,{[1]=
+'Folder',[2]='ModuleScript',[3]='Script',[4]='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local h,i={GetFullName
+={{},function(h)local i,j=h.Name,h.Parent while j do i=j.Name..'.'..i j=j.Parent end return i end},GetChildren={{},
+function(h)local i={}for j in ai,g[h]do av(i,j)end return i end},GetDescendants={{},function(h)local i={}for j in ai,g[h
+]do av(i,j)for k,l in ai,j:GetDescendants()do av(i,l)end end return i end},FindFirstChild={{'string','boolean?'},
+function(h,i,j)local k=g[h]for l in ai,k do if l.Name==i then return l end end if j then for l in ai,k do return l:
+FindFirstChild(i,true)end end end},FindFirstAncestor={{'string'},function(h,i)local j=h.Parent while j do if j.Name==i
+then return j end j=j.Parent end end},WaitForChild={{'string','number?'},function(h,i)return h:FindFirstChild(i)end}},{}
+for j,k in ai,h do local l,m,n=k[1],k[2],{}for o,p in ai,l do local q,r=aA(p,'^([^%?]+)(%??)')n[o]={q,r}end i[j]=
+function(o,...)if not g[o]then ah("Expected ':' not '.' calling member function "..j,2)end local p={...}for q,r in ai,n
 do local s=p[q]local t,u,v=an(s),r[1],r[2]if s==nil and not v then ah('Argument '..s..' missing or nil',3)end if u~=
 'any'and t~=u and not(t=='nil'and v)then ah('Argument '..q..' expects type "'..u..'", got "'..t..'"',2)end end return m(
 o,...)end end local function j(k,l,m)local n,o=(ag({},{__mode='k'}))local function p(q)ah(q..
