@@ -1712,6 +1712,7 @@ return function()
         it("clamps a restore target that no longer fits the screen", function()
             setViewport(1920, 1080)
             local w = makeWindow()
+            w.settings.keepOnScreen = true
             w.hidden = false
             w.screenGui.AbsoluteSize = Vector2.new(1920, 1080)
             -- parked near the right edge, then hidden, so this is where Show grows back to
@@ -1727,6 +1728,51 @@ return function()
             expect(target.X.Offset < 1700).to.equal(true)
             expect(target.X.Offset + w.size.X.Offset / 2 <= 700).to.equal(true)
             expect(target.Y.Offset + w.size.Y.Offset / 2 <= 500).to.equal(true)
+        end)
+
+        it("never lets the window above the top edge", function()
+            setViewport(1920, 1080)
+            local w = makeWindow()
+            w.screenGui.AbsoluteSize = Vector2.new(1920, 1080)
+
+            local target = w:_clampedPosition(UDim2.fromOffset(900, -300))
+
+            expect(target.Y.Offset - w.size.Y.Offset * w.scale / 2 >= 0).to.equal(true)
+        end)
+
+        it("lets the window hang off the sides and bottom with its header in reach", function()
+            setViewport(1920, 1080)
+            local w = makeWindow()
+            w.screenGui.AbsoluteSize = Vector2.new(1920, 1080)
+            local half = w.size.X.Offset * w.scale / 2
+
+            local right = w:_clampedPosition(UDim2.fromOffset(1920 + half - 10, 500))
+            expect(right.X.Offset + half > 1920).to.equal(true)
+            expect(right.X.Offset - half < 1920).to.equal(true)
+
+            local left = w:_clampedPosition(UDim2.fromOffset(-5000, 500))
+            expect(left.X.Offset - half < 0).to.equal(true)
+            expect(left.X.Offset + half > 0).to.equal(true)
+
+            local low = w:_clampedPosition(UDim2.fromOffset(900, 5000))
+            local top = low.Y.Offset - w.size.Y.Offset * w.scale / 2
+            expect(top + w.layout.topbarHeight * w.scale <= 1080).to.equal(true)
+            expect(low.Y.Offset + w.size.Y.Offset * w.scale / 2 > 1080).to.equal(true)
+        end)
+
+        it("restores a window minimised at the top edge with its header on screen", function()
+            setViewport(1920, 1080)
+            local w = makeWindow()
+            w.hidden = false
+            w.screenGui.AbsoluteSize = Vector2.new(1920, 1080)
+            w.minimised = true
+            -- the bar was dragged flush with the top while short
+            w.main.Position = UDim2.fromOffset(900, w.layout.topbarHeight / 2 + 8)
+
+            w:ToggleMinimise()
+            local target = w:_clampedPosition(w.main.Position)
+
+            expect(target.Y.Offset - w.size.Y.Offset * w.scale / 2 >= 0).to.equal(true)
         end)
 
         it("keeps the drag bar under the window's bottom edge", function()

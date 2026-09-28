@@ -97,19 +97,11 @@ function Drag.new(window, properties)
         local position = getPosition()
         local x, y = position.X, position.Y
 
-        -- keepOnScreen: clamp the centre so it cant be pulled off screen
-        if self.window.settings and self.window.settings.keepOnScreen then
-            local size = self.window.main.AbsoluteSize
-            local screen = self.window.screenGui.AbsoluteSize
-            local margin = 8
-            local halfX, halfY = size.X / 2, size.Y / 2
-            -- math.max in case the window is bigger than the screen
-            x = math.clamp(x, halfX + margin, math.max(halfX + margin, screen.X - halfX - margin))
-            y = math.clamp(y, halfY + margin, math.max(halfY + margin, screen.Y - halfY - margin))
-        end
+        -- never above the top edge; the rest depends on keepOnScreen
+        x, y = self.window:_fitCenter(x, y, self.window.main.AbsoluteSize)
 
         local mainTarget = UDim2.fromOffset(x, y)
-        local dragTarget = UDim2.fromOffset(x, y + (self.window.main.Size.Y.Offset / 2 + 15))
+        local dragTarget = UDim2.fromOffset(x, y + (self.window.main.Size.Y.Offset * self.window.scale / 2 + 15))
         return mainTarget, dragTarget
     end
 

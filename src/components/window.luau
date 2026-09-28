@@ -64,6 +64,11 @@ local maxStaggeredTabs = 8
 -- How often the backstop re-checks the fit, for anything the viewport signal misses.
 local viewportReconcileInterval = 2
 
+-- Gap kept above a window pushed to the top of the screen, and how much of it stays in view
+-- when it is pushed off a side or the bottom.
+local screenMargin = 8
+local keepInView = 80
+
 -- The size the current screen calls for, for this window's layout. Everything downstream (the
 -- reveal target, drag clamp, collapse) reads self.size, so it all inherits whatever this returns.
 -- Also returns the UIScale to draw it at, which is below 1 only on a phone.
@@ -305,7 +310,7 @@ function Window.new(properties)
     self.settings = {
         toggleKeybind = Enum.KeyCode.K,
         mouseOverride = true, -- free the cursor while the menu is open (for FPS games that lock it)
-        keepOnScreen = true, -- clamp the drag so the window cant be pulled off screen
+        keepOnScreen = false, -- hold all four edges in; off, only the top is held (see _fitCenter)
         welcomeToast = true, -- the "signed in as" toast on first open for a new/changed account
         haptics = true, -- buzzes on presses and notifications; silent where the device has none
         showProfile = true, -- the player chip at the base of the sidebar rail
@@ -1214,16 +1219,19 @@ function Window:ToggleMinimise()
         self.minimised = false
         image.assign(self.minimiseAction.iconLabel, "Image", constants.icons.minimise) -- back to the minimise icon
 
-        variables.tweenService:Create(self.main, sizeInfo, { Size = self.size }):Play()
+        -- the bar may have been parked where the full window does not fit, so grow into the
+        -- nearest place that does rather than pushing the header off the top
+        local target = self:_clampedPosition(self.main.Position)
+        variables.tweenService:Create(self.main, sizeInfo, { Size = self.size, Position = target }):Play()
         self:_fadeSurfaces(true, fadeInfo)
 
         variables.tweenService
             :Create(self.drag.drag, sizeInfo, {
                 Position = UDim2.new(
-                    self.main.Position.X.Scale,
-                    self.main.Position.X.Offset,
-                    self.main.Position.Y.Scale,
-                    self.main.Position.Y.Offset + self.size.Y.Offset * self.scale / 2 + 15
+                    target.X.Scale,
+                    target.X.Offset,
+                    target.Y.Scale,
+                    target.Y.Offset + self.size.Y.Offset * self.scale / 2 + 15
                 ),
             })
             :Play()
@@ -1316,22 +1324,38 @@ end
 -- parked near an edge would otherwise end up half off it when the viewport shrinks underneath.
 -- Where a position ends up once the current size has to fit on the current screen. Returns it
 -- unchanged when theres nothing to do, so callers can compare.
-function Window:_clampedPosition(position: UDim2): UDim2
-    if not self.settings or not self.settings.keepOnScreen then
-        return position
+-- Where a window centred at (x, y), this size on screen, is allowed to sit. The top edge is the
+-- one hard wall: a header pushed above the screen cant be grabbed back, which is how a window
+-- minimised near the top and then restored used to grow out of reach. keepOnScreen holds the
+-- other three edges in as well; without it they may hang off, as long as the whole header and a
+-- strip of the window stay in view to grab.
+function Window:_fitCenter(x: number, y: number, size: Vector2): (number, number)
+    local screen = self.screenGui.AbsoluteSize
+    local halfX, halfY = size.X / 2, size.Y / 2
+    local minY = halfY + screenMargin
+
+    if self.settings and self.settings.keepOnScreen then
+        -- math.max in case the window is bigger than the screen
+        x = math.clamp(x, halfX + screenMargin, math.max(halfX + screenMargin, screen.X - halfX - screenMargin))
+        return x, math.clamp(y, minY, math.max(minY, screen.Y - halfY - screenMargin))
     end
+
+    local header = math.min(self.layout.topbarHeight * self.scale, size.Y)
+    x = math.clamp(x, keepInView - halfX, math.max(keepInView - halfX, screen.X - keepInView + halfX))
+    return x, math.clamp(y, minY, math.max(minY, screen.Y - header + halfY))
+end
+
+function Window:_clampedPosition(position: UDim2): UDim2
     -- untouched windows sit on scale and are centred, so theyre on screen by construction -
     -- clamping would only freeze them to offsets and stop them recentring later
     if position.X.Scale ~= 0 or position.Y.Scale ~= 0 then
         return position
     end
 
-    local screen = self.screenGui.AbsoluteSize
-    local halfX, halfY = self.size.X.Offset * self.scale / 2, self.size.Y.Offset * self.scale / 2
-    local margin = 8
-    -- math.max in case the window is bigger than the screen
-    local x = math.clamp(position.X.Offset, halfX + margin, math.max(halfX + margin, screen.X - halfX - margin))
-    local y = math.clamp(position.Y.Offset, halfY + margin, math.max(halfY + margin, screen.Y - halfY - margin))
+    -- always against the full size: a minimised window grows back around its centre, so the
+    -- place it may sit is set by the size it is about to be, not the bar it is now
+    local size = Vector2.new(self.size.X.Offset, self.size.Y.Offset) * self.scale
+    local x, y = self:_fitCenter(position.X.Offset, position.Y.Offset, size)
     if x == position.X.Offset and y == position.Y.Offset then
         return position
     end
@@ -1502,17 +1526,7 @@ function Window:_bindTopbarDrag()
 
     local function getTarget()
         local position = uis:GetMouseLocation() + relative + offset
-        local x, y = position.X, position.Y
-
-        if self.settings and self.settings.keepOnScreen then
-            local size = self.main.AbsoluteSize
-            local screen = self.screenGui.AbsoluteSize
-            local margin = 8
-            local halfX, halfY = size.X / 2, size.Y / 2
-            x = math.clamp(x, halfX + margin, math.max(halfX + margin, screen.X - halfX - margin))
-            y = math.clamp(y, halfY + margin, math.max(halfY + margin, screen.Y - halfY - margin))
-        end
-
+        local x, y = self:_fitCenter(position.X, position.Y, self.main.AbsoluteSize)
         return UDim2.fromOffset(x, y)
     end
 
@@ -1590,7 +1604,7 @@ function Window:_bindTopbarDrag()
                 mainPosition.X.Scale,
                 mainPosition.X.Offset,
                 mainPosition.Y.Scale,
-                mainPosition.Y.Offset + (self.main.Size.Y.Offset / 2 + 15)
+                mainPosition.Y.Offset + (self.main.Size.Y.Offset * self.scale / 2 + 15)
             )
         end
     end)
@@ -1659,7 +1673,7 @@ function Window:_buildSettingsUI()
 
     self.rfSettings:CreateToggle({
         name = "Keep window on screen",
-        description = "Stops the window being dragged off the edge of the screen and lost.",
+        description = "Keeps the whole window on screen. Off, it can hang off the sides and bottom, but never the top.",
         value = self.settings.keepOnScreen,
         callback = function(state)
             self.settings.keepOnScreen = state

@@ -192,7 +192,8 @@ function chrome.bindCollapsedDrag(window)
         moved = true
 
         local target = mouse + grabOffset + insetOffset()
-        window.main.Position = UDim2.fromOffset(target.X, target.Y)
+        local x, y = window:_fitCenter(target.X, target.Y, window.main.AbsoluteSize)
+        window.main.Position = UDim2.fromOffset(x, y)
     end)
 end
 
