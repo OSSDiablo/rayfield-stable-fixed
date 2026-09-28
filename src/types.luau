@@ -28,7 +28,8 @@ export type WindowProps = {
     name: string?,
     subtitle: string?,
     theme: Theme?,
-    icon: (string | number)?,
+    icon: (string | number | boolean)?, -- header logo; defaults to the built-in one, false removes it
+    themeTab: boolean?, -- false leaves out the built-in Theme tab
     showName: string?,
     showIcon: (string | number)?,
     showIconOnly: boolean?, -- collapse to a round icon badge instead of an icon-and-label pill

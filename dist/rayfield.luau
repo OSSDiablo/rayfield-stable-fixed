@@ -1,4 +1,4 @@
--- Rayfield Gen2 v1.2.0-preview mobile (0e6368e+theme+logo, 2026-09-28)
+-- Rayfield Gen2 v1.2.0-preview mobile (3aafebd+docs, 2026-09-28)
 local a local aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,b,c,d={function()local b,c,d=a(1)local e return(
 function(...)local f,g,h,i,j=d(c.utility.variables),d(c.utility.image),d(c.utility.locale),d(c.utility.constants),d(c.
 types)export type Theme=j.Theme export type Translator=j.Translator export type Translations=j.Translations export type
@@ -2208,69 +2208,69 @@ ToggleKnobOff=Color3.fromRGB(236,220,226),StatBackground=Color3.fromRGB(28,20,24
 fromRGB(170,122,140)}end)()end,[38]=function()local aa,ab,ac=a(38)local ad return(function(...)export type Theme=string|
 {[string]:any}export type Translator=(source:string,localeId:string)->string?export type Translations={[string]:{[string
 ]:string}}export type WindowConfiguration={autoSave:boolean?,autoLoad:boolean?,fileName:string?,customFolder:string?}
-export type WindowProps={name:string?,subtitle:string?,theme:Theme?,icon:(string|number)?,showName:string?,showIcon:(
-string|number)?,showIconOnly:boolean?,sidebarLayout:boolean?,profile:string?,configuration:WindowConfiguration?,
-fallbackFont:(Font|Enum.Font)?,locale:string?,translations:Translations?,translator:Translator?}export type TabProps={
-name:string?,icon:(string|number)?}export type TagProps={text:string?,title:string?,icon:(string|number)?,color:Color3?,
-order:number?}export type SectionProps={name:string?,icon:(string|number)?}export type TextProps={name:string?,text:
-string?,icon:(string|number)?}export type DividerProps={text:string?,spacing:number?,line:boolean?}export type
-GroupProps={direction:string?}export type ButtonProps={name:string?,description:string?,icon:(string|number)?,callback:(
-()->())?}export type ToggleProps={name:string?,description:string?,icon:(string|number)?,flag:string?,value:boolean?,
-forgetState:boolean?,callback:((value:boolean)->())?}export type SliderProps={name:string?,description:string?,icon:(
-string|number)?,flag:string?,range:{number}?,increment:number?,value:number?,suffix:string?,minimal:boolean?,forgetState
-:boolean?,callback:((value:number,dragging:boolean)->())?}export type DropdownProps={name:string?,description:string?,
-icon:(string|number)?,flag:string?,options:{string}?,value:(string|{string})?,multiSelect:boolean?,placeholder:string?,
-forgetState:boolean?,callback:((value:any)->())?}export type InputProps={name:string?,description:string?,icon:(string|
-number)?,flag:string?,value:string?,placeholder:string?,numeric:boolean?,clearOnFocus:boolean?,forgetState:boolean?,
-callback:((value:string)->())?}export type KeybindProps={name:string?,description:string?,icon:(string|number)?,flag:
-string?,value:(EnumItem|string)?,forgetState:boolean?,isMenuToggle:boolean?,hold:boolean?,holdThreshold:number?,callback
-:((value:EnumItem|boolean)->())?,onChanged:((key:EnumItem)->())?}export type ColorPickerProps={name:string?,description:
-string?,icon:(string|number)?,flag:string?,color:Color3?,alpha:number?,forgetState:boolean?,callback:((value:Color3,
-alpha:number)->())?}export type StatProps={name:string?,description:string?,icon:(string|number)?,prefix:string?,suffix:
-string?,value:number?,display:string?,compact:boolean?,changeMode:string?,changeBaseline:string?,numberEasing:boolean?}
-export type ProgressProps={name:string?,description:string?,icon:(string|number)?,range:{number}?,value:number?,steps:
-number?,text:string?,format:((value:number,min:number,max:number)->string)?,showValue:boolean?,indeterminate:boolean?}
-export type ConsoleProps={name:string?,description:string?,text:string?,height:number?,follow:boolean?,maxLines:number?}
-export type NotifyProps={title:string?,content:string?,icon:(string|number)?,duration:number?}export type ToastProps={
-title:string?,subtitle:string?,subtitleAbove:boolean?,icon:(string|number)?,avatar:number?,minWidth:number?,duration:
-number?,position:'Top'|'Bottom'?}export type PopupBox={title:string?,description:string?,icon:(string|number)?}export
-type PopupOption={text:string?,style:string?,callback:(()->())?}export type PopupProps={title:string?,subtitle:string?,
-icon:(string|number)?,content:string?,boxes:{PopupBox}?,options:{PopupOption}?,dismissable:boolean?}export type Moveable
-={MoveTo:(self:any,index:number)->(),MoveToTop:(self:any)->(),MoveToBottom:(self:any)->(),MoveUp:(self:any)->(),MoveDown
-:(self:any)->()}export type Lockable={Lock:(self:any,reason:string?)->(),Unlock:(self:any)->(),IsLocked:(self:any)->
-boolean}export type Button=Moveable&Lockable&{}export type Toggle=Moveable&Lockable&{value:boolean,Set:(self:Toggle,
-value:boolean,skipCallback:boolean?)->()}export type Slider=Moveable&Lockable&{value:number,Set:(self:Slider,value:
-number,skipCallback:boolean?)->()}export type Dropdown=Moveable&Lockable&{value:{string},Set:(self:Dropdown,value:string
-|{string},skipCallback:boolean?)->(),Refresh:(self:Dropdown,options:{string})->(),Add:(self:Dropdown,option:string)->(),
-Remove:(self:Dropdown,option:string)->()}export type Input=Moveable&Lockable&{value:string,Set:(self:Input,value:string,
-skipCallback:boolean?)->()}export type Keybind=Moveable&Lockable&{value:EnumItem,Set:(self:Keybind,value:EnumItem|string
-,skipChanged:boolean?)->()}export type ColorPicker=Moveable&Lockable&{value:Color3,alpha:number,Set:(self:ColorPicker,
-value:Color3|string,skipCallback:boolean?)->(),SetAlpha:(self:ColorPicker,alpha:number,skipCallback:boolean?)->()}export
-type Stat=Moveable&{value:number,Set:(self:Stat,value:number)->(),ResetBaseline:(self:Stat,value:number?)->()}export
-type Progress=Moveable&{value:number,Set:(self:Progress,value:number)->(),Get:(self:Progress)->number,GetPercentage:(
-self:Progress)->number,SetRange:(self:Progress,min:number,max:number)->(),SetText:(self:Progress,text:string?)->(),
-SetIndeterminate:(self:Progress,state:boolean)->(),Remove:(self:Progress)->()}export type Console=Moveable&{Set:(self:
-Console,text:string)->(),Append:(self:Console,line:string)->(),Clear:(self:Console)->(),Get:(self:Console)->string,Copy:
-(self:Console)->boolean,SetHeight:(self:Console,height:number)->(),Remove:(self:Console)->()}export type Section=
-Moveable&{}export type TabSection={Remove:(self:TabSection)->()}export type Text=Moveable&{name:string,text:string,Set:(
-self:Text,text:string)->(),SetTitle:(self:Text,title:string)->()}export type Divider=Moveable&{text:string,Set:(self:
-Divider,text:string?)->()}export type Tag={Set:(self:Tag,props:TagProps)->(),SetColor:(self:Tag,color:Color3)->(),
-SetText:(self:Tag,text:string?)->(),SetIcon:(self:Tag,icon:(string|number)?)->(),Remove:(self:Tag)->()}export type Popup
-={Close:(self:Popup)->()}export type Group=Moveable&{CreateButton:(self:Group,props:ButtonProps)->Button,CreateToggle:(
-self:Group,props:ToggleProps)->Toggle,CreateSwitch:(self:Group,props:ToggleProps)->Toggle,CreateStat:(self:Group,props:
-StatProps)->Stat,CreateSlider:(self:Group,props:SliderProps)->Slider,CreateDropdown:(self:Group,props:DropdownProps)->
-Dropdown?,CreateSection:(self:Group,props:SectionProps)->Section?,CreateText:(self:Group,props:TextProps)->Text?,
-CreateDivider:(self:Group,props:DividerProps?)->Divider?,CreateGroup:(self:Group,props:GroupProps?)->Group}export type
-Tab={Select:(self:Tab,noAnimation:boolean?)->(),Deselect:(self:Tab,noAnimation:boolean?)->(),Remove:(self:Tab)->(),
-CreateButton:(self:Tab,props:ButtonProps)->Button,CreateToggle:(self:Tab,props:ToggleProps)->Toggle,CreateSwitch:(self:
-Tab,props:ToggleProps)->Toggle,CreateSlider:(self:Tab,props:SliderProps)->Slider,CreateDropdown:(self:Tab,props:
-DropdownProps)->Dropdown,CreateInput:(self:Tab,props:InputProps)->Input,CreateKeybind:(self:Tab,props:KeybindProps)->
-Keybind,CreateColorPicker:(self:Tab,props:ColorPickerProps)->ColorPicker,CreateStat:(self:Tab,props:StatProps)->Stat,
-CreateProgress:(self:Tab,props:ProgressProps)->Progress,CreateConsole:(self:Tab,props:ConsoleProps)->Console,
-CreateSection:(self:Tab,props:SectionProps)->Section,CreateText:(self:Tab,props:TextProps)->Text,CreateDivider:(self:Tab
-,props:DividerProps?)->Divider,CreateGroup:(self:Tab,props:GroupProps?)->Group}export type Window={unloaded:boolean,
-Flags:{[string]:any},CreateTab:(self:Window,props:TabProps)->Tab,CreateSection:(self:Window,props:SectionProps)->
-TabSection,CreateTag:(self:Window,props:TagProps)->Tag,Notify:(self:Window,props:NotifyProps)->(),Toast:(self:Window,
+export type WindowProps={name:string?,subtitle:string?,theme:Theme?,icon:(string|number|boolean)?,themeTab:boolean?,
+showName:string?,showIcon:(string|number)?,showIconOnly:boolean?,sidebarLayout:boolean?,profile:string?,configuration:
+WindowConfiguration?,fallbackFont:(Font|Enum.Font)?,locale:string?,translations:Translations?,translator:Translator?}
+export type TabProps={name:string?,icon:(string|number)?}export type TagProps={text:string?,title:string?,icon:(string|
+number)?,color:Color3?,order:number?}export type SectionProps={name:string?,icon:(string|number)?}export type TextProps=
+{name:string?,text:string?,icon:(string|number)?}export type DividerProps={text:string?,spacing:number?,line:boolean?}
+export type GroupProps={direction:string?}export type ButtonProps={name:string?,description:string?,icon:(string|number)
+?,callback:(()->())?}export type ToggleProps={name:string?,description:string?,icon:(string|number)?,flag:string?,value:
+boolean?,forgetState:boolean?,callback:((value:boolean)->())?}export type SliderProps={name:string?,description:string?,
+icon:(string|number)?,flag:string?,range:{number}?,increment:number?,value:number?,suffix:string?,minimal:boolean?,
+forgetState:boolean?,callback:((value:number,dragging:boolean)->())?}export type DropdownProps={name:string?,description
+:string?,icon:(string|number)?,flag:string?,options:{string}?,value:(string|{string})?,multiSelect:boolean?,placeholder:
+string?,forgetState:boolean?,callback:((value:any)->())?}export type InputProps={name:string?,description:string?,icon:(
+string|number)?,flag:string?,value:string?,placeholder:string?,numeric:boolean?,clearOnFocus:boolean?,forgetState:
+boolean?,callback:((value:string)->())?}export type KeybindProps={name:string?,description:string?,icon:(string|number)?
+,flag:string?,value:(EnumItem|string)?,forgetState:boolean?,isMenuToggle:boolean?,hold:boolean?,holdThreshold:number?,
+callback:((value:EnumItem|boolean)->())?,onChanged:((key:EnumItem)->())?}export type ColorPickerProps={name:string?,
+description:string?,icon:(string|number)?,flag:string?,color:Color3?,alpha:number?,forgetState:boolean?,callback:((value
+:Color3,alpha:number)->())?}export type StatProps={name:string?,description:string?,icon:(string|number)?,prefix:string?
+,suffix:string?,value:number?,display:string?,compact:boolean?,changeMode:string?,changeBaseline:string?,numberEasing:
+boolean?}export type ProgressProps={name:string?,description:string?,icon:(string|number)?,range:{number}?,value:number?
+,steps:number?,text:string?,format:((value:number,min:number,max:number)->string)?,showValue:boolean?,indeterminate:
+boolean?}export type ConsoleProps={name:string?,description:string?,text:string?,height:number?,follow:boolean?,maxLines
+:number?}export type NotifyProps={title:string?,content:string?,icon:(string|number)?,duration:number?}export type
+ToastProps={title:string?,subtitle:string?,subtitleAbove:boolean?,icon:(string|number)?,avatar:number?,minWidth:number?,
+duration:number?,position:'Top'|'Bottom'?}export type PopupBox={title:string?,description:string?,icon:(string|number)?}
+export type PopupOption={text:string?,style:string?,callback:(()->())?}export type PopupProps={title:string?,subtitle:
+string?,icon:(string|number)?,content:string?,boxes:{PopupBox}?,options:{PopupOption}?,dismissable:boolean?}export type
+Moveable={MoveTo:(self:any,index:number)->(),MoveToTop:(self:any)->(),MoveToBottom:(self:any)->(),MoveUp:(self:any)->(),
+MoveDown:(self:any)->()}export type Lockable={Lock:(self:any,reason:string?)->(),Unlock:(self:any)->(),IsLocked:(self:
+any)->boolean}export type Button=Moveable&Lockable&{}export type Toggle=Moveable&Lockable&{value:boolean,Set:(self:
+Toggle,value:boolean,skipCallback:boolean?)->()}export type Slider=Moveable&Lockable&{value:number,Set:(self:Slider,
+value:number,skipCallback:boolean?)->()}export type Dropdown=Moveable&Lockable&{value:{string},Set:(self:Dropdown,value:
+string|{string},skipCallback:boolean?)->(),Refresh:(self:Dropdown,options:{string})->(),Add:(self:Dropdown,option:string
+)->(),Remove:(self:Dropdown,option:string)->()}export type Input=Moveable&Lockable&{value:string,Set:(self:Input,value:
+string,skipCallback:boolean?)->()}export type Keybind=Moveable&Lockable&{value:EnumItem,Set:(self:Keybind,value:EnumItem
+|string,skipChanged:boolean?)->()}export type ColorPicker=Moveable&Lockable&{value:Color3,alpha:number,Set:(self:
+ColorPicker,value:Color3|string,skipCallback:boolean?)->(),SetAlpha:(self:ColorPicker,alpha:number,skipCallback:boolean?
+)->()}export type Stat=Moveable&{value:number,Set:(self:Stat,value:number)->(),ResetBaseline:(self:Stat,value:number?)->
+()}export type Progress=Moveable&{value:number,Set:(self:Progress,value:number)->(),Get:(self:Progress)->number,
+GetPercentage:(self:Progress)->number,SetRange:(self:Progress,min:number,max:number)->(),SetText:(self:Progress,text:
+string?)->(),SetIndeterminate:(self:Progress,state:boolean)->(),Remove:(self:Progress)->()}export type Console=Moveable&
+{Set:(self:Console,text:string)->(),Append:(self:Console,line:string)->(),Clear:(self:Console)->(),Get:(self:Console)->
+string,Copy:(self:Console)->boolean,SetHeight:(self:Console,height:number)->(),Remove:(self:Console)->()}export type
+Section=Moveable&{}export type TabSection={Remove:(self:TabSection)->()}export type Text=Moveable&{name:string,text:
+string,Set:(self:Text,text:string)->(),SetTitle:(self:Text,title:string)->()}export type Divider=Moveable&{text:string,
+Set:(self:Divider,text:string?)->()}export type Tag={Set:(self:Tag,props:TagProps)->(),SetColor:(self:Tag,color:Color3
+)->(),SetText:(self:Tag,text:string?)->(),SetIcon:(self:Tag,icon:(string|number)?)->(),Remove:(self:Tag)->()}export type
+Popup={Close:(self:Popup)->()}export type Group=Moveable&{CreateButton:(self:Group,props:ButtonProps)->Button,
+CreateToggle:(self:Group,props:ToggleProps)->Toggle,CreateSwitch:(self:Group,props:ToggleProps)->Toggle,CreateStat:(self
+:Group,props:StatProps)->Stat,CreateSlider:(self:Group,props:SliderProps)->Slider,CreateDropdown:(self:Group,props:
+DropdownProps)->Dropdown?,CreateSection:(self:Group,props:SectionProps)->Section?,CreateText:(self:Group,props:TextProps
+)->Text?,CreateDivider:(self:Group,props:DividerProps?)->Divider?,CreateGroup:(self:Group,props:GroupProps?)->Group}
+export type Tab={Select:(self:Tab,noAnimation:boolean?)->(),Deselect:(self:Tab,noAnimation:boolean?)->(),Remove:(self:
+Tab)->(),CreateButton:(self:Tab,props:ButtonProps)->Button,CreateToggle:(self:Tab,props:ToggleProps)->Toggle,
+CreateSwitch:(self:Tab,props:ToggleProps)->Toggle,CreateSlider:(self:Tab,props:SliderProps)->Slider,CreateDropdown:(self
+:Tab,props:DropdownProps)->Dropdown,CreateInput:(self:Tab,props:InputProps)->Input,CreateKeybind:(self:Tab,props:
+KeybindProps)->Keybind,CreateColorPicker:(self:Tab,props:ColorPickerProps)->ColorPicker,CreateStat:(self:Tab,props:
+StatProps)->Stat,CreateProgress:(self:Tab,props:ProgressProps)->Progress,CreateConsole:(self:Tab,props:ConsoleProps)->
+Console,CreateSection:(self:Tab,props:SectionProps)->Section,CreateText:(self:Tab,props:TextProps)->Text,CreateDivider:(
+self:Tab,props:DividerProps?)->Divider,CreateGroup:(self:Tab,props:GroupProps?)->Group}export type Window={unloaded:
+boolean,Flags:{[string]:any},CreateTab:(self:Window,props:TabProps)->Tab,CreateSection:(self:Window,props:SectionProps
+)->TabSection,CreateTag:(self:Window,props:TagProps)->Tag,Notify:(self:Window,props:NotifyProps)->(),Toast:(self:Window,
 props:ToastProps)->(),Popup:(self:Window,props:PopupProps)->Popup?,Show:(self:Window)->(),Hide:(self:Window)->(),
 ToggleHide:(self:Window)->(),ToggleMinimise:(self:Window)->(),Navigate:(self:Window,tab:string|Tab)->(),ChangeTheme:(
 self:Window,theme:Theme)->(),SetLocale:(self:Window,localeId:string)->(),SetTranslator:(self:Window,translator:
@@ -2970,18 +2970,18 @@ end local function aq(ar:Profile,b:number,c:number):UDim2 local d,e=math.min(mat
 :UDim2 local d=c~=nil and c<1 local e=af.profile(b,d)if not ar or ar.X<ag or ar.Y<ag then return UDim2.fromOffset(e.
 defaultSize.X,e.defaultSize.Y)end if d then ar/=c::number end local f,g=math.min(ar.X*e.maxOccupancyX,ar.X-e.
 marginFloorX),an(e,ar.Y)if e.minAspectRatio then return aq(e,f,g)end return ap(e,f,g)end return af end)()end},{{1,2,{
-'Rayfield'},{{2,1,{'components'},{{23,2,{'tab'}},{12,2,{'group'}},{8,2,{'descriptor'}},{17,2,{'progress'}},{15,2,{
-'notification'}},{16,2,{'popup'}},{21,2,{'slider'}},{25,2,{'tabSelector'}},{30,2,{'window'}},{26,2,{'tag'}},{20,2,{
-'sidebar'}},{29,2,{'toggle'}},{10,2,{'drag'}},{3,2,{'action'}},{5,2,{'chrome'}},{28,2,{'toast'}},{27,2,{'text'}},{24,2,{
-'tabSection'}},{22,2,{'stat'}},{14,2,{'keybind'}},{13,2,{'input'}},{19,2,{'section'}},{11,2,{'dropdown'}},{18,2,{
-'search'}},{4,2,{'button'}},{7,2,{'console'}},{9,2,{'divider'}},{6,2,{'colorpicker'}}}},{39,1,{'utility'},{{54,2,{
-'lockable'}},{67,2,{'runtime'}},{58,2,{'network'}},{49,2,{'functions'}},{70,2,{'variables'}},{69,2,{'textMetrics'}},{51,
-2,{'imageCache'}},{62,2,{'persistence'}},{68,2,{'services'}},{44,2,{'enums'}},{71,2,{'windowSizing'}},{61,2,{'path'}},{
-43,2,{'constants'}},{50,2,{'image'}},{59,2,{'odometer'}},{65,2,{'persistenceSettings'}},{64,2,{'persistencePaths'}},{48,
-2,{'fontManager'}},{63,2,{'persistenceConfig'}},{47,2,{'flagNames'}},{46,2,{'filesystemManager'}},{60,2,{'ordering'}},{
-52,2,{'layouts'}},{56,2,{'logoImage'}},{42,2,{'colors'}},{55,2,{'log'}},{40,2,{'HapticEngine'}},{41,2,{'assetResolver'}}
-,{57,2,{'moveable'}},{45,2,{'filesystem'}},{53,2,{'locale'}},{66,2,{'persistenceWrite'}}}},{38,2,{'types'}},{31,1,{
-'themes'},{{37,2,{'rose'}},{35,2,{'ember'}},{32,2,{'amethyst'}},{36,2,{'frost'}},{33,2,{'cobalt'}},{34,2,{'default'}}}}}
+'Rayfield'},{{2,1,{'components'},{{18,2,{'search'}},{8,2,{'descriptor'}},{30,2,{'window'}},{14,2,{'keybind'}},{9,2,{
+'divider'}},{5,2,{'chrome'}},{29,2,{'toggle'}},{11,2,{'dropdown'}},{12,2,{'group'}},{15,2,{'notification'}},{28,2,{
+'toast'}},{10,2,{'drag'}},{27,2,{'text'}},{7,2,{'console'}},{23,2,{'tab'}},{24,2,{'tabSection'}},{20,2,{'sidebar'}},{13,
+2,{'input'}},{25,2,{'tabSelector'}},{21,2,{'slider'}},{3,2,{'action'}},{22,2,{'stat'}},{19,2,{'section'}},{17,2,{
+'progress'}},{4,2,{'button'}},{16,2,{'popup'}},{6,2,{'colorpicker'}},{26,2,{'tag'}}}},{39,1,{'utility'},{{51,2,{
+'imageCache'}},{65,2,{'persistenceSettings'}},{68,2,{'services'}},{47,2,{'flagNames'}},{69,2,{'textMetrics'}},{62,2,{
+'persistence'}},{50,2,{'image'}},{70,2,{'variables'}},{55,2,{'log'}},{58,2,{'network'}},{40,2,{'HapticEngine'}},{52,2,{
+'layouts'}},{67,2,{'runtime'}},{66,2,{'persistenceWrite'}},{59,2,{'odometer'}},{54,2,{'lockable'}},{71,2,{'windowSizing'
+}},{60,2,{'ordering'}},{53,2,{'locale'}},{48,2,{'fontManager'}},{63,2,{'persistenceConfig'}},{41,2,{'assetResolver'}},{
+61,2,{'path'}},{57,2,{'moveable'}},{56,2,{'logoImage'}},{44,2,{'enums'}},{64,2,{'persistencePaths'}},{49,2,{'functions'}
+},{42,2,{'colors'}},{43,2,{'constants'}},{46,2,{'filesystemManager'}},{45,2,{'filesystem'}}}},{38,2,{'types'}},{31,1,{
+'themes'},{{33,2,{'cobalt'}},{35,2,{'ember'}},{34,2,{'default'}},{37,2,{'rose'}},{36,2,{'frost'}},{32,2,{'amethyst'}}}}}
 }},'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,
 tostring,tonumber,_VERSION local e,f,g,h,i,j,k=aj.insert,aj.remove,aj.freeze or function(e)return e end,al.wrap,ae.sub,
 ae.match,ae.gmatch if c and i(c,1,4)=='Lune'then local l,m=ap(ao,'@lune/task')if l and m then af=m end end local l=af
