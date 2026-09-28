@@ -1,4 +1,4 @@
--- Rayfield Stable Fixed v1.2.0 by Astris Hub (79f59ec, 2026-09-28)
+-- Rayfield Stable Fixed v1.2.0 by Astris Hub (5db6e8d, 2026-09-28)
 local a local aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,as,at,au={function()local b,c,d=a(1)local e return(
 function(...)local f,g,h,i,j=d(c.utility.variables),d(c.utility.image),d(c.utility.locale),d(c.utility.constants),d(c.
 types)export type Theme=j.Theme export type Translator=j.Translator export type Translations=j.Translations export type
@@ -1706,149 +1706,154 @@ EasingStyle.Exponential,Enum.EasingDirection.Out),UDim2.fromOffset(185,50),UDim2
 TweenInfo.new(0.2,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),320,41,0.55,0.55,0.04,8,2,8,80,20,24,5,0.8,0.8,16,28,
 5,32 function j._fillGameSubtitle(J)task.spawn(function()local K,L=pcall(function()return b.getService
 'MarketplaceService':GetProductInfo(game.PlaceId)end)local M=if K and type(L)=='table'and type(L.Name)=='string'then L.
-Name else nil if not M or M==''or J.unloaded or not J.subtitle then return end if utf8.len(M)and(utf8.len(M)::number)>I
-then M=string.sub(M,1,(utf8.offset(M,I)::number)-1)..'...'end J.subtitle.Text=M end)end local J,K,L,M=
-'https://discord.gg/Bukn7UyvKx',-1E5,180,1 local function N(O):(UDim2,number)local P=g.workspace.CurrentCamera local Q=P
-and P.ViewportSize local R=am.scale(Q,g.userInputService.TouchEnabled)return am.fit(Q,O,R),R end local O,P={
-'TopLeftRadius','TopRightRadius','BottomLeftRadius','BottomRightRadius'},(function()return(pcall(function()local O=
-Instance.new'UICorner'O.TopLeftRadius=UDim.new(0,1)O:Destroy()end))end)()local function Q(R)return if R then c.sidebar
-else c.top end local R={WindowColor=true,ElementGradient=true,ElementStrokeGradient=true,TabBackground=true,TabStroke=
-true,SliderProgress=true}local function S(T,U)if R[T]and typeof(U)=='Color3'then return ColorSequence.new(U)end return U
-end local function T(U)return if typeof(U)=='ColorSequence'then U.Keypoints[1].Value else U end local function U(V,W)
-local X=V._toastsTop if not X then return end local Y=if V._collapsedShown then p else o if not W or X.Position==Y then
-X.Position=Y return end g.tweenService:Create(X,q,{Position=Y}):Play()end local function V(W,X)local Y=0.299*W.R+0.587*W
-.G+0.114*W.B local Z=if Y>0.5 then Color3.new(0,0,0)else Color3.new(1,1,1)return W:Lerp(Z,X)end local function W(X,Y)if
-Y.ElementGradient then local Z=T(X.ElementGradient)if Y.ElementStroke==nil then X.ElementStroke=V(Z,0.28)end if Y.
-ElementStrokeGradient==nil then X.ElementStrokeGradient=ColorSequence.new(V(Z,0.4))end if Y.ElementStrokeHover==nil then
-X.ElementStrokeHover=V(Z,0.52)end end if Y.TabBackground and Y.TabStroke==nil then X.TabStroke=ColorSequence.new(V(T(X.
-TabBackground),0.4))end end local function X(Y)if typeof(Y)=='table'then return Y elseif typeof(Y)=='string'then local Z
-=i:FindFirstChild(string.lower(Y))if Z then return ac(Z)end ak.warn("Rayfield: unknown theme '"..Y.."', using default")
-elseif Y~=nil then ak.warn[[Rayfield: invalid theme (expected a built-in name or a theme table), using default]]end
-return ac(i.default)end local function Y(Z)local _,ao=table.clone(ac(i.default)),X(Z)for ap,aq in ao do _[ap]=S(ap,aq)
-end if typeof(Z)=='table'then W(_,ao)end local ap=if typeof(Z)=='table'then Z else nil if not(ap and(ap.Font or ap.font)
-)then _.Font=g.brandFont(Enum.FontWeight.Medium)end if not(ap and(ap.TitleFont or ap.titleFont))then _.TitleFont=g.
-brandFont(Enum.FontWeight.SemiBold)end return _ end function j.new(ao)ao=if typeof(ao)=='table'then ao else{}if ao.
-translations or ao.Translations then aj.register(ao.translations or ao.Translations)end if ao.translator or ao.
-Translator then aj.translator=ao.translator or ao.Translator end aj.setActive(ao.locale or ao.Locale or aj.detect())
-local ap=ao.fallbackFont or ao.FallbackFont if ap then g.setFallbackFont(ap)end local aq=Q(ao.sidebarLayout or ao.
-SidebarLayout)local Z,_=N(aq.mode)local ar=ao.icon if ar==nil then ar=ao.Icon end if ar==nil then ar=an.logo()elseif ar
-==false then ar=nil end local as=setmetatable({name=ao.name or ao.Name or'Example',subheading=if(ao.subtitle or ao.
-Subtitle)~=nil then(ao.subtitle or ao.Subtitle)or nil else'',_subtitleIsGame=(ao.subtitle or ao.Subtitle)==nil,layout=aq
-,size=Z,scale=_,_overlayScales={},instances={},connections={},icon=ar,showName=ao.showName or ao.ShowName or ao.name or
-ao.Name or'Example',showIcon=ao.showIcon or ao.ShowIcon or ar or ai.icons.rayfield,showIconOnly=ao.showIconOnly or ao.
-ShowIconOnly or false,profileText=ao.profile or ao.Profile,themeProperties={},localeProperties={},tabs={},tabSections={}
-,tags={},selectedTab=nil,theme=Y(ao.theme or ao.Theme),controls={},configuration=(function()local as=ao.configuration or
-ao.Configuration if not as then return{}end return{autoSave=as.autoSave or as.AutoSave,autoLoad=as.autoLoad or as.
-AutoLoad,fileName=as.fileName or as.FileName,customFolder=as.customFolder or as.CustomFolder}end)()},j)as.Flags=
-setmetatable({},{__index=function(at,au)local av=as.controls[au]return av and av.value end,__newindex=function(at,au,av)
-local aw=as.controls[au]if not aw then ak.warn("Rayfield: no flag '"..tostring(au).."' to set")return end aw:Set(av)end,
-__iter=function()local at return function()local au at,au=next(as.controls,at)if at then return at,au.value end return
-nil end end})as.settings={toggleKeybind=Enum.KeyCode.K,mouseOverride=true,keepOnScreen=false,welcomeToast=true,haptics=
-true,showProfile=true}as.screenGui=as:Create('ScreenGui',{Name=g.httpService:GenerateGUID(false),IgnoreGuiInset=true,
-ResetOnSpawn=false,Enabled=true,DisplayOrder=ai.displayOrder.window,ZIndexBehavior=Enum.ZIndexBehavior.Global,Parent=g.
-guiContainer})as.main=as:Create('Frame',{BackgroundColor3=Color3.fromRGB(255,255,255),Name=as.name,ZIndex=1,AnchorPoint=
-Vector2.new(0.5,0.5),Position=UDim2.new(0.5,0,0.5,0),Size=UDim2.fromOffset((as.size.X.Offset-50),0),
-BackgroundTransparency=1,Visible=false,Parent=as.screenGui})as.uiScale=as:Create('UIScale',{Scale=as.scale,Parent=as.
-main})as.drag=ac(ab.Parent.drag).new(as)as.windowCorner=as:Create('UICorner',{Parent=as.main},{CornerRadius=
-'CornerRoundness'})as.windowStroke=as:Create('UIStroke',{Transparency=1,Parent=as.main},{Color='SurfaceStroke'})as.
-windowGradient=as:Create('UIGradient',{Rotation=270,Offset=Vector2.new(0,-0.1),Parent=as.main},{Color={'WindowColor',ag.
-toColorSequence}})as.bottomFade=as:Create('Frame',{BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,
-AnchorPoint=Vector2.new(1,1),Position=UDim2.fromScale(1,1),Size=as.layout.fadeSize,ZIndex=ai.zIndex.bottomFade,
-BackgroundTransparency=1,Parent=as.main})as.bottomFadeCorner=as:_roundCorners(as.bottomFade,as.layout.fadeCorners)as.
-bottomFadeGradient=as:Create('UIGradient',{Rotation=270,Offset=Vector2.new(0,0.2),Transparency=as.layout.
-fadeTransparency,Parent=as.bottomFade},{Color={'WindowColor',function(at)return ColorSequence.new(ag.toColorSequence(at)
-.Keypoints[1].Value)end}})as.topbar=as:Create('Frame',{BackgroundTransparency=1,Size=UDim2.new(1,0,0,as.layout.
-topbarHeight),Active=true,Parent=as.main})as.topContainer=as:Create('Frame',{Size=UDim2.new(0,300,0,24),Position=UDim2.
-new(0,25,0.5,0),AutomaticSize=Enum.AutomaticSize.Y,AnchorPoint=Vector2.new(0,0.5),BackgroundTransparency=1,Parent=as.
-topbar})as.topContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,8),FillDirection=Enum.FillDirection.
-Horizontal,VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Left,SortOrder=
-Enum.SortOrder.LayoutOrder,Parent=as.topContainer})as.titleContainer=as:Create('Frame',{Size=UDim2.fromOffset(50,24),
-Position=UDim2.new(0,25,0.5,0),AutomaticSize=Enum.AutomaticSize.XY,AnchorPoint=Vector2.new(0,0.5),BackgroundTransparency
-=1,LayoutOrder=1,Parent=as.topContainer})as.titleContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,3),
-FillDirection=Enum.FillDirection.Vertical,VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.SortOrder.
-LayoutOrder,Parent=as.titleContainer})if as.name then as.title=as:Create('TextLabel',{Text=aj.t(as.name),FontFace=g.
-brandFont(Enum.FontWeight.Medium),Size=UDim2.fromOffset(50,20),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency
-=1,TextSize=20,TextXAlignment=Enum.TextXAlignment.Left,TextWrapped=true,TextTransparency=1,Parent=as.titleContainer},{
-FontFace='Font',TextColor3='TitlingColor'})end if as.icon then as.topbarIcon=as:Create('ImageLabel',{Image=as.icon,
-BackgroundTransparency=1,Size=UDim2.fromOffset(42,42),ImageTransparency=1,Parent=as.topContainer},{ImageColor3=
-'TitlingColor'})end if as.subheading then as.subtitle=as:Create('TextLabel',{Text=aj.t(as.subheading),Size=UDim2.
-fromOffset(50,12),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency=1,TextSize=12,TextXAlignment=Enum.
-TextXAlignment.Left,TextWrapped=true,TextTransparency=1,Parent=as.titleContainer},{TextColor3='TitlingColor',FontFace=
-'Font'})if as._subtitleIsGame then as:_fillGameSubtitle()end end as.tagContainer=as:Create('Frame',{AnchorPoint=Vector2.
-new(0,0.5),Position=UDim2.new(0,25,0.5,0),Size=UDim2.fromOffset(50,24),AutomaticSize=Enum.AutomaticSize.XY,
-BackgroundTransparency=1,LayoutOrder=2,Visible=false,Parent=as.topContainer})as.tagContainerLayout=as:Create(
-'UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
-VerticalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=as.tagContainer})as.windowShadow=as:CreateGlow(as.
-main,'ShadowColor',20,1)as.elements=as:Create('Frame',{Size=UDim2.new(1,0,1,-as.layout.chromeHeight),Position=UDim2.
-fromScale(1,1),AnchorPoint=Vector2.new(1,1),BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,
-BackgroundTransparency=1,ClipsDescendants=true,Parent=as.main})if as.layout.mode=='sidebar'then as.elementsCorner=as:
-_roundCorners(as.elements,as.layout.cardCorners)as.elementsStroke=as:Create('UIStroke',{ApplyStrokeMode=Enum.
-ApplyStrokeMode.Border,Transparency=1,Parent=as.elements},{Color='SurfaceStroke'})as:Create('UIGradient',{Rotation=as.
-layout.cardStrokeRotation,Transparency=as.layout.cardStrokeTransparency,Parent=as.elementsStroke})end as.elementsLayout=
-as:Create('UIPageLayout',{Padding=UDim.new(0,0),FillDirection=as.layout.pageDirection,VerticalAlignment=Enum.
-VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,
-ScrollWheelInputEnabled=false,GamepadInputEnabled=false,TouchInputEnabled=false,EasingStyle=Enum.EasingStyle.Exponential
-,TweenTime=0.4,Parent=as.elements})if as.layout.mode=='sidebar'then f.build(as,as.layout)f.applyWidth(as,c.railWidthFor(
-as.layout,as.size.X.Offset))else as.tabList=as:Create('ScrollingFrame',{Name='Tabs',Active=true,Size=UDim2.new(1,0,0,as.
-layout.tabStripHeight),Position=UDim2.new(0.5,0,0,as.layout.tabStripTop),AnchorPoint=Vector2.new(0.5,0),
-BackgroundTransparency=1,AutomaticCanvasSize=Enum.AutomaticSize.X,CanvasSize=UDim2.new(0,0,0,0),ScrollBarThickness=0,
-ScrollBarImageTransparency=1,ScrollingDirection=Enum.ScrollingDirection.X,Parent=as.main})as.tabListLayout=as:Create(
-'UIListLayout',{Padding=UDim.new(0,7),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
-VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Left,SortOrder=Enum.SortOrder.LayoutOrder,Parent=
-as.tabList})as:Create('UIPadding',{PaddingLeft=UDim.new(0,22),PaddingRight=UDim.new(0,10),Parent=as.tabList})end as.
-actionContainer=as:Create('Frame',{AnchorPoint=Vector2.new(1,0.5),AutomaticSize=Enum.AutomaticSize.X,Size=UDim2.
-fromOffset(0,24),Position=UDim2.new(1,-20,0.5,0),BackgroundTransparency=1,Parent=as.topbar})as.actionsListLayout=as:
-Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.
-VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Right,SortOrder=Enum.SortOrder.LayoutOrder,Parent=
-as.actionContainer})as.rfSettings=as:CreateTab{name='Rayfield Settings',customOrder=1000,neglectSelector=true,
-forgetState=true}ac(ab.Parent.action).new(as,{name='Close',icon=ai.icons.close,order=1,callback=function()as:ToggleHide(
-)end})as.minimiseAction=ac(ab.Parent.action).new(as,{name='Minimise',icon=ai.icons.minimise,order=2,callback=function()
-as:ToggleMinimise()end})as.settingsAction=ac(ab.Parent.action).new(as,{name='Settings',icon=ai.icons.settings,order=3,
-linkedTab=as.rfSettings,callback=function()as.rfSettings:Select()end})e.build(as)as:_applyRailWidth()as.unloaded=false
-as.minimised=false as.hidden=true as.animating=false as._revealing=false as.hasShownOnce=false as._collapsedShown=false
-as:LoadSettings()if as.layout.mode=='sidebar'then f.reflowProfile(as)f.setSubtitle(as,as.profileText)end al.
-setContainer(as.screenGui)al.setEnabled(as.settings.haptics)d.buildCollapsedFace(as)as:_bindKeybind()as:
-_bindMouseOverride()as:_bindTopbarDrag()as:_watchViewport()as:_buildSettingsUI()as.discordInvite=ao.discordInvite or ao.
-DiscordInvite or J if ao.homeTab~=false and ao.HomeTab~=false then as:_buildHomeTab()end if ao.discordReminder~=false
-and ao.DiscordReminder~=false then as:_startDiscordReminder()end if ao.themeTab~=false and ao.ThemeTab~=false then as:
-_buildThemeTab()end if as.settings.theme then as:ChangeTheme(as.settings.theme)end as:_syncLiveAnimation()return as end
-local function ao(ap:string):boolean local aq=getfenv()local ar=(aq.getgenv and aq.getgenv().setclipboard)or aq.
-setclipboard or aq.toclipboard if type(ar)~='function'then return false end return(pcall(ar,ap))end local function ap():
-number local aq,ar=pcall(function()return b.getService'Stats'.Network.ServerStatsItem['Data Ping']:GetValue()end)if aq
-and type(ar)=='number'then return ar end local as=g.localPlayer local at,au=pcall(function()return as:GetNetworkPing()
-end)return if at and type(au)=='number'then au*2000 else 0 end local function aq():number local ar,as=pcall(function()
-return#b.getService'Players':GetPlayers()end)return if ar then as else 0 end function j._buildHomeTab(ar)ar.homeTab=ar:
-CreateTab{name='Home',icon=ai.icons.home,customOrder=K,builtIn=true,keepSelection=true,forgetState=true}local as=ar.
-homeTab:CreateGroup{direction='row'}local at,au,av,aw=as:CreateStat{name='FPS',value=60,numberEasing=false},as:
-CreateStat{name='Ping',value=0,suffix=' ms',numberEasing=false},as:CreateStat{name='Players',value=aq(),numberEasing=
-false},ar.discordInvite ar.homeTab:CreateText{name='Astris Hub Discord',text='Updates, new scripts and help. '..string.
-gsub(aw,'^https?://','')}ar.homeTab:CreateButton{name='Copy Discord invite',callback=function()if ao(aw)then ar:Toast{
-title='Invite copied',subtitle='Paste it in your browser or Discord'}else ar:Toast{title=aw,subtitle=
-"Your executor can't copy, type it in instead"}end end}local Z,_=0,0 ar:Connect(g.runService.Heartbeat,function(ax:
-number)Z+=1 _+=ax if _<M then return end at:Set(math.round(Z/_))au:Set(math.round(ap()))av:Set(aq())Z,_=0,0 end)end
-function j._startDiscordReminder(ar)local as,at=string.gsub(ar.discordInvite,'^https?://',''),0 ar:Connect(g.runService.
-Heartbeat,function(au:number)at+=au if at<L then return end at=0 ar:Notify{title='Join the Astris Hub Discord',content=
-as,icon=ai.icons.discord}end)end local ar,as=100000,{'Default','Amethyst','Cobalt','Ember','Frost','Rose'}function j.
-_buildThemeTab(at)at.themeTab=at:CreateTab{name='Theme',icon=ai.icons.palette,customOrder=ar,builtIn=true,forgetState=
-true}local au='Default'for av,aw in as do if string.lower(aw)==at.settings.theme then au=aw end end at.themeTab:
-CreateDropdown{name='Theme',description='Changes the look of this menu. Saved for next time.',options=as,currentOption=
-au,callback=function(av)if typeof(av)~='string'then return end at.settings.theme=string.lower(av)at:ChangeTheme(at.
-settings.theme)at:SaveSettings()end}task.defer(function()if not at.unloaded and not at.selectedTab and at.themeTab then
-at.themeTab:Select(true)end end)end function j._syncLiveAnimation(at)if not at.theme.LiveAnimation then at.
-_liveAnimating=false return end if at._liveAnimating then return end at._liveAnimating=true at._liveGeneration=(at.
-_liveGeneration or 0)+1 local au=at._liveGeneration task.spawn(function()local av,aw=true,TweenInfo.new(10,Enum.
-EasingStyle.Quint,Enum.EasingDirection.Out)while at._liveGeneration==au and at._liveAnimating and not at.unloaded do
-local ax=g.tweenService:Create(at.windowGradient,aw,{Offset=Vector2.new(if av then 0.4 else-0.2,0),Rotation=(if av then
-220 else 280)})at._liveTween=ax ax:Play()ax.Completed:Wait()av=not av end if at._liveGeneration==au then at.
-_liveAnimating=false at._liveTween=nil end end)end function j.ChangeTheme(at,au)local av=if typeof(au)=='table'then au
-else Y(au)for aw,ax in av do at.theme[aw]=S(aw,ax)end if typeof(au)=='table'then W(at.theme,av)end for aw,ax in at.
-themeProperties do for Z,_ in ax do local ay=if typeof(_)=='table'then _[2](at.theme[_[1] ])else at.theme[_]if typeof(ay
-)=='Color3'or typeof(ay)=='number'then g.tweenService:Create(aw,TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.
-EasingDirection.Out),{[Z]=ay}):Play()else aw[Z]=ay end end end if at.hidden then at._themeRefreshPending=true else at:
-_refreshElementThemes()end at:_syncLiveAnimation()end function j._refreshElementThemes(at)for au,av in at.tabs do for aw
-,ax in av.elements do if ax._refreshTheme then ax:_refreshTheme()end end end end function j.CreateTab(at,au)assert(not
-at.unloaded,'Cannot create a tab on an unloaded window.')local av=ac(ab.Parent.tab).new(at,au)table.insert(at.tabs,av)if
-not av.neglectSelector then local aw=not av.builtIn or av.keepSelection for ax,ay in at.tabs do if ay~=av and not ay.
+Name else nil if not M or M==''or J.unloaded or not J.subtitle or not J._subtitleIsGame then return end if utf8.len(M)
+and(utf8.len(M)::number)>I then M=string.sub(M,1,(utf8.offset(M,I)::number)-1)..'...'end J.subtitle.Text=M end)end
+function j.SetName(J,K:string)J.name=K if J.title then J.title.Text=aj.resolve(K)end if J._pillFollowsName then J.
+showName=K if J.collapsedTitle then J.collapsedTitle.Text=K end end end function j.SetSubtitle(J,K:string?)J.
+_subtitleIsGame=false if J.subtitle then J.subtitle.Text=if K then aj.resolve(K)else''J.subtitle.Visible=K~=nil and K~=
+''end end local J,K,L,M='https://discord.gg/Bukn7UyvKx',-1E5,180,1 local function N(O):(UDim2,number)local P=g.workspace
+.CurrentCamera local Q=P and P.ViewportSize local R=am.scale(Q,g.userInputService.TouchEnabled)return am.fit(Q,O,R),R
+end local O,P={'TopLeftRadius','TopRightRadius','BottomLeftRadius','BottomRightRadius'},(function()return(pcall(function
+()local O=Instance.new'UICorner'O.TopLeftRadius=UDim.new(0,1)O:Destroy()end))end)()local function Q(R)return if R then c
+.sidebar else c.top end local R={WindowColor=true,ElementGradient=true,ElementStrokeGradient=true,TabBackground=true,
+TabStroke=true,SliderProgress=true}local function S(T,U)if R[T]and typeof(U)=='Color3'then return ColorSequence.new(U)
+end return U end local function T(U)return if typeof(U)=='ColorSequence'then U.Keypoints[1].Value else U end
+local function U(V,W)local X=V._toastsTop if not X then return end local Y=if V._collapsedShown then p else o if not W
+or X.Position==Y then X.Position=Y return end g.tweenService:Create(X,q,{Position=Y}):Play()end local function V(W,X)
+local Y=0.299*W.R+0.587*W.G+0.114*W.B local Z=if Y>0.5 then Color3.new(0,0,0)else Color3.new(1,1,1)return W:Lerp(Z,X)end
+local function W(X,Y)if Y.ElementGradient then local Z=T(X.ElementGradient)if Y.ElementStroke==nil then X.ElementStroke=
+V(Z,0.28)end if Y.ElementStrokeGradient==nil then X.ElementStrokeGradient=ColorSequence.new(V(Z,0.4))end if Y.
+ElementStrokeHover==nil then X.ElementStrokeHover=V(Z,0.52)end end if Y.TabBackground and Y.TabStroke==nil then X.
+TabStroke=ColorSequence.new(V(T(X.TabBackground),0.4))end end local function X(Y)if typeof(Y)=='table'then return Y
+elseif typeof(Y)=='string'then local Z=i:FindFirstChild(string.lower(Y))if Z then return ac(Z)end ak.warn(
+"Rayfield: unknown theme '"..Y.."', using default")elseif Y~=nil then ak.warn
+[[Rayfield: invalid theme (expected a built-in name or a theme table), using default]]end return ac(i.default)end
+local function Y(Z)local _,ao=table.clone(ac(i.default)),X(Z)for ap,aq in ao do _[ap]=S(ap,aq)end if typeof(Z)=='table'
+then W(_,ao)end local ap=if typeof(Z)=='table'then Z else nil if not(ap and(ap.Font or ap.font))then _.Font=g.brandFont(
+Enum.FontWeight.Medium)end if not(ap and(ap.TitleFont or ap.titleFont))then _.TitleFont=g.brandFont(Enum.FontWeight.
+SemiBold)end return _ end function j.new(ao)ao=if typeof(ao)=='table'then ao else{}if ao.translations or ao.Translations
+then aj.register(ao.translations or ao.Translations)end if ao.translator or ao.Translator then aj.translator=ao.
+translator or ao.Translator end aj.setActive(ao.locale or ao.Locale or aj.detect())local ap=ao.fallbackFont or ao.
+FallbackFont if ap then g.setFallbackFont(ap)end local aq=Q(ao.sidebarLayout or ao.SidebarLayout)local Z,_=N(aq.mode)
+local ar=ao.icon if ar==nil then ar=ao.Icon end if ar==nil then ar=an.logo()elseif ar==false then ar=nil end local as=
+setmetatable({name=ao.name or ao.Name or'Example',subheading=if(ao.subtitle or ao.Subtitle)~=nil then(ao.subtitle or ao.
+Subtitle)or nil else'',_subtitleIsGame=(ao.subtitle or ao.Subtitle)==nil,layout=aq,size=Z,scale=_,_overlayScales={},
+instances={},connections={},icon=ar,showName=ao.showName or ao.ShowName or ao.name or ao.Name or'Example',
+_pillFollowsName=(ao.showName or ao.ShowName)==nil,showIcon=ao.showIcon or ao.ShowIcon or ar or ai.icons.rayfield,
+showIconOnly=ao.showIconOnly or ao.ShowIconOnly or false,profileText=ao.profile or ao.Profile,themeProperties={},
+localeProperties={},tabs={},tabSections={},tags={},selectedTab=nil,theme=Y(ao.theme or ao.Theme),controls={},
+configuration=(function()local as=ao.configuration or ao.Configuration if not as then return{}end return{autoSave=as.
+autoSave or as.AutoSave,autoLoad=as.autoLoad or as.AutoLoad,fileName=as.fileName or as.FileName,customFolder=as.
+customFolder or as.CustomFolder}end)()},j)as.Flags=setmetatable({},{__index=function(at,au)local av=as.controls[au]
+return av and av.value end,__newindex=function(at,au,av)local aw=as.controls[au]if not aw then ak.warn(
+"Rayfield: no flag '"..tostring(au).."' to set")return end aw:Set(av)end,__iter=function()local at return function()
+local au at,au=next(as.controls,at)if at then return at,au.value end return nil end end})as.settings={toggleKeybind=Enum
+.KeyCode.K,mouseOverride=true,keepOnScreen=false,welcomeToast=true,haptics=true,showProfile=true}as.screenGui=as:Create(
+'ScreenGui',{Name=g.httpService:GenerateGUID(false),IgnoreGuiInset=true,ResetOnSpawn=false,Enabled=true,DisplayOrder=ai.
+displayOrder.window,ZIndexBehavior=Enum.ZIndexBehavior.Global,Parent=g.guiContainer})as.main=as:Create('Frame',{
+BackgroundColor3=Color3.fromRGB(255,255,255),Name=as.name,ZIndex=1,AnchorPoint=Vector2.new(0.5,0.5),Position=UDim2.new(
+0.5,0,0.5,0),Size=UDim2.fromOffset((as.size.X.Offset-50),0),BackgroundTransparency=1,Visible=false,Parent=as.screenGui})
+as.uiScale=as:Create('UIScale',{Scale=as.scale,Parent=as.main})as.drag=ac(ab.Parent.drag).new(as)as.windowCorner=as:
+Create('UICorner',{Parent=as.main},{CornerRadius='CornerRoundness'})as.windowStroke=as:Create('UIStroke',{Transparency=1
+,Parent=as.main},{Color='SurfaceStroke'})as.windowGradient=as:Create('UIGradient',{Rotation=270,Offset=Vector2.new(0,-
+0.1),Parent=as.main},{Color={'WindowColor',ag.toColorSequence}})as.bottomFade=as:Create('Frame',{BackgroundColor3=Color3
+.fromRGB(255,255,255),BorderSizePixel=0,AnchorPoint=Vector2.new(1,1),Position=UDim2.fromScale(1,1),Size=as.layout.
+fadeSize,ZIndex=ai.zIndex.bottomFade,BackgroundTransparency=1,Parent=as.main})as.bottomFadeCorner=as:_roundCorners(as.
+bottomFade,as.layout.fadeCorners)as.bottomFadeGradient=as:Create('UIGradient',{Rotation=270,Offset=Vector2.new(0,0.2),
+Transparency=as.layout.fadeTransparency,Parent=as.bottomFade},{Color={'WindowColor',function(at)return ColorSequence.
+new(ag.toColorSequence(at).Keypoints[1].Value)end}})as.topbar=as:Create('Frame',{BackgroundTransparency=1,Size=UDim2.
+new(1,0,0,as.layout.topbarHeight),Active=true,Parent=as.main})as.topContainer=as:Create('Frame',{Size=UDim2.new(0,300,0,
+24),Position=UDim2.new(0,25,0.5,0),AutomaticSize=Enum.AutomaticSize.Y,AnchorPoint=Vector2.new(0,0.5),
+BackgroundTransparency=1,Parent=as.topbar})as.topContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,8),
+FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.
+HorizontalAlignment.Left,SortOrder=Enum.SortOrder.LayoutOrder,Parent=as.topContainer})as.titleContainer=as:Create(
+'Frame',{Size=UDim2.fromOffset(50,24),Position=UDim2.new(0,25,0.5,0),AutomaticSize=Enum.AutomaticSize.XY,AnchorPoint=
+Vector2.new(0,0.5),BackgroundTransparency=1,LayoutOrder=1,Parent=as.topContainer})as.titleContainerLayout=as:Create(
+'UIListLayout',{Padding=UDim.new(0,3),FillDirection=Enum.FillDirection.Vertical,VerticalAlignment=Enum.VerticalAlignment
+.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=as.titleContainer})if as.name then as.title=as:Create('TextLabel',{
+Text=aj.t(as.name),FontFace=g.brandFont(Enum.FontWeight.Medium),Size=UDim2.fromOffset(50,20),AutomaticSize=Enum.
+AutomaticSize.X,BackgroundTransparency=1,TextSize=20,TextXAlignment=Enum.TextXAlignment.Left,TextWrapped=true,
+TextTransparency=1,Parent=as.titleContainer},{FontFace='Font',TextColor3='TitlingColor'})end if as.icon then as.
+topbarIcon=as:Create('ImageLabel',{Image=as.icon,BackgroundTransparency=1,Size=UDim2.fromOffset(42,42),ImageTransparency
+=1,Parent=as.topContainer},{ImageColor3='TitlingColor'})end if as.subheading then as.subtitle=as:Create('TextLabel',{
+Text=aj.t(as.subheading),Size=UDim2.fromOffset(50,12),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency=1,
+TextSize=12,TextXAlignment=Enum.TextXAlignment.Left,TextWrapped=true,TextTransparency=1,Parent=as.titleContainer},{
+TextColor3='TitlingColor',FontFace='Font'})if as._subtitleIsGame then as:_fillGameSubtitle()end end as.tagContainer=as:
+Create('Frame',{AnchorPoint=Vector2.new(0,0.5),Position=UDim2.new(0,25,0.5,0),Size=UDim2.fromOffset(50,24),AutomaticSize
+=Enum.AutomaticSize.XY,BackgroundTransparency=1,LayoutOrder=2,Visible=false,Parent=as.topContainer})as.
+tagContainerLayout=as:Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,
+VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=as.tagContainer})as.
+windowShadow=as:CreateGlow(as.main,'ShadowColor',20,1)as.elements=as:Create('Frame',{Size=UDim2.new(1,0,1,-as.layout.
+chromeHeight),Position=UDim2.fromScale(1,1),AnchorPoint=Vector2.new(1,1),BackgroundColor3=Color3.fromRGB(255,255,255),
+BorderSizePixel=0,BackgroundTransparency=1,ClipsDescendants=true,Parent=as.main})if as.layout.mode=='sidebar'then as.
+elementsCorner=as:_roundCorners(as.elements,as.layout.cardCorners)as.elementsStroke=as:Create('UIStroke',{
+ApplyStrokeMode=Enum.ApplyStrokeMode.Border,Transparency=1,Parent=as.elements},{Color='SurfaceStroke'})as:Create(
+'UIGradient',{Rotation=as.layout.cardStrokeRotation,Transparency=as.layout.cardStrokeTransparency,Parent=as.
+elementsStroke})end as.elementsLayout=as:Create('UIPageLayout',{Padding=UDim.new(0,0),FillDirection=as.layout.
+pageDirection,VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Center,
+SortOrder=Enum.SortOrder.LayoutOrder,ScrollWheelInputEnabled=false,GamepadInputEnabled=false,TouchInputEnabled=false,
+EasingStyle=Enum.EasingStyle.Exponential,TweenTime=0.4,Parent=as.elements})if as.layout.mode=='sidebar'then f.build(as,
+as.layout)f.applyWidth(as,c.railWidthFor(as.layout,as.size.X.Offset))else as.tabList=as:Create('ScrollingFrame',{Name=
+'Tabs',Active=true,Size=UDim2.new(1,0,0,as.layout.tabStripHeight),Position=UDim2.new(0.5,0,0,as.layout.tabStripTop),
+AnchorPoint=Vector2.new(0.5,0),BackgroundTransparency=1,AutomaticCanvasSize=Enum.AutomaticSize.X,CanvasSize=UDim2.new(0,
+0,0,0),ScrollBarThickness=0,ScrollBarImageTransparency=1,ScrollingDirection=Enum.ScrollingDirection.X,Parent=as.main})as
+.tabListLayout=as:Create('UIListLayout',{Padding=UDim.new(0,7),FillDirection=Enum.FillDirection.Horizontal,
+VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Left,SortOrder=Enum.
+SortOrder.LayoutOrder,Parent=as.tabList})as:Create('UIPadding',{PaddingLeft=UDim.new(0,22),PaddingRight=UDim.new(0,10),
+Parent=as.tabList})end as.actionContainer=as:Create('Frame',{AnchorPoint=Vector2.new(1,0.5),AutomaticSize=Enum.
+AutomaticSize.X,Size=UDim2.fromOffset(0,24),Position=UDim2.new(1,-20,0.5,0),BackgroundTransparency=1,Parent=as.topbar})
+as.actionsListLayout=as:Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,
+VerticalAlignment=Enum.VerticalAlignment.Center,HorizontalAlignment=Enum.HorizontalAlignment.Right,SortOrder=Enum.
+SortOrder.LayoutOrder,Parent=as.actionContainer})as.rfSettings=as:CreateTab{name='Rayfield Settings',customOrder=1000,
+neglectSelector=true,forgetState=true}ac(ab.Parent.action).new(as,{name='Close',icon=ai.icons.close,order=1,callback=
+function()as:ToggleHide()end})as.minimiseAction=ac(ab.Parent.action).new(as,{name='Minimise',icon=ai.icons.minimise,
+order=2,callback=function()as:ToggleMinimise()end})as.settingsAction=ac(ab.Parent.action).new(as,{name='Settings',icon=
+ai.icons.settings,order=3,linkedTab=as.rfSettings,callback=function()as.rfSettings:Select()end})e.build(as)as:
+_applyRailWidth()as.unloaded=false as.minimised=false as.hidden=true as.animating=false as._revealing=false as.
+hasShownOnce=false as._collapsedShown=false as:LoadSettings()if as.layout.mode=='sidebar'then f.reflowProfile(as)f.
+setSubtitle(as,as.profileText)end al.setContainer(as.screenGui)al.setEnabled(as.settings.haptics)d.buildCollapsedFace(as
+)as:_bindKeybind()as:_bindMouseOverride()as:_bindTopbarDrag()as:_watchViewport()as:_buildSettingsUI()as.discordInvite=ao
+.discordInvite or ao.DiscordInvite or J if ao.homeTab~=false and ao.HomeTab~=false then as:_buildHomeTab()end if ao.
+discordReminder~=false and ao.DiscordReminder~=false then as:_startDiscordReminder()end if ao.themeTab~=false and ao.
+ThemeTab~=false then as:_buildThemeTab()end if as.settings.theme then as:ChangeTheme(as.settings.theme)end as:
+_syncLiveAnimation()return as end local function ao(ap:string):boolean local aq=getfenv()local ar=(aq.getgenv and aq.
+getgenv().setclipboard)or aq.setclipboard or aq.toclipboard if type(ar)~='function'then return false end return(pcall(ar
+,ap))end local function ap():number local aq,ar=pcall(function()return b.getService'Stats'.Network.ServerStatsItem[
+'Data Ping']:GetValue()end)if aq and type(ar)=='number'then return ar end local as=g.localPlayer local at,au=pcall(
+function()return as:GetNetworkPing()end)return if at and type(au)=='number'then au*2000 else 0 end local function aq():
+number local ar,as=pcall(function()return#b.getService'Players':GetPlayers()end)return if ar then as else 0 end function
+j._buildHomeTab(ar)ar.homeTab=ar:CreateTab{name='Home',icon=ai.icons.home,customOrder=K,builtIn=true,keepSelection=true,
+forgetState=true}local as=ar.homeTab:CreateGroup{direction='row'}local at,au,av,aw=as:CreateStat{name='FPS',value=60,
+numberEasing=false},as:CreateStat{name='Ping',value=0,suffix=' ms',numberEasing=false},as:CreateStat{name='Players',
+value=aq(),numberEasing=false},ar.discordInvite ar.homeTab:CreateText{name='Astris Hub Discord',text=
+'Updates, new scripts and help. '..string.gsub(aw,'^https?://','')}ar.homeTab:CreateButton{name='Copy Discord invite',
+callback=function()if ao(aw)then ar:Toast{title='Invite copied',subtitle='Paste it in your browser or Discord'}else ar:
+Toast{title=aw,subtitle="Your executor can't copy, type it in instead"}end end}local Z,_=0,0 ar:Connect(g.runService.
+Heartbeat,function(ax:number)Z+=1 _+=ax if _<M then return end at:Set(math.round(Z/_))au:Set(math.round(ap()))av:Set(aq(
+))Z,_=0,0 end)end function j._startDiscordReminder(ar)local as,at=string.gsub(ar.discordInvite,'^https?://',''),0 ar:
+Connect(g.runService.Heartbeat,function(au:number)at+=au if at<L then return end at=0 ar:Notify{title=
+'Join the Astris Hub Discord',content=as,icon=ai.icons.discord}end)end local ar,as=100000,{'Default','Amethyst','Cobalt'
+,'Ember','Frost','Rose'}function j._buildThemeTab(at)at.themeTab=at:CreateTab{name='Theme',icon=ai.icons.palette,
+customOrder=ar,builtIn=true,forgetState=true}local au='Default'for av,aw in as do if string.lower(aw)==at.settings.theme
+then au=aw end end at.themeTab:CreateDropdown{name='Theme',description=
+'Changes the look of this menu. Saved for next time.',options=as,currentOption=au,callback=function(av)if typeof(av)~=
+'string'then return end at.settings.theme=string.lower(av)at:ChangeTheme(at.settings.theme)at:SaveSettings()end}task.
+defer(function()if not at.unloaded and not at.selectedTab and at.themeTab then at.themeTab:Select(true)end end)end
+function j._syncLiveAnimation(at)if not at.theme.LiveAnimation then at._liveAnimating=false return end if at.
+_liveAnimating then return end at._liveAnimating=true at._liveGeneration=(at._liveGeneration or 0)+1 local au=at.
+_liveGeneration task.spawn(function()local av,aw=true,TweenInfo.new(10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out)
+while at._liveGeneration==au and at._liveAnimating and not at.unloaded do local ax=g.tweenService:Create(at.
+windowGradient,aw,{Offset=Vector2.new(if av then 0.4 else-0.2,0),Rotation=(if av then 220 else 280)})at._liveTween=ax ax
+:Play()ax.Completed:Wait()av=not av end if at._liveGeneration==au then at._liveAnimating=false at._liveTween=nil end end
+)end function j.ChangeTheme(at,au)local av=if typeof(au)=='table'then au else Y(au)for aw,ax in av do at.theme[aw]=S(aw,
+ax)end if typeof(au)=='table'then W(at.theme,av)end for aw,ax in at.themeProperties do for Z,_ in ax do local ay=if
+typeof(_)=='table'then _[2](at.theme[_[1] ])else at.theme[_]if typeof(ay)=='Color3'or typeof(ay)=='number'then g.
+tweenService:Create(aw,TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{[Z]=ay}):Play()else aw[Z]=ay
+end end end if at.hidden then at._themeRefreshPending=true else at:_refreshElementThemes()end at:_syncLiveAnimation()end
+function j._refreshElementThemes(at)for au,av in at.tabs do for aw,ax in av.elements do if ax._refreshTheme then ax:
+_refreshTheme()end end end end function j.CreateTab(at,au)assert(not at.unloaded,
+'Cannot create a tab on an unloaded window.')local av=ac(ab.Parent.tab).new(at,au)table.insert(at.tabs,av)if not av.
+neglectSelector then local aw=not av.builtIn or av.keepSelection for ax,ay in at.tabs do if ay~=av and not ay.
 neglectSelector and(not ay.builtIn or ay.keepSelection)then aw=false break end end if aw then av:Select(true)end if not
 at.hidden and not at.minimised then av.topbarItem.Visible=true av:_applyVisual(if at.selectedTab==av then'selected'else
 'unselected',TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out))end end return av end function j.
@@ -2323,87 +2328,87 @@ Flags:{[string]:any},CreateTab:(self:Window,props:TabProps)->Tab,CreateSection:(
 TabSection,CreateTag:(self:Window,props:TagProps)->Tag,Notify:(self:Window,props:NotifyProps)->(),Toast:(self:Window,
 props:ToastProps)->(),Popup:(self:Window,props:PopupProps)->Popup?,Show:(self:Window)->(),Hide:(self:Window)->(),
 ToggleHide:(self:Window)->(),ToggleMinimise:(self:Window)->(),Navigate:(self:Window,tab:string|Tab)->(),ChangeTheme:(
-self:Window,theme:Theme)->(),SetLocale:(self:Window,localeId:string)->(),SetTranslator:(self:Window,translator:
-Translator?)->(),RegisterTranslations:(self:Window,translations:Translations)->(),Save:(self:Window,name:string?)->
-boolean,Load:(self:Window,name:string?)->boolean,ListConfigs:(self:Window)->{string},DeleteConfig:(self:Window,name:
-string)->boolean,GetPath:(self:Window)->(string,string),Get:(self:Window,flag:string)->any,Set:(self:Window,flag:string,
-value:any)->boolean,Unload:(self:Window)->()}export type Rayfield={CreateWindow:(self:Rayfield,props:WindowProps)->
-Window}return{}end)()end,[40]=function()local aa,ab,ac=a(40)local ad return(function(...)local ae,af=ac(ab.Parent.
-variables),{}af.enabled=false type HapticTypes={click:Enum.HapticEffectType?,notify:Enum.HapticEffectType?}local ag:
-HapticTypes,ah,ai={},pcall(function()Instance.new'HapticEffect':Destroy()return{click=Enum.HapticEffectType.UIHover,
-notify=Enum.HapticEffectType.UIClick}end)if ah then ag=ai end local aj:{[Enum.HapticEffectType]:Instance},ak:Instance?={
-}function af.setContainer(al:Instance?)ak=al end function af.releaseContainer(al:Instance?)if al==nil or ak==al then ak=
-nil end end local function al():Instance if ak and ak.Parent then return ak end return ae.guiContainer end
-local function am(an:Enum.HapticEffectType):Instance?local ao=aj[an]if ao and ao.Parent then return ao end local ap,aq=
-pcall(Instance.new,'HapticEffect')if not ap then return nil end local ar=aq::any ar.Type=an local as=pcall(function()aq.
-Parent=al()end)if not as then aq:Destroy()return nil end aj[an]=aq return aq end local function an(ao:Enum.
-HapticEffectType?)if not ao or not af.enabled then return end local ap=am(ao)if ap then local aq=ap::any pcall(aq.Play,
-ap)end end function af.click()an(ag.click)end function af.notify()an(ag.notify)end function af.setEnabled(ao:boolean?)af
-.enabled=ao and true or false if not af.enabled then af.teardown()end end function af.teardown()for ao,ap in aj do
-pcall(ap.Destroy,ap)aj[ao]=nil end end return af end)()end,[41]=function()local aa,ab,ac=a(41)local ad return(function(
-...)local ae,af=ac(ab.Parent.network),ac(ab.Parent.log)export type AssetId=number|string export type AssetDownloadUrl=
-string export type CacheKey=AssetId export type ResolvedAsset=AssetId export type AssetRequestPayload={Url:string,Method
-:string}local ag={Enum={AssetDownloadUrl={RobloxDownloadUrl='https://assetdelivery.roblox.com/v1/asset/?id=%d'::
-AssetDownloadUrl,RoProxyDownloadUrl='https://assetdelivery.roproxy.com/v1/asset?id=%d'::AssetDownloadUrl}}}ag.__index=ag
-ag.__type='assetResolver'type AssetResolverState={contentCache:{[CacheKey]:string}?,contentCacheOrder:{CacheKey}?,
-contentDownloadUrl:AssetDownloadUrl,pendingRequests:{[CacheKey]:{thread}}}export type AssetResolver=AssetResolverState&{
-resolve:(self:AssetResolver,value:unknown)->ResolvedAsset?,getAssetContentFromUrl:(self:AssetResolver,url:string,
-cacheKey:CacheKey?,forced:boolean?)->string?,getAssetContentFromId:(self:AssetResolver,id:AssetId,forced:boolean?)->
-string?}local ah=8 function ag.new(ai:boolean?,aj:AssetDownloadUrl?):AssetResolver local ak:{[CacheKey]:string}?=if ai
-then{}else nil local al=setmetatable({contentCache=ak,contentCacheOrder=if ai then{}::{CacheKey}else nil,
-contentDownloadUrl=aj or ag.Enum.AssetDownloadUrl.RobloxDownloadUrl,pendingRequests={}}::AssetResolverState,ag)::any
-return al end function ag.resolve(ai:AssetResolver,aj:unknown):ResolvedAsset?if type(aj)=='number'then return aj end if
-type(aj)~='string'then return nil end if string.sub(aj,1,11)=='rbxasset://'or string.sub(aj,1,11)=='rbxthumb://'then
-return aj end local ak=tonumber(string.match(aj,'^rbxassetid://(%d+)$'))if ak then return ak end return nil end
-local function ai(aj:unknown):boolean if type(aj)~='table'then return false end local ak=aj::{Body:unknown,StatusCode:
-unknown,Success:unknown}local al=ak.Body if type(al)~='string'or#al==0 then return false end if type(ak.StatusCode)==
-'number'then local am=ak.StatusCode::number return am>=200 and am<300 end if type(ak.Success)=='boolean'then return ak.
-Success::boolean end return false end function ag.getAssetContentFromUrl(aj:AssetResolver,ak:string,al:CacheKey?,am:
-boolean?):string?local an=aj.contentCache if al~=nil and an and not am then local ao=an[al]if ao then return ao end end
-local ao=aj.pendingRequests if al~=nil then local ap=ao[al]if ap then table.insert(ap,coroutine.running())return
-coroutine.yield()end ao[al]={}end local ap,aq:string?=(ae.getRequestFn())if not ap then af.warn
-'No request function available to download asset content.'else local ar,as=pcall(ap,{Url=ak,Method='GET'}::
-AssetRequestPayload)if ar and ai(as)then local at=(as::{Body:string}).Body aq=at if al~=nil and an then local au=aj.
-contentCacheOrder if au and an[al]==nil then table.insert(au,al)local av=if#au>ah then table.remove(au,1)else nil if av
-~=nil then an[av]=nil end end an[al]=at end elseif not am then af.warn('Failed to download asset content for url: '..
-tostring(ak))end end if al~=nil then local ar=ao[al]ao[al]=nil if ar then for as,at in ar do coroutine.resume(at,aq)end
-end end return aq end function ag.getAssetContentFromId(aj:AssetResolver,ak:AssetId,al:boolean?):string?local am=aj:
-resolve(ak)if not am or type(am)~='number'then af.warn('Invalid asset id: '..tostring(am))return nil end local an=string
-.format(aj.contentDownloadUrl,am)return aj:getAssetContentFromUrl(an,am,al)end return ag end)()end,[42]=function()local
-aa,ab,ac=a(42)local ad return(function(...)local ae={}function ae.contrastColor(af:Color3):Color3 local ag=0.299*af.R+
-0.587*af.G+0.114*af.B return if ag>0.5 then Color3.fromRGB(0,0,0)else Color3.fromRGB(255,255,255)end function ae.
-toColorSequence(af:Color3|ColorSequence):ColorSequence return if typeof(af)=='ColorSequence'then af else ColorSequence.
-new(af)end function ae.contrastText(af:Color3):Color3 local ag=0.299*af.R+0.587*af.G+0.114*af.B return if ag>0.6 then
-Color3.fromRGB(20,20,20)else Color3.fromRGB(255,255,255)end return ae end)()end,[43]=function()local aa,ab,ac=a(43)local
-ad return(function(...)local ae={}ae.fontAsset='rbxassetid://12187365364'ae.pillResizeInfo=TweenInfo.new(0.4,Enum.
-EasingStyle.Exponential,Enum.EasingDirection.Out)ae.icons={close=83277910885129,minimise=108115485663409,maximise=
-88738500661569,settings=129180860773723,search=100604009889706,chevron=88479147175134,check=125626312718314,dot=
-91452555903853,colorpicker=91452555903853,banner=111263549366178,config=125823673784681,rayfield=80387863064905,palette=
-10734910430,home=10723424646,discord=10734888000}ae.accent={on=Color3.fromRGB(23,153,110),onStroke=Color3.fromRGB(32,201
-,144)}ae.statAccents={positive={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.fromRGB(0,134,98)),stroke=
-ColorSequence.new(Color3.fromRGB(0,213,156),Color3.fromRGB(0,189,135))},negative={fill=ColorSequence.new(Color3.fromRGB(
-172,47,47),Color3.fromRGB(135,37,37)),stroke=ColorSequence.new(Color3.fromRGB(255,75,75),Color3.fromRGB(244,67,67))},
-neutral={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.fromRGB(0,134,98)),stroke=ColorSequence.new(Color3.
-fromRGB(0,213,156),Color3.fromRGB(0,189,135))}}ae.zIndex={elementLock=60,elementLockContent=65,bottomFade=100,
-notification=1500,drag=1000,toast=2000,toastContent=2001,restoreContent=100001,restoreInteract=100002}ae.displayOrder={
-window=99999,banner=100000,popup=100001}return ae end)()end,[44]=function()local aa,ab,ac=a(44)local ad return(function(
-...)local ae={}function ae.itemFromValue(af,ag)local ah,ai=pcall(function()return af:FromValue(ag)end)if ah and ai then
-return ai end local aj,ak=pcall(function()return af:GetEnumItems()end)if not aj then return nil end for al,am in ak do
-if am.Value==ag then return am end end return nil end return ae end)()end,[45]=function()local aa,ab,ac=a(45)local ad
-return(function(...)local ae,af=ac(ab.Parent.services),{}local ag=ae.getService'RunService':IsStudio()local ah=not ag
-and typeof(writefile)=='function'and typeof(readfile)=='function'and typeof(isfile)=='function'and typeof(isfolder)==
-'function'and typeof(makefolder)=='function'and typeof(listfiles)=='function'and typeof(delfile)=='function'and typeof(
-delfolder)=='function'if ah then function af.writefile(ai:string,aj:string)writefile(ai,aj)end function af.readfile(ai:
-string):string return readfile(ai)end if typeof(appendfile)=='function'then function af.appendfile(ai:string,aj:string)
-appendfile(ai,aj)end end function af.isfile(ai:string):boolean return isfile(ai)end function af.delfile(ai:string)
-delfile(ai)end function af.listfiles(ai:string):{string}return listfiles(ai)end function af.makefolder(ai:string)
-makefolder(ai)end function af.isfolder(ai:string):boolean return isfolder(ai)end function af.delfolder(ai:string)
-delfolder(ai)end elseif ag then local ai=Instance.new'Folder'ai.Name='Filesystem'ai.Parent=ae.getService
-'ReplicatedStorage'local function aj(ak:string):{string}local al={}for am in string.gmatch(ak,'[^/]+')do table.insert(al
-,am)end return al end local function ak(al:{string},am:boolean):Instance?local an:Instance=ai for ao=1,#al-1 do local ap
-=an:FindFirstChild(al[ao])if not ap then if not am then return nil end local aq=Instance.new'Folder'aq.Name=al[ao]aq.
-Parent=an ap=aq end an=ap::Instance end return an end local function al(am:Instance?):StringValue?if am and am:IsA
-'StringValue'then return am end return nil end function af.writefile(am:string,an:string)local ao=aj(am)assert(#ao>0,
+self:Window,theme:Theme)->(),SetName:(self:Window,name:string)->(),SetSubtitle:(self:Window,text:string?)->(),SetLocale:
+(self:Window,localeId:string)->(),SetTranslator:(self:Window,translator:Translator?)->(),RegisterTranslations:(self:
+Window,translations:Translations)->(),Save:(self:Window,name:string?)->boolean,Load:(self:Window,name:string?)->boolean,
+ListConfigs:(self:Window)->{string},DeleteConfig:(self:Window,name:string)->boolean,GetPath:(self:Window)->(string,
+string),Get:(self:Window,flag:string)->any,Set:(self:Window,flag:string,value:any)->boolean,Unload:(self:Window)->()}
+export type Rayfield={CreateWindow:(self:Rayfield,props:WindowProps)->Window}return{}end)()end,[40]=function()local aa,
+ab,ac=a(40)local ad return(function(...)local ae,af=ac(ab.Parent.variables),{}af.enabled=false type HapticTypes={click:
+Enum.HapticEffectType?,notify:Enum.HapticEffectType?}local ag:HapticTypes,ah,ai={},pcall(function()Instance.new
+'HapticEffect':Destroy()return{click=Enum.HapticEffectType.UIHover,notify=Enum.HapticEffectType.UIClick}end)if ah then
+ag=ai end local aj:{[Enum.HapticEffectType]:Instance},ak:Instance?={}function af.setContainer(al:Instance?)ak=al end
+function af.releaseContainer(al:Instance?)if al==nil or ak==al then ak=nil end end local function al():Instance if ak
+and ak.Parent then return ak end return ae.guiContainer end local function am(an:Enum.HapticEffectType):Instance?local
+ao=aj[an]if ao and ao.Parent then return ao end local ap,aq=pcall(Instance.new,'HapticEffect')if not ap then return nil
+end local ar=aq::any ar.Type=an local as=pcall(function()aq.Parent=al()end)if not as then aq:Destroy()return nil end aj[
+an]=aq return aq end local function an(ao:Enum.HapticEffectType?)if not ao or not af.enabled then return end local ap=
+am(ao)if ap then local aq=ap::any pcall(aq.Play,ap)end end function af.click()an(ag.click)end function af.notify()an(ag.
+notify)end function af.setEnabled(ao:boolean?)af.enabled=ao and true or false if not af.enabled then af.teardown()end
+end function af.teardown()for ao,ap in aj do pcall(ap.Destroy,ap)aj[ao]=nil end end return af end)()end,[41]=function()
+local aa,ab,ac=a(41)local ad return(function(...)local ae,af=ac(ab.Parent.network),ac(ab.Parent.log)export type AssetId=
+number|string export type AssetDownloadUrl=string export type CacheKey=AssetId export type ResolvedAsset=AssetId export
+type AssetRequestPayload={Url:string,Method:string}local ag={Enum={AssetDownloadUrl={RobloxDownloadUrl=
+'https://assetdelivery.roblox.com/v1/asset/?id=%d'::AssetDownloadUrl,RoProxyDownloadUrl=
+'https://assetdelivery.roproxy.com/v1/asset?id=%d'::AssetDownloadUrl}}}ag.__index=ag ag.__type='assetResolver'type
+AssetResolverState={contentCache:{[CacheKey]:string}?,contentCacheOrder:{CacheKey}?,contentDownloadUrl:AssetDownloadUrl,
+pendingRequests:{[CacheKey]:{thread}}}export type AssetResolver=AssetResolverState&{resolve:(self:AssetResolver,value:
+unknown)->ResolvedAsset?,getAssetContentFromUrl:(self:AssetResolver,url:string,cacheKey:CacheKey?,forced:boolean?)->
+string?,getAssetContentFromId:(self:AssetResolver,id:AssetId,forced:boolean?)->string?}local ah=8 function ag.new(ai:
+boolean?,aj:AssetDownloadUrl?):AssetResolver local ak:{[CacheKey]:string}?=if ai then{}else nil local al=setmetatable({
+contentCache=ak,contentCacheOrder=if ai then{}::{CacheKey}else nil,contentDownloadUrl=aj or ag.Enum.AssetDownloadUrl.
+RobloxDownloadUrl,pendingRequests={}}::AssetResolverState,ag)::any return al end function ag.resolve(ai:AssetResolver,aj
+:unknown):ResolvedAsset?if type(aj)=='number'then return aj end if type(aj)~='string'then return nil end if string.sub(
+aj,1,11)=='rbxasset://'or string.sub(aj,1,11)=='rbxthumb://'then return aj end local ak=tonumber(string.match(aj,
+'^rbxassetid://(%d+)$'))if ak then return ak end return nil end local function ai(aj:unknown):boolean if type(aj)~=
+'table'then return false end local ak=aj::{Body:unknown,StatusCode:unknown,Success:unknown}local al=ak.Body if type(al)
+~='string'or#al==0 then return false end if type(ak.StatusCode)=='number'then local am=ak.StatusCode::number return am>=
+200 and am<300 end if type(ak.Success)=='boolean'then return ak.Success::boolean end return false end function ag.
+getAssetContentFromUrl(aj:AssetResolver,ak:string,al:CacheKey?,am:boolean?):string?local an=aj.contentCache if al~=nil
+and an and not am then local ao=an[al]if ao then return ao end end local ao=aj.pendingRequests if al~=nil then local ap=
+ao[al]if ap then table.insert(ap,coroutine.running())return coroutine.yield()end ao[al]={}end local ap,aq:string?=(ae.
+getRequestFn())if not ap then af.warn'No request function available to download asset content.'else local ar,as=pcall(ap
+,{Url=ak,Method='GET'}::AssetRequestPayload)if ar and ai(as)then local at=(as::{Body:string}).Body aq=at if al~=nil and
+an then local au=aj.contentCacheOrder if au and an[al]==nil then table.insert(au,al)local av=if#au>ah then table.remove(
+au,1)else nil if av~=nil then an[av]=nil end end an[al]=at end elseif not am then af.warn(
+'Failed to download asset content for url: '..tostring(ak))end end if al~=nil then local ar=ao[al]ao[al]=nil if ar then
+for as,at in ar do coroutine.resume(at,aq)end end end return aq end function ag.getAssetContentFromId(aj:AssetResolver,
+ak:AssetId,al:boolean?):string?local am=aj:resolve(ak)if not am or type(am)~='number'then af.warn('Invalid asset id: '..
+tostring(am))return nil end local an=string.format(aj.contentDownloadUrl,am)return aj:getAssetContentFromUrl(an,am,al)
+end return ag end)()end,[42]=function()local aa,ab,ac=a(42)local ad return(function(...)local ae={}function ae.
+contrastColor(af:Color3):Color3 local ag=0.299*af.R+0.587*af.G+0.114*af.B return if ag>0.5 then Color3.fromRGB(0,0,0)
+else Color3.fromRGB(255,255,255)end function ae.toColorSequence(af:Color3|ColorSequence):ColorSequence return if typeof(
+af)=='ColorSequence'then af else ColorSequence.new(af)end function ae.contrastText(af:Color3):Color3 local ag=0.299*af.R
++0.587*af.G+0.114*af.B return if ag>0.6 then Color3.fromRGB(20,20,20)else Color3.fromRGB(255,255,255)end return ae end)(
+)end,[43]=function()local aa,ab,ac=a(43)local ad return(function(...)local ae={}ae.fontAsset='rbxassetid://12187365364'
+ae.pillResizeInfo=TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)ae.icons={close=83277910885129
+,minimise=108115485663409,maximise=88738500661569,settings=129180860773723,search=100604009889706,chevron=88479147175134
+,check=125626312718314,dot=91452555903853,colorpicker=91452555903853,banner=111263549366178,config=125823673784681,
+rayfield=80387863064905,palette=10734910430,home=10723424646,discord=10734888000}ae.accent={on=Color3.fromRGB(23,153,110
+),onStroke=Color3.fromRGB(32,201,144)}ae.statAccents={positive={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.
+fromRGB(0,134,98)),stroke=ColorSequence.new(Color3.fromRGB(0,213,156),Color3.fromRGB(0,189,135))},negative={fill=
+ColorSequence.new(Color3.fromRGB(172,47,47),Color3.fromRGB(135,37,37)),stroke=ColorSequence.new(Color3.fromRGB(255,75,75
+),Color3.fromRGB(244,67,67))},neutral={fill=ColorSequence.new(Color3.fromRGB(0,170,127),Color3.fromRGB(0,134,98)),stroke
+=ColorSequence.new(Color3.fromRGB(0,213,156),Color3.fromRGB(0,189,135))}}ae.zIndex={elementLock=60,elementLockContent=65
+,bottomFade=100,notification=1500,drag=1000,toast=2000,toastContent=2001,restoreContent=100001,restoreInteract=100002}ae
+.displayOrder={window=99999,banner=100000,popup=100001}return ae end)()end,[44]=function()local aa,ab,ac=a(44)local ad
+return(function(...)local ae={}function ae.itemFromValue(af,ag)local ah,ai=pcall(function()return af:FromValue(ag)end)if
+ah and ai then return ai end local aj,ak=pcall(function()return af:GetEnumItems()end)if not aj then return nil end for
+al,am in ak do if am.Value==ag then return am end end return nil end return ae end)()end,[45]=function()local aa,ab,ac=
+a(45)local ad return(function(...)local ae,af=ac(ab.Parent.services),{}local ag=ae.getService'RunService':IsStudio()
+local ah=not ag and typeof(writefile)=='function'and typeof(readfile)=='function'and typeof(isfile)=='function'and
+typeof(isfolder)=='function'and typeof(makefolder)=='function'and typeof(listfiles)=='function'and typeof(delfile)==
+'function'and typeof(delfolder)=='function'if ah then function af.writefile(ai:string,aj:string)writefile(ai,aj)end
+function af.readfile(ai:string):string return readfile(ai)end if typeof(appendfile)=='function'then function af.
+appendfile(ai:string,aj:string)appendfile(ai,aj)end end function af.isfile(ai:string):boolean return isfile(ai)end
+function af.delfile(ai:string)delfile(ai)end function af.listfiles(ai:string):{string}return listfiles(ai)end function
+af.makefolder(ai:string)makefolder(ai)end function af.isfolder(ai:string):boolean return isfolder(ai)end function af.
+delfolder(ai:string)delfolder(ai)end elseif ag then local ai=Instance.new'Folder'ai.Name='Filesystem'ai.Parent=ae.
+getService'ReplicatedStorage'local function aj(ak:string):{string}local al={}for am in string.gmatch(ak,'[^/]+')do table
+.insert(al,am)end return al end local function ak(al:{string},am:boolean):Instance?local an:Instance=ai for ao=1,#al-1
+do local ap=an:FindFirstChild(al[ao])if not ap then if not am then return nil end local aq=Instance.new'Folder'aq.Name=
+al[ao]aq.Parent=an ap=aq end an=ap::Instance end return an end local function al(am:Instance?):StringValue?if am and am:
+IsA'StringValue'then return am end return nil end function af.writefile(am:string,an:string)local ao=aj(am)assert(#ao>0,
 'Invalid path')local ap=ak(ao,true)assert(ap,'Invalid path')local aq=ao[#ao]local ar=ap:FindFirstChild(aq)local as=al(ar
 )if as then as.Value=an else if ar then ar:Destroy()end local at=Instance.new'StringValue'at.Name=aq at.Value=an at.
 Parent=ap end end function af.readfile(am:string):string local an=aj(am)assert(#an>0,'Invalid path')local ao=ak(an,false
@@ -3117,35 +3122,35 @@ maxAspectRatio))return UDim2.fromOffset(au,av)end function af.fit(ar:Vector2?,as
 ~=nil and at<1 local av=af.profile(as,au)if not ar or ar.X<ag or ar.Y<ag then return UDim2.fromOffset(av.defaultSize.X,
 av.defaultSize.Y)end if au then ar/=at::number end local aw,ax=math.min(ar.X*av.maxOccupancyX,ar.X-av.marginFloorX),an(
 av,ar.Y)if av.minAspectRatio then return aq(av,aw,ax)end return ap(av,aw,ax)end return af end)()end},{{1,2,{'Rayfield'},
-{{39,1,{'utility'},{{61,2,{'path'}},{52,2,{'layouts'}},{56,2,{'logoImage'}},{42,2,{'colors'}},{53,2,{'locale'}},{44,2,{
-'enums'}},{49,2,{'functions'}},{64,2,{'persistencePaths'}},{46,2,{'filesystemManager'}},{54,2,{'lockable'}},{59,2,{
-'odometer'}},{57,2,{'moveable'}},{71,2,{'variables'}},{40,2,{'HapticEngine'}},{58,2,{'network'}},{45,2,{'filesystem'}},{
-72,2,{'windowSizing'}},{69,2,{'services'}},{55,2,{'log'}},{51,2,{'imageCache'}},{70,2,{'textMetrics'}},{68,2,{'runtime'}
-},{41,2,{'assetResolver'}},{63,2,{'persistenceConfig'}},{47,2,{'flagNames'}},{48,2,{'fontManager'}},{50,2,{'image'}},{67
-,2,{'pointer'}},{43,2,{'constants'}},{65,2,{'persistenceSettings'}},{62,2,{'persistence'}},{60,2,{'ordering'}},{66,2,{
-'persistenceWrite'}}}},{31,1,{'themes'},{{35,2,{'ember'}},{37,2,{'rose'}},{36,2,{'frost'}},{32,2,{'amethyst'}},{33,2,{
-'cobalt'}},{34,2,{'default'}}}},{38,2,{'types'}},{2,1,{'components'},{{24,2,{'tabSection'}},{30,2,{'window'}},{5,2,{
-'chrome'}},{20,2,{'sidebar'}},{15,2,{'notification'}},{28,2,{'toast'}},{9,2,{'divider'}},{4,2,{'button'}},{27,2,{'text'}
-},{16,2,{'popup'}},{26,2,{'tag'}},{8,2,{'descriptor'}},{14,2,{'keybind'}},{10,2,{'drag'}},{19,2,{'section'}},{12,2,{
-'group'}},{22,2,{'stat'}},{23,2,{'tab'}},{18,2,{'search'}},{21,2,{'slider'}},{25,2,{'tabSelector'}},{29,2,{'toggle'}},{
-17,2,{'progress'}},{7,2,{'console'}},{11,2,{'dropdown'}},{13,2,{'input'}},{3,2,{'action'}},{6,2,{'colorpicker'}}}}}}},
-'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,tostring,
-tonumber,_VERSION local av,aw,ax,ay,az,aA,aB=aj.insert,aj.remove,aj.freeze or function(av)return av end,al.wrap,ae.sub,
-ae.match,ae.gmatch if at and az(at,1,4)=='Lune'then local aC,aD=ap(ao,'@lune/task')if aC and aD then af=aD end end local
-aC=af and af.defer local aD,aE,b,c,d,e,f,g,h=aC or function(aD,...)ay(aD)(...)end,{[1]='Folder',[2]='ModuleScript',[3]=
-'Script',[4]='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local i,j={GetFullName={{},function(i)local j,k=i.Name
-,i.Parent while k do j=k.Name..'.'..j k=k.Parent end return j end},GetChildren={{},function(i)local j={}for k in ai,h[i]
-do av(j,k)end return j end},GetDescendants={{},function(i)local j={}for k in ai,h[i]do av(j,k)for l,m in ai,k:
-GetDescendants()do av(j,m)end end return j end},FindFirstChild={{'string','boolean?'},function(i,j,k)local l=h[i]for m
-in ai,l do if m.Name==j then return m end end if k then for m in ai,l do return m:FindFirstChild(j,true)end end end},
-FindFirstAncestor={{'string'},function(i,j)local k=i.Parent while k do if k.Name==j then return k end k=k.Parent end end
-},WaitForChild={{'string','number?'},function(i,j)return i:FindFirstChild(j)end}},{}for k,l in ai,i do local m,n,o=l[1],
-l[2],{}for p,q in ai,m do local r,s=aA(q,'^([^%?]+)(%??)')o[p]={r,s}end j[k]=function(p,...)if not h[p]then ah(
-"Expected ':' not '.' calling member function "..k,2)end local q={...}for r,s in ai,o do local t=q[r]local u,v,w=an(t),s
-[1],s[2]if t==nil and not w then ah('Argument '..t..' missing or nil',3)end if v~='any'and u~=v and not(u=='nil'and w)
-then ah('Argument '..r..' expects type "'..v..'", got "'..u..'"',2)end end return n(p,...)end end local function k(l,m,n
-)local o,p=(ag({},{__mode='k'}))local function q(r)ah(r..' is not a valid (virtual) member of '..l..' "'..m..'"',3)end
-local function r(s)ah('Unable to assign (virtual) property '..s..'. Property is read only',3)end local s,t={},{}t.
+{{39,1,{'utility'},{{68,2,{'runtime'}},{59,2,{'odometer'}},{42,2,{'colors'}},{58,2,{'network'}},{67,2,{'pointer'}},{60,2
+,{'ordering'}},{45,2,{'filesystem'}},{54,2,{'lockable'}},{47,2,{'flagNames'}},{41,2,{'assetResolver'}},{62,2,{
+'persistence'}},{63,2,{'persistenceConfig'}},{72,2,{'windowSizing'}},{51,2,{'imageCache'}},{71,2,{'variables'}},{46,2,{
+'filesystemManager'}},{52,2,{'layouts'}},{70,2,{'textMetrics'}},{43,2,{'constants'}},{55,2,{'log'}},{64,2,{
+'persistencePaths'}},{56,2,{'logoImage'}},{49,2,{'functions'}},{53,2,{'locale'}},{48,2,{'fontManager'}},{65,2,{
+'persistenceSettings'}},{66,2,{'persistenceWrite'}},{69,2,{'services'}},{40,2,{'HapticEngine'}},{50,2,{'image'}},{44,2,{
+'enums'}},{57,2,{'moveable'}},{61,2,{'path'}}}},{2,1,{'components'},{{18,2,{'search'}},{20,2,{'sidebar'}},{25,2,{
+'tabSelector'}},{6,2,{'colorpicker'}},{12,2,{'group'}},{29,2,{'toggle'}},{4,2,{'button'}},{28,2,{'toast'}},{10,2,{'drag'
+}},{26,2,{'tag'}},{23,2,{'tab'}},{27,2,{'text'}},{9,2,{'divider'}},{7,2,{'console'}},{30,2,{'window'}},{22,2,{'stat'}},{
+24,2,{'tabSection'}},{5,2,{'chrome'}},{21,2,{'slider'}},{11,2,{'dropdown'}},{19,2,{'section'}},{17,2,{'progress'}},{15,2
+,{'notification'}},{13,2,{'input'}},{8,2,{'descriptor'}},{14,2,{'keybind'}},{16,2,{'popup'}},{3,2,{'action'}}}},{38,2,{
+'types'}},{31,1,{'themes'},{{33,2,{'cobalt'}},{32,2,{'amethyst'}},{34,2,{'default'}},{36,2,{'frost'}},{35,2,{'ember'}},{
+37,2,{'rose'}}}}}}},'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,
+pcall,xpcall,tostring,tonumber,_VERSION local av,aw,ax,ay,az,aA,aB=aj.insert,aj.remove,aj.freeze or function(av)return
+av end,al.wrap,ae.sub,ae.match,ae.gmatch if at and az(at,1,4)=='Lune'then local aC,aD=ap(ao,'@lune/task')if aC and aD
+then af=aD end end local aC=af and af.defer local aD,aE,b,c,d,e,f,g,h=aC or function(aD,...)ay(aD)(...)end,{[1]='Folder'
+,[2]='ModuleScript',[3]='Script',[4]='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local i,j={GetFullName={{},
+function(i)local j,k=i.Name,i.Parent while k do j=k.Name..'.'..j k=k.Parent end return j end},GetChildren={{},function(i
+)local j={}for k in ai,h[i]do av(j,k)end return j end},GetDescendants={{},function(i)local j={}for k in ai,h[i]do av(j,k
+)for l,m in ai,k:GetDescendants()do av(j,m)end end return j end},FindFirstChild={{'string','boolean?'},function(i,j,k)
+local l=h[i]for m in ai,l do if m.Name==j then return m end end if k then for m in ai,l do return m:FindFirstChild(j,
+true)end end end},FindFirstAncestor={{'string'},function(i,j)local k=i.Parent while k do if k.Name==j then return k end
+k=k.Parent end end},WaitForChild={{'string','number?'},function(i,j)return i:FindFirstChild(j)end}},{}for k,l in ai,i do
+local m,n,o=l[1],l[2],{}for p,q in ai,m do local r,s=aA(q,'^([^%?]+)(%??)')o[p]={r,s}end j[k]=function(p,...)if not h[p]
+then ah("Expected ':' not '.' calling member function "..k,2)end local q={...}for r,s in ai,o do local t=q[r]local u,v,w
+=an(t),s[1],s[2]if t==nil and not w then ah('Argument '..t..' missing or nil',3)end if v~='any'and u~=v and not(u=='nil'
+and w)then ah('Argument '..r..' expects type "'..v..'", got "'..u..'"',2)end end return n(p,...)end end local function k
+(l,m,n)local o,p=(ag({},{__mode='k'}))local function q(r)ah(r..' is not a valid (virtual) member of '..l..' "'..m..'"',3
+)end local function r(s)ah('Unable to assign (virtual) property '..s..'. Property is read only',3)end local s,t={},{}t.
 __metatable=false t.__index=function(u,v)if v=='ClassName'then return l elseif v=='Name'then return m elseif v=='Parent'
 then return n elseif l=='StringValue'and v=='Value'then return p else local w=j[v]if w then return w end end for w in ai
 ,o do if w.Name==v then return w end end q(v)end t.__newindex=function(u,v,w)if v=='ClassName'then r(v)elseif v=='Name'
