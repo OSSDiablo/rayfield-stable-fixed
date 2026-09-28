@@ -65,6 +65,7 @@ library:
 - draws the whole window smaller, so more fits on screen and the window is narrower and taller
   than it would be at full size
 - keeps the header buttons (search, settings, minimise, close) large enough to tap
+- draws popups, notifications and toasts at the same smaller size
 - keeps everything else, like sliders, dropdowns and the drag bar, lined up at the smaller size
 
 Tablets and computers get the normal size.
