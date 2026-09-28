@@ -72,23 +72,21 @@ local function cacheFile(filePath: string, url: string): string?
     return if ok and type(uri) == "string" then uri else nil
 end
 
--- The default header logo, written out from the bytes the library carries. Rewritten whenever
--- the file on disk is not those exact bytes, so a new logo in an update replaces the old one.
--- Nil where custom assets or files are unavailable (Studio), and the header goes without.
-function imageCache.logo(): string?
+-- An image the library carries as bytes, written out and handed back as a custom asset. The file
+-- is named after its own bytes: getcustomasset caches by path for the session, so a changed image
+-- (or a sibling build with a different one) under the same name would keep showing the old one.
+-- Nil where custom assets or files are unavailable (Studio), and the caller goes without.
+function imageCache.embedded(name: string, bytes: string): string?
     local env = getfenv()
     if type(env.getcustomasset) ~= "function" or typeof(filesystem.isfile) ~= "function" then
         return nil
     end
 
-    local bytes = require(script.Parent.logoImage)
-    -- named after its own bytes: getcustomasset caches by path for the session, so a new logo
-    -- (or a sibling build with a different one) under the same name would keep showing the old
     local hash = 0
     for index = 1, #bytes, 7 do
         hash = (hash * 31 + string.byte(bytes, index)) % 2147483647
     end
-    local filePath = path.join(cacheFolder, string.format("logo_%d_%d.png", #bytes, hash))
+    local filePath = path.join(cacheFolder, string.format("%s_%d_%d.png", name, #bytes, hash))
     local current = nil
     if filesystem.isfile(filePath) then
         local ok, contents = pcall(filesystem.readfile, filePath)
@@ -104,6 +102,16 @@ function imageCache.logo(): string?
 
     local ok, uri = pcall(env.getcustomasset, filePath)
     return if ok and type(uri) == "string" then uri else nil
+end
+
+-- The default header logo.
+function imageCache.logo(): string?
+    return imageCache.embedded("logo", require(script.Parent.logoImage))
+end
+
+-- The Discord mark on the Home tab's invite card.
+function imageCache.discordIcon(): string?
+    return imageCache.embedded("discord", require(script.Parent.discordIcon))
 end
 
 local function avatarPath(userId: number): string
