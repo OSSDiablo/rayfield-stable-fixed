@@ -184,6 +184,8 @@ function Popup:_build()
         Parent = self.screenGui,
     })
     self:_fade(self.card, "BackgroundTransparency", 0)
+    -- drawn at the window's scale, so a phone gets a card its own size rather than a desktop one
+    window:_scaleOverlay(self.card)
 
     window:Create("UIGradient", {
         Rotation = 270,

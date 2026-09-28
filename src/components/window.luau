@@ -260,6 +260,7 @@ function Window.new(properties)
         -- size is in the window's own units; on screen it is size * scale
         size = size,
         scale = scale,
+        _overlayScales = {},
         instances = {},
         connections = {},
 
@@ -1060,6 +1061,7 @@ function Window:Notify(properties)
 
             Parent = self.screenGui,
         })
+        self:_scaleOverlay(self.notifications)
 
         self:Create("UIListLayout", {
             FillDirection = Enum.FillDirection.Vertical,
@@ -1104,6 +1106,7 @@ function Window:Toast(properties)
 
             Parent = self.screenGui,
         })
+        self:_scaleOverlay(container)
 
         self:Create("UIListLayout", {
             FillDirection = Enum.FillDirection.Vertical,
@@ -1452,6 +1455,15 @@ function Window:_applyWindowSize()
     self.scale = scale
     self.uiScale.Scale = scale
     self:_applyActionSize()
+    -- closed popups leave their scale behind unparented; drop those as we go
+    for index = #self._overlayScales, 1, -1 do
+        local overlayScale = self._overlayScales[index]
+        if overlayScale.Parent then
+            overlayScale.Scale = scale
+        else
+            table.remove(self._overlayScales, index)
+        end
+    end
 
     -- the rail is sized off main, so setting it now is right whether main resizes on the spot
     -- below or grows into the banked size on its next show
@@ -1472,6 +1484,18 @@ function Window:_applyWindowSize()
     self.main.Size = size
     self:_clampToScreen()
     self:_syncDragBar()
+end
+
+-- Notifications, toasts and popups live outside the window frame, so its UIScale never reaches
+-- them. Each one gets its own, kept in step with the window's on every re-fit.
+function Window:_scaleOverlay(frame: GuiObject)
+    local overlayScale = self:Create("UIScale", {
+        Scale = self.scale,
+
+        Parent = frame,
+    })
+    table.insert(self._overlayScales, overlayScale)
+    return overlayScale
 end
 
 -- Size the header actions for the current scale. Runs again for each new action and on every
