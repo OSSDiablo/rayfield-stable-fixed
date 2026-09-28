@@ -62,37 +62,25 @@ local handleHeld = Vector2.new(41, 22)
 
 -- Where the fill ends, and where the pill sits on the end of it.
 --
--- The fill used to run to a plain fraction of the track with the pill hanging off its edge by a
--- fixed amount. That puts the pill outside the track at both ends: past the end at the top of the
--- range, and before the start at the bottom, where the fill has no width at all. A full-width
--- slider has enough margin either side to hide it. A grid column does not, and the pill draws over
--- the card beside it.
+-- The pill stays inside the track at both ends. Its right edge rides the fill's end, and the fill
+-- runs from one pill wide at the bottom of the range to the whole track at the top, so the pill
+-- sits flush with the start of the track at 0 and flush with its end at 100. Letting its centre
+-- reach the ends instead hung half a pill past the track, over the card's rounded edge.
 --
--- Both are inset by the pill instead, and by half of it where the fill is concerned. At the top of
--- the range the fill is the whole track, so the bar reads as full with the pill on the end of it.
--- At the bottom the fill reaches the middle of the pill, so the pill has green behind its left half
--- and nothing pokes out beside it. The pill lands inside the track at both ends, which is the point.
---
--- How far the two of them reach past the fill's fraction of the track: the whole pill at the bottom
--- of the range, none of it at the top. Whole pixels, because a UDim offset is, and they split this
--- one number between them rather than each halving the pill on its own - rounded apart they'd land
--- a pixel out and hang the pill over the end after all.
--- The pill's centre rides the fill's edge and maps straight onto the track, so at either end
--- half of it hangs past the track the way the design has it. Scale rather than pixels: the fill
--- and the pill read the same ratio, so they can't round apart and drift by a pixel.
-local function fillSize(ratio: number): UDim2
-    return UDim2.new(ratio, 0, 1, 0)
+-- The offset is whole pixels, because a UDim offset is. It is exactly the pill at 0 and exactly
+-- nothing at 1, so the two ends never round a pixel out.
+local function fillSize(ratio: number, pillWidth: number): UDim2
+    return UDim2.new(ratio, math.round(pillWidth * (1 - ratio)), 1, 0)
 end
 
--- The pill sits centred on the fill's leading edge, and it lives inside the fill, so it tracks
--- the value without a position of its own: the fill resizes and carries it. Centred means half
--- of it is past the fill, which at either end of the range is half a pill past the track.
+-- The pill lives inside the fill with its right edge on the fill's end, so it tracks the value
+-- without a position of its own: the fill resizes and carries it.
 local function handleOffset(): UDim2
     return UDim2.new(1, 0, 0.5, 0)
 end
 
--- The pointer maps over the whole track, because the pill's centre does too. Clamping covers
--- the ends, where half the pill sits past the track.
+-- The pointer maps onto the pill's centre, which travels the track less one pill: half a pill in
+-- from each end. Clamping covers a press in that half-pill at either end.
 local function ratioFromPointer(x: number, left: number, travel: number): number
     return math.clamp((x - left) / travel, 0, 1)
 end
@@ -223,8 +211,8 @@ function Slider.new(tab, properties)
 
     -- Handle blob: solid white at rest, ghosts + grows a stroke while held
     self.handle = self.window:Create("Frame", {
-        AnchorPoint = Vector2.new(0.5, 0.5),
-        Position = handleOffset(), -- rides the fill's edge, see fillSize
+        AnchorPoint = Vector2.new(1, 0.5),
+        Position = handleOffset(), -- right edge on the fill's end, see fillSize
         Size = UDim2.fromOffset(handleRest.X, handleRest.Y),
         BorderSizePixel = 0,
         ZIndex = 50,
@@ -536,16 +524,18 @@ end
 -- hasn't been laid out yet - _updateFromMouse turns both away below rather than map onto nothing,
 -- which is why neither the fill, the pill nor the pointer needs a guard of its own.
 --
--- Travel is the whole track: the pill's centre reaches both ends and half of it hangs past.
+-- Travel is the track less the pill: its centre stops half a pill in from either end.
+-- AbsoluteSize is in screen pixels and the pill width in the window's own units, so the pill is
+-- scaled to match before it is taken off.
 function Slider:_pillTravel()
-    return math.max(self.track.AbsoluteSize.X, 0)
+    return math.max(self.track.AbsoluteSize.X - self._handleWidth * self.window.scale, 0)
 end
 
 function Slider:_renderProgress(info)
     local span = self.range[2] - self.range[1]
     local ratio = if span ~= 0 then math.clamp((self.value - self.range[1]) / span, 0, 1) else 0
 
-    local size = fillSize(ratio)
+    local size = fillSize(ratio, self._handleWidth)
     if info then
         variables.tweenService:Create(self.progress, info, { Size = size }):Play()
     else
@@ -559,8 +549,11 @@ function Slider:_updateFromMouse()
         return
     end
 
-    local ratio =
-        ratioFromPointer(variables.userInputService:GetMouseLocation().X, self.track.AbsolutePosition.X, travel)
+    local ratio = ratioFromPointer(
+        variables.userInputService:GetMouseLocation().X,
+        self.track.AbsolutePosition.X + self._handleWidth * self.window.scale / 2,
+        travel
+    )
     local value = snapTo(self.range, self.increment, self.range[1] + ratio * (self.range[2] - self.range[1]))
 
     if value ~= self.value then

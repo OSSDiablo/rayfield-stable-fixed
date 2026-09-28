@@ -504,7 +504,7 @@ function Window.new(properties)
             Image = self.icon,
 
             BackgroundTransparency = 1,
-            Size = UDim2.fromOffset(32, 32),
+            Size = UDim2.fromOffset(42, 42),
 
             -- Animation
             ImageTransparency = 1, -- In = 0

@@ -340,7 +340,8 @@ return function()
                 expect(seen[1].value).to.equal(10)
                 expect(seen[1].dragging).to.equal(false)
 
-                helpers.services.UserInputService._setMouseLocation(Vector2.new(150, 80))
+                -- a quarter of the held pill's travel: half a 41px pill in, plus a quarter of 200 - 41
+                helpers.services.UserInputService._setMouseLocation(Vector2.new(160.25, 80))
                 slider.interact.InputBegan:Fire({ UserInputType = Enum.UserInputType.MouseButton1 })
                 expect(seen[2].value).to.equal(25)
                 expect(seen[2].dragging).to.equal(true) -- the press already counts as dragging

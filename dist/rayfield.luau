@@ -1,4 +1,4 @@
--- Rayfield Gen2 v1.2.0-preview mobile (9a14fd5+scale70, 2026-09-28)
+-- Rayfield Gen2 v1.2.0-preview mobile (5d207d0+slider+logo, 2026-09-28)
 local a local aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,ap,aq,ar,b,c,d={function()local b,c,d=a(1)local e return(
 function(...)local f,g,h,i,j=d(c.utility.variables),d(c.utility.image),d(c.utility.locale),d(c.utility.constants),d(c.
 types)export type Theme=j.Theme export type Translator=j.Translator export type Translations=j.Translations export type
@@ -1162,14 +1162,14 @@ HapticEngine)local function b(c)local d=0 while d<6 do local e=c*10^d if math.ab
 +=1 end return d end local function c(d,e,f)local g=d[1]+math.round((f-d[1])/e)*e return math.clamp(g,d[1],d[2])end
 local d,e,f,g,h,i=TweenInfo.new(0.45,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out),TweenInfo.new(0.3,Enum.
 EasingStyle.Exponential,Enum.EasingDirection.Out),TweenInfo.new(0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),300
-,Vector2.new(35,20),Vector2.new(41,22)local function j(k:number):UDim2 return UDim2.new(k,0,1,0)end local function k():
-UDim2 return UDim2.new(1,0,0.5,0)end local function l(m:number,n:number,o:number):number return math.clamp((m-n)/o,0,1)
-end function ae.new(m,n)n=if typeof(n)=='table'then n else{}local o=setmetatable({tab=assert(m,
-'Missing argument #1 (Tab expected)'),window=m.window,name=n.name or n.Name or'Slider',icon=n.icon or n.Icon,description
-=n.description or n.Description,forgetState=n.forgetState or n.ForgetState or m.forgetState,range=n.range or n.Range or{
-0,100},increment=n.increment or n.Increment or 1,suffix=n.suffix or n.Suffix or'',callback=n.callback or n.Callback or
-function()end,dragging=false,minimal=n.minimal or n.Minimal or false,_handleWidth=h.X},ae)assert(typeof(o.range)==
-'table'and typeof(o.range[1])=='number'and typeof(o.range[2])=='number',
+,Vector2.new(35,20),Vector2.new(41,22)local function j(k:number,l:number):UDim2 return UDim2.new(k,math.round(l*(1-k)),1
+,0)end local function k():UDim2 return UDim2.new(1,0,0.5,0)end local function l(m:number,n:number,o:number):number
+return math.clamp((m-n)/o,0,1)end function ae.new(m,n)n=if typeof(n)=='table'then n else{}local o=setmetatable({tab=
+assert(m,'Missing argument #1 (Tab expected)'),window=m.window,name=n.name or n.Name or'Slider',icon=n.icon or n.Icon,
+description=n.description or n.Description,forgetState=n.forgetState or n.ForgetState or m.forgetState,range=n.range or
+n.Range or{0,100},increment=n.increment or n.Increment or 1,suffix=n.suffix or n.Suffix or'',callback=n.callback or n.
+Callback or function()end,dragging=false,minimal=n.minimal or n.Minimal or false,_handleWidth=h.X},ae)assert(typeof(o.
+range)=='table'and typeof(o.range[1])=='number'and typeof(o.range[2])=='number',
 'A slider range needs two numbers, like { 0, 100 }.')if o.range[1]>o.range[2]then o.range={o.range[2],o.range[1]}end if
 o.increment<=0 then o.increment=1 end o.value=if(n.value or n.Value)~=nil then(n.value or n.Value)elseif(n.currentValue
 or n.CurrentValue)~=nil then(n.currentValue or n.CurrentValue)else o.range[1]o.value=c(o.range,o.increment,o.value)o.
@@ -1185,97 +1185,97 @@ UDim2.fromOffset(222,14),BorderSizePixel=0,BackgroundTransparency=1,Parent=o.mai
 new(0,13),Parent=o.progress})o.window:Create('UIGradient',{Offset=Vector2.new(0,0.5),Rotation=2,Transparency=
 NumberSequence.new{NumberSequenceKeypoint.new(0,0.85),NumberSequenceKeypoint.new(1,0)},Parent=o.progress},{Color={
 'SliderProgress',ah.toColorSequence}})o.progressGlow=o.window:CreateGlow(o.progress,'AccentColor',20,1)o.handle=o.window
-:Create('Frame',{AnchorPoint=Vector2.new(0.5,0.5),Position=k(),Size=UDim2.fromOffset(h.X,h.Y),BorderSizePixel=0,ZIndex=
-50,BackgroundTransparency=1,Parent=o.progress},{BackgroundColor3='SliderHandle'})o.window:Create('UICorner',{
-CornerRadius=UDim.new(1,0),Parent=o.handle})o.handleGlow=o.window:CreateGlow(o.handle,Color3.fromRGB(255,255,255),10,1)o
-.handleStroke=o.window:Create('UIStroke',{Transparency=1,Parent=o.handle},{Color='SliderStroke'})o.interact=o.window:
-Create('TextButton',{BackgroundTransparency=1,Size=UDim2.fromScale(1,1),Text='',TextTransparency=1,ZIndex=10,Parent=o.
-track})o.window:ConnectFor(o,o.main.MouseEnter,function()if not o.window:_interactive()then return end ag.tweenService:
-Create(o.track,d,{BackgroundColor3=o.window.theme.SliderBackgroundHover}):Play()end)o.window:ConnectFor(o,o.main.
-MouseLeave,function()ag.tweenService:Create(o.track,d,{BackgroundColor3=o.window.theme.SliderBackground}):Play()end)o.
-window:ConnectFor(o,o.interact.InputBegan,function(p)if p.UserInputType==Enum.UserInputType.MouseButton1 or p.
-UserInputType==Enum.UserInputType.Touch then am.click()o.dragging=true o:_setHeld(true)o:_updateFromMouse()if o.
-_dragConnection then o._dragConnection:Disconnect()o._dragConnection=nil end o._dragConnection=ag.runService.
-RenderStepped:Connect(function()if o.window.unloaded or not o.dragging then if o._dragConnection then o._dragConnection:
-Disconnect()o._dragConnection=nil end return end o:_updateFromMouse()end)end end)o.window:ConnectFor(o,ag.
-userInputService.InputEnded,function(p)if p.UserInputType==Enum.UserInputType.MouseButton1 or p.UserInputType==Enum.
-UserInputType.Touch then o:_endDrag()end end)o.window:ConnectFor(o,ag.userInputService.WindowFocusReleased,function()o:
-_endDrag()end)if o.description and not o.minimal then o.descriptor=ac(ab.Parent.descriptor).new(o.tab,{description=o.
-description})end o.window:ConnectFor(o,o.main:GetPropertyChangedSignal'AbsoluteSize',function()if o.window.animating or(
-o.window.hidden and o.window.hasShownOnce)then return end o:_applyLayout()end)o:_applyLayout()if o.minimal then o.main.
-Size=UDim2.new(1,-20,0,41)o.track.AnchorPoint=Vector2.new(0.5,0.5)o.track.Position=UDim2.new(0.5,0,0.5,0)o.track.Size=
-UDim2.new(1,-30,0,14)end o:_renderProgress()return o end function ae._buildLabel(m)m.container=m.window:Create('Frame',{
-AnchorPoint=Vector2.new(0,0.5),Position=UDim2.new(0,20,0.5,0),Size=UDim2.fromOffset(170,33),BackgroundTransparency=1,
-BorderSizePixel=0,ZIndex=5,Parent=m.main})m.containerLayout=m.window:Create('UIListLayout',{Padding=UDim.new(0,2),
-VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=m.container})m.
-titleContainer=m.window:Create('Frame',{Size=UDim2.new(1,0,0,16),BackgroundTransparency=1,BorderSizePixel=0,ZIndex=5,
-Parent=m.container})m.window:Create('UIListLayout',{Padding=UDim.new(0,5),FillDirection=Enum.FillDirection.Horizontal,
-VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.SortOrder.LayoutOrder,Parent=m.titleContainer})m.
-titleFlex=m.window:Create('UIFlexItem',{FlexMode=Enum.UIFlexMode.None,Parent=m.titleContainer})if m.icon then m.
-iconLabel=m.window:Create('ImageLabel',{Image=m.icon,Size=UDim2.fromOffset(16,16),BorderSizePixel=0,
-BackgroundTransparency=1,ZIndex=5,ImageTransparency=1,Parent=m.titleContainer},{ImageColor3='ContentColor'})end m.title=
-m.window:Create('TextLabel',{Text=al.t(m.name),Size=UDim2.new(1,0,0,16),BorderSizePixel=0,BackgroundTransparency=1,
-TextSize=16,TextXAlignment=Enum.TextXAlignment.Left,TextTruncate=Enum.TextTruncate.AtEnd,RichText=true,LayoutOrder=1,
-ZIndex=5,TextTransparency=1,Parent=m.titleContainer},{TextColor3='ContentColor',FontFace='Font'})m.window:Create(
-'UIFlexItem',{FlexMode=Enum.UIFlexMode.Shrink,Parent=m.title})m.valueHost=m.window:Create('Frame',{Size=UDim2.new(1,0,0,
-16),BackgroundTransparency=1,BorderSizePixel=0,ZIndex=6,LayoutOrder=1,Parent=m.container})m.valueOdo=ai.new(m.window,m.
-valueHost,{textSize=15,alignment=Enum.HorizontalAlignment.Left,transparency=1,duration=0.28})m.valueOdo:snap(m:_format(m
-.value))end function ae._setMainHeight(m,n)if m._widthManaged then m.main.Size=UDim2.new(m.main.Size.X.Scale,m.main.Size
-.X.Offset,0,n)else m.main.Size=UDim2.new(1,-20,0,n)end end function ae._applyLayout(m)if m.minimal then return end local
-n=m.main.AbsoluteSize.X/m.window.scale local o=if n>0 and n<g then'narrow'else'wide'if m._layoutMode==o then return end
-m._layoutMode=o if o=='narrow'then m:_setMainHeight(70)m.container.AnchorPoint=Vector2.new(0,0)m.container.Position=
-UDim2.new(0,20,0,14)m.container.Size=UDim2.new(1,-40,0,16)m.containerLayout.FillDirection=Enum.FillDirection.Horizontal
-m.titleFlex.FlexMode=Enum.UIFlexMode.Fill m.valueHost.AutomaticSize=Enum.AutomaticSize.X m.valueHost.Size=UDim2.new(0,0,
-0,16)m.track.AnchorPoint=Vector2.new(0.5,1)m.track.Position=UDim2.new(0.5,0,1,-14)m.track.Size=UDim2.new(1,-30,0,14)else
-m:_setMainHeight(65)m.container.AnchorPoint=Vector2.new(0,0.5)m.container.Position=UDim2.new(0,20,0.5,0)m.container.Size
-=UDim2.new(0,170,0,33)m.containerLayout.FillDirection=Enum.FillDirection.Vertical m.titleFlex.FlexMode=Enum.UIFlexMode.
-None m.valueHost.AutomaticSize=Enum.AutomaticSize.None m.valueHost.Size=UDim2.new(1,0,0,16)m.track.AnchorPoint=Vector2.
-new(1,0.5)m.track.Position=UDim2.new(1,-15,0.5,0)m.track.Size=UDim2.new(0,222,0,14)end end function ae._format(m,n)local
-o=string.format('%.'..m._decimals..'f',n)if m.suffix~=''then return o..' '..m.suffix end return o end function ae.
-_pillTravel(m)return math.max(m.track.AbsoluteSize.X,0)end function ae._renderProgress(m,n)local o=m.range[2]-m.range[1]
-local p=if o~=0 then math.clamp((m.value-m.range[1])/o,0,1)else 0 local q=j(p)if n then ag.tweenService:Create(m.
-progress,n,{Size=q}):Play()else m.progress.Size=q end end function ae._updateFromMouse(m)local n=m:_pillTravel()if n<=0
-then return end local o=l(ag.userInputService:GetMouseLocation().X,m.track.AbsolutePosition.X,n)local p=c(m.range,m.
-increment,m.range[1]+o*(m.range[2]-m.range[1]))if p~=m.value then m.value=p if m.valueOdo then m.valueOdo:snap(m:
-_format(p))end m._lastValue=p m:_renderProgress(f)m:_fireCallback(p)end end function ae._endDrag(m)if not m.dragging
-then return end m.dragging=false m:_setHeld(false)if m._dragConnection then m._dragConnection:Disconnect()m.
-_dragConnection=nil end m.window:_persist(m)end function ae._setHeld(m,n)if not n then m:_fireCallback(m.value)end local
-o=if n then i else h m._handleWidth=o.X ag.tweenService:Create(m.handle,e,{Size=UDim2.fromOffset(o.X,o.Y),
-BackgroundTransparency=if n then 0.7 else 0}):Play()ag.tweenService:Create(m.handleStroke,e,{Transparency=if n then 0.6
-else 1}):Play()m:_renderProgress(e)end function ae._fireCallback(m,n)m.window:_runGuarded(m,m.callback,n,m.dragging==
-true)end function ae.Set(m,n,o)n=c(m.range,m.increment,n)m.value=n if m.valueOdo then m.valueOdo:to(m:_format(n),n>=(m.
-_lastValue or n))end m._lastValue=n m:_renderProgress(d)if not o then m:_fireCallback(n)m.window:_persist(m)end end
-local m=TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out,0,false,0.35)function ae._setShown(n,o,p
-)local q=n.window if o then q:_revealCommon(n,p)q:_reveal(n.track,{BackgroundTransparency=0},p)q:_reveal(n.progress,{
-BackgroundTransparency=0},p)q:_reveal(n.handle,{BackgroundTransparency=0},p)if n.valueOdo then n.valueOdo:reveal(0.3,p)
-end q:_reveal(n.progressGlow,{Transparency=math.max(0.55,q.theme.AccentGlow)},p,m)q:_reveal(n.handleGlow,{Transparency=
-0.8},p,m)else q:_hideCommon(n,p)q:_reveal(n.track,{BackgroundTransparency=1},p)q:_reveal(n.progress,{
-BackgroundTransparency=1},p)q:_reveal(n.handle,{BackgroundTransparency=1},p)if n.valueOdo then n.valueOdo:reveal(1,p)end
-q:_reveal(n.progressGlow,{Transparency=1},p,m)q:_reveal(n.handleGlow,{Transparency=1},p,m)end end function ae.
-_refreshTheme(n)ag.tweenService:Create(n.progressGlow,TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.EasingDirection.Out)
-,{Transparency=math.max(0.55,n.window.theme.AccentGlow)}):Play()end function ae._minWidth(n)if n.minimal then return 100
-end local o=40 if n.icon then o+=22 end o+=ah.textWidth(n.window.theme.Font,16,al.resolve(n.name))o+=12 o+=ah.textWidth(
-n.window.theme.Font,15,n:_format(n.value))return math.max(o,160)end aj(ae)ak(ae)return ae end)()end,[22]=function()local
-aa,ab,ac=a(22)local ad return(function(...)local ae={}ae.__index=ae ae.__type='Statistic'local af=ab.Parent.Parent.
-utility local ag,ah,ai,aj,ak,al,am=ac(af.variables),ac(af.functions),ac(af.odometer),ac(af.moveable),ac(af.constants),
-ac(af.locale),ac(af.log)local b,c,d,e=ak.statAccents,NumberSequence.new{NumberSequenceKeypoint.new(0,0.85),
-NumberSequenceKeypoint.new(1,0)},41,TweenInfo.new(0.6,Enum.EasingStyle.Exponential)local function f(g)return g.fill.
-Keypoints[1].Value end local function g(h)if h>0 then return string.format('+%.1f%%',h)elseif h<0 then return string.
-format('%.1f%%',h)else return'0%'end end local function h(i)if typeof(i)~='number'then return tostring(i)end local j=
-math.round(math.abs(i))local k=string.format('%.0f',j)local l=k:reverse():gsub('%d%d%d','%0,'):reverse()if l:sub(1,1)==
-','then l=l:sub(2)end return if i<0 and j~=0 then'-'..l else l end local function i(j)local k=math.round(j)if k>0 then
-return'+'..h(k)elseif k<0 then return h(k)else return'0'end end function ae.new(j,k)k=if typeof(k)=='table'then k else{}
-local l=setmetatable({tab=assert(j,'Missing argument #1 (Tab expected)'),window=j.window,name=k.name or k.Name or
-'Statistic',icon=k.icon or k.Icon,description=k.description or k.Description,value=if(k.value or k.Value)~=nil then(k.
-value or k.Value)else 0,_hasValue=(k.value or k.Value)~=nil,numberEasing=if(k.numberEasing~=nil)then k.numberEasing
-elseif k.NumberEasing~=nil then k.NumberEasing else true,changeMode=k.changeMode or k.ChangeMode or'percentage',
-changeBaseline=k.changeBaseline or k.ChangeBaseline or'previous',prefix=k.prefix or k.Prefix or'',suffix=k.suffix or k.
-Suffix or'',compact=k.compact or k.Compact or j.compact or false,display=(k.display or k.Display or'value'),
-_initialValue=if(k.value or k.Value)~=nil then(k.value or k.Value)else nil,_lastChange=0},ae)if l.compact then l:
-_buildCompact()else l:_buildFull()end if l.description then if l.compact then am.warn(`Rayfield: a compact stat has no room for a description, ignoring it on '{
-l.name}'.`)else l.descriptor=ac(ab.Parent.descriptor).new(l.tab,{description=l.description})end end return l end
-function ae._buildFull(j)local k=j.window j.main=k:Create('Frame',{Size=UDim2.new(1,-20,0,90),BorderSizePixel=0,Name=j.
-name,ZIndex=5,BackgroundTransparency=1,Parent=j.tab.tabPage},{BackgroundColor3='StatBackground',BackgroundTransparency=
+:Create('Frame',{AnchorPoint=Vector2.new(1,0.5),Position=k(),Size=UDim2.fromOffset(h.X,h.Y),BorderSizePixel=0,ZIndex=50,
+BackgroundTransparency=1,Parent=o.progress},{BackgroundColor3='SliderHandle'})o.window:Create('UICorner',{CornerRadius=
+UDim.new(1,0),Parent=o.handle})o.handleGlow=o.window:CreateGlow(o.handle,Color3.fromRGB(255,255,255),10,1)o.handleStroke
+=o.window:Create('UIStroke',{Transparency=1,Parent=o.handle},{Color='SliderStroke'})o.interact=o.window:Create(
+'TextButton',{BackgroundTransparency=1,Size=UDim2.fromScale(1,1),Text='',TextTransparency=1,ZIndex=10,Parent=o.track})o.
+window:ConnectFor(o,o.main.MouseEnter,function()if not o.window:_interactive()then return end ag.tweenService:Create(o.
+track,d,{BackgroundColor3=o.window.theme.SliderBackgroundHover}):Play()end)o.window:ConnectFor(o,o.main.MouseLeave,
+function()ag.tweenService:Create(o.track,d,{BackgroundColor3=o.window.theme.SliderBackground}):Play()end)o.window:
+ConnectFor(o,o.interact.InputBegan,function(p)if p.UserInputType==Enum.UserInputType.MouseButton1 or p.UserInputType==
+Enum.UserInputType.Touch then am.click()o.dragging=true o:_setHeld(true)o:_updateFromMouse()if o._dragConnection then o.
+_dragConnection:Disconnect()o._dragConnection=nil end o._dragConnection=ag.runService.RenderStepped:Connect(function()if
+o.window.unloaded or not o.dragging then if o._dragConnection then o._dragConnection:Disconnect()o._dragConnection=nil
+end return end o:_updateFromMouse()end)end end)o.window:ConnectFor(o,ag.userInputService.InputEnded,function(p)if p.
+UserInputType==Enum.UserInputType.MouseButton1 or p.UserInputType==Enum.UserInputType.Touch then o:_endDrag()end end)o.
+window:ConnectFor(o,ag.userInputService.WindowFocusReleased,function()o:_endDrag()end)if o.description and not o.minimal
+then o.descriptor=ac(ab.Parent.descriptor).new(o.tab,{description=o.description})end o.window:ConnectFor(o,o.main:
+GetPropertyChangedSignal'AbsoluteSize',function()if o.window.animating or(o.window.hidden and o.window.hasShownOnce)then
+return end o:_applyLayout()end)o:_applyLayout()if o.minimal then o.main.Size=UDim2.new(1,-20,0,41)o.track.AnchorPoint=
+Vector2.new(0.5,0.5)o.track.Position=UDim2.new(0.5,0,0.5,0)o.track.Size=UDim2.new(1,-30,0,14)end o:_renderProgress()
+return o end function ae._buildLabel(m)m.container=m.window:Create('Frame',{AnchorPoint=Vector2.new(0,0.5),Position=
+UDim2.new(0,20,0.5,0),Size=UDim2.fromOffset(170,33),BackgroundTransparency=1,BorderSizePixel=0,ZIndex=5,Parent=m.main})m
+.containerLayout=m.window:Create('UIListLayout',{Padding=UDim.new(0,2),VerticalAlignment=Enum.VerticalAlignment.Center,
+SortOrder=Enum.SortOrder.LayoutOrder,Parent=m.container})m.titleContainer=m.window:Create('Frame',{Size=UDim2.new(1,0,0,
+16),BackgroundTransparency=1,BorderSizePixel=0,ZIndex=5,Parent=m.container})m.window:Create('UIListLayout',{Padding=UDim
+.new(0,5),FillDirection=Enum.FillDirection.Horizontal,VerticalAlignment=Enum.VerticalAlignment.Center,SortOrder=Enum.
+SortOrder.LayoutOrder,Parent=m.titleContainer})m.titleFlex=m.window:Create('UIFlexItem',{FlexMode=Enum.UIFlexMode.None,
+Parent=m.titleContainer})if m.icon then m.iconLabel=m.window:Create('ImageLabel',{Image=m.icon,Size=UDim2.fromOffset(16,
+16),BorderSizePixel=0,BackgroundTransparency=1,ZIndex=5,ImageTransparency=1,Parent=m.titleContainer},{ImageColor3=
+'ContentColor'})end m.title=m.window:Create('TextLabel',{Text=al.t(m.name),Size=UDim2.new(1,0,0,16),BorderSizePixel=0,
+BackgroundTransparency=1,TextSize=16,TextXAlignment=Enum.TextXAlignment.Left,TextTruncate=Enum.TextTruncate.AtEnd,
+RichText=true,LayoutOrder=1,ZIndex=5,TextTransparency=1,Parent=m.titleContainer},{TextColor3='ContentColor',FontFace=
+'Font'})m.window:Create('UIFlexItem',{FlexMode=Enum.UIFlexMode.Shrink,Parent=m.title})m.valueHost=m.window:Create(
+'Frame',{Size=UDim2.new(1,0,0,16),BackgroundTransparency=1,BorderSizePixel=0,ZIndex=6,LayoutOrder=1,Parent=m.container})
+m.valueOdo=ai.new(m.window,m.valueHost,{textSize=15,alignment=Enum.HorizontalAlignment.Left,transparency=1,duration=0.28
+})m.valueOdo:snap(m:_format(m.value))end function ae._setMainHeight(m,n)if m._widthManaged then m.main.Size=UDim2.new(m.
+main.Size.X.Scale,m.main.Size.X.Offset,0,n)else m.main.Size=UDim2.new(1,-20,0,n)end end function ae._applyLayout(m)if m.
+minimal then return end local n=m.main.AbsoluteSize.X/m.window.scale local o=if n>0 and n<g then'narrow'else'wide'if m.
+_layoutMode==o then return end m._layoutMode=o if o=='narrow'then m:_setMainHeight(70)m.container.AnchorPoint=Vector2.
+new(0,0)m.container.Position=UDim2.new(0,20,0,14)m.container.Size=UDim2.new(1,-40,0,16)m.containerLayout.FillDirection=
+Enum.FillDirection.Horizontal m.titleFlex.FlexMode=Enum.UIFlexMode.Fill m.valueHost.AutomaticSize=Enum.AutomaticSize.X m
+.valueHost.Size=UDim2.new(0,0,0,16)m.track.AnchorPoint=Vector2.new(0.5,1)m.track.Position=UDim2.new(0.5,0,1,-14)m.track.
+Size=UDim2.new(1,-30,0,14)else m:_setMainHeight(65)m.container.AnchorPoint=Vector2.new(0,0.5)m.container.Position=UDim2.
+new(0,20,0.5,0)m.container.Size=UDim2.new(0,170,0,33)m.containerLayout.FillDirection=Enum.FillDirection.Vertical m.
+titleFlex.FlexMode=Enum.UIFlexMode.None m.valueHost.AutomaticSize=Enum.AutomaticSize.None m.valueHost.Size=UDim2.new(1,0
+,0,16)m.track.AnchorPoint=Vector2.new(1,0.5)m.track.Position=UDim2.new(1,-15,0.5,0)m.track.Size=UDim2.new(0,222,0,14)end
+end function ae._format(m,n)local o=string.format('%.'..m._decimals..'f',n)if m.suffix~=''then return o..' '..m.suffix
+end return o end function ae._pillTravel(m)return math.max(m.track.AbsoluteSize.X-m._handleWidth*m.window.scale,0)end
+function ae._renderProgress(m,n)local o=m.range[2]-m.range[1]local p=if o~=0 then math.clamp((m.value-m.range[1])/o,0,1)
+else 0 local q=j(p,m._handleWidth)if n then ag.tweenService:Create(m.progress,n,{Size=q}):Play()else m.progress.Size=q
+end end function ae._updateFromMouse(m)local n=m:_pillTravel()if n<=0 then return end local o=l(ag.userInputService:
+GetMouseLocation().X,m.track.AbsolutePosition.X+m._handleWidth*m.window.scale/2,n)local p=c(m.range,m.increment,m.range[
+1]+o*(m.range[2]-m.range[1]))if p~=m.value then m.value=p if m.valueOdo then m.valueOdo:snap(m:_format(p))end m.
+_lastValue=p m:_renderProgress(f)m:_fireCallback(p)end end function ae._endDrag(m)if not m.dragging then return end m.
+dragging=false m:_setHeld(false)if m._dragConnection then m._dragConnection:Disconnect()m._dragConnection=nil end m.
+window:_persist(m)end function ae._setHeld(m,n)if not n then m:_fireCallback(m.value)end local o=if n then i else h m.
+_handleWidth=o.X ag.tweenService:Create(m.handle,e,{Size=UDim2.fromOffset(o.X,o.Y),BackgroundTransparency=if n then 0.7
+else 0}):Play()ag.tweenService:Create(m.handleStroke,e,{Transparency=if n then 0.6 else 1}):Play()m:_renderProgress(e)
+end function ae._fireCallback(m,n)m.window:_runGuarded(m,m.callback,n,m.dragging==true)end function ae.Set(m,n,o)n=c(m.
+range,m.increment,n)m.value=n if m.valueOdo then m.valueOdo:to(m:_format(n),n>=(m._lastValue or n))end m._lastValue=n m:
+_renderProgress(d)if not o then m:_fireCallback(n)m.window:_persist(m)end end local m=TweenInfo.new(0.4,Enum.EasingStyle
+.Exponential,Enum.EasingDirection.Out,0,false,0.35)function ae._setShown(n,o,p)local q=n.window if o then q:
+_revealCommon(n,p)q:_reveal(n.track,{BackgroundTransparency=0},p)q:_reveal(n.progress,{BackgroundTransparency=0},p)q:
+_reveal(n.handle,{BackgroundTransparency=0},p)if n.valueOdo then n.valueOdo:reveal(0.3,p)end q:_reveal(n.progressGlow,{
+Transparency=math.max(0.55,q.theme.AccentGlow)},p,m)q:_reveal(n.handleGlow,{Transparency=0.8},p,m)else q:_hideCommon(n,p
+)q:_reveal(n.track,{BackgroundTransparency=1},p)q:_reveal(n.progress,{BackgroundTransparency=1},p)q:_reveal(n.handle,{
+BackgroundTransparency=1},p)if n.valueOdo then n.valueOdo:reveal(1,p)end q:_reveal(n.progressGlow,{Transparency=1},p,m)q
+:_reveal(n.handleGlow,{Transparency=1},p,m)end end function ae._refreshTheme(n)ag.tweenService:Create(n.progressGlow,
+TweenInfo.new(0.5,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Transparency=math.max(0.55,n.window.theme.AccentGlow
+)}):Play()end function ae._minWidth(n)if n.minimal then return 100 end local o=40 if n.icon then o+=22 end o+=ah.
+textWidth(n.window.theme.Font,16,al.resolve(n.name))o+=12 o+=ah.textWidth(n.window.theme.Font,15,n:_format(n.value))
+return math.max(o,160)end aj(ae)ak(ae)return ae end)()end,[22]=function()local aa,ab,ac=a(22)local ad return(function(
+...)local ae={}ae.__index=ae ae.__type='Statistic'local af=ab.Parent.Parent.utility local ag,ah,ai,aj,ak,al,am=ac(af.
+variables),ac(af.functions),ac(af.odometer),ac(af.moveable),ac(af.constants),ac(af.locale),ac(af.log)local b,c,d,e=ak.
+statAccents,NumberSequence.new{NumberSequenceKeypoint.new(0,0.85),NumberSequenceKeypoint.new(1,0)},41,TweenInfo.new(0.6,
+Enum.EasingStyle.Exponential)local function f(g)return g.fill.Keypoints[1].Value end local function g(h)if h>0 then
+return string.format('+%.1f%%',h)elseif h<0 then return string.format('%.1f%%',h)else return'0%'end end local function h
+(i)if typeof(i)~='number'then return tostring(i)end local j=math.round(math.abs(i))local k=string.format('%.0f',j)local
+l=k:reverse():gsub('%d%d%d','%0,'):reverse()if l:sub(1,1)==','then l=l:sub(2)end return if i<0 and j~=0 then'-'..l else
+l end local function i(j)local k=math.round(j)if k>0 then return'+'..h(k)elseif k<0 then return h(k)else return'0'end
+end function ae.new(j,k)k=if typeof(k)=='table'then k else{}local l=setmetatable({tab=assert(j,
+'Missing argument #1 (Tab expected)'),window=j.window,name=k.name or k.Name or'Statistic',icon=k.icon or k.Icon,
+description=k.description or k.Description,value=if(k.value or k.Value)~=nil then(k.value or k.Value)else 0,_hasValue=(k
+.value or k.Value)~=nil,numberEasing=if(k.numberEasing~=nil)then k.numberEasing elseif k.NumberEasing~=nil then k.
+NumberEasing else true,changeMode=k.changeMode or k.ChangeMode or'percentage',changeBaseline=k.changeBaseline or k.
+ChangeBaseline or'previous',prefix=k.prefix or k.Prefix or'',suffix=k.suffix or k.Suffix or'',compact=k.compact or k.
+Compact or j.compact or false,display=(k.display or k.Display or'value'),_initialValue=if(k.value or k.Value)~=nil then(
+k.value or k.Value)else nil,_lastChange=0},ae)if l.compact then l:_buildCompact()else l:_buildFull()end if l.description
+then if l.compact then am.warn(`Rayfield: a compact stat has no room for a description, ignoring it on '{l.name}'.`)else
+l.descriptor=ac(ab.Parent.descriptor).new(l.tab,{description=l.description})end end return l end function ae._buildFull(
+j)local k=j.window j.main=k:Create('Frame',{Size=UDim2.new(1,-20,0,90),BorderSizePixel=0,Name=j.name,ZIndex=5,
+BackgroundTransparency=1,Parent=j.tab.tabPage},{BackgroundColor3='StatBackground',BackgroundTransparency=
 'ElementTransparency'})k:Create('UICorner',{Parent=j.main},{CornerRadius='ElementCornerRadius'})j.stroke=k:Create(
 'UIStroke',{Transparency=1,Color=Color3.fromRGB(255,255,255),Parent=j.main},{Transparency='ElementStrokeTransparency'})j
 .strokeGradient=k:Create('UIGradient',{Rotation=2,Offset=Vector2.new(0,0.5),Color=b.neutral.stroke,Transparency=c,Parent
@@ -1759,7 +1759,7 @@ Vector2.new(0,0.5),BackgroundTransparency=1,LayoutOrder=1,Parent=X.topContainer}
 aj.t(X.name),FontFace=g.brandFont(Enum.FontWeight.Medium),Size=UDim2.fromOffset(50,20),AutomaticSize=Enum.AutomaticSize.
 X,BackgroundTransparency=1,TextSize=20,TextXAlignment=Enum.TextXAlignment.Left,TextWrapped=true,TextTransparency=1,
 Parent=X.titleContainer},{FontFace='Font',TextColor3='TitlingColor'})end if X.icon then X.topbarIcon=X:Create(
-'ImageLabel',{Image=X.icon,BackgroundTransparency=1,Size=UDim2.fromOffset(32,32),ImageTransparency=1,Parent=X.
+'ImageLabel',{Image=X.icon,BackgroundTransparency=1,Size=UDim2.fromOffset(42,42),ImageTransparency=1,Parent=X.
 topContainer},{ImageColor3='TitlingColor'})end if X.subheading then X.subtitle=X:Create('TextLabel',{Text=aj.t(X.
 subheading),Size=UDim2.fromOffset(50,12),AutomaticSize=Enum.AutomaticSize.X,BackgroundTransparency=1,TextSize=12,
 TextXAlignment=Enum.TextXAlignment.Left,TextWrapped=true,TextTransparency=1,Parent=X.titleContainer},{TextColor3=
@@ -2973,30 +2973,30 @@ end local function aq(ar:Profile,b:number,c:number):UDim2 local d,e=math.min(mat
 :UDim2 local d=c~=nil and c<1 local e=af.profile(b,d)if not ar or ar.X<ag or ar.Y<ag then return UDim2.fromOffset(e.
 defaultSize.X,e.defaultSize.Y)end if d then ar/=c::number end local f,g=math.min(ar.X*e.maxOccupancyX,ar.X-e.
 marginFloorX),an(e,ar.Y)if e.minAspectRatio then return aq(e,f,g)end return ap(e,f,g)end return af end)()end},{{1,2,{
-'Rayfield'},{{39,1,{'utility'},{{71,2,{'windowSizing'}},{70,2,{'variables'}},{43,2,{'constants'}},{46,2,{
-'filesystemManager'}},{41,2,{'assetResolver'}},{49,2,{'functions'}},{61,2,{'path'}},{45,2,{'filesystem'}},{40,2,{
-'HapticEngine'}},{51,2,{'imageCache'}},{44,2,{'enums'}},{64,2,{'persistencePaths'}},{65,2,{'persistenceSettings'}},{57,2
-,{'moveable'}},{52,2,{'layouts'}},{63,2,{'persistenceConfig'}},{42,2,{'colors'}},{66,2,{'persistenceWrite'}},{60,2,{
-'ordering'}},{48,2,{'fontManager'}},{68,2,{'services'}},{69,2,{'textMetrics'}},{62,2,{'persistence'}},{47,2,{'flagNames'
-}},{67,2,{'runtime'}},{54,2,{'lockable'}},{58,2,{'network'}},{50,2,{'image'}},{55,2,{'log'}},{53,2,{'locale'}},{56,2,{
-'logoImage'}},{59,2,{'odometer'}}}},{31,1,{'themes'},{{32,2,{'amethyst'}},{34,2,{'default'}},{33,2,{'cobalt'}},{35,2,{
-'ember'}},{37,2,{'rose'}},{36,2,{'frost'}}}},{38,2,{'types'}},{2,1,{'components'},{{16,2,{'popup'}},{21,2,{'slider'}},{
-24,2,{'tabSection'}},{12,2,{'group'}},{6,2,{'colorpicker'}},{5,2,{'chrome'}},{11,2,{'dropdown'}},{23,2,{'tab'}},{14,2,{
-'keybind'}},{9,2,{'divider'}},{30,2,{'window'}},{7,2,{'console'}},{26,2,{'tag'}},{29,2,{'toggle'}},{20,2,{'sidebar'}},{
-10,2,{'drag'}},{28,2,{'toast'}},{4,2,{'button'}},{27,2,{'text'}},{25,2,{'tabSelector'}},{3,2,{'action'}},{17,2,{
-'progress'}},{22,2,{'stat'}},{19,2,{'section'}},{8,2,{'descriptor'}},{15,2,{'notification'}},{18,2,{'search'}},{13,2,{
-'input'}}}}}}},'0.4.1','Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,
-xpcall,tostring,tonumber,_VERSION local e,f,g,h,i,j,k=aj.insert,aj.remove,aj.freeze or function(e)return e end,al.wrap,
-ae.sub,ae.match,ae.gmatch if c and i(c,1,4)=='Lune'then local l,m=ap(ao,'@lune/task')if l and m then af=m end end local
-l=af and af.defer local m,n,o,p,q,r,s,t,u=l or function(m,...)h(m)(...)end,{[1]='Folder',[2]='ModuleScript',[3]='Script'
-,[4]='LocalScript',[5]='StringValue'},{},{},{},{},{},{},{}local v,w={GetFullName={{},function(v)local w,x=v.Name,v.
-Parent while x do w=x.Name..'.'..w x=x.Parent end return w end},GetChildren={{},function(v)local w={}for x in ai,u[v]do
-e(w,x)end return w end},GetDescendants={{},function(v)local w={}for x in ai,u[v]do e(w,x)for y,z in ai,x:GetDescendants(
-)do e(w,z)end end return w end},FindFirstChild={{'string','boolean?'},function(v,w,x)local y=u[v]for z in ai,y do if z.
-Name==w then return z end end if x then for z in ai,y do return z:FindFirstChild(w,true)end end end},FindFirstAncestor={
-{'string'},function(v,w)local x=v.Parent while x do if x.Name==w then return x end x=x.Parent end end},WaitForChild={{
-'string','number?'},function(v,w)return v:FindFirstChild(w)end}},{}for x,y in ai,v do local z,A,B=y[1],y[2],{}for C,D in
-ai,z do local E,F=j(D,'^([^%?]+)(%??)')B[C]={E,F}end w[x]=function(C,...)if not u[C]then ah(
+'Rayfield'},{{31,1,{'themes'},{{36,2,{'frost'}},{32,2,{'amethyst'}},{34,2,{'default'}},{37,2,{'rose'}},{33,2,{'cobalt'}}
+,{35,2,{'ember'}}}},{38,2,{'types'}},{39,1,{'utility'},{{48,2,{'fontManager'}},{66,2,{'persistenceWrite'}},{53,2,{
+'locale'}},{71,2,{'windowSizing'}},{55,2,{'log'}},{60,2,{'ordering'}},{70,2,{'variables'}},{41,2,{'assetResolver'}},{46,
+2,{'filesystemManager'}},{54,2,{'lockable'}},{69,2,{'textMetrics'}},{62,2,{'persistence'}},{67,2,{'runtime'}},{45,2,{
+'filesystem'}},{65,2,{'persistenceSettings'}},{57,2,{'moveable'}},{63,2,{'persistenceConfig'}},{52,2,{'layouts'}},{51,2,
+{'imageCache'}},{40,2,{'HapticEngine'}},{49,2,{'functions'}},{43,2,{'constants'}},{50,2,{'image'}},{68,2,{'services'}},{
+47,2,{'flagNames'}},{56,2,{'logoImage'}},{64,2,{'persistencePaths'}},{58,2,{'network'}},{59,2,{'odometer'}},{44,2,{
+'enums'}},{61,2,{'path'}},{42,2,{'colors'}}}},{2,1,{'components'},{{16,2,{'popup'}},{3,2,{'action'}},{21,2,{'slider'}},{
+13,2,{'input'}},{30,2,{'window'}},{29,2,{'toggle'}},{5,2,{'chrome'}},{9,2,{'divider'}},{12,2,{'group'}},{4,2,{'button'}}
+,{11,2,{'dropdown'}},{8,2,{'descriptor'}},{22,2,{'stat'}},{10,2,{'drag'}},{20,2,{'sidebar'}},{15,2,{'notification'}},{19
+,2,{'section'}},{26,2,{'tag'}},{24,2,{'tabSection'}},{6,2,{'colorpicker'}},{23,2,{'tab'}},{25,2,{'tabSelector'}},{7,2,{
+'console'}},{18,2,{'search'}},{17,2,{'progress'}},{14,2,{'keybind'}},{27,2,{'text'}},{28,2,{'toast'}}}}}}},'0.4.1',
+'Rayfield',string,task,setmetatable,error,next,table,unpack,coroutine,script,type,require,pcall,xpcall,tostring,tonumber
+,_VERSION local e,f,g,h,i,j,k=aj.insert,aj.remove,aj.freeze or function(e)return e end,al.wrap,ae.sub,ae.match,ae.gmatch
+if c and i(c,1,4)=='Lune'then local l,m=ap(ao,'@lune/task')if l and m then af=m end end local l=af and af.defer local m,
+n,o,p,q,r,s,t,u=l or function(m,...)h(m)(...)end,{[1]='Folder',[2]='ModuleScript',[3]='Script',[4]='LocalScript',[5]=
+'StringValue'},{},{},{},{},{},{},{}local v,w={GetFullName={{},function(v)local w,x=v.Name,v.Parent while x do w=x.Name..
+'.'..w x=x.Parent end return w end},GetChildren={{},function(v)local w={}for x in ai,u[v]do e(w,x)end return w end},
+GetDescendants={{},function(v)local w={}for x in ai,u[v]do e(w,x)for y,z in ai,x:GetDescendants()do e(w,z)end end return
+w end},FindFirstChild={{'string','boolean?'},function(v,w,x)local y=u[v]for z in ai,y do if z.Name==w then return z end
+end if x then for z in ai,y do return z:FindFirstChild(w,true)end end end},FindFirstAncestor={{'string'},function(v,w)
+local x=v.Parent while x do if x.Name==w then return x end x=x.Parent end end},WaitForChild={{'string','number?'},
+function(v,w)return v:FindFirstChild(w)end}},{}for x,y in ai,v do local z,A,B=y[1],y[2],{}for C,D in ai,z do local E,F=
+j(D,'^([^%?]+)(%??)')B[C]={E,F}end w[x]=function(C,...)if not u[C]then ah(
 "Expected ':' not '.' calling member function "..x,2)end local D={...}for E,F in ai,B do local G=D[E]local H,I,J=an(G),F
 [1],F[2]if G==nil and not J then ah('Argument '..G..' missing or nil',3)end if I~='any'and H~=I and not(H=='nil'and J)
 then ah('Argument '..E..' expects type "'..I..'", got "'..H..'"',2)end end return A(C,...)end end local function x(y,z,A

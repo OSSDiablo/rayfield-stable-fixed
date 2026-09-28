@@ -36,26 +36,31 @@ return function()
             helpers.services.UserInputService._setMouseLocation(Vector2.new(x, 8))
         end
 
-        -- Where the pill lands, in pixels from the left of the track. It sits centred on the
-        -- fill's leading edge, and the fill is a fraction of the track.
-        -- rounded to the pixel it actually renders at: UDim scales are float32, so a scale of
-        -- 0.9 across 200px comes back a fraction under 180
-        local function pillCentre(slider, width)
+        -- Where the pill lands, in pixels from the left of the track. Its right edge sits on the
+        -- fill's end, so its centre is half a pill back from there.
+        local function fillEnd(slider, width)
             local fill = slider.progress.Size.X
-            return math.round(fill.Scale * width + fill.Offset)
+            return fill.Scale * width + fill.Offset
+        end
+
+        local function pillCentre(slider, width)
+            return fillEnd(slider, width) - slider.handle.Size.X.Offset / 2
         end
 
         local function pillEdges(slider, width)
-            local centre = pillCentre(slider, width)
-            local half = slider.handle.Size.X.Offset / 2
-            return centre - half, centre + half
+            local right = fillEnd(slider, width)
+            return right - slider.handle.Size.X.Offset, right
+        end
+
+        local function near(a, b)
+            return math.abs(a - b) <= 1
         end
 
         local function finite(n)
             return n == n and n ~= math.huge and n ~= -math.huge
         end
 
-        it("hangs half a pill past each end of the track", function()
+        it("keeps the pill inside the track at both ends", function()
             local slider = makeSlider({
                 name = "Volume",
                 range = { 0, 100 },
@@ -69,18 +74,17 @@ return function()
 
                 slider:Set(0)
                 slider:_renderProgress()
-                local half = slider.handle.Size.X.Offset / 2
                 local left = pillEdges(slider, width)
-                expect(left).to.equal(-half) -- centre on the track's left edge
+                expect(near(left, 0)).to.equal(true) -- flush with the track's start
 
                 slider:Set(100)
                 slider:_renderProgress()
                 local _, right = pillEdges(slider, width)
-                expect(right).to.equal(width + half) -- and on its right edge at the top
+                expect(near(right, width)).to.equal(true) -- and flush with its end
             end
         end)
 
-        it("puts the pill's centre exactly on the value", function()
+        it("puts the pill's centre on the value along its travel", function()
             local slider = makeSlider({
                 name = "Volume",
                 range = { 0, 100 },
@@ -92,14 +96,15 @@ return function()
             local width = 200
             placeTrack(slider, 0, width)
 
-            for _, case in { { 0, 0 }, { 25, 50 }, { 50, 100 }, { 100, 200 } } do
+            -- the centre travels from half a pill in to half a pill short: 17.5 to 182.5
+            for _, case in { { 0, 17.5 }, { 25, 58.75 }, { 50, 100 }, { 100, 182.5 } } do
                 slider:Set(case[1])
                 slider:_renderProgress()
-                expect(pillCentre(slider, width)).to.equal(case[2])
+                expect(near(pillCentre(slider, width), case[2])).to.equal(true)
             end
         end)
 
-        it("maps the pointer over the whole track", function()
+        it("maps the pointer onto the pill's travel", function()
             local slider = makeSlider({
                 name = "Volume",
                 range = { 0, 100 },
@@ -110,8 +115,9 @@ return function()
 
             placeTrack(slider, 100, 200)
 
-            -- a quarter along the track is a quarter of the range, with no inset to account for
-            pointAt(150)
+            -- a press grows the pill to 41 first, so the travel starts half of that in (120.5)
+            -- and runs 200 - 41 = 159
+            pointAt(160.25)
             slider.interact.InputBegan:Fire({ UserInputType = Enum.UserInputType.MouseButton1 })
             expect(slider.value).to.equal(25)
 
@@ -143,17 +149,17 @@ return function()
             placeTrack(slider, 0, 200)
             slider:_renderProgress()
 
-            -- the pill lives inside the fill, pinned to its leading edge, so the fill's size is
-            -- the only thing that has to move. A second position would be a second thing to drift.
+            -- the pill lives inside the fill, its right edge pinned to the fill's end, so the
+            -- fill's size is the only thing that has to move
             expect(slider.handle.Position.X.Scale).to.equal(1)
             expect(slider.handle.Position.X.Offset).to.equal(0)
-            expect(slider.handle.AnchorPoint.X).to.equal(0.5)
+            expect(slider.handle.AnchorPoint.X).to.equal(1)
 
             local before = slider.handle.Position
             slider:Set(90)
             slider:_renderProgress()
             expect(slider.handle.Position).to.equal(before)
-            expect(pillCentre(slider, 200)).to.equal(180)
+            expect(near(pillCentre(slider, 200), 17.5 + 0.9 * 165)).to.equal(true)
         end)
 
         it("stays finite on a track narrower than the pill", function()
@@ -197,7 +203,7 @@ return function()
             -- once it is laid out the same render puts the pill where the value says
             placeTrack(slider, 0, 200)
             slider:_renderProgress()
-            expect(pillCentre(slider, 200)).to.equal(100)
+            expect(near(pillCentre(slider, 200), 100)).to.equal(true)
         end)
 
         it("grows the pill for a drag without moving what the fill owns", function()
@@ -215,8 +221,8 @@ return function()
             slider:_setHeld(true)
             expect(slider.handle.Size.X.Offset > restWidth).to.equal(true)
 
-            -- growing is symmetric about the centre, so the value the pill points at is unmoved
-            expect(pillCentre(slider, 200)).to.equal(100)
+            -- the fill makes room for the wider pill, so its centre stays on the value
+            expect(near(pillCentre(slider, 200), 100)).to.equal(true)
 
             slider:_setHeld(false)
             expect(slider.handle.Size.X.Offset).to.equal(restWidth)
