@@ -98,11 +98,44 @@ local profiles = {
     } :: Profile,
 }
 
-function windowSizing.profile(mode: layouts.Mode?): Profile
+-- Phones. A touch screen this short draws the whole window smaller through a UIScale, and the
+-- fit runs against the screen as the scaled window sees it. Without this a phone gets desktop
+-- sized text in a window that fills the width and still shows three rows.
+local compactMaxViewportY = 600
+local compactReferenceHeight = 540
+local compactMinScale = 0.62
+
+-- On a phone the height is what runs out, so the scaled window may grow past the desktop ideal
+-- and take more of the screen down. Width is left alone: the scale alone narrows it on screen.
+local function withOverrides(base: Profile, defaultSize: Vector2, maxOccupancyY: number?): Profile
+    local merged = table.clone(base)
+    merged.defaultSize = defaultSize
+    merged.maxOccupancyY = maxOccupancyY or base.maxOccupancyY
+    return merged
+end
+
+local compactProfiles = {
+    top = withOverrides(profiles.top, Vector2.new(475, 560)),
+    sidebar = withOverrides(profiles.sidebar, Vector2.new(685, 520), 0.86),
+}
+
+function windowSizing.profile(mode: layouts.Mode?, compact: boolean?): Profile
+    local set = if compact then compactProfiles else profiles
     if mode == "sidebar" then
-        return profiles.sidebar
+        return set.sidebar
     end
-    return profiles.top
+    return set.top
+end
+
+-- The UIScale this screen calls for: 1 everywhere except a short touch screen.
+function windowSizing.scale(viewport: Vector2?, touch: boolean?): number
+    if not touch or not viewport then
+        return 1
+    end
+    if viewport.Y < minPlausibleViewport or viewport.Y >= compactMaxViewportY then
+        return 1
+    end
+    return math.clamp(viewport.Y / compactReferenceHeight, compactMinScale, 1)
 end
 
 -- The page a window of this height can show. Nil height means the window hasn't been sized yet,
@@ -164,11 +197,18 @@ local function fitHorizontal(profile: Profile, availableX: number, availableY: n
     return UDim2.fromOffset(width, height)
 end
 
-function windowSizing.fit(viewport: Vector2?, mode: layouts.Mode?): UDim2
-    local profile = windowSizing.profile(mode)
+-- scale is the UIScale the window will carry. The size returned is in the window's own units,
+-- so it is measured against the screen divided by that scale.
+function windowSizing.fit(viewport: Vector2?, mode: layouts.Mode?, scale: number?): UDim2
+    local compact = scale ~= nil and scale < 1
+    local profile = windowSizing.profile(mode, compact)
 
     if not viewport or viewport.X < minPlausibleViewport or viewport.Y < minPlausibleViewport then
         return UDim2.fromOffset(profile.defaultSize.X, profile.defaultSize.Y)
+    end
+
+    if compact then
+        viewport /= scale :: number
     end
 
     local availableX = math.min(viewport.X * profile.maxOccupancyX, viewport.X - profile.marginFloorX)

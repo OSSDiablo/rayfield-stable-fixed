@@ -66,9 +66,12 @@ local viewportReconcileInterval = 2
 
 -- The size the current screen calls for, for this window's layout. Everything downstream (the
 -- reveal target, drag clamp, collapse) reads self.size, so it all inherits whatever this returns.
-local function fitWindowSize(mode): UDim2
+-- Also returns the UIScale to draw it at, which is below 1 only on a phone.
+local function fitWindowSize(mode): (UDim2, number)
     local camera = variables.workspace.CurrentCamera
-    return windowSizing.fit(camera and camera.ViewportSize, mode)
+    local viewport = camera and camera.ViewportSize
+    local scale = windowSizing.scale(viewport, variables.userInputService.TouchEnabled)
+    return windowSizing.fit(viewport, mode, scale), scale
 end
 
 -- Per-corner radii are newer than the oldest clients Rayfield runs on, so a shape that only
@@ -225,11 +228,15 @@ function Window.new(properties)
     -- the layout decides the window's whole shape, so it has to settle before the first fit
     local layout = resolveLayout(properties.sidebarLayout or properties.SidebarLayout)
 
+    local size, scale = fitWindowSize(layout.mode)
+
     local self = setmetatable({
         name = properties.name or properties.Name or "Rayfield Window",
         subheading = properties.subtitle or properties.Subtitle,
         layout = layout,
-        size = fitWindowSize(layout.mode),
+        -- size is in the window's own units; on screen it is size * scale
+        size = size,
+        scale = scale,
         instances = {},
         connections = {},
 
@@ -329,6 +336,12 @@ function Window.new(properties)
         Visible = false, -- In == true
 
         Parent = self.screenGui,
+    })
+
+    self.uiScale = self:Create("UIScale", {
+        Scale = self.scale,
+
+        Parent = self.main,
     })
 
     self.drag = require(script.Parent.drag).new(self)
@@ -1210,7 +1223,7 @@ function Window:ToggleMinimise()
                     self.main.Position.X.Scale,
                     self.main.Position.X.Offset,
                     self.main.Position.Y.Scale,
-                    self.main.Position.Y.Offset + self.size.Y.Offset / 2 + 15
+                    self.main.Position.Y.Offset + self.size.Y.Offset * self.scale / 2 + 15
                 ),
             })
             :Play()
@@ -1276,7 +1289,7 @@ function Window:ToggleMinimise()
                     self.main.Position.X.Scale,
                     self.main.Position.X.Offset,
                     self.main.Position.Y.Scale,
-                    self.main.Position.Y.Offset + self.layout.topbarHeight / 2 + 15
+                    self.main.Position.Y.Offset + self.layout.topbarHeight * self.scale / 2 + 15
                 ),
             })
             :Play()
@@ -1295,7 +1308,7 @@ function Window:_syncDragBar()
         return
     end
     local position = self.main.Position
-    local below = self.size.Y.Offset / 2 + 15
+    local below = self.size.Y.Offset * self.scale / 2 + 15
     bar.Position = UDim2.new(position.X.Scale, position.X.Offset, position.Y.Scale, position.Y.Offset + below)
 end
 
@@ -1314,7 +1327,7 @@ function Window:_clampedPosition(position: UDim2): UDim2
     end
 
     local screen = self.screenGui.AbsoluteSize
-    local halfX, halfY = self.size.X.Offset / 2, self.size.Y.Offset / 2
+    local halfX, halfY = self.size.X.Offset * self.scale / 2, self.size.Y.Offset * self.scale / 2
     local margin = 8
     -- math.max in case the window is bigger than the screen
     local x = math.clamp(position.X.Offset, halfX + margin, math.max(halfX + margin, screen.X - halfX - margin))
@@ -1337,9 +1350,11 @@ function Window:_applyWindowSize()
         return
     end
 
-    local size = fitWindowSize(self.layout.mode)
-    local changed = size ~= self.size
+    local size, scale = fitWindowSize(self.layout.mode)
+    local changed = size ~= self.size or scale ~= self.scale
     self.size = size
+    self.scale = scale
+    self.uiScale.Scale = scale
 
     -- the rail is sized off main, so setting it now is right whether main resizes on the spot
     -- below or grows into the banked size on its next show
@@ -1662,7 +1677,7 @@ function Window:_buildSettingsUI()
                 :Play()
             variables.tweenService
                 :Create(self.drag.drag, TweenInfo.new(0.5, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
-                    Position = UDim2.new(0.5, 0, 0.5, self.size.Y.Offset / 2 + 15),
+                    Position = UDim2.new(0.5, 0, 0.5, self.size.Y.Offset * self.scale / 2 + 15),
                 })
                 :Play()
         end,
@@ -2104,8 +2119,12 @@ function Window:_quickRestore()
     -- is recalculated against the full restored size - if the window was minimised (a shorter
     -- bar-hang offset) before hiding, it would otherwise reappear at the old, wrong height.
     task.delay(0.22, function()
-        self.drag.drag.Position =
-            UDim2.new(target.X.Scale, target.X.Offset, target.Y.Scale, target.Y.Offset + self.size.Y.Offset / 2 + 15)
+        self.drag.drag.Position = UDim2.new(
+            target.X.Scale,
+            target.X.Offset,
+            target.Y.Scale,
+            target.Y.Offset + self.size.Y.Offset * self.scale / 2 + 15
+        )
         self.drag.dragCosmetic.Size = UDim2.fromOffset(0, 4)
         self.drag.dragCosmetic.BackgroundTransparency = 1
         self.drag.drag.Visible = true

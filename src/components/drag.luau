@@ -30,7 +30,7 @@ function Drag.new(window, properties)
         AnchorPoint = Vector2.new(0.5, 0.5),
         -- hangs under the window's bottom edge; derived from the real size so it's right on the
         -- first open too (Show/minimise recompute the same way against self.size)
-        Position = UDim2.new(0.5, 0, 0.5, self.window.size.Y.Offset / 2 + 15),
+        Position = UDim2.new(0.5, 0, 0.5, self.window.size.Y.Offset * self.window.scale / 2 + 15),
         ZIndex = constants.zIndex.drag,
 
         -- Animation

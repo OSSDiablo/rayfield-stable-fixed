@@ -482,7 +482,8 @@ function Slider:_applyLayout()
     if self.minimal then
         return -- bare mode has a fixed slim layout, nothing to reflow
     end
-    local width = self.main.AbsoluteSize.X
+    -- in the window's own units, so a scaled down window on a phone does not read as narrow
+    local width = self.main.AbsoluteSize.X / self.window.scale
     local mode = if width > 0 and width < narrowWidth then "narrow" else "wide"
     if self._layoutMode == mode then
         return

@@ -882,7 +882,8 @@ function Dropdown:_syncScrollHint()
         return
     end
 
-    local more = self._isOpen and windowSize.Y > 0 and canvasSize.Y - (at.Y + windowSize.Y) > 1
+    -- CanvasPosition is in the window's own units, the absolute sizes in screen pixels
+    local more = self._isOpen and windowSize.Y > 0 and canvasSize.Y - (at.Y * self.window.scale + windowSize.Y) > 1
 
     variables.tweenService
         :Create(self.list, hintTween, { ScrollBarImageTransparency = if more then scrollbarShown else 1 })
@@ -1155,10 +1156,13 @@ function Dropdown:_bringIntoView()
         return
     end
 
-    -- measured against the canvas, not the screen, so it does not matter where the window is
-    local top = cardAt.Y - pageAt.Y + at.Y
+    -- measured against the canvas, not the screen, so it does not matter where the window is.
+    -- CanvasPosition and the open height are in the window's own units, the absolute values are
+    -- screen pixels, so those come back through the window's scale first.
+    local scale = self.window.scale
+    local top = (cardAt.Y - pageAt.Y) / scale + at.Y
     local bottom = top + self:_openHeight()
-    local overflow = bottom - (at.Y + view.Y)
+    local overflow = bottom - (at.Y + view.Y / scale)
     if overflow <= 0 then
         return -- it already ends inside the view
     end

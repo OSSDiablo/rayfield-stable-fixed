@@ -1177,7 +1177,8 @@ end
 -- geometry. map + hue stay top-left in both; only the preview's open rect, the hex field and
 -- the open height change. Re-tweens live if the mode flips while open.
 function ColorPicker:_applyLayout()
-    local width = self.main.AbsoluteSize.X
+    -- in the window's own units, so a scaled down window on a phone does not read as narrow
+    local width = self.main.AbsoluteSize.X / self.window.scale
     local mode = if width > 0 and width < narrowWidth then "narrow" else "wide"
     if mode == self._layoutMode then
         return
