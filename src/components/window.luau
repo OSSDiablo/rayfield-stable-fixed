@@ -75,6 +75,11 @@ local keepInView = 80
 -- window's scale took them well under a comfortable tap, so there they are sized to come out at
 -- the compact values on screen instead.
 local actionIcon, actionCell, actionGap = 20, 24, 5
+
+-- Notifications, toasts and popups on a phone draw at this share of the window's scale. They
+-- sit over the game rather than inside the window, so at the window's own scale they cover too
+-- much of a small screen.
+local compactOverlayShare = 0.8
 local compactActionIcon, compactActionCell, compactActionGap = 16, 28, 5
 
 -- The Home tab and the Discord reminder every window gets. homeTab = false and
@@ -1576,7 +1581,7 @@ function Window:_applyWindowSize()
     for index = #self._overlayScales, 1, -1 do
         local overlayScale = self._overlayScales[index]
         if overlayScale.Parent then
-            overlayScale.Scale = scale
+            overlayScale.Scale = self:_overlayScale()
         else
             table.remove(self._overlayScales, index)
         end
@@ -1605,9 +1610,13 @@ end
 
 -- Notifications, toasts and popups live outside the window frame, so its UIScale never reaches
 -- them. Each one gets its own, kept in step with the window's on every re-fit.
+function Window:_overlayScale(): number
+    return if self.scale < 1 then self.scale * compactOverlayShare else 1
+end
+
 function Window:_scaleOverlay(frame: GuiObject)
     local overlayScale = self:Create("UIScale", {
-        Scale = self.scale,
+        Scale = self:_overlayScale(),
 
         Parent = frame,
     })
