@@ -28,7 +28,6 @@ constants.icons = {
     check = 125626312718314,
     dot = 91452555903853, -- unselected dropdown option (also the colorpicker "invisible" mark)
     colorpicker = 91452555903853, -- same hollow-box glyph as dot
-    banner = 111263549366178,
     config = 125823673784681, -- saved-configurations picker
     rayfield = 80387863064905, -- default show icon on the sign-in toast
     palette = 10734910430, -- the built-in Theme tab
