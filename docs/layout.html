@@ -5,41 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Layout - Rayfield Gen2 Mobile</title>
 <meta name="description" content="Docs for Rayfield Gen2 Mobile, a phone-friendly build of the Rayfield Gen2 Roblox UI library.">
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-layout">
 <header class="topbar">
-  <button class="menu" type="button" aria-label="Menu">Menu</button>
-  <a class="brand" href="index.html">Rayfield Gen2 Mobile</a>
+  <button class="menu" type="button" aria-label="Open navigation">Menu</button>
+  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Gen2 Mobile</span></a>
   <a class="gh" href="https://github.com/OSSDiablo/rayfield-gen2-mobile">GitHub</a>
 </header>
 <div class="layout">
   <nav class="sidebar">
-    <a href="index.html">Overview</a>
-    <a href="getting-started.html">Getting started</a>
-    <a href="window.html">Window</a>
-    <a href="elements.html">Elements</a>
-    <a href="layout.html" class="current">Layout</a>
-    <div class="toc">
-      <a href="#section">Section</a>
-      <a href="#text">Text</a>
-      <a href="#divider">Divider</a>
-      <a href="#groups-elements-side-by-side">Groups: elements side by side</a>
+    <div class="search">
+      <input type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off">
+      <kbd>/</kbd>
     </div>
-    <a href="themes-and-mobile.html">Themes and mobile</a>
+    <div class="results" hidden></div>
+    <div class="nav">
+      <a href="index.html">Overview</a>
+      <a href="getting-started.html">Getting started</a>
+      <a href="window.html">Window</a>
+      <a href="elements.html">Elements</a>
+      <a href="layout.html" class="current">Layout</a>
+      <div class="toc">
+        <a href="#section">Section</a>
+        <a href="#text">Text</a>
+        <a href="#divider">Divider</a>
+        <a href="#groups-elements-side-by-side">Groups: elements side by side</a>
+      </div>
+      <a href="themes-and-mobile.html">Themes and mobile</a>
+      <a href="example.html">Full example</a>
+      <a href="faq.html">FAQ</a>
+    </div>
   </nav>
   <main class="content">
 <h1>Layout</h1>
 <h2 id="section"><a class="anchor" href="#section">Section</a></h2>
 <p>A heading inside a tab:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Tab:CreateSection({ name = &quot;Movement&quot; })</code></pre></div>
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">Tab:CreateSection({ name = &quot;Movement&quot; })</code></pre></div>
 <h2 id="text"><a class="anchor" href="#text">Text</a></h2>
 <p>A title with a paragraph under it. Either half can be left out.</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Info = Tab:CreateText({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Info = Tab:CreateText({
     name = &quot;How to use&quot;,
     text = &quot;Turn on Auto Farm and stand near the enemies.&quot;,
 })
@@ -48,17 +58,17 @@ Info:Set(&quot;New body text&quot;)
 Info:SetTitle(&quot;New title&quot;)</code></pre></div>
 <h2 id="divider"><a class="anchor" href="#divider">Divider</a></h2>
 <p>A line between elements, optionally with a word in the middle:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Tab:CreateDivider()
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">Tab:CreateDivider()
 Tab:CreateDivider({ text = &quot;or&quot; })
 Tab:CreateDivider({ line = false, spacing = 12 }) -- empty space only</code></pre></div>
 <h2 id="groups-elements-side-by-side"><a class="anchor" href="#groups-elements-side-by-side">Groups: elements side by side</a></h2>
 <p>A group lays elements out in a row or a column. Groups nest, so a row of columns makes a grid.</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Row = Tab:CreateGroup() -- a row by default
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Row = Tab:CreateGroup() -- a row by default
 
 Row:CreateButton({ name = &quot;Save&quot;, callback = function() end })
 Row:CreateButton({ name = &quot;Load&quot;, callback = function() end })</code></pre></div>
 <p>Two columns:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Columns = Tab:CreateGroup({ direction = &quot;row&quot; })
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Columns = Tab:CreateGroup({ direction = &quot;row&quot; })
 
 local Left = Columns:CreateGroup({ direction = &quot;column&quot; })
 Left:CreateToggle({ name = &quot;Auto Farm&quot;, callback = function() end })
@@ -70,28 +80,15 @@ Right:CreateSlider({ name = &quot;Range&quot;, range = { 5, 50 }, value = 20, ca
 <p>What fits where:</p>
 <div class="table"><table><thead><tr><th>Element</th><th>In a row</th><th>In a column</th></tr></thead><tbody><tr><td>Button, Toggle, Stat, Slider</td><td>yes</td><td>yes</td></tr><tr><td>Dropdown, Section, Text, Divider</td><td>no</td><td>yes</td></tr><tr><td>Input, Keybind, Color picker, Progress, Console</td><td>no</td><td>no, put them straight on the tab</td></tr></tbody></table></div>
 
-    <footer class="pager"><a class="prev" href="elements.html"><span>Previous</span>Elements</a><a class="next" href="themes-and-mobile.html"><span>Next</span>Themes and mobile</a></footer>
+    <footer class="page-foot">
+      <div class="pager"><a class="prev" href="elements.html"><span>Previous</span>Elements</a><a class="next" href="themes-and-mobile.html"><span>Next</span>Themes and mobile</a></div>
+      <a class="edit" href="https://github.com/OSSDiablo/rayfield-gen2-mobile/blob/main/docs/layout.md">Edit this page on GitHub</a>
+    </footer>
   </main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/lua.min.js"></script>
-<script>
-hljs.highlightAll();
-document.querySelectorAll(".copy").forEach(function (button) {
-  button.addEventListener("click", function () {
-    var code = button.parentElement.querySelector("code").innerText;
-    navigator.clipboard.writeText(code).then(function () {
-      button.textContent = "Copied";
-      setTimeout(function () { button.textContent = "Copy"; }, 1500);
-    });
-  });
-});
-document.querySelector(".menu").addEventListener("click", function () {
-  document.body.classList.toggle("nav-open");
-});
-document.querySelectorAll(".sidebar a").forEach(function (link) {
-  link.addEventListener("click", function () { document.body.classList.remove("nav-open"); });
-});
-</script>
+<script src="search.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

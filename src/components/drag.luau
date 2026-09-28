@@ -14,6 +14,7 @@ local utility = script.Parent.Parent.utility
 
 -- Variables
 local variables = require(utility.variables)
+local pointer = require(utility.pointer)
 local constants = require(utility.constants)
 
 function Drag.new(window, properties)
@@ -72,6 +73,7 @@ function Drag.new(window, properties)
 
     local dragging = false
     local relative = nil
+    local activeInput = nil -- the press being tracked; a touch follows its own finger
 
     -- main.Position offsets live in a space shifted from AbsolutePosition by the gui inset,
     -- even though the ScreenGui ignores inset. so the drag target has to add the inset back
@@ -84,8 +86,7 @@ function Drag.new(window, properties)
     end
 
     local function getPosition()
-        local mouseLocation = variables.userInputService and variables.userInputService:GetMouseLocation()
-            or Vector2.new(0, 0)
+        local mouseLocation = if variables.userInputService then pointer.location(activeInput) else Vector2.new(0, 0)
         local validRelative = relative or Vector2.new(0, 0)
         local validOffset = offset or Vector2.new(0, 0)
 
@@ -170,6 +171,7 @@ function Drag.new(window, properties)
             end
 
             dragging = true
+            activeInput = input
 
             -- refetch in case the inset changed (e.g. topbar toggled) since construction
             if screenGui and screenGui.IgnoreGuiInset then
@@ -178,7 +180,7 @@ function Drag.new(window, properties)
 
             relative = self.window.main.AbsolutePosition
                 + self.window.main.AbsoluteSize * self.window.main.AnchorPoint
-                - variables.userInputService:GetMouseLocation()
+                - pointer.location(input)
             if not self.window.hidden then
                 variables.tweenService
                     :Create(

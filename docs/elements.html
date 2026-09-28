@@ -5,58 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elements - Rayfield Gen2 Mobile</title>
 <meta name="description" content="Docs for Rayfield Gen2 Mobile, a phone-friendly build of the Rayfield Gen2 Roblox UI library.">
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-elements">
 <header class="topbar">
-  <button class="menu" type="button" aria-label="Menu">Menu</button>
-  <a class="brand" href="index.html">Rayfield Gen2 Mobile</a>
+  <button class="menu" type="button" aria-label="Open navigation">Menu</button>
+  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Gen2 Mobile</span></a>
   <a class="gh" href="https://github.com/OSSDiablo/rayfield-gen2-mobile">GitHub</a>
 </header>
 <div class="layout">
   <nav class="sidebar">
-    <a href="index.html">Overview</a>
-    <a href="getting-started.html">Getting started</a>
-    <a href="window.html">Window</a>
-    <a href="elements.html" class="current">Elements</a>
-    <div class="toc">
-      <a href="#button">Button</a>
-      <a href="#toggle">Toggle</a>
-      <a href="#slider">Slider</a>
-      <a href="#dropdown">Dropdown</a>
-      <a href="#input">Input</a>
-      <a href="#keybind">Keybind</a>
-      <a href="#color-picker">Color picker</a>
-      <a href="#stat">Stat</a>
-      <a href="#progress">Progress</a>
-      <a href="#console">Console</a>
-      <a href="#moving-elements">Moving elements</a>
+    <div class="search">
+      <input type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off">
+      <kbd>/</kbd>
     </div>
-    <a href="layout.html">Layout</a>
-    <a href="themes-and-mobile.html">Themes and mobile</a>
+    <div class="results" hidden></div>
+    <div class="nav">
+      <a href="index.html">Overview</a>
+      <a href="getting-started.html">Getting started</a>
+      <a href="window.html">Window</a>
+      <a href="elements.html" class="current">Elements</a>
+      <div class="toc">
+        <a href="#shared-options">Shared options</a>
+        <a href="#button">Button</a>
+        <a href="#toggle">Toggle</a>
+        <a href="#slider">Slider</a>
+        <a href="#dropdown">Dropdown</a>
+        <a href="#input">Input</a>
+        <a href="#keybind">Keybind</a>
+        <a href="#color-picker">Color picker</a>
+        <a href="#stat">Stat</a>
+        <a href="#progress">Progress</a>
+        <a href="#console">Console</a>
+        <a href="#moving-elements">Moving elements</a>
+      </div>
+      <a href="layout.html">Layout</a>
+      <a href="themes-and-mobile.html">Themes and mobile</a>
+      <a href="example.html">Full example</a>
+      <a href="faq.html">FAQ</a>
+    </div>
   </nav>
   <main class="content">
 <h1>Elements</h1>
-<p>Every element is created on a tab. Most take <code>name</code>, an optional <code>description</code> shown under it, an optional <code>icon</code>, and a <code>callback</code>.</p>
+<p>Every element is created on a tab (or inside a <a href="layout.html#groups-elements-side-by-side">group</a>).</p>
+<h2 id="shared-options"><a class="anchor" href="#shared-options">Shared options</a></h2>
+<p>Most elements take these:</p>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>name</code></td><td>string</td><td>The label</td></tr><tr><td><code>description</code></td><td>string</td><td>A smaller line under the label</td></tr><tr><td><code>icon</code></td><td>number or string</td><td>An image asset id shown before the label</td></tr><tr><td><code>callback</code></td><td>function</td><td>Runs when the player changes the element</td></tr></tbody></table></div>
 <p>Elements that hold a value also take:</p>
-<ul><li><code>flag</code>: the name it is saved under. See <a href="getting-started.html#saving-settings">saving</a></li><li><code>forgetState = true</code>: never save this one</li><li><code>value</code>: the starting value</li></ul>
-<p>and have <code>Set(value, skipCallback)</code>. Pass <code>true</code> as the second argument to change the value without running the callback.</p>
-<p>Every element you can press or change also has <code>Lock(reason)</code>, <code>Unlock()</code> and <code>IsLocked()</code>. A locked element is dimmed, ignores input and does not run its callback.</p>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>value</code></td><td>depends</td><td>The starting value</td></tr><tr><td><code>flag</code></td><td>string</td><td>The name it is saved under. See <a href="getting-started.html#saving-settings">saving</a></td></tr><tr><td><code>forgetState</code></td><td>boolean</td><td><code>true</code> keeps this element out of the save</td></tr></tbody></table></div>
+<p>and have these methods:</p>
+<div class="table"><table><thead><tr><th>Method</th><th>What it does</th></tr></thead><tbody><tr><td><code>Element:Set(value)</code></td><td>Change the value and run the callback</td></tr><tr><td><code>Element:Set(value, true)</code></td><td>Change the value without running the callback</td></tr><tr><td><code>Element.value</code></td><td>Read the current value</td></tr></tbody></table></div>
+<p>Everything a player can press or change can also be locked. A locked element is dimmed, ignores input and does not run its callback:</p>
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">Toggle:Lock(&quot;Buy the gamepass to use this&quot;)
+Toggle:Unlock()
+print(Toggle:IsLocked())</code></pre></div>
 <hr>
 <h2 id="button"><a class="anchor" href="#button">Button</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Tab:CreateButton({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">Tab:CreateButton({
     name = &quot;Teleport to spawn&quot;,
     description = &quot;Takes you back to the start&quot;,
     callback = function()
         print(&quot;pressed&quot;)
     end,
 })</code></pre></div>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>name</code></td><td>string</td><td>Button text</td></tr><tr><td><code>description</code></td><td>string</td><td>Smaller line under it</td></tr><tr><td><code>callback</code></td><td>function</td><td>Runs on every press</td></tr></tbody></table></div>
 <h2 id="toggle"><a class="anchor" href="#toggle">Toggle</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Toggle = Tab:CreateToggle({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Toggle = Tab:CreateToggle({
     name = &quot;Auto Farm&quot;,
     value = false,
     flag = &quot;AutoFarm&quot;,
@@ -67,25 +86,26 @@
 
 Toggle:Set(true)
 print(Toggle.value)</code></pre></div>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>value</code></td><td>boolean</td><td>Starts on or off. Default off</td></tr><tr><td><code>callback</code></td><td>function</td><td>Gets <code>true</code> or <code>false</code></td></tr></tbody></table></div>
 <p><code>Tab:CreateSwitch</code> is the same thing under another name.</p>
 <h2 id="slider"><a class="anchor" href="#slider">Slider</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Slider = Tab:CreateSlider({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Slider = Tab:CreateSlider({
     name = &quot;Walk Speed&quot;,
-    range = { 16, 100 }, -- default { 0, 100 }
-    increment = 1,       -- default 1
+    range = { 16, 100 },
+    increment = 1,
     value = 16,
     suffix = &quot; studs&quot;,
     flag = &quot;WalkSpeed&quot;,
     callback = function(value, dragging)
-        -- dragging is true while the player is still holding the handle
         print(value)
     end,
 })
 
 Slider:Set(50)</code></pre></div>
-<p><code>minimal = true</code> draws only the track, with no name or value. Useful inside a row.</p>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>range</code></td><td>table</td><td><code>{ min, max }</code>. Default <code>{ 0, 100 }</code></td></tr><tr><td><code>increment</code></td><td>number</td><td>Step size. Default <code>1</code></td></tr><tr><td><code>value</code></td><td>number</td><td>Starting value</td></tr><tr><td><code>suffix</code></td><td>string</td><td>Text after the number, like <code>&quot; studs&quot;</code> or <code>&quot;%&quot;</code></td></tr><tr><td><code>minimal</code></td><td>boolean</td><td>Only the track, no name or value. Handy inside a row</td></tr><tr><td><code>callback</code></td><td>function</td><td>Gets the value, and <code>dragging</code>: <code>true</code> while the player still holds the handle</td></tr></tbody></table></div>
+<p>Use <code>dragging</code> when the callback is expensive: preview while it is <code>true</code>, apply once it turns <code>false</code>.</p>
 <h2 id="dropdown"><a class="anchor" href="#dropdown">Dropdown</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Dropdown = Tab:CreateDropdown({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Dropdown = Tab:CreateDropdown({
     name = &quot;Weapon&quot;,
     options = { &quot;Sword&quot;, &quot;Bow&quot;, &quot;Staff&quot; },
     value = &quot;Sword&quot;,
@@ -94,8 +114,9 @@ Slider:Set(50)</code></pre></div>
         print(option) -- &quot;Bow&quot;
     end,
 })</code></pre></div>
-<p>With <code>multiSelect = true</code> the player can pick several, <code>value</code> takes a table, and the callback gets a table:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Tab:CreateDropdown({
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>options</code></td><td>table</td><td>The list of choices</td></tr><tr><td><code>value</code></td><td>string or table</td><td>Starting pick. A table when <code>multiSelect</code> is on</td></tr><tr><td><code>multiSelect</code></td><td>boolean</td><td>Let the player pick several</td></tr><tr><td><code>placeholder</code></td><td>string</td><td>Shown when nothing is picked. Default "None"</td></tr><tr><td><code>callback</code></td><td>function</td><td>Gets the pick as a string, or a table with <code>multiSelect</code></td></tr></tbody></table></div>
+<p>Picking several:</p>
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">Tab:CreateDropdown({
     name = &quot;Targets&quot;,
     options = { &quot;Zombie&quot;, &quot;Skeleton&quot;, &quot;Boss&quot; },
     multiSelect = true,
@@ -107,7 +128,7 @@ Slider:Set(50)</code></pre></div>
 <div class="table"><table><thead><tr><th>Method</th><th>What it does</th></tr></thead><tbody><tr><td><code>Dropdown:Set(&quot;Bow&quot;)</code></td><td>Pick an option (a table for multi-select)</td></tr><tr><td><code>Dropdown:Refresh({ &quot;A&quot;, &quot;B&quot; })</code></td><td>Replace the whole option list</td></tr><tr><td><code>Dropdown:Add(&quot;C&quot;)</code></td><td>Add one option</td></tr><tr><td><code>Dropdown:Remove(&quot;A&quot;)</code></td><td>Remove one option</td></tr></tbody></table></div>
 <p><code>Dropdown.value</code> is always a table, even for single-select.</p>
 <h2 id="input"><a class="anchor" href="#input">Input</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Input = Tab:CreateInput({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Input = Tab:CreateInput({
     name = &quot;Player name&quot;,
     placeholder = &quot;Type a name&quot;,
     flag = &quot;TargetName&quot;,
@@ -115,22 +136,21 @@ Slider:Set(50)</code></pre></div>
         print(text)
     end,
 })</code></pre></div>
-<div class="table"><table><thead><tr><th>Option</th><th>What it does</th></tr></thead><tbody><tr><td><code>numeric = true</code></td><td>Only allow numbers</td></tr><tr><td><code>clearOnFocus = true</code></td><td>Empty the box when the player taps into it</td></tr></tbody></table></div>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>value</code></td><td>string</td><td>Starting text</td></tr><tr><td><code>placeholder</code></td><td>string</td><td>Grey text shown while empty</td></tr><tr><td><code>numeric</code></td><td>boolean</td><td>Only allow numbers</td></tr><tr><td><code>clearOnFocus</code></td><td>boolean</td><td>Empty the box when the player taps into it</td></tr><tr><td><code>callback</code></td><td>function</td><td>Gets the text</td></tr></tbody></table></div>
 <h2 id="keybind"><a class="anchor" href="#keybind">Keybind</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Tab:CreateKeybind({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">Tab:CreateKeybind({
     name = &quot;Toggle Fly&quot;,
-    value = Enum.KeyCode.F, -- or the name, &quot;F&quot;
+    value = Enum.KeyCode.F,
     flag = &quot;FlyKey&quot;,
     callback = function(key)
         print(&quot;pressed&quot;, key)
     end,
 })</code></pre></div>
-<p>With <code>hold = true</code> the callback gets <code>true</code> once the key has been held (0.2 seconds by default, change it with <code>holdThreshold</code>) and <code>false</code> when it is let go. <code>onChanged</code> runs when the player binds a different key.</p>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>value</code></td><td>KeyCode or string</td><td>The starting key, as <code>Enum.KeyCode.F</code> or <code>&quot;F&quot;</code></td></tr><tr><td><code>hold</code></td><td>boolean</td><td>Fire <code>true</code> once the key is held and <code>false</code> on release</td></tr><tr><td><code>holdThreshold</code></td><td>number</td><td>Seconds before a hold counts. Default <code>0.2</code></td></tr><tr><td><code>callback</code></td><td>function</td><td>Gets the key on press, or <code>true</code>/<code>false</code> with <code>hold</code></td></tr><tr><td><code>onChanged</code></td><td>function</td><td>Runs when the player binds a different key</td></tr></tbody></table></div>
 <h2 id="color-picker"><a class="anchor" href="#color-picker">Color picker</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Picker = Tab:CreateColorPicker({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Picker = Tab:CreateColorPicker({
     name = &quot;ESP Color&quot;,
-    color = Color3.fromRGB(255, 0, 0), -- a hex string like &quot;#ff0000&quot; works too
-    alpha = 1,
+    color = Color3.fromRGB(255, 0, 0),
     flag = &quot;EspColor&quot;,
     callback = function(color, alpha)
         print(color, alpha)
@@ -139,68 +159,59 @@ Slider:Set(50)</code></pre></div>
 
 Picker:Set(Color3.fromRGB(0, 255, 0))
 Picker:SetAlpha(0.5)</code></pre></div>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>color</code></td><td>Color3 or string</td><td>Starting colour. A hex string like <code>&quot;#ff0000&quot;</code> works too</td></tr><tr><td><code>alpha</code></td><td>number</td><td>Starting opacity, 0 to 1. Default <code>1</code></td></tr><tr><td><code>callback</code></td><td>function</td><td>Gets the colour and the alpha</td></tr></tbody></table></div>
 <h2 id="stat"><a class="anchor" href="#stat">Stat</a></h2>
 <p>A card that shows a number. The number rolls to its new value when it changes.</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Coins = Tab:CreateStat({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Coins = Tab:CreateStat({
     name = &quot;Coins&quot;,
     value = 0,
     prefix = &quot;$&quot;,
 })
 
 Coins:Set(1500)</code></pre></div>
-<div class="table"><table><thead><tr><th>Option</th><th>What it does</th></tr></thead><tbody><tr><td><code>prefix</code>, <code>suffix</code></td><td>Text before and after the number</td></tr><tr><td><code>display = &quot;change&quot;</code></td><td>Show how much the value changed instead of the value itself</td></tr><tr><td><code>changeMode</code></td><td><code>&quot;percentage&quot;</code> (default) or <code>&quot;absolute&quot;</code></td></tr><tr><td><code>changeBaseline</code></td><td>Compare with the <code>&quot;previous&quot;</code> value (default) or the <code>&quot;initial&quot;</code> one</td></tr><tr><td><code>compact = true</code></td><td>Smaller card, good inside a row</td></tr></tbody></table></div>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>value</code></td><td>number</td><td>Starting number</td></tr><tr><td><code>prefix</code>, <code>suffix</code></td><td>string</td><td>Text before and after the number</td></tr><tr><td><code>display</code></td><td>string</td><td><code>&quot;value&quot;</code> (default) or <code>&quot;change&quot;</code> to show how much it moved</td></tr><tr><td><code>changeMode</code></td><td>string</td><td><code>&quot;percentage&quot;</code> (default) or <code>&quot;absolute&quot;</code></td></tr><tr><td><code>changeBaseline</code></td><td>string</td><td>Compare with the <code>&quot;previous&quot;</code> value (default) or the <code>&quot;initial&quot;</code> one</td></tr><tr><td><code>compact</code></td><td>boolean</td><td>Smaller card. Always on inside a row</td></tr></tbody></table></div>
+<p><code>Set</code> takes a number only.</p>
 <h2 id="progress"><a class="anchor" href="#progress">Progress</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Progress = Tab:CreateProgress({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Quest = Tab:CreateProgress({
     name = &quot;Quest&quot;,
     range = { 0, 10 },
     value = 3,
 })
 
-Progress:Set(4)
-print(Progress:GetPercentage()) -- 0.4</code></pre></div>
-<div class="table"><table><thead><tr><th>Option</th><th>What it does</th></tr></thead><tbody><tr><td><code>steps</code></td><td>Draw the bar as this many segments</td></tr><tr><td><code>text</code></td><td>A fixed label instead of the value</td></tr><tr><td><code>format</code></td><td><code>function(value, min, max) return &quot;...&quot; end</code> to build the label yourself</td></tr><tr><td><code>showValue = false</code></td><td>Hide the label</td></tr><tr><td><code>indeterminate = true</code></td><td>A moving sweep, for work with no known length</td></tr></tbody></table></div>
+Quest:Set(4)
+print(Quest:GetPercentage()) -- 0.4</code></pre></div>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>range</code></td><td>table</td><td><code>{ min, max }</code>. Default <code>{ 0, 1 }</code></td></tr><tr><td><code>value</code></td><td>number</td><td>Starting value</td></tr><tr><td><code>steps</code></td><td>number</td><td>Draw the bar as this many segments</td></tr><tr><td><code>text</code></td><td>string</td><td>A fixed label instead of the value</td></tr><tr><td><code>format</code></td><td>function</td><td><code>function(value, min, max) return &quot;...&quot; end</code> to build the label</td></tr><tr><td><code>showValue</code></td><td>boolean</td><td><code>false</code> hides the label</td></tr><tr><td><code>indeterminate</code></td><td>boolean</td><td>A moving sweep, for work with no known length</td></tr></tbody></table></div>
 <h2 id="console"><a class="anchor" href="#console">Console</a></h2>
 <p>A scrolling block of text, like a log.</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Log = Tab:CreateConsole({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Log = Tab:CreateConsole({
     name = &quot;Log&quot;,
-    height = 120,   -- pixels, default 120
-    follow = true,  -- jump to the newest line
-    maxLines = 200, -- oldest lines drop off past this
+    height = 120,
+    follow = true,
+    maxLines = 200,
 })
 
 Log:Append(&quot;Started farming&quot;)
 Log:Clear()
-Log:Copy() -- copies the text, where the executor supports it</code></pre></div>
+Log:Copy()</code></pre></div>
+<div class="table"><table><thead><tr><th>Option</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>height</code></td><td>number</td><td>Height in pixels. Default <code>120</code></td></tr><tr><td><code>follow</code></td><td>boolean</td><td>Jump to the newest line on every <code>Append</code></td></tr><tr><td><code>maxLines</code></td><td>number</td><td>Oldest lines drop off past this. Default <code>200</code></td></tr><tr><td><code>text</code></td><td>string</td><td>Starting text</td></tr></tbody></table></div>
+<p><code>Copy</code> returns <code>false</code> on executors that cannot copy to the clipboard.</p>
 <h2 id="moving-elements"><a class="anchor" href="#moving-elements">Moving elements</a></h2>
 <p>Every element can be moved within its tab after it is made:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">Button:MoveToTop()
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">Button:MoveToTop()
 Button:MoveToBottom()
 Button:MoveUp()
 Button:MoveDown()
 Button:MoveTo(3)</code></pre></div>
 
-    <footer class="pager"><a class="prev" href="window.html"><span>Previous</span>Window</a><a class="next" href="layout.html"><span>Next</span>Layout</a></footer>
+    <footer class="page-foot">
+      <div class="pager"><a class="prev" href="window.html"><span>Previous</span>Window</a><a class="next" href="layout.html"><span>Next</span>Layout</a></div>
+      <a class="edit" href="https://github.com/OSSDiablo/rayfield-gen2-mobile/blob/main/docs/elements.md">Edit this page on GitHub</a>
+    </footer>
   </main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/lua.min.js"></script>
-<script>
-hljs.highlightAll();
-document.querySelectorAll(".copy").forEach(function (button) {
-  button.addEventListener("click", function () {
-    var code = button.parentElement.querySelector("code").innerText;
-    navigator.clipboard.writeText(code).then(function () {
-      button.textContent = "Copied";
-      setTimeout(function () { button.textContent = "Copy"; }, 1500);
-    });
-  });
-});
-document.querySelector(".menu").addEventListener("click", function () {
-  document.body.classList.toggle("nav-open");
-});
-document.querySelectorAll(".sidebar a").forEach(function (link) {
-  link.addEventListener("click", function () { document.body.classList.remove("nav-open"); });
-});
-</script>
+<script src="search.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

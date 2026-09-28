@@ -75,6 +75,18 @@ return function()
             expect(w.settings.theme).to.equal("ember")
         end)
 
+        it("takes the original Rayfield option names", function()
+            local w = makeWindow()
+            local tab = w:CreateTab({ Name = "Old" })
+            local toggle = tab:CreateToggle({ Name = "T", CurrentValue = true, Callback = function() end })
+            local keybind = tab:CreateKeybind({ Name = "K", CurrentKeybind = "Q", HoldToInteract = true })
+            local input = tab:CreateInput({ Name = "I", PlaceholderText = "Type here" })
+            expect(toggle.value).to.equal(true)
+            expect(keybind.value).to.equal(Enum.KeyCode.Q)
+            expect(keybind.hold).to.equal(true)
+            expect(input.placeholder).to.equal("Type here")
+        end)
+
         it("constructs tabs, tags, flags, and common controls", function()
             local clicked = 0
             local toggleValue = nil

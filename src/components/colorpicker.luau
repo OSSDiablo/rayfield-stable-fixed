@@ -14,6 +14,7 @@ local utility = script.Parent.Parent.utility
 
 -- Variables
 local variables = require(utility.variables)
+local pointer = require(utility.pointer)
 local functions = require(utility.functions)
 local moveable = require(utility.moveable)
 local lockable = require(utility.lockable)
@@ -799,6 +800,7 @@ function ColorPicker:_buildPicker()
             input.UserInputType == Enum.UserInputType.MouseButton1
             or input.UserInputType == Enum.UserInputType.Touch
         then
+            self._dragInput = input
             self:_beginDrag("sat", input.UserInputType == Enum.UserInputType.MouseButton1)
         end
     end)
@@ -808,6 +810,7 @@ function ColorPicker:_buildPicker()
             input.UserInputType == Enum.UserInputType.MouseButton1
             or input.UserInputType == Enum.UserInputType.Touch
         then
+            self._dragInput = input
             self:_beginDrag("hue", input.UserInputType == Enum.UserInputType.MouseButton1)
         end
     end)
@@ -817,6 +820,7 @@ function ColorPicker:_buildPicker()
             input.UserInputType == Enum.UserInputType.MouseButton1
             or input.UserInputType == Enum.UserInputType.Touch
         then
+            self._dragInput = input
             self:_beginDrag("alpha", input.UserInputType == Enum.UserInputType.MouseButton1)
         end
     end)
@@ -918,7 +922,7 @@ end
 -- AbsolutePosition, and GetMouseLocation is +inset.Y off it), so subtract the inset. Only Y
 -- matters here since the inset is vertical, but subtract both to be safe.
 function ColorPicker:_mouseLocation()
-    local mouse = variables.userInputService:GetMouseLocation()
+    local mouse = pointer.location(self._dragInput)
     local screenGui = self.window.screenGui
     if screenGui and screenGui.IgnoreGuiInset then
         return mouse - variables.guiService:GetGuiInset()

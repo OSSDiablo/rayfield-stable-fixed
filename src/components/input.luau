@@ -48,7 +48,7 @@ function Input.new(tab, properties)
         icon = properties.icon or properties.Icon,
         description = properties.description or properties.Description,
         forgetState = properties.forgetState or properties.ForgetState or tab.forgetState,
-        placeholder = properties.placeholder or properties.Placeholder or "",
+        placeholder = properties.placeholder or properties.Placeholder or properties.PlaceholderText or "",
         numeric = properties.numeric or properties.Numeric or false, -- strip anything not a number
         clearOnFocus = properties.clearOnFocus or properties.ClearOnFocus or false,
 

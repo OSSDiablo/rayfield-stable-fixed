@@ -80,8 +80,6 @@ a { color: var(--link); text-decoration: none; }
   font-size: 14px;
 }
 
-.sidebar > a:hover { color: var(--text); background: var(--raised); }
-.sidebar > a.current { color: var(--text); background: var(--raised); }
 
 .toc { margin: 4px 0 10px 12px; border-left: 1px solid var(--line); }
 .toc a {
@@ -194,4 +192,139 @@ td code, th code { white-space: nowrap; }
   .content { padding: 28px 16px 48px; }
   h1 { font-size: 28px; }
   .copy { opacity: 1; }
+}
+
+/* brand */
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand img { display: block; }
+
+/* search */
+.search { position: relative; margin: 0 0 14px; }
+.search input {
+  width: 100%;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font: 14px Inter, sans-serif;
+  padding: 8px 34px 8px 12px;
+  outline: none;
+}
+.search input:focus { border-color: #3a3a40; }
+.search input::-webkit-search-cancel-button { display: none; }
+.search kbd {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font: 11px "JetBrains Mono", monospace;
+  color: var(--faint);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 5px;
+}
+.results a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+}
+.results a:hover { background: var(--raised); }
+.results strong { display: block; font-size: 14px; font-weight: 600; }
+.results span { display: block; font-size: 12px; color: var(--faint); }
+.results em { display: block; font-style: normal; font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.45; }
+.results .none { color: var(--faint); font-size: 13px; padding: 4px 12px; }
+.nav > a {
+  display: block;
+  padding: 7px 12px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 14px;
+}
+.nav > a:hover, .nav > a.current { color: var(--text); background: var(--raised); }
+
+/* code blocks with a header */
+.code { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--code-bg); }
+.code pre { border: 0; border-radius: 0; }
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px 6px 14px;
+  border-bottom: 1px solid var(--line);
+  font: 500 12px Inter, sans-serif;
+  color: var(--faint);
+}
+.code-head .copy, .install .copy {
+  position: static;
+  opacity: 1;
+}
+
+/* hero */
+.hero { padding: 12px 0 8px; }
+.hero-logo { display: block; margin-bottom: 18px; }
+.hero h1 { font-size: 40px; margin-bottom: 12px; }
+.lede { font-size: 17px; color: var(--muted); max-width: 600px; margin: 0 0 24px; }
+.install {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 10px 10px 16px;
+  margin-bottom: 20px;
+}
+.install code {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #cfcfd4;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.button {
+  display: inline-block;
+  padding: 9px 16px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  font-weight: 500;
+  font-size: 14px;
+}
+.button:hover { background: var(--raised); }
+.button.primary { background: #ececef; color: #0c0c0d; border-color: #ececef; }
+.button.primary:hover { background: #ffffff; }
+
+/* feature grid and page cards */
+.features, .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0 8px;
+}
+.feature, .card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: var(--panel);
+}
+.feature h3, .card h3 { margin: 0 0 6px; font-size: 15px; }
+.feature p, .card p { margin: 0; font-size: 14px; line-height: 1.55; }
+.card { display: block; }
+.card:hover { background: var(--raised); }
+
+/* page footer */
+.page-foot { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+.page-foot .pager { margin: 0; padding: 0; border: 0; }
+.edit { display: inline-block; margin-top: 18px; font-size: 13px; color: var(--faint); }
+.edit:hover { color: var(--text); }
+
+@media (max-width: 860px) {
+  .hero h1 { font-size: 30px; }
+  .lede { font-size: 16px; }
 }

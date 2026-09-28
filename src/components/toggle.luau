@@ -42,7 +42,13 @@ function Toggle.new(tab, properties)
 
         callback = properties.callback or properties.Callback or function() end,
 
-        value = if (properties.value or properties.Value) ~= nil then (properties.value or properties.Value) else false,
+        -- CurrentValue is the original Rayfield name, kept so older scripts start in the right state
+        value = if (properties.value or properties.Value) ~= nil
+            then (properties.value or properties.Value)
+            elseif (properties.currentValue or properties.CurrentValue) ~= nil then (
+                properties.currentValue or properties.CurrentValue
+            )
+            else false,
     }, Toggle)
 
     -- register as a saveable control if flagged (works in a row too)

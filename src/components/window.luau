@@ -24,6 +24,7 @@ local sidebar = require(script.Parent.sidebar)
 
 -- Variables
 local variables = require(utility.variables)
+local pointer = require(utility.pointer)
 
 -- Themes
 local themes = script.Parent.Parent.themes
@@ -85,6 +86,27 @@ local compactOverlayShare = 0.8
 -- size read too big on a small screen.
 local compactPillScale = 0.8
 local compactActionIcon, compactActionCell, compactActionGap = 16, 28, 5
+
+-- Long place names ("[UPDATE 24] Some Game Name 2") would push the header actions aside.
+local maxGameNameLength = 32
+
+-- The subtitle a window gets when the script names none: the game being played. The name comes
+-- from a web call, so the window opens without waiting on it and the line fills in after.
+function Window:_fillGameSubtitle()
+    task.spawn(function()
+        local ok, info = pcall(function()
+            return services.getService("MarketplaceService"):GetProductInfo(game.PlaceId)
+        end)
+        local name = if ok and type(info) == "table" and type(info.Name) == "string" then info.Name else nil
+        if not name or name == "" or self.unloaded or not self.subtitle then
+            return
+        end
+        if utf8.len(name) and (utf8.len(name) :: number) > maxGameNameLength then
+            name = string.sub(name, 1, (utf8.offset(name, maxGameNameLength) :: number) - 1) .. "..."
+        end
+        self.subtitle.Text = name
+    end)
+end
 
 -- The Home tab and the Discord reminder every window gets. homeTab = false and
 -- discordReminder = false leave them out; discordInvite points both at another server.
@@ -271,8 +293,12 @@ function Window.new(properties)
     end
 
     local self = setmetatable({
-        name = properties.name or properties.Name or "Rayfield Window",
-        subheading = properties.subtitle or properties.Subtitle,
+        name = properties.name or properties.Name or "Astris Hub",
+        -- no subtitle means the game being played, filled in once its name arrives; false means none
+        subheading = if (properties.subtitle or properties.Subtitle) ~= nil
+            then (properties.subtitle or properties.Subtitle) or nil
+            else "",
+        _subtitleIsGame = (properties.subtitle or properties.Subtitle) == nil,
         layout = layout,
         -- size is in the window's own units; on screen it is size * scale
         size = size,
@@ -548,6 +574,10 @@ function Window.new(properties)
 
             Parent = self.titleContainer,
         }, { TextColor3 = "TitlingColor", FontFace = "Font" })
+
+        if self._subtitleIsGame then
+            self:_fillGameSubtitle()
+        end
     end
 
     self.tagContainer = self:Create("Frame", {
@@ -1175,8 +1205,10 @@ function Window:Notify(properties)
         self.notifications = self:Create("Frame", {
             Name = "Notifications",
             Size = UDim2.new(0, 300, 0, 800),
-            Position = UDim2.new(1, -20, 1, -20),
-            AnchorPoint = Vector2.new(1, 1),
+            -- top right, just under the Roblox top bar, where it covers less of the game than the
+            -- bottom corner, which a phone's jump button already sits in
+            Position = UDim2.new(1, -20, 0, variables.guiService:GetGuiInset().Y + 12),
+            AnchorPoint = Vector2.new(1, 0),
             BackgroundTransparency = 1,
 
             Parent = self.screenGui,
@@ -1185,7 +1217,7 @@ function Window:Notify(properties)
 
         self:Create("UIListLayout", {
             FillDirection = Enum.FillDirection.Vertical,
-            VerticalAlignment = Enum.VerticalAlignment.Bottom,
+            VerticalAlignment = Enum.VerticalAlignment.Top,
             HorizontalAlignment = Enum.HorizontalAlignment.Center,
             SortOrder = Enum.SortOrder.LayoutOrder,
             -- No padding here: the gap lives inside each notification so removing
@@ -1796,6 +1828,7 @@ function Window:_bindTopbarDrag()
     local uis = variables.userInputService
     local dragging = false
     local relative = Vector2.zero
+    local activeInput = nil -- the press being tracked; a touch follows its own finger
 
     -- main.Position lives in a space shifted from AbsolutePosition by the gui inset, even
     -- though the ScreenGui ignores it - add it back or the window jumps on the first move
@@ -1805,7 +1838,7 @@ function Window:_bindTopbarDrag()
     end
 
     local function getTarget()
-        local position = uis:GetMouseLocation() + relative + offset
+        local position = pointer.location(activeInput) + relative + offset
         local x, y = self:_fitCenter(position.X, position.Y, self.main.AbsoluteSize)
         return UDim2.fromOffset(x, y)
     end
@@ -1848,7 +1881,8 @@ function Window:_bindTopbarDrag()
             offset = variables.guiService:GetGuiInset()
         end
 
-        relative = self.main.AbsolutePosition + self.main.AbsoluteSize * self.main.AnchorPoint - uis:GetMouseLocation()
+        activeInput = input
+        relative = self.main.AbsolutePosition + self.main.AbsoluteSize * self.main.AnchorPoint - pointer.location(input)
     end)
 
     self:Connect(uis.InputEnded, function(input)

@@ -18,8 +18,8 @@ local Window = Rayfield:CreateWindow({
 
 | Option | Type | What it does |
 |---|---|---|
-| `name` | string | Title in the header |
-| `subtitle` | string | Smaller line under the title |
+| `name` | string | Title in the header. Default "Astris Hub" |
+| `subtitle` | string or `false` | Smaller line under the title. Leave it out to show the game being played, or `false` for none |
 | `sidebarLayout` | boolean | `true` puts tabs down the left side. Default is tabs across the top |
 | `icon` | number, string or `false` | Header logo. Leave it out for the built-in logo, pass an asset id for your own, or `false` for none |
 | `themeTab` | boolean | `false` leaves out the built-in Theme tab |
@@ -68,6 +68,8 @@ local Misc = Window:CreateTab({ name = "Misc" })
 ```
 
 ## Notifications
+
+Notifications stack in the top right corner, newest first, just under the Roblox top bar.
 
 Every 3 minutes the window posts a notification asking players to join the Astris Hub Discord.
 Turn it off with `discordReminder = false`.

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full example - Rayfield Gen2 Mobile</title>
+<meta name="description" content="Docs for Rayfield Gen2 Mobile, a phone-friendly build of the Rayfield Gen2 Roblox UI library.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-example">
+<header class="topbar">
+  <button class="menu" type="button" aria-label="Open navigation">Menu</button>
+  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Gen2 Mobile</span></a>
+  <a class="gh" href="https://github.com/OSSDiablo/rayfield-gen2-mobile">GitHub</a>
+</header>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="search">
+      <input type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off">
+      <kbd>/</kbd>
+    </div>
+    <div class="results" hidden></div>
+    <div class="nav">
+      <a href="index.html">Overview</a>
+      <a href="getting-started.html">Getting started</a>
+      <a href="window.html">Window</a>
+      <a href="elements.html">Elements</a>
+      <a href="layout.html">Layout</a>
+      <a href="themes-and-mobile.html">Themes and mobile</a>
+      <a href="example.html" class="current">Full example</a>
+      <div class="toc">
+        <a href="#what-each-part-does">What each part does</a>
+      </div>
+      <a href="faq.html">FAQ</a>
+    </div>
+  </nav>
+  <main class="content">
+<h1>Full example</h1>
+<p>A complete hub script you can copy and change. It builds a sidebar window with two headings, three tabs, saved settings and a notification. The built-in Home and Theme tabs are added for you.</p>
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau&quot;))()
+
+local Players = game:GetService(&quot;Players&quot;)
+local player = Players.LocalPlayer
+
+local Window = Rayfield:CreateWindow({
+    name = &quot;Astris Hub&quot;,
+    subtitle = &quot;Example Game&quot;,
+    sidebarLayout = true,
+    configuration = {
+        autoSave = true,
+        autoLoad = true,
+        fileName = &quot;AstrisExample&quot;,
+    },
+})
+
+-- Farming ---------------------------------------------------------------
+
+Window:CreateSection({ name = &quot;Main&quot; })
+local Farm = Window:CreateTab({ name = &quot;Farm&quot;, icon = 10723395708 })
+
+local farming = false
+
+Farm:CreateToggle({
+    name = &quot;Auto Farm&quot;,
+    description = &quot;Attacks the nearest enemy for you&quot;,
+    flag = &quot;AutoFarm&quot;,
+    callback = function(on)
+        farming = on
+    end,
+})
+
+Farm:CreateDropdown({
+    name = &quot;Target&quot;,
+    options = { &quot;Nearest&quot;, &quot;Weakest&quot;, &quot;Boss&quot; },
+    value = &quot;Nearest&quot;,
+    flag = &quot;FarmTarget&quot;,
+    callback = function(target)
+        print(&quot;Now targeting:&quot;, target)
+    end,
+})
+
+local Kills = Farm:CreateStat({ name = &quot;Kills&quot;, value = 0 })
+
+task.spawn(function()
+    local kills = 0
+    while task.wait(1) do
+        if farming then
+            kills += 1
+            Kills:Set(kills)
+        end
+    end
+end)
+
+-- Player ----------------------------------------------------------------
+
+local Player = Window:CreateTab({ name = &quot;Player&quot;, icon = 10747373426 })
+
+local function humanoid()
+    local character = player.Character
+    return character and character:FindFirstChildOfClass(&quot;Humanoid&quot;)
+end
+
+local Row = Player:CreateGroup()
+Row:CreateSlider({
+    name = &quot;Walk Speed&quot;,
+    range = { 16, 100 },
+    value = 16,
+    flag = &quot;WalkSpeed&quot;,
+    callback = function(speed)
+        local h = humanoid()
+        if h then
+            h.WalkSpeed = speed
+        end
+    end,
+})
+Row:CreateSlider({
+    name = &quot;Jump Power&quot;,
+    range = { 50, 200 },
+    value = 50,
+    flag = &quot;JumpPower&quot;,
+    callback = function(power)
+        local h = humanoid()
+        if h then
+            h.UseJumpPower = true
+            h.JumpPower = power
+        end
+    end,
+})
+
+Player:CreateKeybind({
+    name = &quot;Reset speed&quot;,
+    value = Enum.KeyCode.R,
+    callback = function()
+        Window:Set(&quot;WalkSpeed&quot;, 16)
+    end,
+})
+
+-- Misc ------------------------------------------------------------------
+
+Window:CreateSection({ name = &quot;Other&quot; })
+local Misc = Window:CreateTab({ name = &quot;Misc&quot;, icon = 10709805144 })
+
+Misc:CreateButton({
+    name = &quot;Rejoin server&quot;,
+    callback = function()
+        Window:Popup({
+            title = &quot;Rejoin?&quot;,
+            content = &quot;You will leave this server and join it again.&quot;,
+            options = {
+                { text = &quot;Cancel&quot; },
+                {
+                    text = &quot;Rejoin&quot;,
+                    style = &quot;primary&quot;,
+                    callback = function()
+                        game:GetService(&quot;TeleportService&quot;):Teleport(game.PlaceId, player)
+                    end,
+                },
+            },
+        })
+    end,
+})
+
+Window:Notify({
+    title = &quot;Astris Hub loaded&quot;,
+    content = &quot;Open the menu with the pill at the top of the screen.&quot;,
+})</code></pre></div>
+<h2 id="what-each-part-does"><a class="anchor" href="#what-each-part-does">What each part does</a></h2>
+<ul><li>**<code>CreateWindow</code>** with <code>configuration</code> saves every element that has a <code>flag</code>, and loads it again next time the script runs.</li><li>**<code>CreateSection</code>** puts a heading in the sidebar. Tabs made after it sit under it.</li><li><strong>Icons</strong> are image asset ids. The ones above are from the Lucide set: <code>10723395708</code> is a gauge, <code>10747373426</code> people, <code>10709805144</code> a clock.</li><li>**<code>CreateGroup</code>** puts the two sliders side by side.</li><li>**<code>Window:Set(&quot;WalkSpeed&quot;, 16)</code>** changes a saved element from anywhere, by its flag.</li><li>**<code>Window:Popup</code>** asks before doing something the player cannot undo.</li></ul>
+
+    <footer class="page-foot">
+      <div class="pager"><a class="prev" href="themes-and-mobile.html"><span>Previous</span>Themes and mobile</a><a class="next" href="faq.html"><span>Next</span>FAQ</a></div>
+      <a class="edit" href="https://github.com/OSSDiablo/rayfield-gen2-mobile/blob/main/docs/example.md">Edit this page on GitHub</a>
+    </footer>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/lua.min.js"></script>
+<script src="search.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

@@ -5,47 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Getting started - Rayfield Gen2 Mobile</title>
 <meta name="description" content="Docs for Rayfield Gen2 Mobile, a phone-friendly build of the Rayfield Gen2 Roblox UI library.">
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-getting-started">
 <header class="topbar">
-  <button class="menu" type="button" aria-label="Menu">Menu</button>
-  <a class="brand" href="index.html">Rayfield Gen2 Mobile</a>
+  <button class="menu" type="button" aria-label="Open navigation">Menu</button>
+  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Gen2 Mobile</span></a>
   <a class="gh" href="https://github.com/OSSDiablo/rayfield-gen2-mobile">GitHub</a>
 </header>
 <div class="layout">
   <nav class="sidebar">
-    <a href="index.html">Overview</a>
-    <a href="getting-started.html" class="current">Getting started</a>
-    <div class="toc">
-      <a href="#loading-the-library">Loading the library</a>
-      <a href="#your-first-window">Your first window</a>
-      <a href="#option-names">Option names</a>
-      <a href="#callbacks">Callbacks</a>
-      <a href="#saving-settings">Saving settings</a>
+    <div class="search">
+      <input type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off">
+      <kbd>/</kbd>
     </div>
-    <a href="window.html">Window</a>
-    <a href="elements.html">Elements</a>
-    <a href="layout.html">Layout</a>
-    <a href="themes-and-mobile.html">Themes and mobile</a>
+    <div class="results" hidden></div>
+    <div class="nav">
+      <a href="index.html">Overview</a>
+      <a href="getting-started.html" class="current">Getting started</a>
+      <div class="toc">
+        <a href="#loading-the-library">Loading the library</a>
+        <a href="#your-first-window">Your first window</a>
+        <a href="#option-names">Option names</a>
+        <a href="#callbacks">Callbacks</a>
+        <a href="#saving-settings">Saving settings</a>
+      </div>
+      <a href="window.html">Window</a>
+      <a href="elements.html">Elements</a>
+      <a href="layout.html">Layout</a>
+      <a href="themes-and-mobile.html">Themes and mobile</a>
+      <a href="example.html">Full example</a>
+      <a href="faq.html">FAQ</a>
+    </div>
   </nav>
   <main class="content">
 <h1>Getting started</h1>
 <h2 id="loading-the-library"><a class="anchor" href="#loading-the-library">Loading the library</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau&quot;))()</code></pre></div>
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Rayfield = loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau&quot;))()</code></pre></div>
 <p>The first line of the file says which build you have, for example <code>-- Rayfield Gen2 v1.2.0-preview mobile (...)</code>. Include it when you report a problem.</p>
 <h2 id="your-first-window"><a class="anchor" href="#your-first-window">Your first window</a></h2>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Window = Rayfield:CreateWindow({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Window = Rayfield:CreateWindow({
     name = &quot;My Hub&quot;,
     subtitle = &quot;v1.0&quot;,
     sidebarLayout = true, -- tabs down the left. Leave it out for tabs across the top
 })</code></pre></div>
 <p>A window holds tabs, and tabs hold elements:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Main = Window:CreateTab({ name = &quot;Main&quot;, icon = 10723424646 }) -- lucide &quot;home&quot;
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Main = Window:CreateTab({ name = &quot;Main&quot;, icon = 10723424646 }) -- lucide &quot;home&quot;
 
 Main:CreateButton({
     name = &quot;Say hello&quot;,
@@ -59,13 +69,13 @@ Main:CreateButton({
 <h2 id="callbacks"><a class="anchor" href="#callbacks">Callbacks</a></h2>
 <p>Each element calls its <code>callback</code> when the player changes it. What the callback receives depends on the element: a toggle gets <code>true</code> or <code>false</code>, a slider gets the number, and so on. The <a href="elements.html">Elements</a> page lists each one.</p>
 <p>Every element with a value also has a <code>Set</code> method so your script can change it:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Farm = Main:CreateToggle({ name = &quot;Auto Farm&quot;, callback = function(on) end })
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Farm = Main:CreateToggle({ name = &quot;Auto Farm&quot;, callback = function(on) end })
 
 Farm:Set(true)        -- turns it on and runs the callback
 Farm:Set(false, true) -- turns it off without running the callback</code></pre></div>
 <h2 id="saving-settings"><a class="anchor" href="#saving-settings">Saving settings</a></h2>
 <p>Elements with a <code>flag</code> are saved and loaded for the player:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">local Window = Rayfield:CreateWindow({
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">local Window = Rayfield:CreateWindow({
     name = &quot;My Hub&quot;,
     configuration = {
         autoSave = true,       -- save whenever something changes
@@ -78,31 +88,18 @@ Farm:Set(false, true) -- turns it off without running the callback</code></pre><
 Main:CreateToggle({ name = &quot;Auto Farm&quot;, flag = &quot;AutoFarm&quot;, callback = function(on) end })</code></pre></div>
 <p>Elements you create without a <code>flag</code> get one from their name. Pass <code>forgetState = true</code> on an element to keep it out of the save.</p>
 <p>You can also read and write saved values directly:</p>
-<div class="code"><button class="copy" type="button">Copy</button><pre><code class="language-lua">print(Window.Flags.AutoFarm)   -- current value
+<div class="code"><div class="code-head"><span>Lua</span><button class="copy" type="button">Copy</button></div><pre><code class="language-lua">print(Window.Flags.AutoFarm)   -- current value
 Window.Flags.AutoFarm = true   -- same as calling Set on the toggle</code></pre></div>
 
-    <footer class="pager"><a class="prev" href="index.html"><span>Previous</span>Overview</a><a class="next" href="window.html"><span>Next</span>Window</a></footer>
+    <footer class="page-foot">
+      <div class="pager"><a class="prev" href="index.html"><span>Previous</span>Overview</a><a class="next" href="window.html"><span>Next</span>Window</a></div>
+      <a class="edit" href="https://github.com/OSSDiablo/rayfield-gen2-mobile/blob/main/docs/getting-started.md">Edit this page on GitHub</a>
+    </footer>
   </main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/lua.min.js"></script>
-<script>
-hljs.highlightAll();
-document.querySelectorAll(".copy").forEach(function (button) {
-  button.addEventListener("click", function () {
-    var code = button.parentElement.querySelector("code").innerText;
-    navigator.clipboard.writeText(code).then(function () {
-      button.textContent = "Copied";
-      setTimeout(function () { button.textContent = "Copy"; }, 1500);
-    });
-  });
-});
-document.querySelector(".menu").addEventListener("click", function () {
-  document.body.classList.toggle("nav-open");
-});
-document.querySelectorAll(".sidebar a").forEach(function (link) {
-  link.addEventListener("click", function () { document.body.classList.remove("nav-open"); });
-});
-</script>
+<script src="search.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

@@ -208,9 +208,9 @@ function Notification.new(window, properties)
         }, { TextColor3 = "ContentColor", FontFace = "Font" })
     end
 
-    -- Newest sits at the bottom of the (bottom-anchored) stack
+    -- Newest sits at the top of the (top-anchored) stack, next to the corner
     self.window._notificationCount = (self.window._notificationCount or 0) + 1
-    self.main.LayoutOrder = self.window._notificationCount
+    self.main.LayoutOrder = -self.window._notificationCount
 
     -- a callback that notifies in a loop would stack cards forever, so retire the oldest once
     -- theres more than the stack can show

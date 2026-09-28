@@ -26,8 +26,6 @@ local translations = {
 }
 
 local window = Rayfield:CreateWindow({
-    name = "Example",
-    subtitle = "Rayfield Gen2",
     translations = translations,
     sidebarLayout = true, -- flip this for tabs across the top instead of down the left
     configuration = {

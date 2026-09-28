@@ -14,6 +14,7 @@ local utility = script.Parent.Parent.utility
 
 -- Variables
 local variables = require(utility.variables)
+local pointer = require(utility.pointer)
 local functions = require(utility.functions)
 local odometer = require(utility.odometer)
 local moveable = require(utility.moveable)
@@ -268,6 +269,7 @@ function Slider.new(tab, properties)
             or input.UserInputType == Enum.UserInputType.Touch
         then
             hapticEngine.click() -- one tick on grab, not per drag frame
+            self._dragInput = input -- a touch follows its own finger, not the movement stick
             self.dragging = true
             self:_setHeld(true)
             self:_updateFromMouse()
@@ -550,7 +552,7 @@ function Slider:_updateFromMouse()
     end
 
     local ratio = ratioFromPointer(
-        variables.userInputService:GetMouseLocation().X,
+        pointer.location(self._dragInput).X,
         self.track.AbsolutePosition.X + self._handleWidth * self.window.scale / 2,
         travel
     )

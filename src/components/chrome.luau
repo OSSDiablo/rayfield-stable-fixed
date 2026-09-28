@@ -10,6 +10,7 @@
 
 local utility = script.Parent.Parent.utility
 local variables = require(utility.variables)
+local pointer = require(utility.pointer)
 local filesystem = require(utility.filesystem)
 local constants = require(utility.constants)
 local locale = require(utility.locale)
@@ -127,6 +128,7 @@ function chrome.bindCollapsedDrag(window)
     local uis = variables.userInputService
     local dragging, moved = false, false
     local grabOffset, grabMouse = Vector2.zero, Vector2.zero
+    local grabInput = nil
 
     -- main.Position sits in a space shifted from AbsolutePosition by the gui inset, even though
     -- the ScreenGui ignores it - add it back or the pill jumps on the first move
@@ -147,7 +149,8 @@ function chrome.bindCollapsedDrag(window)
         end
 
         dragging, moved = true, false
-        grabMouse = uis:GetMouseLocation()
+        grabInput = input
+        grabMouse = pointer.location(input)
         grabOffset = window.main.AbsolutePosition + window.main.AbsoluteSize * window.main.AnchorPoint - grabMouse
     end)
 
@@ -185,7 +188,7 @@ function chrome.bindCollapsedDrag(window)
             return
         end
 
-        local mouse = uis:GetMouseLocation()
+        local mouse = pointer.location(grabInput)
         if not moved and (mouse - grabMouse).Magnitude < dragThreshold then
             return -- still inside the slop: it might yet be a click
         end

@@ -68,6 +68,8 @@ Read them as a site at **https://ossdiablo.github.io/rayfield-gen2-mobile/**, or
 3. [Elements](docs/elements.md): every element with its options and methods
 4. [Layout](docs/layout.md): sections, text, dividers and side-by-side groups
 5. [Themes and mobile](docs/themes-and-mobile.md): built-in themes, custom themes, phone behaviour
+6. [Full example](docs/example.md): a complete hub script to copy and change
+7. [FAQ](docs/faq.md): stale builds, icons, the logo, the clipboard, where settings are saved
 
 ## Building from source
 

@@ -85,13 +85,20 @@ function Keybind.new(tab, properties)
 
         -- hold mode: callback(true) once the key survives holdThreshold, callback(false) on release.
         -- the threshold means a quick accidental tap fires nothing.
-        hold = properties.hold or properties.Hold or false,
+        hold = properties.hold or properties.Hold or properties.HoldToInteract or false,
         holdThreshold = properties.holdThreshold or properties.HoldThreshold or 0.2,
 
         recording = false,
     }, Keybind)
 
-    self.value = coerceKey(properties.value or properties.Value or properties.default or properties.Default)
+    self.value = coerceKey(
+        properties.value
+            or properties.Value
+            or properties.default
+            or properties.Default
+            or properties.currentKeybind
+            or properties.CurrentKeybind -- the original Rayfield name
+    )
 
     self.flag = properties.flag
         or properties.Flag
