@@ -12,10 +12,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
-REPO = "https://github.com/OSSDiablo/rayfield-gen2-mobile"
+REPO = "https://github.com/OSSDiablo/rayfield-preview-fixed"
 LOADSTRING = (
     'local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/'
-    'OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau"))()'
+    'OSSDiablo/rayfield-preview-fixed/main/dist/rayfield.luau"))()'
 )
 
 PAGES = [
@@ -190,8 +190,8 @@ def convert(md):
 
 HERO = """<section class="hero">
   <img class="hero-logo" src="logo.png" alt="" width="72" height="72">
-  <h1>Rayfield Gen2 Mobile</h1>
-  <p class="lede">The Rayfield Gen2 UI library for Roblox, fixed up for phones. Same API, so any Gen2 script runs on it unchanged.</p>
+  <h1>Rayfield Preview Fixed</h1>
+  <p class="lede">The Rayfield Gen2 preview for Roblox, fixed up for phones by Astris Hub. Same API, so any Gen2 script runs on it unchanged.</p>
   {install}
   <div class="hero-actions">
     <a class="button primary" href="getting-started.html">Get started</a>
@@ -205,7 +205,7 @@ TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{page_title}</title>
-<meta name="description" content="Docs for Rayfield Gen2 Mobile, a phone-friendly build of the Rayfield Gen2 Roblox UI library.">
+<meta name="description" content="Docs for Rayfield Preview Fixed by Astris Hub, a phone-friendly build of the Rayfield Gen2 preview for Roblox.">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -216,7 +216,7 @@ TEMPLATE = """<!doctype html>
 <body class="page-{name}">
 <header class="topbar">
   <button class="menu" type="button" aria-label="Open navigation">Menu</button>
-  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Gen2 Mobile</span></a>
+  <a class="brand" href="index.html"><img src="logo.png" alt="" width="22" height="22"><span>Rayfield Preview Fixed</span></a>
   <a class="gh" href="{repo}">GitHub</a>
 </header>
 <div class="layout">
@@ -389,7 +389,7 @@ def build():
             )
             body = HERO.format(install=install) + "\n" + re.sub(r"^<h1>.*?</h1>\s*", "", body)
 
-        page_title = "Rayfield Gen2 Mobile" if name == "index" else f"{title} - Rayfield Gen2 Mobile"
+        page_title = "Rayfield Preview Fixed" if name == "index" else f"{title} - Rayfield Preview Fixed"
         (DOCS / f"{name}.html").write_text(
             TEMPLATE.format(
                 page_title=html.escape(page_title),

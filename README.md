@@ -1,10 +1,10 @@
-# Rayfield Gen2 Mobile
+# Rayfield Preview Fixed
 
-A build of [Rayfield Gen2](https://docs.sirius.menu/rayfield-gen2) that works properly on phones.
+The [Rayfield Gen2](https://docs.sirius.menu/rayfield-gen2) preview, fixed up for phones by Astris Hub.
 Same API as Gen2, so any Gen2 script runs on it unchanged.
 
 ```lua
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau"))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/main/dist/rayfield.luau"))()
 ```
 
 ## What's different from stock Gen2
@@ -25,7 +25,7 @@ local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSD
 ## Quick start
 
 ```lua
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau"))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/main/dist/rayfield.luau"))()
 
 local Window = Rayfield:CreateWindow({
     name = "My Hub",
@@ -56,12 +56,12 @@ Main:CreateSlider({
 To see every element at once, run the demo:
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/test.luau"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/main/dist/test.luau"))()
 ```
 
 ## Docs
 
-Read them as a site at **https://ossdiablo.github.io/rayfield-gen2-mobile/**, or here on GitHub:
+Read them as a site at **https://ossdiablo.github.io/rayfield-preview-fixed/**, or here on GitHub:
 
 1. [Getting started](docs/getting-started.md): loading, your first window, how saving works
 2. [Window](docs/window.md): window options, tabs, notifications, popups, configs

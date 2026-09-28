@@ -8,11 +8,11 @@ stale:
 
 ```lua
 local sha = "put-the-commit-hash-here"
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/" .. sha .. "/dist/rayfield.luau"))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/" .. sha .. "/dist/rayfield.luau"))()
 ```
 
 The first line of the library says which build you have:
-`-- Rayfield Gen2 v1.2.0-preview mobile (...)`.
+`-- Rayfield Preview Fixed v1.2.0 by Astris Hub (...)`.
 
 ## My icon does not show up
 

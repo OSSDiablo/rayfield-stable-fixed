@@ -3,11 +3,11 @@
 ## Loading the library
 
 ```lua
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-gen2-mobile/main/dist/rayfield.luau"))()
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/OSSDiablo/rayfield-preview-fixed/main/dist/rayfield.luau"))()
 ```
 
 The first line of the file says which build you have, for example
-`-- Rayfield Gen2 v1.2.0-preview mobile (...)`. Include it when you report a problem.
+`-- Rayfield Preview Fixed v1.2.0 by Astris Hub (...)`. Include it when you report a problem.
 
 ## Your first window
 
