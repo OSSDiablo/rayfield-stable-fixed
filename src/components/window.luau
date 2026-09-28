@@ -69,6 +69,12 @@ local viewportReconcileInterval = 2
 local screenMargin = 8
 local keepInView = 80
 
+-- Header action icons: icon, the square it sits in, and the gap between them. On a phone the
+-- window's scale took them well under a comfortable tap, so there they are sized to come out at
+-- the compact values on screen instead.
+local actionIcon, actionCell, actionGap = 20, 24, 5
+local compactActionIcon, compactActionCell, compactActionGap = 22, 32, 6
+
 -- The size the current screen calls for, for this window's layout. Everything downstream (the
 -- reveal target, drag clamp, collapse) reads self.size, so it all inherits whatever this returns.
 -- Also returns the UIScale to draw it at, which is below 1 only on a phone.
@@ -1379,6 +1385,7 @@ function Window:_applyWindowSize()
     self.size = size
     self.scale = scale
     self.uiScale.Scale = scale
+    self:_applyActionSize()
 
     -- the rail is sized off main, so setting it now is right whether main resizes on the spot
     -- below or grows into the banked size on its next show
@@ -1399,6 +1406,33 @@ function Window:_applyWindowSize()
     self.main.Size = size
     self:_clampToScreen()
     self:_syncDragBar()
+end
+
+-- Size the header actions for the current scale. Runs again for each new action and on every
+-- re-fit, so a rotation that changes the scale resizes them too.
+function Window:_applyActionSize()
+    if not self.actionContainer then
+        return
+    end
+
+    local icon, cell, gap = actionIcon, actionCell, actionGap
+    if self.scale < 1 then
+        icon = math.round(compactActionIcon / self.scale)
+        cell = math.round(compactActionCell / self.scale)
+        gap = math.round(compactActionGap / self.scale)
+    end
+
+    self.actionContainer.Size = UDim2.fromOffset(0, cell)
+    self.actionsListLayout.Padding = UDim.new(0, gap)
+    for _, action in ipairs(self.actionContainer:GetChildren()) do
+        if action:IsA("Frame") then
+            action.Size = UDim2.fromOffset(cell, cell)
+            local label = action:FindFirstChild("ImageLabel")
+            if label and label:IsA("ImageLabel") then
+                label.Size = UDim2.fromOffset(icon, icon)
+            end
+        end
+    end
 end
 
 -- The rail keeps its labels while there's width to spare and drops to icons when there isn't,

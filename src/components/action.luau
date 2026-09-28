@@ -119,6 +119,9 @@ function Action.new(window, properties)
 
     self.window:Connect(self.interact.MouseLeave, settleIcon)
 
+    -- the window sizes its actions for its scale, bigger on a phone
+    self.window:_applyActionSize()
+
     return self
 end
 

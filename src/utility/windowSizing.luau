@@ -102,8 +102,8 @@ local profiles = {
 -- fit runs against the screen as the scaled window sees it. Without this a phone gets desktop
 -- sized text in a window that fills the width and still shows three rows.
 local compactMaxViewportY = 600
-local compactReferenceHeight = 540
-local compactMinScale = 0.62
+local compactReferenceHeight = 620
+local compactMinScale = 0.55
 
 -- On a phone the height is what runs out, so the scaled window may grow past the desktop ideal
 -- and take more of the screen down. Width is left alone: the scale alone narrows it on screen.
@@ -115,8 +115,8 @@ local function withOverrides(base: Profile, defaultSize: Vector2, maxOccupancyY:
 end
 
 local compactProfiles = {
-    top = withOverrides(profiles.top, Vector2.new(475, 560)),
-    sidebar = withOverrides(profiles.sidebar, Vector2.new(685, 520), 0.86),
+    top = withOverrides(profiles.top, Vector2.new(500, 620)),
+    sidebar = withOverrides(profiles.sidebar, Vector2.new(760, 560), 0.86),
 }
 
 function windowSizing.profile(mode: layouts.Mode?, compact: boolean?): Profile
